@@ -20,7 +20,7 @@ jobs:
       - name: Checkout experimental build branch
         uses: actions/checkout@v4
         with:
-          ref: github-hosted-build
+          ref: main
 
       - name: Install host build dependencies
         run: |
