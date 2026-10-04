@@ -17,7 +17,7 @@ concurrency:
 
 jobs:
   build:
-    runs-on: [self-hosted, linux, prosperoeden]
+    runs-on: ubuntu-lastest
     timeout-minutes: 240
     steps:
       - uses: actions/checkout@v4
