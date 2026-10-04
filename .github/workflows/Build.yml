@@ -1,0 +1,55 @@
+name: GitHub-hosted build
+# trigger: add LLVM/Clang 22 development libraries
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/github-hosted-build.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-26.04
+    timeout-minutes: 240
+
+    steps:
+      - name: Checkout experimental build branch
+        uses: actions/checkout@v4
+        with:
+          ref: github-hosted-build
+
+      - name: Install host build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            clang-18 lld-18 llvm-18 llvm-22-dev libclang-22-dev libclang-cpp22-dev libllvmspirvlib-22-dev \
+            cmake ninja-build ccache make nasm meson rsync git \
+            glslang-tools spirv-tools spirv-tools-dev bison flex \
+            curl wget unzip python3 python3-venv python3-mako python3-yaml pkg-config
+
+      - name: Check toolchain
+        run: make toolchain
+
+      - name: Show available disk space
+        run: df -h
+
+      - name: Build and package
+        run: bash tools/ci/build-release.sh
+
+      - name: Show build output
+        if: always()
+        run: |
+          df -h
+          find dist -maxdepth 2 -type f -printf '%p %k KB\n' 2>/dev/null || true
+
+      - uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: ProsperoEden-github-hosted
+          path: dist/
+          retention-days: 7
+          
