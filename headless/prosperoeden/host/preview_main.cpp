@@ -402,9 +402,41 @@ void pictures(Stage &s)
     s.press({Key::circle, Key::down, Key::cross});
     s.wait(1.0f);
     s.shoot("19-game-files");
+    // The game files folder: the browser, and the folder shown saved.
+    s.press({Key::cross});
+    s.wait(0.8f);
+    s.shoot("19b-game-files-browser");
     s.press({Key::down, Key::down, Key::triangle});
     s.wait(0.6f);
     s.shoot("20-game-files-saved");
+    s.press({Key::circle});
+    s.wait(0.6f);
+    // Another game folder, on a USB drive: Add game folder, /mnt, usb0, games.
+    s.press({Key::down, Key::cross});
+    s.wait(0.8f);
+    s.press({Key::down, Key::down, Key::down, Key::cross});
+    s.wait(0.4f);
+    s.press({Key::down, Key::cross});
+    s.wait(0.8f);
+    s.shoot("65-add-game-folder");
+    s.press({Key::triangle});
+    s.wait(0.8f);
+    s.shoot("66-game-folders");
+    if (s.services.library_folders().size() != 1 || s.services.library_folders()[0] != "/mnt/usb0/games")
+    {
+        std::fprintf(stderr, "error: the game folder did not reach the services\n");
+        s.ok = false;
+    }
+    // Advanced: keys, firmware and saves on their own. Keys from the USB drive.
+    s.press({Key::down, Key::down, Key::cross});
+    s.wait(0.6f);
+    s.shoot("67-game-files-advanced");
+    s.press({Key::down, Key::cross});
+    s.wait(0.8f);
+    s.shoot("68-keys-browser");
+    s.press({Key::circle});
+    s.wait(0.6f);
+    // Back to the settings.
     s.press({Key::circle});
     s.wait(0.5f);
     s.press({Key::down, Key::cross});

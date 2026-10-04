@@ -185,7 +185,23 @@ struct FolderInfo
     bool keys = false;
     int firmware = -1;
     int games = -1;
+    int updates = -1;
+    // The folder itself, for the folders chosen on their own: prod.keys directly in it, and the
+    // firmware NCAs directly in it (-1 when it cannot be read).
+    bool own_keys = false;
+    int own_firmware = -1;
 };
+
+// The folders that can be chosen apart from the game files folder (Settings > Game files >
+// Advanced): until one is chosen it is the game files folder's own subfolder.
+enum class StorageRole : std::uint8_t
+{
+    keys,        // holds prod.keys; default keys/
+    firmware,    // holds the firmware NCAs; default firmware/
+    save_import, // one folder per title ID to import; default save-import/
+    save_export, // where exported saves are written; default save-export/
+};
+constexpr int kStorageRoles = 4;
 
 class Services
 {
@@ -241,6 +257,39 @@ class Services
     virtual std::string default_files_folder() = 0;
     virtual bool set_files_folder(const std::string &directory) = 0;
     virtual int filesystem_access() = 0; // 0: the whole filesystem
+
+    // ---- game folders beyond the game files folder: each holds only roms/ and updates/ ----
+    // They apply at once: the Library reads them again when it opens. Empty: this build has none.
+    virtual std::vector<std::string> library_folders()
+    {
+        return {};
+    }
+    // The whole list (at most library_folders_max); false when it cannot be saved.
+    virtual bool set_library_folders(const std::vector<std::string> &)
+    {
+        return false;
+    }
+    virtual int library_folders_max()
+    {
+        return 0;
+    }
+
+    // ---- keys, firmware and saves, each apart from the game files folder ----
+    // The folder in use by this process (the default is a subfolder of the game files folder).
+    virtual std::string storage_folder(StorageRole)
+    {
+        return {};
+    }
+    // The folder chosen for it, used from the next start; empty while it follows the default.
+    virtual std::string saved_storage_folder(StorageRole)
+    {
+        return {};
+    }
+    // An empty directory goes back to the default.
+    virtual bool set_storage_folder(StorageRole, const std::string &)
+    {
+        return false;
+    }
 
     // ---- save transfer: a game's save in from, or out to, a folder (not in every build) ----
     // ---- profiles: who is playing ----

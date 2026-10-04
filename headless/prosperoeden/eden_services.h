@@ -44,6 +44,12 @@ public:
     std::string default_files_folder() override;
     bool set_files_folder(const std::string& directory) override;
     int filesystem_access() override;
+    std::vector<std::string> library_folders() override;
+    bool set_library_folders(const std::vector<std::string>& directories) override;
+    int library_folders_max() override;
+    std::string storage_folder(pe::ui::StorageRole role) override;
+    std::string saved_storage_folder(pe::ui::StorageRole role) override;
+    bool set_storage_folder(pe::ui::StorageRole role, const std::string& directory) override;
 
     std::vector<pe::ui::Profile> profiles() override;
     bool choose_profile(int index) override;

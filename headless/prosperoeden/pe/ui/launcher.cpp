@@ -32,6 +32,7 @@ Launcher::Launcher(Services &services, Textures &textures, const Fonts &fonts, b
     prefs_ = services_.preferences();
     apply_look();
     read_profiles();
+    read_library_folders();
     read_home();
     const bool continue_ready = home_.setup_ready && home_.last_exists;
     home_focus_ = continue_ready ? 0 : home_.setup_ready ? 1 : 2;
@@ -179,6 +180,8 @@ void Launcher::press(Key key)
         return press_settings(key);
     case Screen::files:
         return press_files(key);
+    case Screen::locations:
+        return press_locations(key);
     case Screen::language:
         return press_language(key);
     case Screen::about:
@@ -215,6 +218,7 @@ void Launcher::update(float dt)
     library_.update(dt);
     settings_.update(dt);
     files_.update(dt);
+    location_rows_.update(dt);
     language_.update(dt);
     video_rows_.update(dt);
     performance_rows_.update(dt);
@@ -296,6 +300,8 @@ void Launcher::draw_screen(Canvas &c, Screen screen)
         return draw_settings(c);
     case Screen::files:
         return draw_files(c);
+    case Screen::locations:
+        return draw_locations(c);
     case Screen::language:
         return draw_language(c);
     case Screen::about:

@@ -15,6 +15,9 @@
 //                      "unsafe_cpu": false, "unsafe_dma": false, "reactive_flushing": true,
 //                      "skip_invalidation": false },
 //     "game_files": "/mnt/ext1/eden",
+//     "storage": { "keys": "/mnt/usb0/keys", "firmware": "/mnt/usb0/firmware",
+//                  "save_import": "/mnt/usb0/save-import", "save_export": "/mnt/usb0/save-export",
+//                  "library": ["/mnt/usb0/games", "/mnt/ext0/user/app/PPSA99008/assets"] },
 //     "library": { "last_game": "Game [id].nsp", "recent": ["Game [id].nsp"] },
 //     "games": { "0100000000010000": { "console_mode": "handheld", "renderer": "opengl",
 //                                      "resolution": "0.75x", "upscaling_filter": "fsr",
@@ -219,7 +222,7 @@ inline Json LoadWhole(const std::string& file) {
 // them where they always were, at the top of the file; every other profile has the same layout
 // under "profile_settings"/<its ID>. What belongs to the console and not to a person stays at the
 // top for everyone: the game files folder and the profiles themselves.
-inline constexpr const char* kSharedKeys[] = {"version", "game_files", "profiles", "profile_settings"};
+inline constexpr const char* kSharedKeys[] = {"version", "game_files", "storage", "profiles", "profile_settings"};
 
 // Where the chosen profile's settings are in the whole file; empty for the top of the file.
 inline std::string ProfileAt(const Json& whole) {
@@ -263,6 +266,9 @@ inline bool Write(const Json& document, const std::string& file) {
     whole["version"] = 1;
     // The game files folder is the console's: a profile that changes it changes it for everyone.
     if (document.contains("game_files")) whole["game_files"] = document["game_files"];
+    // So are the folders chosen next to it (keys, firmware, saves, extra game folders).
+    if (document.contains("storage")) whole["storage"] = document["storage"];
+    else whole.erase("storage");
     return WriteWhole(whole, file);
 }
 
@@ -677,6 +683,76 @@ inline bool SaveAssetsDir(std::string_view directory, const std::string& file = 
     Settings::Json document = Settings::Load(file);
     document["version"] = 1;
     document["game_files"] = std::string(directory);
+    return Settings::Write(document, file);
+}
+
+// ---- the folders next to the game files folder ----
+// Keys, firmware, save-import and save-export follow the game files folder (its keys/, firmware/,
+// save-import/ and save-export/) until one is chosen on its own: the folder named here holds
+// prod.keys, the firmware NCAs or the saves directly. Settings > Game files > Advanced.
+enum class StoragePath { keys, firmware, save_import, save_export };
+inline constexpr const char* kStorageKeys[] = {"keys", "firmware", "save_import", "save_export"};
+// Game folders beyond the game files folder: each needs only roms/ and updates/.
+inline constexpr std::size_t kMostLibraryDirs = 16;
+
+inline const char* StorageKey(StoragePath which) { return kStorageKeys[static_cast<int>(which)]; }
+
+// The folder chosen for one of them, or empty while it follows the game files folder.
+inline std::string LoadSavedStoragePath(StoragePath which, const std::string& file = SettingsFile()) {
+    const std::string value = Settings::String(
+        Settings::Load(file), Settings::Json::json_pointer(std::string("/storage/") + StorageKey(which)));
+    return ValidAssetsDir(value) ? value : std::string{};
+}
+
+// An empty directory goes back to following the game files folder.
+inline bool SaveStoragePath(StoragePath which, std::string_view directory, const std::string& file = SettingsFile()) {
+    if (!directory.empty() && !ValidAssetsDir(directory)) return false;
+    Settings::Json document = Settings::Load(file);
+    document["version"] = 1;
+    if (directory.empty()) {
+        if (document.contains("storage") && document["storage"].is_object()) document["storage"].erase(StorageKey(which));
+    } else {
+        if (!document.contains("storage") || !document["storage"].is_object()) document["storage"] = Settings::Json::object();
+        document["storage"][StorageKey(which)] = std::string(directory);
+    }
+    if (document.contains("storage") && document["storage"].empty()) document.erase("storage");
+    return Settings::Write(document, file);
+}
+
+// The extra game folders, in the order they were added; invalid and repeated ones are left out.
+inline std::vector<std::string> LoadLibraryDirs(const std::string& file = SettingsFile()) {
+    std::vector<std::string> result;
+    const Settings::Json document = Settings::Load(file);
+    const Settings::Json::json_pointer at("/storage/library");
+    if (!document.contains(at) || !document.at(at).is_array()) return result;
+    for (const auto& item : document.at(at)) {
+        if (!item.is_string()) continue;
+        std::string value = item.get<std::string>();
+        if (!ValidAssetsDir(value) || std::find(result.begin(), result.end(), value) != result.end()) continue;
+        result.push_back(std::move(value));
+        if (result.size() >= kMostLibraryDirs) break;
+    }
+    return result;
+}
+
+inline bool SaveLibraryDirs(const std::vector<std::string>& directories, const std::string& file = SettingsFile()) {
+    std::vector<std::string> clean;
+    for (const std::string& directory : directories) {
+        if (!ValidAssetsDir(directory)) return false;
+        if (std::find(clean.begin(), clean.end(), directory) == clean.end()) clean.push_back(directory);
+    }
+    if (clean.size() > kMostLibraryDirs) return false;
+    Settings::Json document = Settings::Load(file);
+    document["version"] = 1;
+    if (clean.empty()) {
+        if (document.contains("storage") && document["storage"].is_object()) document["storage"].erase("library");
+    } else {
+        if (!document.contains("storage") || !document["storage"].is_object()) document["storage"] = Settings::Json::object();
+        Settings::Json list = Settings::Json::array();
+        for (const std::string& directory : clean) list.push_back(directory);
+        document["storage"]["library"] = std::move(list);
+    }
+    if (document.contains("storage") && document["storage"].empty()) document.erase("storage");
     return Settings::Write(document, file);
 }
 

@@ -129,8 +129,8 @@ void Launcher::press_settings(Key key)
         switch (settings_.selected)
         {
         case kFiles:
-            open(Screen::files, true);
-            enter_files();
+            open(Screen::locations, true);
+            enter_locations();
             break;
         case kLanguage:
             open(Screen::language, true);
@@ -283,10 +283,11 @@ void Launcher::draw_settings(Canvas &c)
                  {tr("DETAILED LOGS"), on_off(prefs_.detailed_logging)}};
         break;
     case kFiles:
-        about = tr("The folder that holds your keys, firmware and games.");
+        about = tr("The folder that holds your keys, firmware and games, and more places for games.");
         lines = {{tr("IN USE"), short_path(folder, 34)}};
         if (!saved_folder.empty() && saved_folder != folder)
             lines.push_back({tr("NEXT START"), short_path(saved_folder, 34)});
+        lines.push_back({tr("GAME FOLDERS"), std::to_string(library_folders_.size() + 1)});
         break;
     default:
         about = tr("The language games use when they offer it.");

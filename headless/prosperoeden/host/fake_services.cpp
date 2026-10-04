@@ -293,6 +293,10 @@ bool FakeServices::folders(const std::string &directory, std::vector<std::string
         *names = {"backups", "eden", "media", "music", "photos", "retro", "saves", "videos"};
     else if (directory == "/mnt")
         *names = {"ext0", "ext1", "usb0"};
+    else if (directory == "/mnt/usb0")
+        *names = {"firmware", "games", "keys", "retro"};
+    else if (directory == "/mnt/usb0/games")
+        *names = {"roms", "updates"};
     else if (directory == "/")
         *names = {"data", "mnt", "user"};
     else if (directory == "/data")
@@ -352,7 +356,18 @@ ui::FolderInfo FakeServices::folder_info(const std::string &directory)
         info.keys = true;
         info.firmware = 236;
         info.games = static_cast<int>(games_.size());
+        info.updates = 4;
     }
+    else if (directory == "/mnt/usb0/games")
+    {
+        // A game folder: roms and updates only.
+        info.games = 24;
+        info.updates = 6;
+    }
+    else if (directory == "/mnt/usb0/keys")
+        info.own_keys = true;
+    else if (directory == "/mnt/usb0/firmware")
+        info.own_firmware = 236;
     return info;
 }
 

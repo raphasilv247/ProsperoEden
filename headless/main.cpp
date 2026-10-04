@@ -374,7 +374,9 @@ int main(int argc, char** argv) {
         // Match the title ID in the file name, else in the ROM's own metadata; the game files
         // folder first, then the pre-1.000.020 assets folder that still holds other test titles.
         const auto development_title = std::strtoull(development_id.c_str(), nullptr, 16);
-        for (const std::string& folder : {Eden::AssetsPath("roms"), std::string{"/data/assets/roms"}}) {
+        std::vector<std::string> development_folders = Eden::RomDirs();
+        development_folders.push_back("/data/assets/roms");
+        for (const std::string& folder : development_folders) {
             std::error_code rom_error;
             for (const auto& entry : Eden::ReadNativeDirectory(folder, rom_error)) {
                 const auto filename = entry.path().filename().string();
@@ -531,7 +533,7 @@ int main(int argc, char** argv) {
         }
         Common::FS::CreateEdenPaths();
 #ifdef PS5_NATIVE
-        Common::FS::SetEdenPath(Common::FS::EdenPath::KeysDir, Eden::AssetsPath("keys"));
+        Common::FS::SetEdenPath(Common::FS::EdenPath::KeysDir, Eden::KeysPath());
         // Mods come from the game files folder's mods/ (mods.h). Without that folder Eden's own
         // load folder stays, where nothing is expected.
         if (const std::string mods = Eden::AssetsPath("mods"); Eden::DirectoryExists(mods))
@@ -903,7 +905,7 @@ int main(int argc, char** argv) {
             int language = Eden::kLanguageSettings[choice];
 #ifdef PS5_NATIVE
             if (game && guest)
-                language = eden_game_language(guest, Eden::AssetsPath("keys").c_str(), eden_game_title_id(guest), language);
+                language = eden_game_language(guest, Eden::KeysPath().c_str(), eden_game_title_id(guest), language);
 #endif
             Settings::values.language_index.SetValue(static_cast<Settings::Language>(language));
             Settings::values.region_index.SetValue(static_cast<Settings::Region>(Eden::kLanguageRegions[choice]));
@@ -997,9 +999,18 @@ int main(int argc, char** argv) {
                 };
                 // Like Eden's Qt/Android frontends, reset shutdown state for each load.
                 system.SetShuttingDown(false);
-                // Update and DLC files (NSP or XCI) in the game files' updates folder apply to their
-                // base game: Eden's ExternalContentProvider, which the patch manager checks first.
-                Settings::values.external_content_dirs = {Eden::AssetsPath("updates")};
+                // Update and DLC files (NSP or XCI) in the updates folder of the game files folder, and
+                // of every game folder added in Settings, apply to their base game: Eden's
+                // ExternalContentProvider, which the patch manager checks first. The game files
+                // folder's is always passed; the others only while they can be opened (a USB drive
+                // taken out leaves the game running on the rest).
+                {
+                    std::vector<std::string> update_dirs = {Eden::AssetsPath("updates")};
+                    for (const std::string& directory : Eden::UpdateDirs())
+                        if (directory != update_dirs.front() && Eden::DirectoryExists(directory))
+                            update_dirs.push_back(directory);
+                    Settings::values.external_content_dirs = update_dirs;
+                }
                 system.GetFileSystemController().CreateFactories(*system.GetFilesystem());
                 // The game's own contents, registered as Eden's desktop frontends do before booting a
                 // game (ConfigureFilesystemProvider). An update's data is a patch on the base game's:

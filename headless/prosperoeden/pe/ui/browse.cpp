@@ -62,13 +62,63 @@ void draw_folder(Canvas &c, float x, float cy, Color ink, bool up)
 
 // ---------------------------------------------------------------- game files
 
-void Launcher::enter_files()
+StorageRole Launcher::storage_role(Pick pick)
 {
-    // Start where the player's files are (or will be after reopening), else the nearest
-    // folder that can be opened.
-    std::string start = services_.saved_files_folder();
-    if (start.empty())
-        start = services_.files_folder();
+    switch (pick)
+    {
+    case Pick::keys:
+        return StorageRole::keys;
+    case Pick::firmware:
+        return StorageRole::firmware;
+    case Pick::save_import:
+        return StorageRole::save_import;
+    default:
+        return StorageRole::save_export;
+    }
+}
+
+Launcher::Pick Launcher::storage_pick(StorageRole role)
+{
+    switch (role)
+    {
+    case StorageRole::keys:
+        return Pick::keys;
+    case StorageRole::firmware:
+        return Pick::firmware;
+    case StorageRole::save_import:
+        return Pick::save_import;
+    default:
+        return Pick::save_export;
+    }
+}
+
+void Launcher::enter_files(Pick pick, int index)
+{
+    browse_pick_ = pick;
+    browse_index_ = index;
+    // Start where the player's folder is (or will be after reopening), else the nearest folder
+    // that can be opened. A new game folder starts at the drives' mount points.
+    std::string start;
+    switch (pick)
+    {
+    case Pick::main:
+        start = services_.saved_files_folder();
+        if (start.empty())
+            start = services_.files_folder();
+        break;
+    case Pick::add_folder:
+        start = "/mnt";
+        break;
+    case Pick::change_folder:
+        if (index >= 0 && index < static_cast<int>(library_folders_.size()))
+            start = library_folders_[static_cast<std::size_t>(index)];
+        break;
+    default:
+        start = services_.saved_storage_folder(storage_role(pick));
+        if (start.empty())
+            start = services_.storage_folder(storage_role(pick));
+        break;
+    }
     files_.visible = 6;
     files_.pitch = 88.0f;
     while (!browse_to(start) && start != "/")
@@ -98,7 +148,7 @@ void Launcher::press_files(Key key)
     switch (key)
     {
     case Key::circle:
-        open(Screen::settings, false);
+        leave_browser(browse_from_);
         return;
     case Key::up:
     case Key::down:
@@ -139,7 +189,45 @@ void Launcher::press_files(Key key)
         return;
     }
     case Key::triangle:
+        use_browsed_folder();
+        return;
+    case Key::square:
+        if (browse_pick_ == Pick::main)
+        {
+            const std::string fallback = services_.default_files_folder();
+            const bool saved = services_.set_files_folder(fallback);
+            (void)browse_to(fallback);
+            say(saved ? tr("Default folder saved. Reopen ProsperoEden to use it.") :
+                        tr("Could not save the folder. Please try again."),
+                !saved);
+            cue(saved ? Cue::saved : Cue::error);
+        }
+        else if (browse_pick_ != Pick::add_folder && browse_pick_ != Pick::change_folder)
+            reset_browsed_storage();
+        return;
+    default:
+        return;
+    }
+}
+
+void Launcher::leave_browser(int select)
+{
+    open(Screen::locations, false);
+    enter_locations(select);
+}
+
+void Launcher::use_browsed_folder()
+{
+    const auto fail = [this](const char *text)
     {
+        say(text, true);
+        cue(Cue::error);
+    };
+    switch (browse_pick_)
+    {
+    case Pick::main:
+    {
+        // The game files folder: it stays on screen, as it always has.
         const bool saved = services_.set_files_folder(browse_dir_);
         say(saved ? tr("Saved. Reopen ProsperoEden to use this folder.") :
                     tr("Could not save the folder. Please try again."),
@@ -147,27 +235,93 @@ void Launcher::press_files(Key key)
         cue(saved ? Cue::saved : Cue::error);
         return;
     }
-    case Key::square:
+    case Pick::add_folder:
+    case Pick::change_folder:
     {
-        const std::string fallback = services_.default_files_folder();
-        const bool saved = services_.set_files_folder(fallback);
-        (void)browse_to(fallback);
-        say(saved ? tr("Default folder saved. Reopen ProsperoEden to use it.") :
-                    tr("Could not save the folder. Please try again."),
-            !saved);
-        cue(saved ? Cue::saved : Cue::error);
+        // Only roms/ is needed here (and updates/, which may come later): no keys, no firmware.
+        if (folder_info_.games < 0)
+            return fail(tr("This folder needs a roms folder."));
+        if (browse_dir_ == services_.files_folder() || browse_dir_ == services_.saved_files_folder())
+            return fail(tr("This is the game files folder already."));
+        std::vector<std::string> folders = library_folders_;
+        const bool change = browse_pick_ == Pick::change_folder && browse_index_ >= 0 &&
+                            browse_index_ < static_cast<int>(folders.size());
+        const auto same = std::find(folders.begin(), folders.end(), browse_dir_);
+        if (same != folders.end() && !(change && same - folders.begin() == browse_index_))
+            return fail(tr("This folder is in the list already."));
+        if (change)
+            folders[static_cast<std::size_t>(browse_index_)] = browse_dir_;
+        else if (static_cast<int>(folders.size()) >= services_.library_folders_max())
+            return fail(tr("The list is full. Remove a folder first."));
+        else
+            folders.push_back(browse_dir_);
+        if (!services_.set_library_folders(folders))
+            return fail(tr("Could not save the folder. Please try again."));
+        const int row = static_cast<int>(std::find(folders.begin(), folders.end(), browse_dir_) - folders.begin());
+        library_folders_changed();
+        leave_browser(1 + row);
+        say(tr("Saved. Its games are in the Library now."));
+        cue(Cue::saved);
         return;
     }
     default:
+    {
+        // Keys and firmware must be in the folder itself, or the game would not start.
+        if (browse_pick_ == Pick::keys && !folder_info_.own_keys)
+            return fail(tr("prod.keys is not in this folder."));
+        if (browse_pick_ == Pick::firmware && folder_info_.own_firmware <= 0)
+            return fail(tr("This folder has no firmware NCA files."));
+        if (!services_.set_storage_folder(storage_role(browse_pick_), browse_dir_))
+            return fail(tr("Could not save the folder. Please try again."));
+        leave_browser(browse_from_);
+        say(tr("Saved. Reopen ProsperoEden to use this folder."));
+        cue(Cue::saved);
         return;
     }
+    }
+}
+
+void Launcher::reset_browsed_storage()
+{
+    if (!services_.set_storage_folder(storage_role(browse_pick_), std::string{}))
+    {
+        say(tr("Could not save the folder. Please try again."), true);
+        cue(Cue::error);
+        return;
+    }
+    leave_browser(browse_from_);
+    say(tr("Back to the default folder. Reopen ProsperoEden to use it."));
+    cue(Cue::saved);
 }
 
 void Launcher::draw_files(Canvas &c)
 {
     gfx::DrawList &list = c.list;
     const int count = static_cast<int>(browse_entries_.size());
-    draw_frame(c, tr("Game files"), tr("Choose the folder that holds your keys, firmware and games"));
+    switch (browse_pick_)
+    {
+    case Pick::add_folder:
+        draw_frame(c, tr("Add game folder"), tr("Choose a folder with roms and updates inside"));
+        break;
+    case Pick::change_folder:
+        draw_frame(c, tr("Change game folder"), tr("Choose a folder with roms and updates inside"));
+        break;
+    case Pick::keys:
+        draw_frame(c, tr("Keys folder"), tr("Choose the folder that holds prod.keys"));
+        break;
+    case Pick::firmware:
+        draw_frame(c, tr("Firmware folder"), tr("Choose the folder that holds the firmware NCA files"));
+        break;
+    case Pick::save_import:
+        draw_frame(c, tr("Save import folder"), tr("Choose the folder with one folder per game ID"));
+        break;
+    case Pick::save_export:
+        draw_frame(c, tr("Save export folder"), tr("Choose where exported saves are written"));
+        break;
+    default:
+        draw_frame(c, tr("Game files"), tr("Choose the folder that holds your keys, firmware and games"));
+        break;
+    }
 
     // ---- folders ----
     glass(c, kListPanel, 26.0f, theme::kPanel.with_alpha(0.80f), theme::kPanelEdge.with_alpha(0.55f));
@@ -227,8 +381,8 @@ void Launcher::draw_files(Canvas &c)
     text_block(c, browse_dir_, 1016.0f, baseline(250.0f, 42.0f, theme::kHeading), theme::kHeading,
                42.0f, theme::kTitle, 748.0f, 2);
     const float column = value_column(
-        c, {tr("KEYS"), tr("FIRMWARE"), tr("GAMES"), tr("IN USE"), tr("ACCESS")}, 1016.0f, 1216.0f,
-        theme::kSmall, 2.0f);
+        c, {tr("KEYS"), tr("FIRMWARE"), tr("GAMES"), tr("UPDATES, DLC"), tr("IN USE"), tr("ACCESS")}, 1016.0f,
+        1216.0f, theme::kSmall, 2.0f);
     // A line whose value is in the warning colour carries the warning mark too.
     const auto line = [&](float top, const char *label, const std::string &value, Color color)
     {
@@ -238,44 +392,123 @@ void Launcher::draw_files(Canvas &c)
                1764.0f - column, color.r == theme::kWarning.r && color.g == theme::kWarning.g);
     };
     const auto state = [](bool ready) { return ready ? theme::kLimePale : theme::kWarning; };
-    line(378.0f, tr("KEYS"), folder_info_.keys ? tr("prod.keys found") : tr("prod.keys missing"),
-         state(folder_info_.keys));
-    line(434.0f, tr("FIRMWARE"),
-         folder_info_.firmware < 0 ? tr("No firmware folder") :
-                                     counted(folder_info_.firmware, tr("{0} NCA file"), tr("{0} NCA files")),
-         state(folder_info_.firmware > 0));
-    line(490.0f, tr("GAMES"),
-         folder_info_.games < 0 ? tr("No roms folder") : counted(folder_info_.games, tr("{0} game"), tr("{0} games")),
-         state(folder_info_.games > 0));
-    list.rounded_rect({1016.0f, 554.0f, 748.0f, 1.0f}, 0.0f, theme::kRule);
     const std::string in_use_folder = services_.files_folder();
     const std::string saved = services_.saved_files_folder();
-    line(578.0f, tr("IN USE"),
-         !saved.empty() && saved != in_use_folder ? fill(tr("Next launch: {0}"), {short_path(saved, 32)}) :
-                                                    short_path(in_use_folder, 40),
-         theme::kValue);
-    const int access = services_.filesystem_access();
-    line(634.0f, tr("ACCESS"),
-         access == 0 ? tr("Full filesystem") :
-                       fill(tr("Sandboxed (code {0}): app folder only"), {std::to_string(access)}),
-         state(access == 0));
+    const char *note = "";
+    switch (browse_pick_)
+    {
+    case Pick::add_folder:
+    case Pick::change_folder:
+        // Only roms/ and updates/ are read from a game folder; updates/ may come later.
+        line(378.0f, tr("GAMES"),
+             folder_info_.games < 0 ? tr("No roms folder") :
+                                      counted(folder_info_.games, tr("{0} game"), tr("{0} games")),
+             state(folder_info_.games >= 0));
+        line(434.0f, tr("UPDATES, DLC"),
+             folder_info_.updates < 0 ? tr("No updates folder") :
+                                        counted(folder_info_.updates, tr("{0} file"), tr("{0} files")),
+             theme::kValue);
+        note = tr("Only roms and updates are read from here. TRIANGLE adds the folder shown.");
+        break;
+    case Pick::keys:
+        line(378.0f, tr("KEYS"), folder_info_.own_keys ? tr("prod.keys found") : tr("prod.keys missing"),
+             state(folder_info_.own_keys));
+        note = tr("The folder shown must hold prod.keys. TRIANGLE uses it; SQUARE goes back to the default.");
+        break;
+    case Pick::firmware:
+        line(378.0f, tr("FIRMWARE"),
+             folder_info_.own_firmware < 0 ? tr("This folder cannot be read") :
+                 counted(folder_info_.own_firmware, tr("{0} NCA file"), tr("{0} NCA files")),
+             state(folder_info_.own_firmware > 0));
+        note = tr("The folder shown must hold the firmware NCA files. TRIANGLE uses it; SQUARE goes back to the default.");
+        break;
+    case Pick::save_import:
+    case Pick::save_export:
+    {
+        const StorageRole role = storage_role(browse_pick_);
+        const std::string current = services_.storage_folder(role);
+        line(378.0f, tr("IN USE"), short_path(current, 40), theme::kValue);
+        note = browse_pick_ == Pick::save_import ?
+                   tr("Saves to import go here, one folder per game ID. TRIANGLE uses the folder shown; SQUARE goes back to the default.") :
+                   tr("Exported saves are written here. TRIANGLE uses the folder shown; SQUARE goes back to the default.");
+        break;
+    }
+    default:
+        line(378.0f, tr("KEYS"), folder_info_.keys ? tr("prod.keys found") : tr("prod.keys missing"),
+             state(folder_info_.keys));
+        line(434.0f, tr("FIRMWARE"),
+             folder_info_.firmware < 0 ? tr("No firmware folder") :
+                                         counted(folder_info_.firmware, tr("{0} NCA file"), tr("{0} NCA files")),
+             state(folder_info_.firmware > 0));
+        line(490.0f, tr("GAMES"),
+             folder_info_.games < 0 ? tr("No roms folder") : counted(folder_info_.games, tr("{0} game"), tr("{0} games")),
+             state(folder_info_.games > 0));
+        note = tr("Keep keys, firmware and roms folders together. TRIANGLE uses the folder shown.");
+        break;
+    }
+    list.rounded_rect({1016.0f, 554.0f, 748.0f, 1.0f}, 0.0f, theme::kRule);
+    if (browse_pick_ == Pick::main)
+    {
+        line(578.0f, tr("IN USE"),
+             !saved.empty() && saved != in_use_folder ? fill(tr("Next launch: {0}"), {short_path(saved, 32)}) :
+                                                        short_path(in_use_folder, 40),
+             theme::kValue);
+        const int access = services_.filesystem_access();
+        line(634.0f, tr("ACCESS"),
+             access == 0 ? tr("Full filesystem") :
+                           fill(tr("Sandboxed (code {0}): app folder only"), {std::to_string(access)}),
+             state(access == 0));
+    }
+    else
+    {
+        const int access = services_.filesystem_access();
+        line(578.0f, tr("ACCESS"),
+             access == 0 ? tr("Full filesystem") :
+                           fill(tr("Sandboxed (code {0}): app folder only"), {std::to_string(access)}),
+             state(access == 0));
+    }
     list.rounded_rect({1016.0f, 698.0f, 748.0f, 1.0f}, 0.0f, theme::kRule);
-    notice_block(c,
-                 message_.empty() ?
-                     tr("Keep keys, firmware and roms folders together. TRIANGLE uses the folder shown.") :
-                     message_,
-                 1016.0f, baseline(722.0f, 36.0f, theme::kText24), theme::kText24, 36.0f,
-                 message_.empty() ? theme::kCopy :
-                 message_warning_ ? theme::kWarning : theme::kLimePale,
-                 748.0f, 3, !message_.empty() && message_warning_);
+    notice_block(c, message_.empty() ? std::string{note} : message_, 1016.0f,
+                 baseline(722.0f, 36.0f, theme::kText24), theme::kText24, 36.0f,
+                 message_.empty() ? theme::kCopy : message_warning_ ? theme::kWarning : theme::kLimePale, 748.0f, 3,
+                 !message_.empty() && message_warning_);
 
-    static constexpr Hint kHints[] = {{Pad::cross, TR("Open")},
-                                      {Pad::circle, TR("Back")},
-                                      {Pad::triangle, TR("Use this folder")},
-                                      {Pad::square, TR("Default folder")},
-                                      {Pad::updown, TR("Browse")},
-                                      {Pad::l1, TR("Page"), Pad::r1}};
-    draw_footer(c, kHints, 6);
+    switch (browse_pick_)
+    {
+    case Pick::main:
+    {
+        static constexpr Hint kHints[] = {{Pad::cross, TR("Open")},
+                                          {Pad::circle, TR("Back")},
+                                          {Pad::triangle, TR("Use this folder")},
+                                          {Pad::square, TR("Default folder")},
+                                          {Pad::updown, TR("Browse")},
+                                          {Pad::l1, TR("Page"), Pad::r1}};
+        draw_footer(c, kHints, 6);
+        break;
+    }
+    case Pick::add_folder:
+    case Pick::change_folder:
+    {
+        static constexpr Hint kHints[] = {{Pad::cross, TR("Open")},
+                                          {Pad::circle, TR("Back")},
+                                          {Pad::triangle, TR("Use this folder")},
+                                          {Pad::updown, TR("Browse")},
+                                          {Pad::l1, TR("Page"), Pad::r1}};
+        draw_footer(c, kHints, 5);
+        break;
+    }
+    default:
+    {
+        static constexpr Hint kHints[] = {{Pad::cross, TR("Open")},
+                                          {Pad::circle, TR("Back")},
+                                          {Pad::triangle, TR("Use this folder")},
+                                          {Pad::square, TR("Default folder")},
+                                          {Pad::updown, TR("Browse")},
+                                          {Pad::l1, TR("Page"), Pad::r1}};
+        draw_footer(c, kHints, 6);
+        break;
+    }
+    }
 }
 
 // ---------------------------------------------------------------- language

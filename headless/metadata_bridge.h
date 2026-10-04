@@ -32,12 +32,16 @@ int eden_game_language(const char* rom_path, const char* keys_dir, uint64_t titl
 // Update and DLC files (NSP or XCI, any depth) in updates_dir, read with the provider that also
 // applies them to a running game. Replaces the previous scan; eden_game_addons queries it.
 void eden_scan_addons(const char* updates_dir, const char* keys_dir);
+// The same for several folders (every game folder's updates/): an update or DLC in any of them
+// counts. A folder that cannot be opened is skipped.
+void eden_scan_addons_in(const char* const* updates_dirs, size_t count, const char* keys_dir);
 // For a base game: the newest update's display version (empty without one) and its DLC count.
 // Returns nonzero when either exists.
 int eden_game_addons(uint64_t title_id, char* update_version, size_t capacity, unsigned* dlc_count);
 
-// Save transfer for one game (ryujinx_saves.h). Sources, in the game files folder next to roms/:
-// save-import/<title ID>/ (a save folder copied by hand) or ryujinx/ (a Ryujinx data folder).
+// Save transfer for one game (ryujinx_saves.h). Sources: save-import/<title ID>/ (a save folder
+// copied by hand; the game files folder's save-import/ unless another folder was chosen for it) or
+// ryujinx/ (a Ryujinx data folder, in the game files folder).
 enum {
     EDEN_SAVE_NONE = 0,      // nothing to import for the game
     EDEN_SAVE_FOLDER = 1,    // save-import/<title ID>/
@@ -55,7 +59,7 @@ enum {
 // had no save).
 int eden_save_import(uint64_t title_id, char* path, size_t capacity);
 // Copies the game's saves to save-export/<title ID>-<date>-<time>/ (account/ and device/) in the
-// game files folder; path receives that folder.
+// game files folder's save-export/ (or the folder chosen for exports); path receives that folder.
 int eden_save_export(uint64_t title_id, char* path, size_t capacity);
 
 #ifdef __cplusplus

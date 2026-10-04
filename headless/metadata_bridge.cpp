@@ -142,7 +142,7 @@ bool WriteTga(const FileSys::VirtualFile& icon, const char* output) {
 
 uint64_t eden_game_title_id(const char* rom_path) {
     if (!rom_path) return 0;
-    Common::FS::SetEdenPath(Common::FS::EdenPath::KeysDir, Eden::AssetsPath("keys"));
+    Common::FS::SetEdenPath(Common::FS::EdenPath::KeysDir, Eden::KeysPath());
     FileSys::RealVfsFilesystem vfs;
     const auto file = vfs.OpenFile(rom_path, FileSys::OpenMode::Read);
     if (!file) return 0;
@@ -222,15 +222,26 @@ std::map<uint64_t, AddOns>& ScannedAddOns() {
 }
 
 void eden_scan_addons(const char* updates_dir, const char* keys_dir) {
+    eden_scan_addons_in(&updates_dir, updates_dir ? 1 : 0, keys_dir);
+}
+
+void eden_scan_addons_in(const char* const* updates_dirs, size_t count, const char* keys_dir) {
     auto& scanned = ScannedAddOns();
     scanned.clear();
-    if (!updates_dir || !keys_dir) return;
+    if (!updates_dirs || !keys_dir) return;
     try {
         Common::FS::SetEdenPath(Common::FS::EdenPath::KeysDir, keys_dir);
         FileSys::RealVfsFilesystem vfs;
-        auto directory = vfs.OpenDirectory(updates_dir, FileSys::OpenMode::Read);
-        if (!directory) return;
-        const FileSys::ExternalContentProvider provider({std::move(directory)});
+        // The provider reads all of them together, as it does for a running game: the newest
+        // update among them is the one shown.
+        std::vector<FileSys::VirtualDir> directories;
+        for (size_t i = 0; i < count; ++i) {
+            if (!updates_dirs[i]) continue;
+            if (auto directory = vfs.OpenDirectory(updates_dirs[i], FileSys::OpenMode::Read))
+                directories.push_back(std::move(directory));
+        }
+        if (directories.empty()) return;
+        const FileSys::ExternalContentProvider provider(std::move(directories));
         for (const auto& entry : provider.ListEntriesFilter(FileSys::TitleType::Update, std::nullopt, std::nullopt)) {
             auto& addons = scanned[FileSys::GetBaseTitleID(entry.title_id)];
             if (!addons.update.empty()) continue;
@@ -316,7 +327,7 @@ struct SaveSource {
 SaveSource FindSaveSource(uint64_t title_id) {
     std::string error;
     SaveSource source;
-    source.saves = Eden::RyujinxSaves::FindFolderSaves(Eden::AssetsPath("save-import"), title_id, error);
+    source.saves = Eden::RyujinxSaves::FindFolderSaves(Eden::SaveImportPath(), title_id, error);
     if (!source.saves.empty()) {
         source.kind = EDEN_SAVE_FOLDER;
         return source;
@@ -379,7 +390,7 @@ int eden_save_export(uint64_t title_id, char* path, size_t capacity) {
     const std::string user = EdenUserFolder(root, error);
     if (user.empty()) return EDEN_SAVE_NOTHING;
     const std::string title = TitleName(title_id);
-    const fs::path target = fs::path{Eden::AssetsPath("save-export")} / (title + "-" + TimeStamp());
+    const fs::path target = fs::path{Eden::SaveExportPath()} / (title + "-" + TimeStamp());
     if (!Eden::RyujinxSaves::Export(root / user / title, root / std::string(32, '0') / title, target, error)) {
         Eden::Report("save export", error.c_str());
         return error == "no save yet" ? EDEN_SAVE_NOTHING : EDEN_SAVE_FAILED;
@@ -389,16 +400,32 @@ int eden_save_export(uint64_t title_id, char* path, size_t capacity) {
     return EDEN_SAVE_DONE;
 }
 
+namespace {
+// What the setup messages say about keys and firmware. With the default layout they name the game
+// files folder ("keys/prod.keys in <folder>"; the launcher translates these). With a folder chosen
+// for keys or firmware on its own they name that folder instead, in English only.
+std::string KeysMissingMessage() {
+    if (Eden::KeysPath() == Eden::AssetsPath("keys"))
+        return "Missing or empty keys/prod.keys in " + Eden::AssetsDir() + ".";
+    return "Missing or empty prod.keys in " + Eden::KeysPath() + ".";
+}
+std::string FirmwareUnreadableMessage() {
+    if (Eden::FirmwarePath() == Eden::AssetsPath("firmware"))
+        return "Cannot read firmware/ in " + Eden::AssetsDir() + ". Install extracted firmware NCAs.";
+    return "Cannot read the firmware folder " + Eden::FirmwarePath() + ". Install extracted firmware NCAs.";
+}
+} // namespace
+
 const char* eden_startup_error() {
     static const std::string error = []() -> std::string {
         try {
-            const std::string keys = Eden::AssetsPath("keys");
-            const std::string firmware = Eden::AssetsPath("firmware");
+            const std::string keys = Eden::KeysPath();
+            const std::string firmware = Eden::FirmwarePath();
             Common::FS::SetEdenPath(Common::FS::EdenPath::KeysDir, keys);
             FileSys::RealVfsFilesystem vfs;
             const auto prod = vfs.OpenFile(std::string{keys} + "/prod.keys", FileSys::OpenMode::Read);
             if (!prod || !prod->GetSize())
-                return "Missing or empty keys/prod.keys in " + Eden::AssetsDir() + ".";
+                return KeysMissingMessage();
             auto& manager = Core::Crypto::KeyManager::Instance();
             if (!manager.HasKey(Core::Crypto::S256KeyType::Header))
                 return "prod.keys could not supply an NCA header key. Replace it with a valid key dump.";
@@ -410,7 +437,7 @@ const char* eden_startup_error() {
             for (std::filesystem::directory_iterator it{firmware, ec}, end; !ec && it != end; it.increment(ec))
                 entries.push_back(*it);
 #endif
-            if (ec) return "Cannot read firmware/ in " + Eden::AssetsDir() + ". Install extracted firmware NCAs.";
+            if (ec) return FirmwareUnreadableMessage();
             unsigned count = 0;
             bool version = false;
             for (const auto& entry : entries) {
@@ -429,7 +456,7 @@ const char* eden_startup_error() {
                     version |= file && file->GetSize() >= 0x100 && file->ReadBytes(0x100).size() == 0x100;
                 }
             }
-            if (!count) return "No firmware NCAs found in " + Eden::AssetsPath("firmware") + ".";
+            if (!count) return "No firmware NCAs found in " + firmware + ".";
             if (!version) return "Firmware SystemVersion data is missing or unreadable. Install a complete firmware dump.";
             return {};
         } catch (...) {

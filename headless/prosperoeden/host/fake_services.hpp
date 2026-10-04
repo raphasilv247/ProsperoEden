@@ -8,6 +8,7 @@
 #include "pe/ui/services.hpp"
 
 #include <algorithm>
+#include <array>
 #include <string>
 #include <vector>
 
@@ -163,6 +164,34 @@ class FakeServices final : public ui::Services
     {
         return 0;
     }
+    std::vector<std::string> library_folders() override
+    {
+        return library_folders_;
+    }
+    bool set_library_folders(const std::vector<std::string> &directories) override
+    {
+        library_folders_ = directories;
+        return true;
+    }
+    int library_folders_max() override
+    {
+        return 16;
+    }
+    std::string storage_folder(ui::StorageRole role) override
+    {
+        const std::string &saved = storage_[static_cast<std::size_t>(role)];
+        static const char *const kDefaults[] = {"/keys", "/firmware", "/save-import", "/save-export"};
+        return saved.empty() ? files_folder() + kDefaults[static_cast<std::size_t>(role)] : saved;
+    }
+    std::string saved_storage_folder(ui::StorageRole role) override
+    {
+        return storage_[static_cast<std::size_t>(role)];
+    }
+    bool set_storage_folder(ui::StorageRole role, const std::string &directory) override
+    {
+        storage_[static_cast<std::size_t>(role)] = directory;
+        return true;
+    }
     bool save_transfer_available() override
     {
         return import_available;
@@ -217,6 +246,8 @@ class FakeServices final : public ui::Services
     ui::GameSettings game_settings_;
     ui::Preferences preferences_;
     std::string saved_folder_;
+    std::vector<std::string> library_folders_;
+    std::array<std::string, ui::kStorageRoles> storage_;
     std::vector<std::uint64_t> modded_; // the games that have the sample mods
     std::vector<std::string> mods_off_{"Sharper textures"};
     std::vector<std::string> cheats_on_{"60 FPS"};

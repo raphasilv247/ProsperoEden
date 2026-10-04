@@ -64,9 +64,35 @@ class Launcher
         home,
         library,
         settings,
-        files,
+        files,     // the folder browser (browse.cpp)
+        locations, // Settings > Game files: the game folders and where keys, firmware and saves are
         language,
         about,
+    };
+    // What the folder browser is choosing a folder for.
+    enum class Pick : std::uint8_t
+    {
+        main,          // the game files folder
+        add_folder,    // another game folder (roms/ and updates/ only)
+        change_folder, // one of those, replaced
+        keys,
+        firmware,
+        save_import,
+        save_export,
+    };
+    // One row of the Game files screen.
+    struct LocationRow
+    {
+        enum class Kind : std::uint8_t
+        {
+            main,     // the game files folder
+            folder,   // an extra game folder (index into library_folders_)
+            add,      // "Add game folder"
+            advanced, // shows or hides the rows below
+            storage,  // keys, firmware, save import or save export (index is the StorageRole)
+        };
+        Kind kind = Kind::main;
+        int index = 0;
     };
     enum class Modal : std::uint8_t
     {
@@ -163,6 +189,16 @@ class Launcher
     void press_mapping(Key key);
     void draw_mapping(Canvas &c, float open);
 
+    // ---- Game files: game folders and where keys, firmware and saves are (locations.cpp) ----
+    void read_library_folders();
+    void enter_locations(int select = 0);
+    void build_locations();
+    void refresh_location();
+    void press_locations(Key key);
+    void draw_locations(Canvas &c);
+    // The game folders changed: the Library and the home screen read them again.
+    void library_folders_changed();
+
     // ---- settings and its dialogs (settings.cpp) ----
     void press_settings(Key key);
     void draw_settings(Canvas &c);
@@ -172,9 +208,17 @@ class Launcher
     float dialog_row_top(Modal modal, int row) const;
 
     // ---- game files, language, about (browse.cpp) ----
-    void enter_files();
+    void enter_files(Pick pick, int index = 0);
     bool browse_to(const std::string &directory);
     void press_files(Key key);
+    // TRIANGLE in the browser: use the folder shown for what is being chosen.
+    void use_browsed_folder();
+    // SQUARE in the browser, for keys, firmware and saves: back to the default folder.
+    void reset_browsed_storage();
+    // Back to the Game files screen from the browser, with the row it was opened from in focus.
+    void leave_browser(int select);
+    static StorageRole storage_role(Pick pick);
+    static Pick storage_pick(StorageRole role);
     void draw_files(Canvas &c);
     void enter_language();
     void press_language(Key key);
@@ -275,6 +319,21 @@ class Launcher
     std::vector<std::string> browse_entries_; // ".." first unless at "/", then subfolders
     ListView files_;
     FolderInfo folder_info_;
+    Pick browse_pick_ = Pick::main;
+    int browse_index_ = 0;  // the extra game folder being changed
+    int browse_from_ = 0;   // the Game files row the browser was opened from
+
+    // Game files screen
+    std::vector<std::string> library_folders_; // the extra game folders, as saved
+    std::vector<LocationRow> location_list_;
+    ListView location_rows_;
+    bool advanced_open_ = false;
+    int location_remove_ = -1;                // the row Square was pressed on once (asked twice)
+    FolderInfo location_info_;                // what the focused row's folder holds
+    std::string main_used_;                    // the game files folder in use by this process
+    std::string main_saved_;                   // the one chosen for the next start; empty: none
+    std::array<std::string, kStorageRoles> storage_used_;  // in use by this process
+    std::array<std::string, kStorageRoles> storage_saved_; // chosen; empty: the default
 
     // language
     ListView language_;

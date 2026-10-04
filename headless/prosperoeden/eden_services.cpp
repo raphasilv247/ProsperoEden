@@ -24,6 +24,7 @@
 #include <fcntl.h>
 #include <filesystem>
 #include <initializer_list>
+#include <set>
 #include <sys/stat.h>
 #include <unistd.h>
 
@@ -35,6 +36,34 @@ using pe::tr;
 bool IsFile(const std::string& path) {
     struct stat info {};
     return stat(path.c_str(), &info) == 0 && S_ISREG(info.st_mode);
+}
+
+// Whether a game file is in one of the game folders' roms/ (assets_dir.h): one look at the file.
+bool HasRom(const std::string& file) { return !Eden::FindRom(file).empty(); }
+
+// The game files (NSP or XCI) of every game folder's roms/, each file name once: the first folder
+// that has it wins. A folder that cannot be read (a USB drive taken out) is skipped.
+struct RomFile {
+    std::string file;
+    std::string path;
+};
+std::vector<RomFile> ListRoms() {
+    std::vector<RomFile> roms;
+    std::set<std::string> seen;
+    for (const std::string& directory : Eden::RomDirs()) {
+        std::error_code error;
+        const auto entries = Eden::ReadNativeDirectory(directory, error);
+        if (error) continue;
+        for (const auto& entry : entries) {
+            const std::string file = entry.path().filename().string();
+            if (!Eden::ValidRomFilename(file) || seen.count(file)) continue;
+            const std::string path = directory + "/" + file;
+            if (!IsFile(path)) continue;
+            seen.insert(file);
+            roms.push_back({file, path});
+        }
+    }
+    return roms;
 }
 
 // A game's update and DLC: "Update 1.2.0, 2 DLC"; brief leaves the word out ("v1.2.0, 2 DLC") for
@@ -58,7 +87,7 @@ struct GameLanguage {
 };
 GameLanguage LanguageFor(const std::string& path, uint64_t title_id, int choice) {
     const int chosen = Eden::kLanguageSettings[choice];
-    const int used = eden_game_language(path.c_str(), Eden::AssetsPath("keys").c_str(), title_id, chosen);
+    const int used = eden_game_language(path.c_str(), Eden::KeysPath().c_str(), title_id, chosen);
     GameLanguage result{tr(Eden::kLanguageLabels[choice]), {}};
     if (used == chosen) return result;
     result.label = tr("Another language");
@@ -212,11 +241,11 @@ std::string GameTitle(const std::string& filename) {
 std::string EnsureCover(const std::string& filename, std::string* title = nullptr) {
     const std::string cover = CoverPath(filename);
     if (Eden::FileExists(cover) && !title) return cover;
-    const std::string rom = Eden::AssetsPath("roms/" + filename);
-    if (!Eden::FileExists(rom)) return {};
+    const std::string rom = Eden::FindRom(filename);
+    if (rom.empty()) return {};
     (void)mkdir(Eden::CoversDir().c_str(), 0777);
     char extracted[513]{};
-    const int metadata = eden_extract_game_metadata(rom.c_str(), Eden::AssetsPath("keys").c_str(), cover.c_str(),
+    const int metadata = eden_extract_game_metadata(rom.c_str(), Eden::KeysPath().c_str(), cover.c_str(),
                                                     extracted, sizeof(extracted));
     if (metadata & EDEN_METADATA_TITLE) {
         SaveTitle(filename, extracted);
@@ -227,16 +256,14 @@ std::string EnsureCover(const std::string& filename, std::string* title = nullpt
     return Eden::FileExists(cover) ? cover : std::string{};
 }
 
-int CountInstalledGames() {
-    std::error_code error;
-    const auto entries = Eden::ReadNativeDirectory(Eden::AssetsPath("roms"), error);
-    if (error) return 0;
-    int count = 0;
-    for (const auto& entry : entries) {
-        const std::string filename = entry.path().filename().string();
-        if (Eden::ValidRomFilename(filename) && IsFile(Eden::AssetsPath("roms/" + filename))) ++count;
-    }
-    return count;
+int CountInstalledGames() { return static_cast<int>(ListRoms().size()); }
+
+// Update and DLC files of every game folder's updates/, read for the games' update and DLC lines.
+void ScanAddOns() {
+    const std::vector<std::string> directories = Eden::UpdateDirs();
+    std::vector<const char*> list;
+    for (const std::string& directory : directories) list.push_back(directory.c_str());
+    eden_scan_addons_in(list.data(), list.size(), Eden::KeysPath().c_str());
 }
 
 // The labels of a setting, in the player's language (tools/launcher/strings.py lists them).
@@ -344,17 +371,17 @@ pe::ui::Home EdenServices::home() {
     home.last_file = Eden::LoadLastGame();
     // A game no longer in the game files folder is not offered: the most recent one that is
     // takes its place (or none).
-    if (!home.last_file.empty() && !IsFile(Eden::AssetsPath("roms/" + home.last_file))) {
+    if (!home.last_file.empty() && !HasRom(home.last_file)) {
         home.last_file.clear();
         for (const auto& name : Eden::LoadRecentGames()) {
-            if (IsFile(Eden::AssetsPath("roms/" + name))) {
+            if (HasRom(name)) {
                 home.last_file = name;
                 break;
             }
         }
     }
-    const std::string last_path = Eden::AssetsPath("roms/" + home.last_file);
-    home.last_exists = !home.last_file.empty() && IsFile(last_path);
+    const std::string last_path = Eden::FindRom(home.last_file);
+    home.last_exists = !home.last_file.empty() && !last_path.empty();
     if (!home.last_file.empty()) {
         std::string title = GameTitle(home.last_file);
         std::string cover = CoverPath(home.last_file);
@@ -372,7 +399,7 @@ pe::ui::Home EdenServices::home() {
     // The last game's update and DLC and the language it will use; when it does not offer the
     // chosen one, the caption says so.
     if (home.setup_ready && home.last_exists) {
-        eden_scan_addons(Eden::AssetsPath("updates").c_str(), Eden::AssetsPath("keys").c_str());
+        ScanAddOns();
         const uint64_t title_id = eden_game_title_id(last_path.c_str());
         const GameLanguage language = LanguageFor(last_path, title_id, Eden::PreferencesFor(title_id).language);
         home.last_title_id = title_id;
@@ -391,7 +418,7 @@ pe::ui::Home EdenServices::home() {
         history.push_back(home.last_file);
     }
     for (const auto& name : history) {
-        if (!IsFile(Eden::AssetsPath("roms/" + name))) continue;
+        if (!HasRom(name)) continue;
         home.recents.push_back({name, GameTitle(name), EnsureCover(name)});
     }
     const int installed = CountInstalledGames();
@@ -425,19 +452,18 @@ std::vector<pe::ui::Game> EdenServices::games() {
     std::vector<pe::ui::Game> games;
     (void)mkdir(Eden::ConfigDir().c_str(), 0777);
     (void)mkdir(Eden::CoversDir().c_str(), 0777);
-    std::error_code directory_error;
-    const auto entries = Eden::ReadNativeDirectory(Eden::AssetsPath("roms"), directory_error);
-    if (directory_error) return games;
-    eden_scan_addons(Eden::AssetsPath("updates").c_str(), Eden::AssetsPath("keys").c_str());
-    for (const auto& entry : entries) {
-        const std::string file = entry.path().filename().string();
+    // Every game folder's roms/, the game files folder first (a name in two of them is listed once).
+    const std::vector<RomFile> roms = ListRoms();
+    ScanAddOns();
+    for (const RomFile& rom : roms) {
+        const std::string& file = rom.file;
+        const std::string& path = rom.path;
         const std::size_t dot = file.find_last_of('.');
-        if (file == "." || file == ".." || dot == std::string::npos) continue;
+        if (dot == std::string::npos) continue;
         std::string format = file.substr(dot + 1);
         std::transform(format.begin(), format.end(), format.begin(),
                        [](unsigned char c) { return static_cast<char>(std::toupper(c)); });
         if (format != "NSP" && format != "XCI") continue;
-        const std::string path = Eden::AssetsPath("roms/" + file);
         struct stat info {};
         if (stat(path.c_str(), &info) != 0 || !S_ISREG(info.st_mode)) continue;
         char size[32];
@@ -455,7 +481,7 @@ std::vector<pe::ui::Game> EdenServices::games() {
             // The cover is replaced in one step: the menu may be loading the old one right now.
             const std::string cover = CoverPath(file);
             const std::string staged = cover + ".new";
-            const int metadata = eden_extract_game_metadata(path.c_str(), Eden::AssetsPath("keys").c_str(),
+            const int metadata = eden_extract_game_metadata(path.c_str(), Eden::KeysPath().c_str(),
                                                             staged.c_str(), title, sizeof(title));
             if (metadata & EDEN_METADATA_TITLE) {
                 game.name = title;
@@ -482,7 +508,12 @@ std::vector<pe::ui::Game> EdenServices::games() {
     return games;
 }
 
-std::string EdenServices::game_path(const std::string& file) { return Eden::AssetsPath("roms/" + file); }
+std::string EdenServices::game_path(const std::string& file) {
+    // The first game folder that has it; the game files folder's roms/ when none does (the launch
+    // then reports the game as no longer available).
+    const std::string found = Eden::FindRom(file);
+    return found.empty() ? Eden::AssetsPath("roms/" + file) : found;
+}
 
 bool EdenServices::take_update(std::string* version) { return Eden::UpdateNotice::Take(version); }
 
@@ -556,9 +587,7 @@ bool EdenServices::remove_profile(int index) {
     return true;
 }
 
-bool EdenServices::game_exists(const std::string& file) {
-    return Eden::ValidRomFilename(file) && IsFile(Eden::AssetsPath("roms/" + file));
-}
+bool EdenServices::game_exists(const std::string& file) { return HasRom(file); }
 
 bool EdenServices::docked(std::uint64_t title_id) { return Eden::LoadGameDocked(title_id); }
 
@@ -713,6 +742,10 @@ pe::ui::FolderInfo EdenServices::folder_info(const std::string& directory) {
     info.keys = Eden::FileExists(JoinPath(directory, "keys/prod.keys"));
     info.firmware = CountFiles(JoinPath(directory, "firmware"), {".nca"});
     info.games = CountFiles(JoinPath(directory, "roms"), {".nsp", ".xci"});
+    info.updates = CountFiles(JoinPath(directory, "updates"), {".nsp", ".xci"});
+    // The folder itself: what a folder chosen only for keys or firmware has to hold.
+    info.own_keys = Eden::FileExists(JoinPath(directory, "prod.keys"));
+    info.own_firmware = CountFiles(directory, {".nca"});
     return info;
 }
 
@@ -727,6 +760,48 @@ bool EdenServices::set_files_folder(const std::string& directory) {
 }
 
 int EdenServices::filesystem_access() { return Eden::FilesystemAccessStatus(); }
+
+// Game folders beyond the game files folder (assets_dir.h): each holds roms/ and updates/.
+std::vector<std::string> EdenServices::library_folders() { return Eden::LoadLibraryDirs(); }
+
+bool EdenServices::set_library_folders(const std::vector<std::string>& directories) {
+    const bool saved = Eden::SaveLibraryDirs(directories);
+    if (saved) Eden::ReloadLibraryDirs();
+    else Eden::Report("settings", "Could not write the game folders");
+    return saved;
+}
+
+int EdenServices::library_folders_max() { return static_cast<int>(Eden::kMostLibraryDirs); }
+
+namespace {
+Eden::StoragePath StorageFor(pe::ui::StorageRole role) {
+    switch (role) {
+    case pe::ui::StorageRole::keys: return Eden::StoragePath::keys;
+    case pe::ui::StorageRole::firmware: return Eden::StoragePath::firmware;
+    case pe::ui::StorageRole::save_import: return Eden::StoragePath::save_import;
+    default: return Eden::StoragePath::save_export;
+    }
+}
+} // namespace
+
+std::string EdenServices::storage_folder(pe::ui::StorageRole role) {
+    switch (role) {
+    case pe::ui::StorageRole::keys: return Eden::KeysPath();
+    case pe::ui::StorageRole::firmware: return Eden::FirmwarePath();
+    case pe::ui::StorageRole::save_import: return Eden::SaveImportPath();
+    default: return Eden::SaveExportPath();
+    }
+}
+
+std::string EdenServices::saved_storage_folder(pe::ui::StorageRole role) {
+    return Eden::LoadSavedStoragePath(StorageFor(role));
+}
+
+bool EdenServices::set_storage_folder(pe::ui::StorageRole role, const std::string& directory) {
+    const bool saved = Eden::SaveStoragePath(StorageFor(role), directory);
+    if (!saved) Eden::Report("settings", "Could not write the folder");
+    return saved;
+}
 
 #ifdef EDEN_SAVE_IMPORT
 // Save transfer (ryujinx_saves.h): a save comes in from save-import/<title ID>/ or a Ryujinx data
