@@ -22,7 +22,14 @@ public:
     std::vector<pe::ui::Game> games() override;
     std::string game_path(const std::string& file) override;
     bool game_exists(const std::string& file) override;
-    bool take_update(std::string* version) override;
+    std::vector<pe::ui::GamePlace> game_places(const std::string& file) override;
+    std::string game_path_in(const std::string& file, int place) override;
+    bool take_update(pe::ui::UpdateOffer* offer) override;
+    bool start_update() override;
+    pe::ui::UpdateStatus update_status() override;
+    void cancel_update() override;
+    bool apply_update() override;
+    void finish_update() override;
     bool docked(std::uint64_t title_id) override;
     bool set_docked(std::uint64_t title_id, bool docked) override;
     pe::ui::GameSettings game_settings(std::uint64_t title_id) override;

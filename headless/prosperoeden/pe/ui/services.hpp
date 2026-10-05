@@ -30,11 +30,51 @@ enum class Key : std::uint8_t
     right,
 };
 
+// A newer release of the app, listed on homebrew.page.
+struct UpdateOffer
+{
+    std::string version;      // its name: "v1.000.060"
+    std::uint64_t size = 0;   // its download in bytes; 0 when not known
+    bool installable = false; // the app can install it itself (otherwise it is only announced)
+};
+// Where installing it is.
+enum class UpdatePhase : std::uint8_t
+{
+    idle,
+    starting,
+    downloading,
+    unpacking,
+    ready,
+    applying,
+    cancelled,
+    failed,
+};
+struct UpdateStatus
+{
+    UpdatePhase phase = UpdatePhase::idle;
+    std::uint64_t done = 0;
+    std::uint64_t total = 0; // 0 while not known
+    std::string error;       // why it failed (English, technical)
+};
+
+// Where a game file is: a game folder, in a word. The list shows the short label after the
+// format ("NSP | USB"); the question about a duplicate shows the numbered label and the folder
+// that holds the drive, never a full path.
+struct GamePlace
+{
+    std::string label; // "SSD", "USB0", "EXT1"
+    std::string root;  // "/data", "/mnt/usb0", "/mnt/ext1"
+};
+
 // A game file in the games folder.
 struct Game
 {
     std::string name;
     std::string format; // "NSP" or "XCI"
+    std::string place;  // where it is, short: "SSD", "USB", "EXT"; empty when not known
+    // Every place that has a file of this name, when more than one has (a duplicate): the game is
+    // listed once, from the first. Empty for a game in one place.
+    std::vector<GamePlace> places;
     std::string size;   // "1.2 GB"
     std::string file;   // its name in the games folder
     std::string cover;  // image path; empty without cover art
@@ -217,17 +257,50 @@ class Services
         return 1u;
     }
     virtual std::string version() = 0; // "v1.000.040"
-    // A newer release than this one is listed (asked once per launch): its name, handed over
-    // once, when the answer has come.
-    virtual bool take_update(std::string *)
+    // A newer release than this one is listed (asked once per launch): handed over once, when the
+    // answer has come.
+    virtual bool take_update(UpdateOffer *)
     {
         return false;
+    }
+    // Installing it (the offer must be installable): begin downloading and unpacking it beside the
+    // app (false: it could not begin), where that is, stop it (nothing is changed before
+    // apply_update), and once it is ready the go-ahead (true: the app must close now; its files
+    // are replaced once it has). finish_update after a cancel or a failure.
+    virtual bool start_update()
+    {
+        return false;
+    }
+    virtual UpdateStatus update_status()
+    {
+        return {};
+    }
+    virtual void cancel_update()
+    {
+    }
+    virtual bool apply_update()
+    {
+        return false;
+    }
+    virtual void finish_update()
+    {
     }
 
     // ---- library ----
     virtual std::vector<Game> games() = 0; // reads every game file: slow
     // The value the launcher hands back to start a game.
     virtual std::string game_path(const std::string &file) = 0;
+    // The places that have a game file of this name, in order of the game folders. One or none for
+    // a game that is not a duplicate.
+    virtual std::vector<GamePlace> game_places(const std::string &)
+    {
+        return {};
+    }
+    // Its path in the given place (an index into game_places); game_path when there is no such one.
+    virtual std::string game_path_in(const std::string &file, int)
+    {
+        return game_path(file);
+    }
     // Whether a game's file is still in the game files folder (one look at the file, no reading).
     virtual bool game_exists(const std::string &)
     {

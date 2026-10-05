@@ -1,11 +1,28 @@
-# Filesystem access (sandbox elevation)
+# Filesystem access with upstream Lapy
 
-From [ps5-native-app-boilerplate](https://github.com/blackbearreloaded/ps5-native-app-boilerplate)
-`examples/sandbox-elevation` at dd44bbd (GPL-3.0-or-later): `elevation.hpp`, `protocol.hpp`,
-`elevation.cpp` (app side), `helper/` (the elfldr helper) and `validate-helper.py`.
+ProsperoEden uses [PS5-Lapy-JB-Daemon](https://github.com/ArkSama/PS5-Lapy-JB-Daemon),
+created by ArkSama, and pins the cooperative owned-root implementation from
+[mpereiraesaa's Lapy fork](https://github.com/mpereiraesaa/PS5-Lapy-JB-Daemon). The build invokes
+upstream's own `owned-helper` target for `PPSA99008`; it does not copy or modify Lapy's privileged
+source. Before packaging, it verifies the generated manifest's title, mode, ELF and protocol
+hashes, and `root_layout_probe_retry` feature.
 
-ProsperoEden changes: the helper's `target_title_id` is `PPSA99008`, and `elevation.cpp` includes
-`elevation.hpp` from this folder. The packager builds the helper with the PS5 payload SDK and
-ships it as `/app0/sandbox-elevator.elf`; `main.cpp` requests `Capability::filesystem` once at
-startup so the Game files folder (default `/data/prosperoeden`, `assets_dir.h`) is readable.
-Without an elfldr on the console the request fails and the app keeps its sandbox and `/app0/assets`.
+At single-threaded startup, the client first publishes the cooperative resident-service request
+through `/download0/elevate_proc`. It waits 1.5 seconds for verified `/data` read/write access. If
+the resident service claimed the marker, the one-shot path is not started. If the app cancels an
+unclaimed marker, it observes one further grace interval and then sends `/app0/lapy.elf` to the
+local ELF loader on TCP port 9021. The same connection carries upstream's fixed-width
+request/prepare/prepared/response exchange. Only a successful response followed by an actual
+`/data` write/read/delete probe enables the normal data paths.
+
+The package includes `lapy.elf`, `lapy-manifest.json`, and Lapy's MIT license. It contains no
+locally implemented kernel mutation code. A jailbreak environment with an ELF loader on port
+9021 is required when a resident Lapy service is not already available.
+
+Upstream has validated the helper lifecycle on firmware 12.02. Other SDK-supported firmware,
+including ProsperoEden's firmware 6.02 test console, remains experimental until it completes
+repeat launch, gameplay, clean-exit, and root-balance testing.
+
+Credits: Lapy was created by [ArkSama](https://github.com/ArkSama), and the cooperative helper
+used here comes from
+[mpereiraesaa and contributors](https://github.com/mpereiraesaa/PS5-Lapy-JB-Daemon/graphs/contributors).

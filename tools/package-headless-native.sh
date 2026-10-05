@@ -41,16 +41,24 @@ fi
     --companion-sdk 0x08050001 --file-name eboot.elf
 "$builder" self --sign --in "$out/eboot.elf" --out "$app/eboot.bin" --magic 0x1D3D154F
 cp "$template/runtime/libc.prx" "$app/sce_module/libc.prx"
+rm -f "$app/sandbox-elevator.elf"
+cp "$root/build/lapy-owned-helper/lapy.elf" "$app/lapy.elf"
+cp "$root/build/lapy-owned-helper/lapy-manifest.json" "$app/lapy-manifest.json"
+mkdir -p "$app/licenses"
+cp "$root/build/lapy-owned-helper/LICENSE.Lapy" "$app/licenses/Lapy-MIT.txt"
 # What the console's home screen shows for the title is in sce_sys/, as it goes into the package
 # (the source pictures beside it stay in the repository).
+# The self-update helper (headless/self_update_helper, the boilerplate's) is an ordinary payload:
+# the app sends it to the console's payload loader to replace the app's files once it has closed.
+# It does file work with the rights every payload has and never touches the kernel.
+make -s -C "$root/headless/self_update_helper" PS5_PAYLOAD_SDK="$template/.deps/native/ps5-payload-sdk" \
+    OUTPUT="$root/build/self-update/self-updater.elf"
+python3 "$root/tools/validate-loader-elf.py" "$root/build/self-update/self-updater.elf"
+cp "$root/build/self-update/self-updater.elf" "$app/self-updater.elf"
 cp "$root/sce_sys/"{param.json,icon0.png,pic0.dds,pic1.dds,snd0.at9} "$app/sce_sys/"
 rm -rf "$app/ui"
 cp -a "$root/headless/prosperoeden/ui" "$app/ui"
-# Filesystem access helper (headless/elevation, built for PPSA99008): elfldr runs it at startup.
-make -s -C "$root/headless/elevation/helper" OUTPUT="$root/build/elevation/sandbox-elevator.elf" \
-    PS5_PAYLOAD_SDK="${PS5_ELEVATION_SDK:-/opt/ps5-payload-sdk}"
-python3 "$root/headless/elevation/validate-helper.py" "$root/build/elevation/sandbox-elevator.elf"
-cp "$root/build/elevation/sandbox-elevator.elf" "$app/sandbox-elevator.elf"
+# The exact-title upstream Lapy helper is verified before it reaches this package.
 python3 - "$root" "$scratch" "$app" "${1:-}" <<'PY'
 import json, pathlib, re, runpy, shutil, sys
 root, scratch, app = map(pathlib.Path, sys.argv[1:4])

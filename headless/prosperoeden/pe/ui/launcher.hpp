@@ -108,6 +108,18 @@ class Launcher
         game_options, // one category of a game's own settings, opened from its settings
         mapping,      // the button mapping: Settings > Controls', or a game's own
         profiles,     // who is playing: Settings > Profiles
+        update,       // a newer release of the app: install it or not (update.cpp)
+        place,        // a game found in more than one place: which one starts (library.cpp)
+    };
+    // The update dialog's steps: the offer, installing, stopping it, closing for the helper to
+    // finish, and a failure.
+    enum class UpdateStage : std::uint8_t
+    {
+        offer,
+        working,
+        cancelling,
+        closing,
+        failed,
     };
 
     // ---- shell (launcher.cpp) ----
@@ -120,11 +132,14 @@ class Launcher
     void close_modal();
     void say(const std::string &text, bool warning = false);
     void launch(const std::string &file, const std::string &title, const std::string &cover);
+    // Starts the game file at this path (launch has found which one).
+    void start_game(const std::string &path, const std::string &title, const std::string &cover);
     void draw_screen(Canvas &c, Screen screen);
     void draw_frame(Canvas &c, const char *title, const char *copy);
     void draw_footer(Canvas &c, const Hint *hints, int count);
     void draw_launch(Canvas &c);
-    // The notification of a newer release, at the top right for ten seconds.
+    // The notification of a newer release the app cannot install itself, at the top right for ten
+    // seconds.
     void draw_update_notice(Canvas &c);
     // quiet: a change that shows at once needs no "Saved" line.
     bool save_preferences(bool quiet = false);
@@ -169,6 +184,13 @@ class Launcher
     void draw_game(Canvas &c, float open);
     void press_mods(Key key);
     void draw_mods(Canvas &c, float open);
+    // A game found in more than one place: asked only then, which one starts.
+    void open_place(const std::string &file, const std::string &title, const std::string &cover,
+                    std::vector<GamePlace> places);
+    void press_place(Key key);
+    void draw_place(Canvas &c, float open);
+    // The game's format as the list shows it: "NSP | USB"; "NSP | SSD + USB0" for a duplicate.
+    static std::string format_text(const Game &game);
 
     // ---- a game's own settings by category, and the button mapping (game_options.cpp) ----
     // Categories, in the order of the game settings' rows: video, performance, audio, controls,
@@ -207,6 +229,15 @@ class Launcher
     int dialog_rows(Modal modal) const;
     float dialog_row_top(Modal modal, int row) const;
 
+    // ---- a newer release of the app (update.cpp) ----
+    // Takes the update check's answer when it comes, and opens the dialog once the menu is free.
+    void update_offer(float dt);
+    // Follows the install: progress, its speed, the ready and failed steps.
+    void update_install(float dt);
+    void begin_update();
+    void press_update(Key key);
+    void draw_update(Canvas &c, float open);
+
     // ---- game files, language, about (browse.cpp) ----
     void enter_files(Pick pick, int index = 0);
     bool browse_to(const std::string &directory);
@@ -236,6 +267,20 @@ class Launcher
     std::string update_version_;       // the newer release being announced
     float update_notice_left_ = 0.0f;  // seconds its notification still shows
     tween::Spring update_notice_in_;   // 0 away .. 1 in place
+    // The update dialog.
+    UpdateOffer update_;
+    bool update_waiting_ = false;      // an offer waits for the menu to be free
+    UpdateStage update_stage_ = UpdateStage::offer;
+    float update_stage_time_ = 0.0f;   // seconds in this step
+    int update_choice_ = 0;            // 0: the first button, 1: the second
+    tween::Spring update_choice_x_;    // the highlight between the two buttons
+    tween::Spring update_height_;      // the panel's height: shorter while it works
+    UpdateStatus update_status_;
+    tween::Spring update_fraction_;    // the shown share done, 0..1
+    float update_spin_ = 0.0f;         // the waiting arc's turn
+    float update_rate_ = 0.0f;         // bytes per second, smoothed
+    std::uint64_t update_rate_done_ = 0;
+    float update_rate_wait_ = 0.0f;
     std::string clock_;
     std::string version_;
 
@@ -297,6 +342,12 @@ class Launcher
     bool import_armed_ = false;                   // Cross was pressed once: the next one imports
     ListView game_rows_;                          // the game dialog's rows (more than it shows)
     std::vector<Mod> mods_;                       // the game's mods, read when its dialog opens
+    // The question about a duplicate game: the file to start, and the places that have it.
+    std::string place_file_;
+    std::string place_title_;
+    std::string place_cover_;
+    std::vector<GamePlace> place_choices_;
+    ListView place_rows_;
     // The Mods list's rows: each mod, then its cheats when it lists several.
     struct ModRow
     {

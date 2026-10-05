@@ -43,6 +43,16 @@ msgstr "關於"
 msgid "About ProsperoEden"
 msgstr "關於 ProsperoEden"
 
+#. Time left while downloading; {0} is a number of minutes. Keep it short.
+#: pe/ui/update.cpp
+msgid "About {0} min left"
+msgstr "約剩 {0} 分鐘"
+
+#. Time left while downloading; {0} is a number of seconds. Keep it short.
+#: pe/ui/update.cpp
+msgid "About {0} s left"
+msgstr "約剩 {0} 秒"
+
 #. Label: which folders the app can read.
 #: pe/ui/browse.cpp
 msgid "ACCESS"
@@ -57,9 +67,17 @@ msgstr "協助工具"
 msgid "ACCESSIBILITY"
 msgstr "協助工具"
 
-#: pe/ui/profiles.cpp
+#: pe/ui/locations.cpp, pe/ui/profiles.cpp
 msgid "Add"
 msgstr "新增"
+
+#: pe/ui/locations.cpp
+msgid "Add another place for games, such as a USB drive. It holds roms, updates and mods. Keys and firmware come from the game files folder first, then from here if it has none."
+msgstr "再新增一個存放遊戲的位置,例如 USB 隨身碟。其中包含 roms、updates 和 mods。keys 和 firmware 會先從遊戲檔案資料夾讀取,沒有時再從這裡讀取。"
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "Add game folder"
+msgstr "新增遊戲資料夾"
 
 #. Label: a game's updates, DLC and mods.
 #: pe/ui/library.cpp
@@ -78,6 +96,10 @@ msgstr "已新增。叉鍵以此檔案遊玩；左右變更名稱。"
 #: pe/ui/settings.cpp
 msgid "Adjust the essentials without leaving your library behind."
 msgstr "不必離開遊戲庫即可調整基本設定。"
+
+#: pe/ui/locations.cpp
+msgid "ADVANCED"
+msgstr "進階"
 
 #: pe/ui/browse.cpp
 msgid "All credit for the Eden emulator goes to its developers and contributors."
@@ -118,9 +140,13 @@ msgid "Australia"
 msgstr "澳洲"
 
 #. Button hint: go back one screen.
-#: pe/ui/browse.cpp, pe/ui/game_options.cpp, pe/ui/library.cpp, pe/ui/profiles.cpp, pe/ui/settings.cpp
+#: pe/ui/browse.cpp, pe/ui/game_options.cpp, pe/ui/library.cpp, pe/ui/locations.cpp, pe/ui/profiles.cpp, pe/ui/settings.cpp
 msgid "Back"
 msgstr "返回"
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "Back to the default folder. Reopen ProsperoEden to use it."
+msgstr "已恢復為預設資料夾。重新開啟 ProsperoEden 後生效。"
 
 #. An upscaling filter.
 #: settings_store.h
@@ -133,7 +159,7 @@ msgid "Bilinear"
 msgstr "雙線性"
 
 #. Button hint: move through the list.
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "Browse"
 msgstr "瀏覽"
 
@@ -154,14 +180,26 @@ msgstr "按鍵配置"
 msgid "BUTTON MAPPING"
 msgstr "按鍵配置"
 
+#: pe/ui/update.cpp
+msgid "Cancel"
+msgstr "取消"
+
+#: pe/ui/update.cpp
+msgid "Cancelling"
+msgstr "正在取消"
+
 #: eden_services.cpp
 msgid "Cannot read firmware/ in {0}. Install extracted firmware NCAs."
 msgstr "無法讀取 {0} 中的 firmware/。請安裝解開後的韌體 NCA。"
 
 #. Button hint: change the highlighted setting.
-#: pe/ui/game_options.cpp, pe/ui/library.cpp, pe/ui/settings.cpp
+#: pe/ui/game_options.cpp, pe/ui/library.cpp, pe/ui/locations.cpp, pe/ui/settings.cpp
 msgid "Change"
 msgstr "變更"
+
+#: pe/ui/browse.cpp
+msgid "Change game folder"
+msgstr "變更遊戲資料夾"
 
 #: pe/ui/library.cpp
 msgid "Change mode. Saved per game."
@@ -190,26 +228,58 @@ msgid "Chinese (Traditional)"
 msgstr "中文（繁體）"
 
 #. Button hint: choose the highlighted language.
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "Choose"
 msgstr "選擇"
+
+#: pe/ui/browse.cpp
+msgid "Choose a folder with roms and updates inside"
+msgstr "請選擇包含 roms 和 updates 的資料夾"
 
 #: pe/ui/home.cpp
 msgid "Choose a game from your library."
 msgstr "請從遊戲庫中選擇一款遊戲。"
 
 #: pe/ui/browse.cpp
+msgid "Choose the folder that holds prod.keys"
+msgstr "請選擇包含 prod.keys 的資料夾"
+
+#: pe/ui/browse.cpp
+msgid "Choose the folder that holds the firmware NCA files"
+msgstr "請選擇包含韌體 NCA 檔案的資料夾"
+
+#: pe/ui/browse.cpp
 msgid "Choose the folder that holds your keys, firmware and games"
 msgstr "選擇存放金鑰、韌體和遊戲的資料夾"
+
+#: pe/ui/browse.cpp
+msgid "Choose the folder with one folder per game ID"
+msgstr "請選擇每個遊戲 ID 對應一個資料夾的資料夾"
+
+#: pe/ui/locations.cpp
+msgid "Choose the keys, firmware, save import and save export folders on their own. Until you do, they are inside the game files folder."
+msgstr "可分別選擇 keys、firmware、存檔匯入和存檔匯出的資料夾。在此之前,它們都在遊戲檔案資料夾內。"
 
 #: pe/ui/browse.cpp
 msgid "Choose the language games use"
 msgstr "選擇遊戲使用的語言"
 
+#: pe/ui/browse.cpp
+msgid "Choose where exported saves are written"
+msgstr "請選擇匯出存檔的寫入位置"
+
+#: pe/ui/locations.cpp
+msgid "Choose where your games, keys, firmware and saves are"
+msgstr "請選擇遊戲、keys、firmware 和存檔所在的位置"
+
 #. A DualSense button.
 #: pe/ui/game_options.cpp
 msgid "Circle"
 msgstr "圓圈鍵"
+
+#: pe/ui/update.cpp
+msgid "Close"
+msgstr "關閉"
 
 #. A switch: the program code a game used in earlier sessions is prepared (compiled) while the game starts. Keep it short.
 #: pe/ui/game_options.cpp, pe/ui/settings.cpp
@@ -260,7 +330,7 @@ msgstr "無法儲存主機模式。請再試一次。"
 msgid "Could not save settings. Please try again."
 msgstr "無法儲存設定。請再試一次。"
 
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "Could not save the folder. Please try again."
 msgstr "無法儲存資料夾。請再試一次。"
 
@@ -292,16 +362,24 @@ msgstr "製作名單與設定說明"
 msgid "Cross"
 msgstr "叉鍵"
 
+#: pe/ui/locations.cpp
+msgid "CUSTOM"
+msgstr "自訂"
+
+#: pe/ui/locations.cpp
+msgid "DEFAULT"
+msgstr "預設"
+
 #. A per-game setting that follows the general setting; {0} is its value.
 #: pe/ui/game_options.cpp
 msgid "Default ({0})"
 msgstr "預設（{0}）"
 
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "Default folder"
 msgstr "預設資料夾"
 
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "Default folder saved. Reopen ProsperoEden to use it."
 msgstr "預設資料夾已儲存。重新開啟 ProsperoEden 後生效。"
 
@@ -339,6 +417,15 @@ msgstr "診斷"
 msgid "Docked"
 msgstr "TV模式"
 
+#. {0} is a size such as 36.4 MB.
+#: pe/ui/update.cpp
+msgid "Download size: {0}"
+msgstr "下載大小：{0}"
+
+#: pe/ui/update.cpp
+msgid "Downloading"
+msgstr "正在下載"
+
 #: pe/ui/settings.cpp
 msgid "Draws an effect once its shader is ready instead of pausing. Things can be missing for a moment."
 msgstr "著色器準備好後才繪製效果，而不暫停遊戲。部分內容可能短暫缺少。"
@@ -346,6 +433,10 @@ msgstr "著色器準備好後才繪製效果，而不暫停遊戲。部分內容
 #: pe/ui/settings.cpp
 msgid "Draws the menu's small text larger."
 msgstr "將選單中的小字放大顯示。"
+
+#: pe/ui/library.cpp
+msgid "Duplicate game"
+msgstr "重複的遊戲"
 
 #: settings_store.h
 msgid "Dutch"
@@ -388,6 +479,10 @@ msgstr "匯出副本"
 #: eden_services.cpp
 msgid "Export failed. Check that the game files folder can be written."
 msgstr "匯出失敗。請確認遊戲檔案的資料夾可以寫入。"
+
+#: pe/ui/browse.cpp
+msgid "Exported saves are written here. TRIANGLE uses the folder shown; SQUARE goes back to the default."
+msgstr "匯出的存檔會寫入這裡。三角鍵使用目前顯示的資料夾;方塊鍵恢復為預設。"
 
 #. {0} is a folder.
 #: eden_services.cpp, host/fake_services.hpp
@@ -438,9 +533,13 @@ msgstr "檔案"
 msgid "Fine-tune your experience"
 msgstr "微調你的體驗"
 
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "FIRMWARE"
 msgstr "韌體"
+
+#: pe/ui/browse.cpp
+msgid "Firmware folder"
+msgstr "firmware 資料夾"
 
 #: eden_services.cpp
 msgid "Firmware NCA validation failed (code {0}). Check that firmware and prod.keys are compatible."
@@ -454,7 +553,7 @@ msgstr "韌體就緒"
 msgid "Firmware SystemVersion data is missing or unreadable. Install a complete firmware dump."
 msgstr "韌體的 SystemVersion 資料遺失或無法讀取。請安裝完整的韌體。"
 
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "FOLDERS"
 msgstr "資料夾"
 
@@ -510,13 +609,25 @@ msgstr "遊戲詳細資料"
 msgid "GAME DETAILS"
 msgstr "遊戲詳細資料"
 
-#: pe/ui/browse.cpp, pe/ui/settings.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp, pe/ui/settings.cpp
 msgid "Game files"
 msgstr "遊戲檔案"
 
 #: pe/ui/settings.cpp
 msgid "GAME FILES"
 msgstr "遊戲檔案"
+
+#: pe/ui/locations.cpp
+msgid "GAME FILES FOLDER"
+msgstr "遊戲檔案資料夾"
+
+#: pe/ui/locations.cpp
+msgid "GAME FOLDER"
+msgstr "遊戲資料夾"
+
+#: pe/ui/locations.cpp, pe/ui/settings.cpp
+msgid "GAME FOLDERS"
+msgstr "遊戲資料夾"
 
 #: pe/ui/library.cpp
 msgid "Game settings"
@@ -534,7 +645,7 @@ msgstr "遊戲音量"
 msgid "Game volume, and the sounds of this menu."
 msgstr "遊戲音量與此選單的音效。"
 
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "GAMES"
 msgstr "遊戲"
 
@@ -545,6 +656,14 @@ msgstr "遊戲支援此語言時會使用此語言，否則使用遊戲本身的
 #: pe/ui/home.cpp
 msgid "Games you launch will appear here."
 msgstr "你啟動過的遊戲會顯示在這裡。"
+
+#: pe/ui/browse.cpp
+msgid "Games, updates and mods are read from here. TRIANGLE adds the folder shown."
+msgstr "遊戲、updates 和 mods 會從這裡讀取。三角鍵新增目前顯示的資料夾。"
+
+#: pe/ui/locations.cpp
+msgid "Games, updates and mods are read from this folder. Square twice takes it off the list."
+msgstr "遊戲、updates 和 mods 會從此資料夾讀取。按兩次方塊鍵可將其從清單中移除。"
 
 #: settings_store.h
 msgid "German"
@@ -567,6 +686,14 @@ msgstr "圖形後端初始化失敗。請在設定中嘗試其他後端；驅動
 msgid "Handheld"
 msgstr "手提模式"
 
+#: pe/ui/locations.cpp
+msgid "HIDE"
+msgstr "隱藏"
+
+#: pe/ui/locations.cpp
+msgid "Hide"
+msgstr "隱藏"
+
 #: pe/ui/settings.cpp
 msgid "HIGH CONTRAST"
 msgstr "高對比"
@@ -575,6 +702,10 @@ msgstr "高對比"
 #: pe/ui/settings.cpp
 msgid "High contrast"
 msgstr "高對比"
+
+#: pe/ui/locations.cpp
+msgid "Holds keys, firmware, roms, updates, mods and saves, unless you choose some of them on their own (Advanced)."
+msgstr "包含 keys、firmware、roms、updates、mods 和存檔,除非你單獨選擇了其中一部分(進階)。"
 
 #: pe/ui/settings.cpp
 msgid "How games are drawn and scaled to your TV."
@@ -597,8 +728,12 @@ msgstr "已匯入。"
 msgid "Imported. The save it replaced was backed up."
 msgstr "已匯入。被取代的存檔已備份。"
 
+#: pe/ui/library.cpp
+msgid "In more than one place. You choose which one starts."
+msgstr "存在於多個位置。請選擇啟動哪一個。"
+
 #. Tag on the language or folder that is in use now.
-#: pe/ui/browse.cpp, pe/ui/settings.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp, pe/ui/settings.cpp
 msgid "IN USE"
 msgstr "使用中"
 
@@ -624,13 +759,21 @@ msgid "Keeps what a game reads back from the GPU exact. Off is faster, and some 
 msgstr "讓遊戲從 GPU 讀回的內容保持精確。關閉後更快，但部分效果會失效。"
 
 #. Label: the encryption keys file (prod.keys).
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "KEYS"
 msgstr "金鑰"
 
 #: eden_services.cpp, host/fake_services.cpp
 msgid "Keys and firmware: startup checks passed. Game-specific compatibility is checked at launch."
 msgstr "金鑰與韌體：已通過啟動檢查。各遊戲的相容性會在啟動時檢查。"
+
+#: pe/ui/browse.cpp
+msgid "Keys folder"
+msgstr "keys 資料夾"
+
+#: pe/ui/locations.cpp
+msgid "Keys, firmware and saves"
+msgstr "keys、firmware 和存檔"
 
 #: eden_services.cpp
 msgid "Korea"
@@ -743,7 +886,7 @@ msgid "Muted"
 msgstr "已靜音"
 
 #. Button hint: move the highlight.
-#: pe/ui/home.cpp
+#: pe/ui/home.cpp, pe/ui/update.cpp
 msgid "Navigate"
 msgstr "移動"
 
@@ -761,12 +904,12 @@ msgid "New profile"
 msgstr "新增檔案"
 
 #. {0} is the folder used the next time the app starts.
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "Next launch: {0}"
 msgstr "下次啟動：{0}"
 
 #. Label: the folder used the next time the app starts.
-#: pe/ui/settings.cpp
+#: pe/ui/locations.cpp, pe/ui/settings.cpp
 msgid "NEXT START"
 msgstr "下次啟動"
 
@@ -774,7 +917,7 @@ msgstr "下次啟動"
 msgid "No cover art"
 msgstr "沒有封面"
 
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "No firmware folder"
 msgstr "沒有 firmware 資料夾"
 
@@ -804,9 +947,13 @@ msgstr "找不到 ROM 檔案。"
 msgid "No ROM selected"
 msgstr "未選擇 ROM"
 
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "No roms folder"
 msgstr "沒有 roms 資料夾"
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "No updates folder"
+msgstr "沒有 updates 資料夾"
 
 #. No add-ons (updates or DLC).
 #: pe/ui/library.cpp
@@ -838,9 +985,13 @@ msgid "OPEN"
 msgstr "開啟"
 
 #. Button hint: open the highlighted folder.
-#: pe/ui/browse.cpp, pe/ui/game_options.cpp, pe/ui/library.cpp, pe/ui/settings.cpp
+#: pe/ui/browse.cpp, pe/ui/game_options.cpp, pe/ui/library.cpp, pe/ui/locations.cpp, pe/ui/settings.cpp
 msgid "Open"
 msgstr "開啟"
+
+#: pe/ui/update.cpp
+msgid "Open it again to use version {0}."
+msgstr "再次開啟即可使用版本 {0}。"
 
 #: pe/ui/home.cpp
 msgid "Open library"
@@ -862,7 +1013,7 @@ msgid "Output resolution"
 msgstr "輸出解析度"
 
 #. Button hint: jump a page of the list (L1 / R1).
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "Page"
 msgstr "翻頁"
 
@@ -921,6 +1072,11 @@ msgstr "Powered by Eden"
 msgid "PREFERENCES"
 msgstr "偏好設定"
 
+#. Update dialog headline while the download starts.
+#: pe/ui/update.cpp
+msgid "Preparing"
+msgstr "正在準備"
+
 #. Asked before a save is imported over the one in use.
 #: pe/ui/library.cpp
 msgid "Press again to replace this game's save. The current one is backed up."
@@ -930,11 +1086,15 @@ msgstr "再按一次將取代此遊戲的存檔。目前的存檔會先備份。
 msgid "prod.keys could not supply an NCA header key. Replace it with a valid key dump."
 msgstr "prod.keys 無法提供 NCA 標頭金鑰。請換成有效的金鑰檔。"
 
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "prod.keys found"
 msgstr "已找到 prod.keys"
 
 #: pe/ui/browse.cpp
+msgid "prod.keys is not in this folder."
+msgstr "此資料夾中沒有 prod.keys。"
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "prod.keys missing"
 msgstr "缺少 prod.keys"
 
@@ -950,6 +1110,14 @@ msgstr "玩家檔案"
 msgid "PROJECT CREDITS"
 msgstr "專案製作名單"
 
+#: pe/ui/update.cpp
+msgid "ProsperoEden closes now."
+msgstr "ProsperoEden 現在將關閉。"
+
+#: pe/ui/update.cpp
+msgid "ProsperoEden closes to finish the update."
+msgstr "ProsperoEden 將關閉以完成更新。"
+
 #: pe/ui/browse.cpp
 msgid "ProsperoEden is an unofficial PS5 port brought to you by BlackBearReloaded."
 msgstr "ProsperoEden 是由 BlackBearReloaded 帶來的非官方 PS5 移植版。"
@@ -958,6 +1126,10 @@ msgstr "ProsperoEden 是由 BlackBearReloaded 帶來的非官方 PS5 移植版�
 #: eden_services.cpp, host/fake_services.cpp
 msgid "ProsperoEden stopped because of an error. A report was saved to {0}."
 msgstr "ProsperoEden 因錯誤而停止。報告已儲存至 {0}。"
+
+#: pe/ui/update.cpp
+msgid "ProsperoEden was not changed."
+msgstr "ProsperoEden 未被變更。"
 
 #. Why a game did not start.
 #: eden_services.cpp
@@ -1013,7 +1185,7 @@ msgstr "更新率"
 msgid "REGION"
 msgstr "地區"
 
-#: pe/ui/profiles.cpp
+#: pe/ui/locations.cpp, pe/ui/profiles.cpp
 msgid "Remove"
 msgstr "移除"
 
@@ -1045,7 +1217,7 @@ msgstr "解析度"
 msgid "Right stick press"
 msgstr "按下右類比搖桿"
 
-#: eden_services.cpp, pe/ui/launcher.cpp
+#: eden_services.cpp, pe/ui/launcher.cpp, pe/ui/library.cpp
 msgid "ROM missing from the game files folder"
 msgstr "遊戲檔案的資料夾中缺少 ROM"
 
@@ -1068,10 +1240,26 @@ msgstr "沙盒（代碼 {0}）：僅限應用程式資料夾"
 msgid "Save data"
 msgstr "存檔資料"
 
+#: pe/ui/locations.cpp
+msgid "SAVE EXPORT"
+msgstr "存檔匯出"
+
+#: pe/ui/browse.cpp
+msgid "Save export folder"
+msgstr "存檔匯出資料夾"
+
 #. Short status at the right of the Save data row: a folder with a save to import.
 #: pe/ui/library.cpp
 msgid "Save folder found"
 msgstr "已找到存檔資料夾"
+
+#: pe/ui/locations.cpp
+msgid "SAVE IMPORT"
+msgstr "存檔匯入"
+
+#: pe/ui/browse.cpp
+msgid "Save import folder"
+msgstr "存檔匯入資料夾"
 
 #: pe/ui/game_options.cpp, pe/ui/library.cpp
 msgid "Saved for this game. Applies on next launch."
@@ -1087,11 +1275,23 @@ msgid "Saved. Applies when a game starts."
 msgstr "已儲存。啟動遊戲時生效。"
 
 #: pe/ui/browse.cpp
+msgid "Saved. Its games are in the Library now."
+msgstr "已儲存。其中的遊戲現已顯示在遊戲庫中。"
+
+#: pe/ui/browse.cpp
 msgid "Saved. Reopen ProsperoEden to use this folder."
 msgstr "已儲存。重新開啟 ProsperoEden 後使用此資料夾。"
 
+#: pe/ui/browse.cpp
+msgid "Saves to import go here, one folder per game ID. TRIANGLE uses the folder shown; SQUARE goes back to the default."
+msgstr "要匯入的存檔放在這裡,每個遊戲 ID 對應一個資料夾。三角鍵使用目前顯示的資料夾;方塊鍵恢復為預設。"
+
+#: pe/ui/locations.cpp
+msgid "Saves to import, one folder per game ID. Until you choose one, it is save-import in the game files folder."
+msgstr "要匯入的存檔,每個遊戲 ID 對應一個資料夾。在你選擇之前,它是遊戲檔案資料夾中的 save-import。"
+
 #. Button hint: choose the highlighted item (not the Select button).
-#: pe/ui/game_options.cpp, pe/ui/home.cpp, pe/ui/library.cpp, pe/ui/settings.cpp
+#: pe/ui/game_options.cpp, pe/ui/home.cpp, pe/ui/library.cpp, pe/ui/settings.cpp, pe/ui/update.cpp
 msgid "Select"
 msgstr "確定"
 
@@ -1142,6 +1342,14 @@ msgstr "設定狀態與詳細記錄。"
 msgid "Setup validation failed. Check that firmware and key files are readable and valid."
 msgstr "設定驗證失敗。請確認韌體與金鑰檔案可以讀取且有效。"
 
+#: pe/ui/locations.cpp
+msgid "SHOW"
+msgstr "顯示"
+
+#: pe/ui/locations.cpp
+msgid "Show"
+msgstr "顯示"
+
 #: pe/ui/settings.cpp
 msgid "Show or hide the FPS overlay"
 msgstr "顯示或隱藏 FPS"
@@ -1149,6 +1357,11 @@ msgstr "顯示或隱藏 FPS"
 #: pe/ui/library.cpp
 msgid "SIZE"
 msgstr "大小"
+
+#. Button and hint: not now (the dialog shows again the next time the app opens).
+#: pe/ui/update.cpp
+msgid "Skip"
+msgstr "略過"
 
 #. A switch: fewer checks when a game changes memory the graphics processor uses. CPU stays.
 #: pe/ui/game_options.cpp, pe/ui/settings.cpp
@@ -1180,6 +1393,10 @@ msgstr "西班牙文（拉丁美洲）"
 msgid "Square"
 msgstr "方塊鍵"
 
+#: pe/ui/locations.cpp
+msgid "Square again takes {0} off the list. Its games stay where they are."
+msgstr "再按一次方塊鍵,將 {0} 從清單中移除。其中的遊戲會保留在原處。"
+
 #: pe/ui/profiles.cpp
 msgid "Square again takes {0} off the list. Its save data stays on the console."
 msgstr "再按方塊鍵會將 {0} 移出清單。其存檔仍保留在主機上。"
@@ -1206,6 +1423,10 @@ msgstr "請自備檔案"
 msgid "Taiwan"
 msgstr "台灣"
 
+#: pe/ui/locations.cpp
+msgid "Taken off the list. Its games stay where they are."
+msgstr "已從清單中移除。其中的遊戲會保留在原處。"
+
 #: pe/ui/profiles.cpp
 msgid "Taken off the list. Its save data stays on the console."
 msgstr "已移出清單。其存檔仍保留在主機上。"
@@ -1223,9 +1444,25 @@ msgstr "致謝"
 msgid "Thanks to the whole PS5 homebrew community and to every developer whose drivers, tools and libraries make ProsperoEden possible."
 msgstr "感謝整個 PS5 自製軟體社群，以及讓 ProsperoEden 得以實現的驅動程式、工具與程式庫的每一位開發者。"
 
+#: pe/ui/browse.cpp
+msgid "The folder shown must hold prod.keys. TRIANGLE uses it; SQUARE goes back to the default."
+msgstr "所顯示的資料夾必須包含 prod.keys。三角鍵使用它;方塊鍵恢復為預設。"
+
+#: pe/ui/browse.cpp
+msgid "The folder shown must hold the firmware NCA files. TRIANGLE uses it; SQUARE goes back to the default."
+msgstr "所顯示的資料夾必須包含韌體 NCA 檔案。三角鍵使用它;方塊鍵恢復為預設。"
+
+#: pe/ui/locations.cpp
+msgid "The folder that holds prod.keys. Until you choose one, it is keys in the game files folder."
+msgstr "包含 prod.keys 的資料夾。在你選擇之前,它是遊戲檔案資料夾中的 keys。"
+
+#: pe/ui/locations.cpp
+msgid "The folder that holds the firmware NCA files. Until you choose one, it is firmware in the game files folder."
+msgstr "包含韌體 NCA 檔案的資料夾。在你選擇之前,它是遊戲檔案資料夾中的 firmware。"
+
 #: pe/ui/settings.cpp
-msgid "The folder that holds your keys, firmware and games."
-msgstr "存放金鑰、韌體和遊戲的資料夾。"
+msgid "The folder that holds your keys, firmware and games, and more places for games."
+msgstr "存放 keys、firmware 和遊戲的資料夾,以及更多存放遊戲的位置。"
 
 #. Why a game stopped. 'Settings, Video' is the menu path; 'the game's own settings' is the Game settings dialog of the Library.
 #: eden_services.cpp
@@ -1236,17 +1473,41 @@ msgstr "遊戲的圖形記憶體已用盡。請在「設定」的「視訊」（
 msgid "The language games use when they offer it."
 msgstr "遊戲支援時使用的語言。"
 
+#: pe/ui/browse.cpp
+msgid "The list is full. Remove a folder first."
+msgstr "清單已滿。請先移除一個資料夾。"
+
 #: pe/ui/profiles.cpp
 msgid "The profile that is playing stays. Choose another one first."
 msgstr "正在遊玩的檔案會保留。請先選擇其他檔案。"
 
-#: pe/ui/browse.cpp
+#: pe/ui/update.cpp
+msgid "The update could not finish"
+msgstr "無法完成更新"
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "THIS FOLDER"
 msgstr "此資料夾"
 
 #: pe/ui/browse.cpp
 msgid "This folder cannot be opened."
 msgstr "無法開啟此資料夾。"
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "This folder cannot be read"
+msgstr "無法讀取此資料夾"
+
+#: pe/ui/browse.cpp
+msgid "This folder has no firmware NCA files."
+msgstr "此資料夾中沒有韌體 NCA 檔案。"
+
+#: pe/ui/browse.cpp
+msgid "This folder is in the list already."
+msgstr "此資料夾已在清單中。"
+
+#: pe/ui/browse.cpp
+msgid "This folder needs a roms folder."
+msgstr "此資料夾需要有 roms 資料夾。"
 
 #. The game has a button mapping of its own.
 #: pe/ui/game_options.cpp
@@ -1260,6 +1521,14 @@ msgstr "此遊戲還沒有可匯出的存檔。"
 #: pe/ui/library.cpp
 msgid "This game's settings cannot be saved (no title ID)."
 msgstr "無法儲存此遊戲的設定（沒有遊戲 ID）。"
+
+#: pe/ui/locations.cpp
+msgid "This is the default folder already."
+msgstr "這已經是預設資料夾。"
+
+#: pe/ui/browse.cpp
+msgid "This is the game files folder already."
+msgstr "這已經是遊戲檔案資料夾。"
 
 #. ryujinx/, save-import/ and roms/ are folder names (unchanged); {0} is the game's ID.
 #: eden_services.cpp
@@ -1276,6 +1545,10 @@ msgstr "觸控板"
 msgid "Triangle"
 msgstr "三角鍵"
 
+#: pe/ui/update.cpp
+msgid "Try again"
+msgstr "重試"
+
 #. Button hint: switch the highlighted mod on or off.
 #: pe/ui/library.cpp
 msgid "Turn on or off"
@@ -1285,22 +1558,36 @@ msgstr "開啟或關閉"
 msgid "Unavailable"
 msgstr "無法使用"
 
+#. Update dialog headline while the downloaded release is extracted.
+#: pe/ui/update.cpp
+msgid "Unpacking"
+msgstr "正在解壓縮"
+
 #. Short tag on the 'Parent folder' row.
 #: pe/ui/browse.cpp
 msgid "UP"
 msgstr "上層"
 
 #. Notification title: a newer release of this app is listed (not a game update).
-#: pe/ui/launcher.cpp
+#: pe/ui/launcher.cpp, pe/ui/update.cpp
 msgid "Update available"
 msgstr "有可用的更新"
+
+#. Button: download and install the newer release of this app now.
+#: pe/ui/update.cpp
+msgid "Update now"
+msgstr "立即更新"
+
+#: pe/ui/update.cpp
+msgid "Update ready"
+msgstr "更新已就緒"
 
 #. A game update; {0} is its version, for example 1.2.0.
 #: eden_services.cpp, host/fake_services.cpp
 msgid "Update {0}"
 msgstr "更新 {0}"
 
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "UPDATES, DLC"
 msgstr "更新、DLC"
 
@@ -1324,10 +1611,20 @@ msgstr "請使用解開後的韌體 NCA 檔案。在「設定」的「遊戲檔�
 msgid "Use this folder"
 msgstr "使用此資料夾"
 
+#. {0} is the app's new version number, for example 1.000.060.
+#: pe/ui/update.cpp
+msgid "Version {0}"
+msgstr "版本 {0}"
+
 #. {0}: the newer release's number, for example 1.000.050; homebrew.page is a site's name and stays as it is.
 #: pe/ui/launcher.cpp
 msgid "Version {0} is on homebrew.page"
 msgstr "版本 {0} 已在 homebrew.page 發布"
+
+#. Update dialog: a newer release of this app; {0} is its number, for example 1.000.060.
+#: pe/ui/update.cpp
+msgid "Version {0} is ready to install."
+msgstr "版本 {0} 已可安裝。"
 
 #: pe/ui/game_options.cpp, pe/ui/settings.cpp
 msgid "Vibration"
@@ -1366,6 +1663,10 @@ msgstr "查看所有遊戲"
 msgid "Vulkan (recommended)"
 msgstr "Vulkan（建議）"
 
+#: pe/ui/locations.cpp
+msgid "Where exported saves are written. Until you choose one, it is save-export in the game files folder."
+msgstr "匯出的存檔寫入的位置。在你選擇之前,它是遊戲檔案資料夾中的 save-export。"
+
 #: pe/ui/settings.cpp
 msgid "Who is playing. Each profile keeps its own save data and settings."
 msgstr "誰在玩。每個檔案都有自己的存檔和設定。"
@@ -1373,6 +1674,11 @@ msgstr "誰在玩。每個檔案都有自己的存檔和設定。"
 #: pe/ui/library.cpp
 msgid "Your games"
 msgstr "你的遊戲"
+
+#. Update dialog: installing the new app version keeps the player's files.
+#: pe/ui/update.cpp
+msgid "Your games, saves and settings are kept."
+msgstr "你的遊戲、存檔和設定都會保留。"
 
 #. Headline when no game has been played yet.
 #: pe/ui/home.cpp
@@ -1389,10 +1695,26 @@ msgstr "已變更 {0} 項"
 msgid "{0} DLC"
 msgstr "{0} 個 DLC"
 
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "{0} file"
+msgstr "{0} 個檔案"
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "{0} files"
+msgstr "{0} 個檔案"
+
 #. Exactly one game. In a language with more than two plural forms, word it so that it reads well with any number (Games: {0}).
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "{0} game"
 msgstr "{0} 款遊戲"
+
+#: pe/ui/locations.cpp
+msgid "{0} game folder"
+msgstr "{0} 個遊戲資料夾"
+
+#: pe/ui/locations.cpp
+msgid "{0} game folders"
+msgstr "{0} 個遊戲資料夾"
 
 #. Exactly one game. See '{0} game'.
 #: eden_services.cpp
@@ -1400,7 +1722,7 @@ msgid "{0} game installed"
 msgstr "已安裝 {0} 款遊戲"
 
 #. Any number of games other than one (also 0). See '{0} game'.
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "{0} games"
 msgstr "{0} 款遊戲"
 
@@ -1414,6 +1736,10 @@ msgstr "已安裝 {0} 款遊戲"
 msgid "{0} Hz"
 msgstr "{0} Hz"
 
+#: pe/ui/library.cpp
+msgid "{0} is in more than one place. Choose which one starts."
+msgstr "{0} 存在於多個位置。請選擇啟動哪一個。"
+
 #. Exactly one mod, in the list of what a game comes with (Update 1.2.0, 2 DLC, 1 mod). See '{0} game'.
 #: pe/ui/library.cpp
 msgid "{0} mod"
@@ -1425,12 +1751,12 @@ msgid "{0} mods"
 msgstr "{0} 個模組"
 
 #. Exactly one file. See '{0} game'.
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "{0} NCA file"
 msgstr "{0} 個 NCA 檔案"
 
 #. Any number of files other than one. See '{0} game'.
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "{0} NCA files"
 msgstr "{0} 個 NCA 檔案"
 
@@ -1455,7 +1781,7 @@ msgid "{0} of {1} on"
 msgstr "已開啟 {0}/{1}"
 
 #. A percentage (a volume): write it as the language does, for example with a space before the sign.
-#: pe/ui/game_options.cpp, pe/ui/settings.cpp
+#: pe/ui/game_options.cpp, pe/ui/settings.cpp, pe/ui/update.cpp
 msgid "{0}%"
 msgstr "{0}%"
 

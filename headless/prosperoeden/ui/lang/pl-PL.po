@@ -43,6 +43,16 @@ msgstr "O aplikacji"
 msgid "About ProsperoEden"
 msgstr "O aplikacji ProsperoEden"
 
+#. Time left while downloading; {0} is a number of minutes. Keep it short.
+#: pe/ui/update.cpp
+msgid "About {0} min left"
+msgstr "Pozostało ok. {0} min"
+
+#. Time left while downloading; {0} is a number of seconds. Keep it short.
+#: pe/ui/update.cpp
+msgid "About {0} s left"
+msgstr "Pozostało ok. {0} s"
+
 #. Label: which folders the app can read.
 #: pe/ui/browse.cpp
 msgid "ACCESS"
@@ -57,9 +67,17 @@ msgstr "Ułatwienia dostępu"
 msgid "ACCESSIBILITY"
 msgstr "UŁATWIENIA DOSTĘPU"
 
-#: pe/ui/profiles.cpp
+#: pe/ui/locations.cpp, pe/ui/profiles.cpp
 msgid "Add"
 msgstr "Dodaj"
+
+#: pe/ui/locations.cpp
+msgid "Add another place for games, such as a USB drive. It holds roms, updates and mods. Keys and firmware come from the game files folder first, then from here if it has none."
+msgstr "Dodaj kolejne miejsce na gry, na przykład dysk USB. Zawiera roms, updates i mods. Keys i firmware są brane najpierw z folderu z plikami gier, a potem stąd, jeśli tam ich nie ma."
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "Add game folder"
+msgstr "Dodaj folder gier"
 
 #. Label: a game's updates, DLC and mods.
 #: pe/ui/library.cpp
@@ -78,6 +96,10 @@ msgstr "Dodano. Krzyżyk gra tym profilem; lewo i prawo zmieniają jego nazwę."
 #: pe/ui/settings.cpp
 msgid "Adjust the essentials without leaving your library behind."
 msgstr "Dostosuj to, co najważniejsze, nie tracąc z oczu swojej biblioteki."
+
+#: pe/ui/locations.cpp
+msgid "ADVANCED"
+msgstr "ZAAWANSOWANE"
 
 #: pe/ui/browse.cpp
 msgid "All credit for the Eden emulator goes to its developers and contributors."
@@ -118,9 +140,13 @@ msgid "Australia"
 msgstr "Australia"
 
 #. Button hint: go back one screen.
-#: pe/ui/browse.cpp, pe/ui/game_options.cpp, pe/ui/library.cpp, pe/ui/profiles.cpp, pe/ui/settings.cpp
+#: pe/ui/browse.cpp, pe/ui/game_options.cpp, pe/ui/library.cpp, pe/ui/locations.cpp, pe/ui/profiles.cpp, pe/ui/settings.cpp
 msgid "Back"
 msgstr "Wstecz"
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "Back to the default folder. Reopen ProsperoEden to use it."
+msgstr "Powrót do folderu domyślnego. Otwórz ProsperoEden ponownie, aby go używać."
 
 #. An upscaling filter.
 #: settings_store.h
@@ -133,7 +159,7 @@ msgid "Bilinear"
 msgstr "Bilinearny"
 
 #. Button hint: move through the list.
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "Browse"
 msgstr "Przeglądaj"
 
@@ -154,14 +180,26 @@ msgstr "Przypisanie przycisków"
 msgid "BUTTON MAPPING"
 msgstr "PRZYPISANIE PRZYCISKÓW"
 
+#: pe/ui/update.cpp
+msgid "Cancel"
+msgstr "Anuluj"
+
+#: pe/ui/update.cpp
+msgid "Cancelling"
+msgstr "Anulowanie"
+
 #: eden_services.cpp
 msgid "Cannot read firmware/ in {0}. Install extracted firmware NCAs."
 msgstr "Nie można odczytać folderu firmware/ w {0}. Zainstaluj wypakowane pliki NCA firmware'u."
 
 #. Button hint: change the highlighted setting.
-#: pe/ui/game_options.cpp, pe/ui/library.cpp, pe/ui/settings.cpp
+#: pe/ui/game_options.cpp, pe/ui/library.cpp, pe/ui/locations.cpp, pe/ui/settings.cpp
 msgid "Change"
 msgstr "Zmień"
+
+#: pe/ui/browse.cpp
+msgid "Change game folder"
+msgstr "Zmień folder gier"
 
 #: pe/ui/library.cpp
 msgid "Change mode. Saved per game."
@@ -190,26 +228,58 @@ msgid "Chinese (Traditional)"
 msgstr "Chiński tradycyjny"
 
 #. Button hint: choose the highlighted language.
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "Choose"
 msgstr "Wybierz"
+
+#: pe/ui/browse.cpp
+msgid "Choose a folder with roms and updates inside"
+msgstr "Wybierz folder zawierający roms i updates"
 
 #: pe/ui/home.cpp
 msgid "Choose a game from your library."
 msgstr "Wybierz grę z biblioteki."
 
 #: pe/ui/browse.cpp
+msgid "Choose the folder that holds prod.keys"
+msgstr "Wybierz folder zawierający prod.keys"
+
+#: pe/ui/browse.cpp
+msgid "Choose the folder that holds the firmware NCA files"
+msgstr "Wybierz folder zawierający pliki NCA firmware"
+
+#: pe/ui/browse.cpp
 msgid "Choose the folder that holds your keys, firmware and games"
 msgstr "Wybierz folder, w którym są klucze, firmware i gry"
+
+#: pe/ui/browse.cpp
+msgid "Choose the folder with one folder per game ID"
+msgstr "Wybierz folder z jednym folderem na każdy ID gry"
+
+#: pe/ui/locations.cpp
+msgid "Choose the keys, firmware, save import and save export folders on their own. Until you do, they are inside the game files folder."
+msgstr "Wybierz osobno foldery keys, firmware, importu zapisów i eksportu zapisów. Do tego czasu są w folderze z plikami gier."
 
 #: pe/ui/browse.cpp
 msgid "Choose the language games use"
 msgstr "Wybierz język używany w grach"
 
+#: pe/ui/browse.cpp
+msgid "Choose where exported saves are written"
+msgstr "Wybierz, gdzie zapisywać wyeksportowane zapisy"
+
+#: pe/ui/locations.cpp
+msgid "Choose where your games, keys, firmware and saves are"
+msgstr "Wybierz, gdzie są twoje gry, keys, firmware i zapisy"
+
 #. A DualSense button.
 #: pe/ui/game_options.cpp
 msgid "Circle"
 msgstr "Kółko"
+
+#: pe/ui/update.cpp
+msgid "Close"
+msgstr "Zamknij"
 
 #. A switch: the program code a game used in earlier sessions is prepared (compiled) while the game starts. Keep it short.
 #: pe/ui/game_options.cpp, pe/ui/settings.cpp
@@ -260,7 +330,7 @@ msgstr "Nie udało się zapisać trybu konsoli. Spróbuj ponownie."
 msgid "Could not save settings. Please try again."
 msgstr "Nie udało się zapisać ustawień. Spróbuj ponownie."
 
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "Could not save the folder. Please try again."
 msgstr "Nie udało się zapisać folderu. Spróbuj ponownie."
 
@@ -292,16 +362,24 @@ msgstr "Twórcy i konfiguracja"
 msgid "Cross"
 msgstr "Krzyżyk"
 
+#: pe/ui/locations.cpp
+msgid "CUSTOM"
+msgstr "WŁASNY"
+
+#: pe/ui/locations.cpp
+msgid "DEFAULT"
+msgstr "DOMYŚLNY"
+
 #. A per-game setting that follows the general setting; {0} is its value.
 #: pe/ui/game_options.cpp
 msgid "Default ({0})"
 msgstr "Domyślnie ({0})"
 
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "Default folder"
 msgstr "Folder domyślny"
 
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "Default folder saved. Reopen ProsperoEden to use it."
 msgstr "Zapisano folder domyślny. Uruchom ProsperoEden ponownie, aby go użyć."
 
@@ -339,6 +417,15 @@ msgstr "DIAGNOSTYKA"
 msgid "Docked"
 msgstr "W doku"
 
+#. {0} is a size such as 36.4 MB.
+#: pe/ui/update.cpp
+msgid "Download size: {0}"
+msgstr "Rozmiar pobierania: {0}"
+
+#: pe/ui/update.cpp
+msgid "Downloading"
+msgstr "Pobieranie"
+
 #: pe/ui/settings.cpp
 msgid "Draws an effect once its shader is ready instead of pausing. Things can be missing for a moment."
 msgstr "Rysuje efekt, gdy jego shader jest gotowy, zamiast wstrzymywać grę. Coś może przez chwilę nie być widoczne."
@@ -346,6 +433,10 @@ msgstr "Rysuje efekt, gdy jego shader jest gotowy, zamiast wstrzymywać grę. Co
 #: pe/ui/settings.cpp
 msgid "Draws the menu's small text larger."
 msgstr "Powiększa drobny tekst w menu."
+
+#: pe/ui/library.cpp
+msgid "Duplicate game"
+msgstr "Zduplikowana gra"
 
 #: settings_store.h
 msgid "Dutch"
@@ -388,6 +479,10 @@ msgstr "Eksportuj kopię"
 #: eden_services.cpp
 msgid "Export failed. Check that the game files folder can be written."
 msgstr "Eksport nie powiódł się. Sprawdź, czy w folderze plików gier można zapisywać."
+
+#: pe/ui/browse.cpp
+msgid "Exported saves are written here. TRIANGLE uses the folder shown; SQUARE goes back to the default."
+msgstr "Wyeksportowane zapisy trafiają tutaj. TRÓJKĄT używa pokazanego folderu; KWADRAT wraca do domyślnego."
 
 #. {0} is a folder.
 #: eden_services.cpp, host/fake_services.hpp
@@ -438,9 +533,13 @@ msgstr "Pliki"
 msgid "Fine-tune your experience"
 msgstr "Dopasuj rozgrywkę do siebie"
 
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "FIRMWARE"
 msgstr "FIRMWARE"
+
+#: pe/ui/browse.cpp
+msgid "Firmware folder"
+msgstr "Folder firmware"
 
 #: eden_services.cpp
 msgid "Firmware NCA validation failed (code {0}). Check that firmware and prod.keys are compatible."
@@ -454,7 +553,7 @@ msgstr "Firmware gotowy"
 msgid "Firmware SystemVersion data is missing or unreadable. Install a complete firmware dump."
 msgstr "Brak danych SystemVersion firmware'u lub nie można ich odczytać. Zainstaluj pełny zrzut firmware'u."
 
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "FOLDERS"
 msgstr "FOLDERY"
 
@@ -510,13 +609,25 @@ msgstr "Szczegóły gry"
 msgid "GAME DETAILS"
 msgstr "SZCZEGÓŁY GRY"
 
-#: pe/ui/browse.cpp, pe/ui/settings.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp, pe/ui/settings.cpp
 msgid "Game files"
 msgstr "Pliki gier"
 
 #: pe/ui/settings.cpp
 msgid "GAME FILES"
 msgstr "PLIKI GIER"
+
+#: pe/ui/locations.cpp
+msgid "GAME FILES FOLDER"
+msgstr "FOLDER Z PLIKAMI GIER"
+
+#: pe/ui/locations.cpp
+msgid "GAME FOLDER"
+msgstr "FOLDER GIER"
+
+#: pe/ui/locations.cpp, pe/ui/settings.cpp
+msgid "GAME FOLDERS"
+msgstr "FOLDERY GIER"
 
 #: pe/ui/library.cpp
 msgid "Game settings"
@@ -534,7 +645,7 @@ msgstr "GŁOŚNOŚĆ GIER"
 msgid "Game volume, and the sounds of this menu."
 msgstr "Głośność gier i dźwięki tego menu."
 
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "GAMES"
 msgstr "GRY"
 
@@ -545,6 +656,14 @@ msgstr "Gry używają tego języka, jeśli go oferują, a w przeciwnym razie swo
 #: pe/ui/home.cpp
 msgid "Games you launch will appear here."
 msgstr "Tutaj pojawią się uruchomione gry."
+
+#: pe/ui/browse.cpp
+msgid "Games, updates and mods are read from here. TRIANGLE adds the folder shown."
+msgstr "Gry, updates i mods są czytane stąd. TRÓJKĄT dodaje pokazany folder."
+
+#: pe/ui/locations.cpp
+msgid "Games, updates and mods are read from this folder. Square twice takes it off the list."
+msgstr "Gry, updates i mods są czytane z tego folderu. Dwukrotne naciśnięcie kwadratu usuwa go z listy."
 
 #: settings_store.h
 msgid "German"
@@ -567,6 +686,14 @@ msgstr "Inicjalizacja renderera nie powiodła się. Wypróbuj inny renderer w Us
 msgid "Handheld"
 msgstr "Przenośny"
 
+#: pe/ui/locations.cpp
+msgid "HIDE"
+msgstr "UKRYJ"
+
+#: pe/ui/locations.cpp
+msgid "Hide"
+msgstr "Ukryj"
+
 #: pe/ui/settings.cpp
 msgid "HIGH CONTRAST"
 msgstr "WYSOKI KONTRAST"
@@ -575,6 +702,10 @@ msgstr "WYSOKI KONTRAST"
 #: pe/ui/settings.cpp
 msgid "High contrast"
 msgstr "Wysoki kontrast"
+
+#: pe/ui/locations.cpp
+msgid "Holds keys, firmware, roms, updates, mods and saves, unless you choose some of them on their own (Advanced)."
+msgstr "Zawiera keys, firmware, roms, updates, mods i zapisy, chyba że wybierzesz niektóre z nich osobno (Zaawansowane)."
 
 #: pe/ui/settings.cpp
 msgid "How games are drawn and scaled to your TV."
@@ -597,8 +728,12 @@ msgstr "Zaimportowano."
 msgid "Imported. The save it replaced was backed up."
 msgstr "Zaimportowano. Powstała kopia zapasowa zastąpionego zapisu."
 
+#: pe/ui/library.cpp
+msgid "In more than one place. You choose which one starts."
+msgstr "W więcej niż jednym miejscu. Ty wybierasz, która się uruchomi."
+
 #. Tag on the language or folder that is in use now.
-#: pe/ui/browse.cpp, pe/ui/settings.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp, pe/ui/settings.cpp
 msgid "IN USE"
 msgstr "W UŻYCIU"
 
@@ -624,13 +759,21 @@ msgid "Keeps what a game reads back from the GPU exact. Off is faster, and some 
 msgstr "Utrzymuje dokładnie to, co gra odczytuje z GPU. Wyłączone jest szybsze, ale niektóre efekty przestają działać."
 
 #. Label: the encryption keys file (prod.keys).
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "KEYS"
 msgstr "KLUCZE"
 
 #: eden_services.cpp, host/fake_services.cpp
 msgid "Keys and firmware: startup checks passed. Game-specific compatibility is checked at launch."
 msgstr "Klucze i firmware: kontrola przy starcie przebiegła pomyślnie. Zgodność z daną grą jest sprawdzana przy jej uruchamianiu."
+
+#: pe/ui/browse.cpp
+msgid "Keys folder"
+msgstr "Folder keys"
+
+#: pe/ui/locations.cpp
+msgid "Keys, firmware and saves"
+msgstr "Keys, firmware i zapisy"
 
 #: eden_services.cpp
 msgid "Korea"
@@ -743,7 +886,7 @@ msgid "Muted"
 msgstr "Wyciszono"
 
 #. Button hint: move the highlight.
-#: pe/ui/home.cpp
+#: pe/ui/home.cpp, pe/ui/update.cpp
 msgid "Navigate"
 msgstr "Nawigacja"
 
@@ -761,12 +904,12 @@ msgid "New profile"
 msgstr "Nowy profil"
 
 #. {0} is the folder used the next time the app starts.
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "Next launch: {0}"
 msgstr "Po restarcie: {0}"
 
 #. Label: the folder used the next time the app starts.
-#: pe/ui/settings.cpp
+#: pe/ui/locations.cpp, pe/ui/settings.cpp
 msgid "NEXT START"
 msgstr "PO RESTARCIE"
 
@@ -774,7 +917,7 @@ msgstr "PO RESTARCIE"
 msgid "No cover art"
 msgstr "Brak okładki"
 
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "No firmware folder"
 msgstr "Brak folderu firmware"
 
@@ -804,9 +947,13 @@ msgstr "Nie znaleziono plików ROM."
 msgid "No ROM selected"
 msgstr "Nie wybrano pliku ROM"
 
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "No roms folder"
 msgstr "Brak folderu roms"
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "No updates folder"
+msgstr "Brak folderu updates"
 
 #. No add-ons (updates or DLC).
 #: pe/ui/library.cpp
@@ -838,9 +985,13 @@ msgid "OPEN"
 msgstr "OTWÓRZ"
 
 #. Button hint: open the highlighted folder.
-#: pe/ui/browse.cpp, pe/ui/game_options.cpp, pe/ui/library.cpp, pe/ui/settings.cpp
+#: pe/ui/browse.cpp, pe/ui/game_options.cpp, pe/ui/library.cpp, pe/ui/locations.cpp, pe/ui/settings.cpp
 msgid "Open"
 msgstr "Otwórz"
+
+#: pe/ui/update.cpp
+msgid "Open it again to use version {0}."
+msgstr "Otwórz go ponownie, aby używać wersji {0}."
 
 #: pe/ui/home.cpp
 msgid "Open library"
@@ -862,7 +1013,7 @@ msgid "Output resolution"
 msgstr "Rozdzielczość wyjściowa"
 
 #. Button hint: jump a page of the list (L1 / R1).
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "Page"
 msgstr "Strona"
 
@@ -921,6 +1072,11 @@ msgstr "Oparte na emulatorze Eden"
 msgid "PREFERENCES"
 msgstr "PREFERENCJE"
 
+#. Update dialog headline while the download starts.
+#: pe/ui/update.cpp
+msgid "Preparing"
+msgstr "Przygotowywanie"
+
 #. Asked before a save is imported over the one in use.
 #: pe/ui/library.cpp
 msgid "Press again to replace this game's save. The current one is backed up."
@@ -930,11 +1086,15 @@ msgstr "Naciśnij ponownie, aby zastąpić zapis tej gry. Powstanie kopia zapaso
 msgid "prod.keys could not supply an NCA header key. Replace it with a valid key dump."
 msgstr "Plik prod.keys nie zawiera klucza nagłówka NCA. Zastąp go prawidłowym zrzutem kluczy."
 
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "prod.keys found"
 msgstr "Znaleziono prod.keys"
 
 #: pe/ui/browse.cpp
+msgid "prod.keys is not in this folder."
+msgstr "prod.keys nie ma w tym folderze."
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "prod.keys missing"
 msgstr "Brak prod.keys"
 
@@ -950,6 +1110,14 @@ msgstr "PROFILE"
 msgid "PROJECT CREDITS"
 msgstr "TWÓRCY PROJEKTU"
 
+#: pe/ui/update.cpp
+msgid "ProsperoEden closes now."
+msgstr "ProsperoEden zostanie teraz zamknięty."
+
+#: pe/ui/update.cpp
+msgid "ProsperoEden closes to finish the update."
+msgstr "ProsperoEden zostanie zamknięty, aby dokończyć aktualizację."
+
 #: pe/ui/browse.cpp
 msgid "ProsperoEden is an unofficial PS5 port brought to you by BlackBearReloaded."
 msgstr "ProsperoEden to nieoficjalny port na PS5, który przygotował dla Ciebie BlackBearReloaded."
@@ -958,6 +1126,10 @@ msgstr "ProsperoEden to nieoficjalny port na PS5, który przygotował dla Ciebie
 #: eden_services.cpp, host/fake_services.cpp
 msgid "ProsperoEden stopped because of an error. A report was saved to {0}."
 msgstr "ProsperoEden zatrzymał się z powodu błędu. Raport zapisano w {0}."
+
+#: pe/ui/update.cpp
+msgid "ProsperoEden was not changed."
+msgstr "ProsperoEden nie został zmieniony."
 
 #. Why a game did not start.
 #: eden_services.cpp
@@ -1013,7 +1185,7 @@ msgstr "CZĘSTOTLIWOŚĆ ODŚWIEŻANIA"
 msgid "REGION"
 msgstr "REGION"
 
-#: pe/ui/profiles.cpp
+#: pe/ui/locations.cpp, pe/ui/profiles.cpp
 msgid "Remove"
 msgstr "Usuń"
 
@@ -1045,7 +1217,7 @@ msgstr "ROZDZIELCZOŚĆ"
 msgid "Right stick press"
 msgstr "Wciśnięcie prawej gałki"
 
-#: eden_services.cpp, pe/ui/launcher.cpp
+#: eden_services.cpp, pe/ui/launcher.cpp, pe/ui/library.cpp
 msgid "ROM missing from the game files folder"
 msgstr "Brak pliku ROM w folderze plików gier"
 
@@ -1068,10 +1240,26 @@ msgstr "Ograniczony (kod {0}): tylko folder aplikacji"
 msgid "Save data"
 msgstr "Zapisane dane"
 
+#: pe/ui/locations.cpp
+msgid "SAVE EXPORT"
+msgstr "EKSPORT ZAPISÓW"
+
+#: pe/ui/browse.cpp
+msgid "Save export folder"
+msgstr "Folder eksportu zapisów"
+
 #. Short status at the right of the Save data row: a folder with a save to import.
 #: pe/ui/library.cpp
 msgid "Save folder found"
 msgstr "Znaleziono folder z zapisem"
+
+#: pe/ui/locations.cpp
+msgid "SAVE IMPORT"
+msgstr "IMPORT ZAPISÓW"
+
+#: pe/ui/browse.cpp
+msgid "Save import folder"
+msgstr "Folder importu zapisów"
 
 #: pe/ui/game_options.cpp, pe/ui/library.cpp
 msgid "Saved for this game. Applies on next launch."
@@ -1087,11 +1275,23 @@ msgid "Saved. Applies when a game starts."
 msgstr "Zapisano. Zadziała po uruchomieniu gry."
 
 #: pe/ui/browse.cpp
+msgid "Saved. Its games are in the Library now."
+msgstr "Zapisano. Jego gry są teraz w Bibliotece."
+
+#: pe/ui/browse.cpp
 msgid "Saved. Reopen ProsperoEden to use this folder."
 msgstr "Zapisano. Uruchom ProsperoEden ponownie, aby użyć tego folderu."
 
+#: pe/ui/browse.cpp
+msgid "Saves to import go here, one folder per game ID. TRIANGLE uses the folder shown; SQUARE goes back to the default."
+msgstr "Zapisy do zaimportowania trafiają tutaj, jeden folder na każdy ID gry. TRÓJKĄT używa pokazanego folderu; KWADRAT wraca do domyślnego."
+
+#: pe/ui/locations.cpp
+msgid "Saves to import, one folder per game ID. Until you choose one, it is save-import in the game files folder."
+msgstr "Zapisy do zaimportowania, jeden folder na każdy ID gry. Dopóki nie wybierzesz folderu, jest to save-import w folderze z plikami gier."
+
 #. Button hint: choose the highlighted item (not the Select button).
-#: pe/ui/game_options.cpp, pe/ui/home.cpp, pe/ui/library.cpp, pe/ui/settings.cpp
+#: pe/ui/game_options.cpp, pe/ui/home.cpp, pe/ui/library.cpp, pe/ui/settings.cpp, pe/ui/update.cpp
 msgid "Select"
 msgstr "Wybierz"
 
@@ -1142,6 +1342,14 @@ msgstr "Stan konfiguracji i szczegółowe logi."
 msgid "Setup validation failed. Check that firmware and key files are readable and valid."
 msgstr "Weryfikacja konfiguracji nie powiodła się. Sprawdź, czy pliki firmware'u i kluczy są czytelne i prawidłowe."
 
+#: pe/ui/locations.cpp
+msgid "SHOW"
+msgstr "POKAŻ"
+
+#: pe/ui/locations.cpp
+msgid "Show"
+msgstr "Pokaż"
+
 #: pe/ui/settings.cpp
 msgid "Show or hide the FPS overlay"
 msgstr "Pokaż lub ukryj licznik FPS"
@@ -1149,6 +1357,11 @@ msgstr "Pokaż lub ukryj licznik FPS"
 #: pe/ui/library.cpp
 msgid "SIZE"
 msgstr "ROZMIAR"
+
+#. Button and hint: not now (the dialog shows again the next time the app opens).
+#: pe/ui/update.cpp
+msgid "Skip"
+msgstr "Pomiń"
 
 #. A switch: fewer checks when a game changes memory the graphics processor uses. CPU stays.
 #: pe/ui/game_options.cpp, pe/ui/settings.cpp
@@ -1180,6 +1393,10 @@ msgstr "Hiszpański (Ameryka Łacińska)"
 msgid "Square"
 msgstr "Kwadrat"
 
+#: pe/ui/locations.cpp
+msgid "Square again takes {0} off the list. Its games stay where they are."
+msgstr "Kolejne naciśnięcie kwadratu usunie {0} z listy. Jego gry zostają tam, gdzie są."
+
 #: pe/ui/profiles.cpp
 msgid "Square again takes {0} off the list. Its save data stays on the console."
 msgstr "Kwadrat ponownie usuwa {0} z listy. Zapisy zostają na konsoli."
@@ -1206,6 +1423,10 @@ msgstr "Dodaj własne pliki"
 msgid "Taiwan"
 msgstr "Tajwan"
 
+#: pe/ui/locations.cpp
+msgid "Taken off the list. Its games stay where they are."
+msgstr "Usunięto z listy. Jego gry zostają tam, gdzie są."
+
 #: pe/ui/profiles.cpp
 msgid "Taken off the list. Its save data stays on the console."
 msgstr "Usunięto z listy. Zapisy zostają na konsoli."
@@ -1223,9 +1444,25 @@ msgstr "PODZIĘKOWANIA"
 msgid "Thanks to the whole PS5 homebrew community and to every developer whose drivers, tools and libraries make ProsperoEden possible."
 msgstr "Dziękujemy całej społeczności homebrew PS5 i wszystkim twórcom, dzięki których sterownikom, narzędziom i bibliotekom powstał ProsperoEden."
 
+#: pe/ui/browse.cpp
+msgid "The folder shown must hold prod.keys. TRIANGLE uses it; SQUARE goes back to the default."
+msgstr "Pokazany folder musi zawierać prod.keys. TRÓJKĄT go używa; KWADRAT wraca do domyślnego."
+
+#: pe/ui/browse.cpp
+msgid "The folder shown must hold the firmware NCA files. TRIANGLE uses it; SQUARE goes back to the default."
+msgstr "Pokazany folder musi zawierać pliki NCA firmware. TRÓJKĄT go używa; KWADRAT wraca do domyślnego."
+
+#: pe/ui/locations.cpp
+msgid "The folder that holds prod.keys. Until you choose one, it is keys in the game files folder."
+msgstr "Folder zawierający prod.keys. Dopóki nie wybierzesz folderu, jest to keys w folderze z plikami gier."
+
+#: pe/ui/locations.cpp
+msgid "The folder that holds the firmware NCA files. Until you choose one, it is firmware in the game files folder."
+msgstr "Folder zawierający pliki NCA firmware. Dopóki nie wybierzesz folderu, jest to firmware w folderze z plikami gier."
+
 #: pe/ui/settings.cpp
-msgid "The folder that holds your keys, firmware and games."
-msgstr "Folder, w którym są klucze, firmware i gry."
+msgid "The folder that holds your keys, firmware and games, and more places for games."
+msgstr "Folder z twoimi keys, firmware i grami oraz kolejne miejsca na gry."
 
 #. Why a game stopped. 'Settings, Video' is the menu path; 'the game's own settings' is the Game settings dialog of the Library.
 #: eden_services.cpp
@@ -1236,17 +1473,41 @@ msgstr "Grze zabrakło pamięci graficznej. Obniż rozdzielczość w menu Ustawi
 msgid "The language games use when they offer it."
 msgstr "Język używany w grach, jeśli go oferują."
 
+#: pe/ui/browse.cpp
+msgid "The list is full. Remove a folder first."
+msgstr "Lista jest pełna. Najpierw usuń jeden folder."
+
 #: pe/ui/profiles.cpp
 msgid "The profile that is playing stays. Choose another one first."
 msgstr "Profil, który gra, zostaje. Najpierw wybierz inny."
 
-#: pe/ui/browse.cpp
+#: pe/ui/update.cpp
+msgid "The update could not finish"
+msgstr "Nie udało się dokończyć aktualizacji"
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "THIS FOLDER"
 msgstr "TEN FOLDER"
 
 #: pe/ui/browse.cpp
 msgid "This folder cannot be opened."
 msgstr "Nie można otworzyć tego folderu."
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "This folder cannot be read"
+msgstr "Tego folderu nie można odczytać"
+
+#: pe/ui/browse.cpp
+msgid "This folder has no firmware NCA files."
+msgstr "W tym folderze nie ma plików NCA firmware."
+
+#: pe/ui/browse.cpp
+msgid "This folder is in the list already."
+msgstr "Ten folder jest już na liście."
+
+#: pe/ui/browse.cpp
+msgid "This folder needs a roms folder."
+msgstr "Ten folder potrzebuje folderu roms."
 
 #. The game has a button mapping of its own.
 #: pe/ui/game_options.cpp
@@ -1260,6 +1521,14 @@ msgstr "Ta gra nie ma jeszcze zapisu do eksportu."
 #: pe/ui/library.cpp
 msgid "This game's settings cannot be saved (no title ID)."
 msgstr "Nie można zapisać ustawień tej gry (brak ID tytułu)."
+
+#: pe/ui/locations.cpp
+msgid "This is the default folder already."
+msgstr "To już jest folder domyślny."
+
+#: pe/ui/browse.cpp
+msgid "This is the game files folder already."
+msgstr "To już jest folder z plikami gier."
 
 #. ryujinx/, save-import/ and roms/ are folder names (unchanged); {0} is the game's ID.
 #: eden_services.cpp
@@ -1276,6 +1545,10 @@ msgstr "Panel dotykowy"
 msgid "Triangle"
 msgstr "Trójkąt"
 
+#: pe/ui/update.cpp
+msgid "Try again"
+msgstr "Spróbuj ponownie"
+
 #. Button hint: switch the highlighted mod on or off.
 #: pe/ui/library.cpp
 msgid "Turn on or off"
@@ -1285,22 +1558,36 @@ msgstr "Włącz lub wyłącz"
 msgid "Unavailable"
 msgstr "Niedostępny"
 
+#. Update dialog headline while the downloaded release is extracted.
+#: pe/ui/update.cpp
+msgid "Unpacking"
+msgstr "Rozpakowywanie"
+
 #. Short tag on the 'Parent folder' row.
 #: pe/ui/browse.cpp
 msgid "UP"
 msgstr "W GÓRĘ"
 
 #. Notification title: a newer release of this app is listed (not a game update).
-#: pe/ui/launcher.cpp
+#: pe/ui/launcher.cpp, pe/ui/update.cpp
 msgid "Update available"
 msgstr "Dostępna aktualizacja"
+
+#. Button: download and install the newer release of this app now.
+#: pe/ui/update.cpp
+msgid "Update now"
+msgstr "Aktualizuj teraz"
+
+#: pe/ui/update.cpp
+msgid "Update ready"
+msgstr "Aktualizacja gotowa"
 
 #. A game update; {0} is its version, for example 1.2.0.
 #: eden_services.cpp, host/fake_services.cpp
 msgid "Update {0}"
 msgstr "Aktualizacja {0}"
 
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "UPDATES, DLC"
 msgstr "AKTUALIZACJE, DLC"
 
@@ -1324,10 +1611,20 @@ msgstr "Użyj wypakowanych plików NCA firmware'u. Folder wybierz w menu Ustawie
 msgid "Use this folder"
 msgstr "Użyj tego folderu"
 
+#. {0} is the app's new version number, for example 1.000.060.
+#: pe/ui/update.cpp
+msgid "Version {0}"
+msgstr "Wersja {0}"
+
 #. {0}: the newer release's number, for example 1.000.050; homebrew.page is a site's name and stays as it is.
 #: pe/ui/launcher.cpp
 msgid "Version {0} is on homebrew.page"
 msgstr "Wersja {0} jest na homebrew.page"
+
+#. Update dialog: a newer release of this app; {0} is its number, for example 1.000.060.
+#: pe/ui/update.cpp
+msgid "Version {0} is ready to install."
+msgstr "Wersja {0} jest gotowa do instalacji."
 
 #: pe/ui/game_options.cpp, pe/ui/settings.cpp
 msgid "Vibration"
@@ -1366,6 +1663,10 @@ msgstr "ZOBACZ WSZYSTKIE GRY"
 msgid "Vulkan (recommended)"
 msgstr "Vulkan (zalecany)"
 
+#: pe/ui/locations.cpp
+msgid "Where exported saves are written. Until you choose one, it is save-export in the game files folder."
+msgstr "Gdzie zapisywane są wyeksportowane zapisy. Dopóki nie wybierzesz folderu, jest to save-export w folderze z plikami gier."
+
 #: pe/ui/settings.cpp
 msgid "Who is playing. Each profile keeps its own save data and settings."
 msgstr "Kto gra. Każdy profil ma własne zapisy i ustawienia."
@@ -1373,6 +1674,11 @@ msgstr "Kto gra. Każdy profil ma własne zapisy i ustawienia."
 #: pe/ui/library.cpp
 msgid "Your games"
 msgstr "Twoje gry"
+
+#. Update dialog: installing the new app version keeps the player's files.
+#: pe/ui/update.cpp
+msgid "Your games, saves and settings are kept."
+msgstr "Twoje gry, zapisy i ustawienia zostaną zachowane."
 
 #. Headline when no game has been played yet.
 #: pe/ui/home.cpp
@@ -1389,10 +1695,26 @@ msgstr "Zmienione: {0}"
 msgid "{0} DLC"
 msgstr "{0} DLC"
 
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "{0} file"
+msgstr "Plików: {0}"
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "{0} files"
+msgstr "Plików: {0}"
+
 #. Exactly one game. In a language with more than two plural forms, word it so that it reads well with any number (Games: {0}).
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "{0} game"
 msgstr "Gry: {0}"
+
+#: pe/ui/locations.cpp
+msgid "{0} game folder"
+msgstr "Folderów gier: {0}"
+
+#: pe/ui/locations.cpp
+msgid "{0} game folders"
+msgstr "Folderów gier: {0}"
 
 #. Exactly one game. See '{0} game'.
 #: eden_services.cpp
@@ -1400,7 +1722,7 @@ msgid "{0} game installed"
 msgstr "Zainstalowane gry: {0}"
 
 #. Any number of games other than one (also 0). See '{0} game'.
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "{0} games"
 msgstr "Gry: {0}"
 
@@ -1414,6 +1736,10 @@ msgstr "Zainstalowane gry: {0}"
 msgid "{0} Hz"
 msgstr "{0} Hz"
 
+#: pe/ui/library.cpp
+msgid "{0} is in more than one place. Choose which one starts."
+msgstr "Gra {0} jest w więcej niż jednym miejscu. Wybierz, która się uruchomi."
+
 #. Exactly one mod, in the list of what a game comes with (Update 1.2.0, 2 DLC, 1 mod). See '{0} game'.
 #: pe/ui/library.cpp
 msgid "{0} mod"
@@ -1425,12 +1751,12 @@ msgid "{0} mods"
 msgstr "Mody: {0}"
 
 #. Exactly one file. See '{0} game'.
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "{0} NCA file"
 msgstr "Pliki NCA: {0}"
 
 #. Any number of files other than one. See '{0} game'.
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "{0} NCA files"
 msgstr "Pliki NCA: {0}"
 
@@ -1455,7 +1781,7 @@ msgid "{0} of {1} on"
 msgstr "Włączone: {0} z {1}"
 
 #. A percentage (a volume): write it as the language does, for example with a space before the sign.
-#: pe/ui/game_options.cpp, pe/ui/settings.cpp
+#: pe/ui/game_options.cpp, pe/ui/settings.cpp, pe/ui/update.cpp
 msgid "{0}%"
 msgstr "{0}%"
 

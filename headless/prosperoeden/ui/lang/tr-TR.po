@@ -43,6 +43,16 @@ msgstr "Hakkında"
 msgid "About ProsperoEden"
 msgstr "ProsperoEden hakkında"
 
+#. Time left while downloading; {0} is a number of minutes. Keep it short.
+#: pe/ui/update.cpp
+msgid "About {0} min left"
+msgstr "Yaklaşık {0} dk kaldı"
+
+#. Time left while downloading; {0} is a number of seconds. Keep it short.
+#: pe/ui/update.cpp
+msgid "About {0} s left"
+msgstr "Yaklaşık {0} sn kaldı"
+
 #. Label: which folders the app can read.
 #: pe/ui/browse.cpp
 msgid "ACCESS"
@@ -57,9 +67,17 @@ msgstr "Erişilebilirlik"
 msgid "ACCESSIBILITY"
 msgstr "ERİŞİLEBİLİRLİK"
 
-#: pe/ui/profiles.cpp
+#: pe/ui/locations.cpp, pe/ui/profiles.cpp
 msgid "Add"
 msgstr "Ekle"
+
+#: pe/ui/locations.cpp
+msgid "Add another place for games, such as a USB drive. It holds roms, updates and mods. Keys and firmware come from the game files folder first, then from here if it has none."
+msgstr "Oyunlar için USB bellek gibi başka bir yer ekleyin. İçinde roms, updates ve mods bulunur. Keys ve firmware önce oyun dosyaları klasöründen, orada yoksa buradan alınır."
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "Add game folder"
+msgstr "Oyun klasörü ekle"
 
 #. Label: a game's updates, DLC and mods.
 #: pe/ui/library.cpp
@@ -78,6 +96,10 @@ msgstr "Eklendi. Çarpı bu profille oynar; sol ve sağ adını değiştirir."
 #: pe/ui/settings.cpp
 msgid "Adjust the essentials without leaving your library behind."
 msgstr "Kütüphanenizden ayrılmadan temel ayarları yapın."
+
+#: pe/ui/locations.cpp
+msgid "ADVANCED"
+msgstr "GELİŞMİŞ"
 
 #: pe/ui/browse.cpp
 msgid "All credit for the Eden emulator goes to its developers and contributors."
@@ -118,9 +140,13 @@ msgid "Australia"
 msgstr "Avustralya"
 
 #. Button hint: go back one screen.
-#: pe/ui/browse.cpp, pe/ui/game_options.cpp, pe/ui/library.cpp, pe/ui/profiles.cpp, pe/ui/settings.cpp
+#: pe/ui/browse.cpp, pe/ui/game_options.cpp, pe/ui/library.cpp, pe/ui/locations.cpp, pe/ui/profiles.cpp, pe/ui/settings.cpp
 msgid "Back"
 msgstr "Geri"
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "Back to the default folder. Reopen ProsperoEden to use it."
+msgstr "Varsayılan klasöre dönülür. Kullanmak için ProsperoEden'i yeniden açın."
 
 #. An upscaling filter.
 #: settings_store.h
@@ -133,7 +159,7 @@ msgid "Bilinear"
 msgstr "Bilineer"
 
 #. Button hint: move through the list.
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "Browse"
 msgstr "Göz at"
 
@@ -154,14 +180,26 @@ msgstr "Tuş atama"
 msgid "BUTTON MAPPING"
 msgstr "TUŞ ATAMA"
 
+#: pe/ui/update.cpp
+msgid "Cancel"
+msgstr "İptal"
+
+#: pe/ui/update.cpp
+msgid "Cancelling"
+msgstr "İptal ediliyor"
+
 #: eden_services.cpp
 msgid "Cannot read firmware/ in {0}. Install extracted firmware NCAs."
 msgstr "{0} içindeki firmware/ okunamıyor. Çıkarılmış firmware NCA dosyalarını yükleyin."
 
 #. Button hint: change the highlighted setting.
-#: pe/ui/game_options.cpp, pe/ui/library.cpp, pe/ui/settings.cpp
+#: pe/ui/game_options.cpp, pe/ui/library.cpp, pe/ui/locations.cpp, pe/ui/settings.cpp
 msgid "Change"
 msgstr "Değiştir"
+
+#: pe/ui/browse.cpp
+msgid "Change game folder"
+msgstr "Oyun klasörünü değiştir"
 
 #: pe/ui/library.cpp
 msgid "Change mode. Saved per game."
@@ -190,26 +228,58 @@ msgid "Chinese (Traditional)"
 msgstr "Çince (Geleneksel)"
 
 #. Button hint: choose the highlighted language.
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "Choose"
 msgstr "Seç"
+
+#: pe/ui/browse.cpp
+msgid "Choose a folder with roms and updates inside"
+msgstr "roms ve updates içeren bir klasör seçin"
 
 #: pe/ui/home.cpp
 msgid "Choose a game from your library."
 msgstr "Kütüphanenizden bir oyun seçin."
 
 #: pe/ui/browse.cpp
+msgid "Choose the folder that holds prod.keys"
+msgstr "prod.keys dosyasını içeren klasörü seçin"
+
+#: pe/ui/browse.cpp
+msgid "Choose the folder that holds the firmware NCA files"
+msgstr "Firmware NCA dosyalarını içeren klasörü seçin"
+
+#: pe/ui/browse.cpp
 msgid "Choose the folder that holds your keys, firmware and games"
 msgstr "Anahtar, firmware ve oyunlarınızın bulunduğu klasörü seçin"
+
+#: pe/ui/browse.cpp
+msgid "Choose the folder with one folder per game ID"
+msgstr "Her oyun kimliği için bir klasör içeren klasörü seçin"
+
+#: pe/ui/locations.cpp
+msgid "Choose the keys, firmware, save import and save export folders on their own. Until you do, they are inside the game files folder."
+msgstr "keys, firmware, kayıt içe aktarma ve kayıt dışa aktarma klasörlerini ayrı ayrı seçin. Seçene kadar oyun dosyaları klasörünün içindedirler."
 
 #: pe/ui/browse.cpp
 msgid "Choose the language games use"
 msgstr "Oyunların kullanacağı dili seçin"
 
+#: pe/ui/browse.cpp
+msgid "Choose where exported saves are written"
+msgstr "Dışa aktarılan kayıtların nereye yazılacağını seçin"
+
+#: pe/ui/locations.cpp
+msgid "Choose where your games, keys, firmware and saves are"
+msgstr "Oyunlarınızın, keys, firmware ve kayıtların nerede olduğunu seçin"
+
 #. A DualSense button.
 #: pe/ui/game_options.cpp
 msgid "Circle"
 msgstr "Daire"
+
+#: pe/ui/update.cpp
+msgid "Close"
+msgstr "Kapat"
 
 #. A switch: the program code a game used in earlier sessions is prepared (compiled) while the game starts. Keep it short.
 #: pe/ui/game_options.cpp, pe/ui/settings.cpp
@@ -260,7 +330,7 @@ msgstr "Konsol modu kaydedilemedi. Lütfen tekrar deneyin."
 msgid "Could not save settings. Please try again."
 msgstr "Ayarlar kaydedilemedi. Lütfen tekrar deneyin."
 
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "Could not save the folder. Please try again."
 msgstr "Klasör kaydedilemedi. Lütfen tekrar deneyin."
 
@@ -292,16 +362,24 @@ msgstr "Emeği geçenler ve kurulum"
 msgid "Cross"
 msgstr "Çarpı"
 
+#: pe/ui/locations.cpp
+msgid "CUSTOM"
+msgstr "ÖZEL"
+
+#: pe/ui/locations.cpp
+msgid "DEFAULT"
+msgstr "VARSAYILAN"
+
 #. A per-game setting that follows the general setting; {0} is its value.
 #: pe/ui/game_options.cpp
 msgid "Default ({0})"
 msgstr "Varsayılan ({0})"
 
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "Default folder"
 msgstr "Varsayılan klasör"
 
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "Default folder saved. Reopen ProsperoEden to use it."
 msgstr "Varsayılan klasör kaydedildi. Kullanmak için ProsperoEden'i yeniden açın."
 
@@ -339,6 +417,15 @@ msgstr "TANILAMA"
 msgid "Docked"
 msgstr "TV"
 
+#. {0} is a size such as 36.4 MB.
+#: pe/ui/update.cpp
+msgid "Download size: {0}"
+msgstr "İndirme boyutu: {0}"
+
+#: pe/ui/update.cpp
+msgid "Downloading"
+msgstr "İndiriliyor"
+
 #: pe/ui/settings.cpp
 msgid "Draws an effect once its shader is ready instead of pausing. Things can be missing for a moment."
 msgstr "Bir efekti duraklatmak yerine gölgelendiricisi hazır olunca çizer. Bazı şeyler kısa süre eksik olabilir."
@@ -346,6 +433,10 @@ msgstr "Bir efekti duraklatmak yerine gölgelendiricisi hazır olunca çizer. Ba
 #: pe/ui/settings.cpp
 msgid "Draws the menu's small text larger."
 msgstr "Menüdeki küçük metinleri daha büyük gösterir."
+
+#: pe/ui/library.cpp
+msgid "Duplicate game"
+msgstr "Yinelenen oyun"
 
 #: settings_store.h
 msgid "Dutch"
@@ -388,6 +479,10 @@ msgstr "Kopyasını dışa aktar"
 #: eden_services.cpp
 msgid "Export failed. Check that the game files folder can be written."
 msgstr "Dışa aktarılamadı. Oyun dosyaları klasörüne yazılabildiğini kontrol edin."
+
+#: pe/ui/browse.cpp
+msgid "Exported saves are written here. TRIANGLE uses the folder shown; SQUARE goes back to the default."
+msgstr "Dışa aktarılan kayıtlar buraya yazılır. ÜÇGEN gösterilen klasörü kullanır; KARE varsayılana döner."
 
 #. {0} is a folder.
 #: eden_services.cpp, host/fake_services.hpp
@@ -438,9 +533,13 @@ msgstr "Dosyalar"
 msgid "Fine-tune your experience"
 msgstr "Deneyiminize ince ayar yapın"
 
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "FIRMWARE"
 msgstr "FIRMWARE"
+
+#: pe/ui/browse.cpp
+msgid "Firmware folder"
+msgstr "Firmware klasörü"
 
 #: eden_services.cpp
 msgid "Firmware NCA validation failed (code {0}). Check that firmware and prod.keys are compatible."
@@ -454,7 +553,7 @@ msgstr "Firmware hazır"
 msgid "Firmware SystemVersion data is missing or unreadable. Install a complete firmware dump."
 msgstr "Firmware SystemVersion verisi eksik veya okunamıyor. Eksiksiz bir firmware dökümü yükleyin."
 
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "FOLDERS"
 msgstr "KLASÖRLER"
 
@@ -510,13 +609,25 @@ msgstr "Oyun ayrıntıları"
 msgid "GAME DETAILS"
 msgstr "OYUN AYRINTILARI"
 
-#: pe/ui/browse.cpp, pe/ui/settings.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp, pe/ui/settings.cpp
 msgid "Game files"
 msgstr "Oyun dosyaları"
 
 #: pe/ui/settings.cpp
 msgid "GAME FILES"
 msgstr "OYUN DOSYALARI"
+
+#: pe/ui/locations.cpp
+msgid "GAME FILES FOLDER"
+msgstr "OYUN DOSYALARI KLASÖRÜ"
+
+#: pe/ui/locations.cpp
+msgid "GAME FOLDER"
+msgstr "OYUN KLASÖRÜ"
+
+#: pe/ui/locations.cpp, pe/ui/settings.cpp
+msgid "GAME FOLDERS"
+msgstr "OYUN KLASÖRLERİ"
 
 #: pe/ui/library.cpp
 msgid "Game settings"
@@ -534,7 +645,7 @@ msgstr "OYUN SES DÜZEYİ"
 msgid "Game volume, and the sounds of this menu."
 msgstr "Oyun ses düzeyi ve bu menünün sesleri."
 
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "GAMES"
 msgstr "OYUNLAR"
 
@@ -545,6 +656,14 @@ msgstr "Oyunlar destekliyorsa bu dili, desteklemiyorsa kendi varsayılan dilini 
 #: pe/ui/home.cpp
 msgid "Games you launch will appear here."
 msgstr "Başlattığınız oyunlar burada görünür."
+
+#: pe/ui/browse.cpp
+msgid "Games, updates and mods are read from here. TRIANGLE adds the folder shown."
+msgstr "Oyunlar, updates ve mods buradan okunur. ÜÇGEN gösterilen klasörü ekler."
+
+#: pe/ui/locations.cpp
+msgid "Games, updates and mods are read from this folder. Square twice takes it off the list."
+msgstr "Oyunlar, updates ve mods bu klasörden okunur. Kare'ye iki kez basmak onu listeden çıkarır."
 
 #: settings_store.h
 msgid "German"
@@ -567,6 +686,14 @@ msgstr "Grafik işleyici hazırlanamadı. Ayarlar'da başka bir işleyici deneyi
 msgid "Handheld"
 msgstr "Taşınabilir"
 
+#: pe/ui/locations.cpp
+msgid "HIDE"
+msgstr "GİZLE"
+
+#: pe/ui/locations.cpp
+msgid "Hide"
+msgstr "Gizle"
+
 #: pe/ui/settings.cpp
 msgid "HIGH CONTRAST"
 msgstr "YÜKSEK KONTRAST"
@@ -575,6 +702,10 @@ msgstr "YÜKSEK KONTRAST"
 #: pe/ui/settings.cpp
 msgid "High contrast"
 msgstr "Yüksek kontrast"
+
+#: pe/ui/locations.cpp
+msgid "Holds keys, firmware, roms, updates, mods and saves, unless you choose some of them on their own (Advanced)."
+msgstr "keys, firmware, roms, updates, mods ve kayıtları içerir; bazılarını ayrı seçmediyseniz (Gelişmiş)."
 
 #: pe/ui/settings.cpp
 msgid "How games are drawn and scaled to your TV."
@@ -597,8 +728,12 @@ msgstr "İçe aktarıldı."
 msgid "Imported. The save it replaced was backed up."
 msgstr "İçe aktarıldı. Yerini aldığı kayıt yedeklendi."
 
+#: pe/ui/library.cpp
+msgid "In more than one place. You choose which one starts."
+msgstr "Birden fazla yerde. Hangisinin başlayacağını siz seçersiniz."
+
 #. Tag on the language or folder that is in use now.
-#: pe/ui/browse.cpp, pe/ui/settings.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp, pe/ui/settings.cpp
 msgid "IN USE"
 msgstr "KULLANIMDA"
 
@@ -624,13 +759,21 @@ msgid "Keeps what a game reads back from the GPU exact. Off is faster, and some 
 msgstr "Oyunun GPU'dan geri okuduğu veriyi doğru tutar. Kapalıyken daha hızlıdır, ancak bazı efektler bozulur."
 
 #. Label: the encryption keys file (prod.keys).
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "KEYS"
 msgstr "ANAHTARLAR"
 
 #: eden_services.cpp, host/fake_services.cpp
 msgid "Keys and firmware: startup checks passed. Game-specific compatibility is checked at launch."
 msgstr "Anahtarlar ve firmware: başlangıç denetimleri başarılı. Oyuna özgü uyumluluk, oyun başlatılırken denetlenir."
+
+#: pe/ui/browse.cpp
+msgid "Keys folder"
+msgstr "Keys klasörü"
+
+#: pe/ui/locations.cpp
+msgid "Keys, firmware and saves"
+msgstr "Keys, firmware ve kayıtlar"
 
 #: eden_services.cpp
 msgid "Korea"
@@ -743,7 +886,7 @@ msgid "Muted"
 msgstr "Sessize alındı"
 
 #. Button hint: move the highlight.
-#: pe/ui/home.cpp
+#: pe/ui/home.cpp, pe/ui/update.cpp
 msgid "Navigate"
 msgstr "Gezin"
 
@@ -761,12 +904,12 @@ msgid "New profile"
 msgstr "Yeni profil"
 
 #. {0} is the folder used the next time the app starts.
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "Next launch: {0}"
 msgstr "Sonraki açılış: {0}"
 
 #. Label: the folder used the next time the app starts.
-#: pe/ui/settings.cpp
+#: pe/ui/locations.cpp, pe/ui/settings.cpp
 msgid "NEXT START"
 msgstr "SONRAKİ AÇILIŞ"
 
@@ -774,7 +917,7 @@ msgstr "SONRAKİ AÇILIŞ"
 msgid "No cover art"
 msgstr "Kapak görseli yok"
 
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "No firmware folder"
 msgstr "firmware klasörü yok"
 
@@ -804,9 +947,13 @@ msgstr "ROM dosyası bulunamadı."
 msgid "No ROM selected"
 msgstr "ROM seçilmedi"
 
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "No roms folder"
 msgstr "roms klasörü yok"
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "No updates folder"
+msgstr "updates klasörü yok"
 
 #. No add-ons (updates or DLC).
 #: pe/ui/library.cpp
@@ -838,9 +985,13 @@ msgid "OPEN"
 msgstr "AÇ"
 
 #. Button hint: open the highlighted folder.
-#: pe/ui/browse.cpp, pe/ui/game_options.cpp, pe/ui/library.cpp, pe/ui/settings.cpp
+#: pe/ui/browse.cpp, pe/ui/game_options.cpp, pe/ui/library.cpp, pe/ui/locations.cpp, pe/ui/settings.cpp
 msgid "Open"
 msgstr "Aç"
+
+#: pe/ui/update.cpp
+msgid "Open it again to use version {0}."
+msgstr "{0} sürümünü kullanmak için yeniden aç."
 
 #: pe/ui/home.cpp
 msgid "Open library"
@@ -862,7 +1013,7 @@ msgid "Output resolution"
 msgstr "Çıkış çözünürlüğü"
 
 #. Button hint: jump a page of the list (L1 / R1).
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "Page"
 msgstr "Sayfa"
 
@@ -921,6 +1072,11 @@ msgstr "Gücünü Eden'den alır"
 msgid "PREFERENCES"
 msgstr "TERCİHLER"
 
+#. Update dialog headline while the download starts.
+#: pe/ui/update.cpp
+msgid "Preparing"
+msgstr "Hazırlanıyor"
+
 #. Asked before a save is imported over the one in use.
 #: pe/ui/library.cpp
 msgid "Press again to replace this game's save. The current one is backed up."
@@ -930,11 +1086,15 @@ msgstr "Bu oyunun kaydının üzerine yazmak için tekrar basın. Mevcut kayıt 
 msgid "prod.keys could not supply an NCA header key. Replace it with a valid key dump."
 msgstr "prod.keys bir NCA başlık anahtarı sağlayamadı. Geçerli bir anahtar dökümüyle değiştirin."
 
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "prod.keys found"
 msgstr "prod.keys bulundu"
 
 #: pe/ui/browse.cpp
+msgid "prod.keys is not in this folder."
+msgstr "prod.keys bu klasörde değil."
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "prod.keys missing"
 msgstr "prod.keys eksik"
 
@@ -950,6 +1110,14 @@ msgstr "PROFİLLER"
 msgid "PROJECT CREDITS"
 msgstr "EMEĞİ GEÇENLER"
 
+#: pe/ui/update.cpp
+msgid "ProsperoEden closes now."
+msgstr "ProsperoEden şimdi kapanıyor."
+
+#: pe/ui/update.cpp
+msgid "ProsperoEden closes to finish the update."
+msgstr "Güncellemeyi tamamlamak için ProsperoEden kapanır."
+
 #: pe/ui/browse.cpp
 msgid "ProsperoEden is an unofficial PS5 port brought to you by BlackBearReloaded."
 msgstr "ProsperoEden, BlackBearReloaded tarafından sunulan resmi olmayan bir PS5 portudur."
@@ -958,6 +1126,10 @@ msgstr "ProsperoEden, BlackBearReloaded tarafından sunulan resmi olmayan bir PS
 #: eden_services.cpp, host/fake_services.cpp
 msgid "ProsperoEden stopped because of an error. A report was saved to {0}."
 msgstr "ProsperoEden bir hata nedeniyle durdu. Rapor şuraya kaydedildi: {0}."
+
+#: pe/ui/update.cpp
+msgid "ProsperoEden was not changed."
+msgstr "ProsperoEden değiştirilmedi."
 
 #. Why a game did not start.
 #: eden_services.cpp
@@ -1013,7 +1185,7 @@ msgstr "YENİLEME HIZI"
 msgid "REGION"
 msgstr "BÖLGE"
 
-#: pe/ui/profiles.cpp
+#: pe/ui/locations.cpp, pe/ui/profiles.cpp
 msgid "Remove"
 msgstr "Çıkar"
 
@@ -1045,7 +1217,7 @@ msgstr "ÇÖZÜNÜRLÜK"
 msgid "Right stick press"
 msgstr "Sağ çubuğa basma"
 
-#: eden_services.cpp, pe/ui/launcher.cpp
+#: eden_services.cpp, pe/ui/launcher.cpp, pe/ui/library.cpp
 msgid "ROM missing from the game files folder"
 msgstr "ROM, oyun dosyaları klasöründe yok"
 
@@ -1068,10 +1240,26 @@ msgstr "Kısıtlı (kod {0}): yalnızca uygulama klasörü"
 msgid "Save data"
 msgstr "Kaydedilen veriler"
 
+#: pe/ui/locations.cpp
+msgid "SAVE EXPORT"
+msgstr "KAYIT DIŞA AKTARMA"
+
+#: pe/ui/browse.cpp
+msgid "Save export folder"
+msgstr "Kayıt dışa aktarma klasörü"
+
 #. Short status at the right of the Save data row: a folder with a save to import.
 #: pe/ui/library.cpp
 msgid "Save folder found"
 msgstr "Kayıt klasörü bulundu"
+
+#: pe/ui/locations.cpp
+msgid "SAVE IMPORT"
+msgstr "KAYIT İÇE AKTARMA"
+
+#: pe/ui/browse.cpp
+msgid "Save import folder"
+msgstr "Kayıt içe aktarma klasörü"
 
 #: pe/ui/game_options.cpp, pe/ui/library.cpp
 msgid "Saved for this game. Applies on next launch."
@@ -1087,11 +1275,23 @@ msgid "Saved. Applies when a game starts."
 msgstr "Kaydedildi. Oyun başlatıldığında geçerli olur."
 
 #: pe/ui/browse.cpp
+msgid "Saved. Its games are in the Library now."
+msgstr "Kaydedildi. Oyunları artık Kütüphane'de."
+
+#: pe/ui/browse.cpp
 msgid "Saved. Reopen ProsperoEden to use this folder."
 msgstr "Kaydedildi. Bu klasörü kullanmak için ProsperoEden'i yeniden açın."
 
+#: pe/ui/browse.cpp
+msgid "Saves to import go here, one folder per game ID. TRIANGLE uses the folder shown; SQUARE goes back to the default."
+msgstr "İçe aktarılacak kayıtlar buraya konur, her oyun kimliği için bir klasör. ÜÇGEN gösterilen klasörü kullanır; KARE varsayılana döner."
+
+#: pe/ui/locations.cpp
+msgid "Saves to import, one folder per game ID. Until you choose one, it is save-import in the game files folder."
+msgstr "İçe aktarılacak kayıtlar, her oyun kimliği için bir klasör. Siz seçene kadar bu, oyun dosyaları klasöründeki save-import'tur."
+
 #. Button hint: choose the highlighted item (not the Select button).
-#: pe/ui/game_options.cpp, pe/ui/home.cpp, pe/ui/library.cpp, pe/ui/settings.cpp
+#: pe/ui/game_options.cpp, pe/ui/home.cpp, pe/ui/library.cpp, pe/ui/settings.cpp, pe/ui/update.cpp
 msgid "Select"
 msgstr "Seç"
 
@@ -1142,6 +1342,14 @@ msgstr "Kurulum durumu ve ayrıntılı günlükler."
 msgid "Setup validation failed. Check that firmware and key files are readable and valid."
 msgstr "Kurulum doğrulaması başarısız oldu. Firmware ve anahtar dosyalarının okunabilir ve geçerli olduğunu kontrol edin."
 
+#: pe/ui/locations.cpp
+msgid "SHOW"
+msgstr "GÖSTER"
+
+#: pe/ui/locations.cpp
+msgid "Show"
+msgstr "Göster"
+
 #: pe/ui/settings.cpp
 msgid "Show or hide the FPS overlay"
 msgstr "FPS sayacını gösterir veya gizler"
@@ -1149,6 +1357,11 @@ msgstr "FPS sayacını gösterir veya gizler"
 #: pe/ui/library.cpp
 msgid "SIZE"
 msgstr "BOYUT"
+
+#. Button and hint: not now (the dialog shows again the next time the app opens).
+#: pe/ui/update.cpp
+msgid "Skip"
+msgstr "Atla"
 
 #. A switch: fewer checks when a game changes memory the graphics processor uses. CPU stays.
 #: pe/ui/game_options.cpp, pe/ui/settings.cpp
@@ -1180,6 +1393,10 @@ msgstr "İspanyolca (Latin Amerika)"
 msgid "Square"
 msgstr "Kare"
 
+#: pe/ui/locations.cpp
+msgid "Square again takes {0} off the list. Its games stay where they are."
+msgstr "Kare'ye tekrar basmak {0} klasörünü listeden çıkarır. Oyunları yerinde kalır."
+
 #: pe/ui/profiles.cpp
 msgid "Square again takes {0} off the list. Its save data stays on the console."
 msgstr "Kare yeniden {0} profilini listeden çıkarır. Kayıtları konsolda kalır."
@@ -1206,6 +1423,10 @@ msgstr "Kendi dosyalarınızı ekleyin"
 msgid "Taiwan"
 msgstr "Tayvan"
 
+#: pe/ui/locations.cpp
+msgid "Taken off the list. Its games stay where they are."
+msgstr "Listeden çıkarıldı. Oyunları yerinde kalır."
+
 #: pe/ui/profiles.cpp
 msgid "Taken off the list. Its save data stays on the console."
 msgstr "Listeden çıkarıldı. Kayıtları konsolda kalır."
@@ -1223,9 +1444,25 @@ msgstr "TEŞEKKÜRLER"
 msgid "Thanks to the whole PS5 homebrew community and to every developer whose drivers, tools and libraries make ProsperoEden possible."
 msgstr "Tüm PS5 homebrew topluluğuna ve sürücüleri, araçları ve kütüphaneleriyle ProsperoEden'i mümkün kılan her geliştiriciye teşekkürler."
 
+#: pe/ui/browse.cpp
+msgid "The folder shown must hold prod.keys. TRIANGLE uses it; SQUARE goes back to the default."
+msgstr "Gösterilen klasör prod.keys içermelidir. ÜÇGEN onu kullanır; KARE varsayılana döner."
+
+#: pe/ui/browse.cpp
+msgid "The folder shown must hold the firmware NCA files. TRIANGLE uses it; SQUARE goes back to the default."
+msgstr "Gösterilen klasör firmware NCA dosyalarını içermelidir. ÜÇGEN onu kullanır; KARE varsayılana döner."
+
+#: pe/ui/locations.cpp
+msgid "The folder that holds prod.keys. Until you choose one, it is keys in the game files folder."
+msgstr "prod.keys dosyasını içeren klasör. Siz seçene kadar bu, oyun dosyaları klasöründeki keys'tir."
+
+#: pe/ui/locations.cpp
+msgid "The folder that holds the firmware NCA files. Until you choose one, it is firmware in the game files folder."
+msgstr "Firmware NCA dosyalarını içeren klasör. Siz seçene kadar bu, oyun dosyaları klasöründeki firmware'dir."
+
 #: pe/ui/settings.cpp
-msgid "The folder that holds your keys, firmware and games."
-msgstr "Anahtar, firmware ve oyunlarınızın bulunduğu klasör."
+msgid "The folder that holds your keys, firmware and games, and more places for games."
+msgstr "Keys, firmware ve oyunlarınızın klasörü ve oyunlar için başka yerler."
 
 #. Why a game stopped. 'Settings, Video' is the menu path; 'the game's own settings' is the Game settings dialog of the Library.
 #: eden_services.cpp
@@ -1236,17 +1473,41 @@ msgstr "Oyunun grafik belleği tükendi. Ayarlar, Video bölümünde (veya oyunu
 msgid "The language games use when they offer it."
 msgstr "Oyunlar destekliyorsa kullanılacak dil."
 
+#: pe/ui/browse.cpp
+msgid "The list is full. Remove a folder first."
+msgstr "Liste dolu. Önce bir klasörü çıkarın."
+
 #: pe/ui/profiles.cpp
 msgid "The profile that is playing stays. Choose another one first."
 msgstr "Oynayan profil kalır. Önce başka birini seçin."
 
-#: pe/ui/browse.cpp
+#: pe/ui/update.cpp
+msgid "The update could not finish"
+msgstr "Güncelleme tamamlanamadı"
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "THIS FOLDER"
 msgstr "BU KLASÖR"
 
 #: pe/ui/browse.cpp
 msgid "This folder cannot be opened."
 msgstr "Bu klasör açılamıyor."
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "This folder cannot be read"
+msgstr "Bu klasör okunamıyor"
+
+#: pe/ui/browse.cpp
+msgid "This folder has no firmware NCA files."
+msgstr "Bu klasörde firmware NCA dosyası yok."
+
+#: pe/ui/browse.cpp
+msgid "This folder is in the list already."
+msgstr "Bu klasör zaten listede."
+
+#: pe/ui/browse.cpp
+msgid "This folder needs a roms folder."
+msgstr "Bu klasörün bir roms klasörüne ihtiyacı var."
 
 #. The game has a button mapping of its own.
 #: pe/ui/game_options.cpp
@@ -1260,6 +1521,14 @@ msgstr "Bu oyunun dışa aktarılacak bir kaydı henüz yok."
 #: pe/ui/library.cpp
 msgid "This game's settings cannot be saved (no title ID)."
 msgstr "Bu oyunun ayarları kaydedilemiyor (oyun kimliği yok)."
+
+#: pe/ui/locations.cpp
+msgid "This is the default folder already."
+msgstr "Bu zaten varsayılan klasör."
+
+#: pe/ui/browse.cpp
+msgid "This is the game files folder already."
+msgstr "Bu zaten oyun dosyaları klasörü."
 
 #. ryujinx/, save-import/ and roms/ are folder names (unchanged); {0} is the game's ID.
 #: eden_services.cpp
@@ -1276,6 +1545,10 @@ msgstr "Dokunmatik yüzey"
 msgid "Triangle"
 msgstr "Üçgen"
 
+#: pe/ui/update.cpp
+msgid "Try again"
+msgstr "Yeniden dene"
+
 #. Button hint: switch the highlighted mod on or off.
 #: pe/ui/library.cpp
 msgid "Turn on or off"
@@ -1285,22 +1558,36 @@ msgstr "Aç veya kapat"
 msgid "Unavailable"
 msgstr "Kullanılamıyor"
 
+#. Update dialog headline while the downloaded release is extracted.
+#: pe/ui/update.cpp
+msgid "Unpacking"
+msgstr "Açılıyor"
+
 #. Short tag on the 'Parent folder' row.
 #: pe/ui/browse.cpp
 msgid "UP"
 msgstr "YUKARI"
 
 #. Notification title: a newer release of this app is listed (not a game update).
-#: pe/ui/launcher.cpp
+#: pe/ui/launcher.cpp, pe/ui/update.cpp
 msgid "Update available"
 msgstr "Güncelleme var"
+
+#. Button: download and install the newer release of this app now.
+#: pe/ui/update.cpp
+msgid "Update now"
+msgstr "Şimdi güncelle"
+
+#: pe/ui/update.cpp
+msgid "Update ready"
+msgstr "Güncelleme hazır"
 
 #. A game update; {0} is its version, for example 1.2.0.
 #: eden_services.cpp, host/fake_services.cpp
 msgid "Update {0}"
 msgstr "Güncelleme {0}"
 
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "UPDATES, DLC"
 msgstr "GÜNCELLEME, DLC"
 
@@ -1324,10 +1611,20 @@ msgstr "Çıkarılmış firmware NCA dosyalarını kullanın. Klasörü Ayarlar,
 msgid "Use this folder"
 msgstr "Bu klasörü kullan"
 
+#. {0} is the app's new version number, for example 1.000.060.
+#: pe/ui/update.cpp
+msgid "Version {0}"
+msgstr "Sürüm {0}"
+
 #. {0}: the newer release's number, for example 1.000.050; homebrew.page is a site's name and stays as it is.
 #: pe/ui/launcher.cpp
 msgid "Version {0} is on homebrew.page"
 msgstr "{0} sürümü homebrew.page adresinde"
+
+#. Update dialog: a newer release of this app; {0} is its number, for example 1.000.060.
+#: pe/ui/update.cpp
+msgid "Version {0} is ready to install."
+msgstr "{0} sürümü yüklenmeye hazır."
 
 #: pe/ui/game_options.cpp, pe/ui/settings.cpp
 msgid "Vibration"
@@ -1366,6 +1663,10 @@ msgstr "TÜM OYUNLARI GÖR"
 msgid "Vulkan (recommended)"
 msgstr "Vulkan (önerilen)"
 
+#: pe/ui/locations.cpp
+msgid "Where exported saves are written. Until you choose one, it is save-export in the game files folder."
+msgstr "Dışa aktarılan kayıtların yazıldığı yer. Siz seçene kadar bu, oyun dosyaları klasöründeki save-export'tur."
+
 #: pe/ui/settings.cpp
 msgid "Who is playing. Each profile keeps its own save data and settings."
 msgstr "Kim oynuyor. Her profilin kendi kayıtları ve ayarları vardır."
@@ -1373,6 +1674,11 @@ msgstr "Kim oynuyor. Her profilin kendi kayıtları ve ayarları vardır."
 #: pe/ui/library.cpp
 msgid "Your games"
 msgstr "Oyunlarınız"
+
+#. Update dialog: installing the new app version keeps the player's files.
+#: pe/ui/update.cpp
+msgid "Your games, saves and settings are kept."
+msgstr "Oyunların, kayıtların ve ayarların korunur."
 
 #. Headline when no game has been played yet.
 #: pe/ui/home.cpp
@@ -1389,10 +1695,26 @@ msgstr "{0} değiştirildi"
 msgid "{0} DLC"
 msgstr "{0} DLC"
 
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "{0} file"
+msgstr "{0} dosya"
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "{0} files"
+msgstr "{0} dosya"
+
 #. Exactly one game. In a language with more than two plural forms, word it so that it reads well with any number (Games: {0}).
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "{0} game"
 msgstr "{0} oyun"
+
+#: pe/ui/locations.cpp
+msgid "{0} game folder"
+msgstr "{0} oyun klasörü"
+
+#: pe/ui/locations.cpp
+msgid "{0} game folders"
+msgstr "{0} oyun klasörü"
 
 #. Exactly one game. See '{0} game'.
 #: eden_services.cpp
@@ -1400,7 +1722,7 @@ msgid "{0} game installed"
 msgstr "{0} oyun yüklü"
 
 #. Any number of games other than one (also 0). See '{0} game'.
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "{0} games"
 msgstr "{0} oyun"
 
@@ -1414,6 +1736,10 @@ msgstr "{0} oyun yüklü"
 msgid "{0} Hz"
 msgstr "{0} Hz"
 
+#: pe/ui/library.cpp
+msgid "{0} is in more than one place. Choose which one starts."
+msgstr "{0} birden fazla yerde. Hangisinin başlayacağını seçin."
+
 #. Exactly one mod, in the list of what a game comes with (Update 1.2.0, 2 DLC, 1 mod). See '{0} game'.
 #: pe/ui/library.cpp
 msgid "{0} mod"
@@ -1425,12 +1751,12 @@ msgid "{0} mods"
 msgstr "{0} mod"
 
 #. Exactly one file. See '{0} game'.
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "{0} NCA file"
 msgstr "{0} NCA dosyası"
 
 #. Any number of files other than one. See '{0} game'.
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "{0} NCA files"
 msgstr "{0} NCA dosyası"
 
@@ -1455,7 +1781,7 @@ msgid "{0} of {1} on"
 msgstr "{0}/{1} açık"
 
 #. A percentage (a volume): write it as the language does, for example with a space before the sign.
-#: pe/ui/game_options.cpp, pe/ui/settings.cpp
+#: pe/ui/game_options.cpp, pe/ui/settings.cpp, pe/ui/update.cpp
 msgid "{0}%"
 msgstr "%{0}"
 

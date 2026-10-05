@@ -43,6 +43,16 @@ msgstr "Πληροφορίες"
 msgid "About ProsperoEden"
 msgstr "Σχετικά με το ProsperoEden"
 
+#. Time left while downloading; {0} is a number of minutes. Keep it short.
+#: pe/ui/update.cpp
+msgid "About {0} min left"
+msgstr "Απομένουν περίπου {0} λ"
+
+#. Time left while downloading; {0} is a number of seconds. Keep it short.
+#: pe/ui/update.cpp
+msgid "About {0} s left"
+msgstr "Απομένουν περίπου {0} δ"
+
 #. Label: which folders the app can read.
 #: pe/ui/browse.cpp
 msgid "ACCESS"
@@ -57,9 +67,17 @@ msgstr "Προσβασιμότητα"
 msgid "ACCESSIBILITY"
 msgstr "ΠΡΟΣΒΑΣΙΜΟΤΗΤΑ"
 
-#: pe/ui/profiles.cpp
+#: pe/ui/locations.cpp, pe/ui/profiles.cpp
 msgid "Add"
 msgstr "Προσθήκη"
+
+#: pe/ui/locations.cpp
+msgid "Add another place for games, such as a USB drive. It holds roms, updates and mods. Keys and firmware come from the game files folder first, then from here if it has none."
+msgstr "Προσθέστε ένα ακόμη μέρος για παιχνίδια, όπως μια μονάδα USB. Περιέχει roms, updates και mods. Τα keys και το firmware λαμβάνονται πρώτα από τον φάκελο αρχείων παιχνιδιών και μετά από εδώ, αν εκείνος δεν έχει."
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "Add game folder"
+msgstr "Προσθήκη φακέλου παιχνιδιών"
 
 #. Label: a game's updates, DLC and mods.
 #: pe/ui/library.cpp
@@ -78,6 +96,10 @@ msgstr "Προστέθηκε. Σταυρός για παιχνίδι με αυτ
 #: pe/ui/settings.cpp
 msgid "Adjust the essentials without leaving your library behind."
 msgstr "Ρυθμίστε τα βασικά χωρίς να αφήσετε τη βιβλιοθήκη σας."
+
+#: pe/ui/locations.cpp
+msgid "ADVANCED"
+msgstr "ΕΠΙΣΤΗΜΟΝΙΚΑ"
 
 #: pe/ui/browse.cpp
 msgid "All credit for the Eden emulator goes to its developers and contributors."
@@ -118,9 +140,13 @@ msgid "Australia"
 msgstr "Αυστραλία"
 
 #. Button hint: go back one screen.
-#: pe/ui/browse.cpp, pe/ui/game_options.cpp, pe/ui/library.cpp, pe/ui/profiles.cpp, pe/ui/settings.cpp
+#: pe/ui/browse.cpp, pe/ui/game_options.cpp, pe/ui/library.cpp, pe/ui/locations.cpp, pe/ui/profiles.cpp, pe/ui/settings.cpp
 msgid "Back"
 msgstr "Πίσω"
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "Back to the default folder. Reopen ProsperoEden to use it."
+msgstr "Επιστροφή στον προεπιλεγμένο φάκελο. Ανοίξτε ξανά το ProsperoEden για να τον χρησιμοποιήσετε."
 
 #. An upscaling filter.
 #: settings_store.h
@@ -133,7 +159,7 @@ msgid "Bilinear"
 msgstr "Διγραμμικό"
 
 #. Button hint: move through the list.
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "Browse"
 msgstr "Περιήγηση"
 
@@ -154,14 +180,26 @@ msgstr "Αντιστοίχιση κουμπιών"
 msgid "BUTTON MAPPING"
 msgstr "ΑΝΤΙΣΤΟΙΧΙΣΗ ΚΟΥΜΠΙΩΝ"
 
+#: pe/ui/update.cpp
+msgid "Cancel"
+msgstr "Ακύρωση"
+
+#: pe/ui/update.cpp
+msgid "Cancelling"
+msgstr "Ακύρωση…"
+
 #: eden_services.cpp
 msgid "Cannot read firmware/ in {0}. Install extracted firmware NCAs."
 msgstr "Δεν είναι δυνατή η ανάγνωση του firmware/ στο {0}. Εγκαταστήστε τα εξαγμένα NCA του firmware."
 
 #. Button hint: change the highlighted setting.
-#: pe/ui/game_options.cpp, pe/ui/library.cpp, pe/ui/settings.cpp
+#: pe/ui/game_options.cpp, pe/ui/library.cpp, pe/ui/locations.cpp, pe/ui/settings.cpp
 msgid "Change"
 msgstr "Αλλαγή"
+
+#: pe/ui/browse.cpp
+msgid "Change game folder"
+msgstr "Αλλαγή φακέλου παιχνιδιών"
 
 #: pe/ui/library.cpp
 msgid "Change mode. Saved per game."
@@ -190,26 +228,58 @@ msgid "Chinese (Traditional)"
 msgstr "Κινεζικά (Παραδοσιακά)"
 
 #. Button hint: choose the highlighted language.
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "Choose"
 msgstr "Επιλογή"
+
+#: pe/ui/browse.cpp
+msgid "Choose a folder with roms and updates inside"
+msgstr "Επιλέξτε έναν φάκελο με roms και updates"
 
 #: pe/ui/home.cpp
 msgid "Choose a game from your library."
 msgstr "Επιλέξτε ένα παιχνίδι από τη βιβλιοθήκη σας."
 
 #: pe/ui/browse.cpp
+msgid "Choose the folder that holds prod.keys"
+msgstr "Επιλέξτε τον φάκελο που περιέχει το prod.keys"
+
+#: pe/ui/browse.cpp
+msgid "Choose the folder that holds the firmware NCA files"
+msgstr "Επιλέξτε τον φάκελο που περιέχει τα αρχεία NCA του firmware"
+
+#: pe/ui/browse.cpp
 msgid "Choose the folder that holds your keys, firmware and games"
 msgstr "Επιλέξτε τον φάκελο με τα κλειδιά, το firmware και τα παιχνίδια σας"
+
+#: pe/ui/browse.cpp
+msgid "Choose the folder with one folder per game ID"
+msgstr "Επιλέξτε τον φάκελο με έναν φάκελο ανά ID παιχνιδιού"
+
+#: pe/ui/locations.cpp
+msgid "Choose the keys, firmware, save import and save export folders on their own. Until you do, they are inside the game files folder."
+msgstr "Επιλέξτε χωριστά τους φακέλους για keys, firmware, εισαγωγή αποθηκεύσεων και εξαγωγή αποθηκεύσεων. Μέχρι τότε βρίσκονται μέσα στον φάκελο αρχείων παιχνιδιών."
 
 #: pe/ui/browse.cpp
 msgid "Choose the language games use"
 msgstr "Επιλέξτε τη γλώσσα που χρησιμοποιούν τα παιχνίδια"
 
+#: pe/ui/browse.cpp
+msgid "Choose where exported saves are written"
+msgstr "Επιλέξτε πού γράφονται οι εξαγόμενες αποθηκεύσεις"
+
+#: pe/ui/locations.cpp
+msgid "Choose where your games, keys, firmware and saves are"
+msgstr "Επιλέξτε πού βρίσκονται τα παιχνίδια, τα keys, το firmware και οι αποθηκεύσεις σας"
+
 #. A DualSense button.
 #: pe/ui/game_options.cpp
 msgid "Circle"
 msgstr "Κύκλος"
+
+#: pe/ui/update.cpp
+msgid "Close"
+msgstr "Κλείσιμο"
 
 #. A switch: the program code a game used in earlier sessions is prepared (compiled) while the game starts. Keep it short.
 #: pe/ui/game_options.cpp, pe/ui/settings.cpp
@@ -260,7 +330,7 @@ msgstr "Η λειτουργία κονσόλας δεν αποθηκεύτηκε
 msgid "Could not save settings. Please try again."
 msgstr "Οι ρυθμίσεις δεν αποθηκεύτηκαν. Δοκιμάστε ξανά."
 
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "Could not save the folder. Please try again."
 msgstr "Ο φάκελος δεν αποθηκεύτηκε. Δοκιμάστε ξανά."
 
@@ -292,16 +362,24 @@ msgstr "Συντελεστές και ρύθμιση"
 msgid "Cross"
 msgstr "Σταυρός"
 
+#: pe/ui/locations.cpp
+msgid "CUSTOM"
+msgstr "ΠΡΟΣΑΡΜΟΣΜΕΝΟ"
+
+#: pe/ui/locations.cpp
+msgid "DEFAULT"
+msgstr "ΠΡΟΕΠΙΛΟΓΗ"
+
 #. A per-game setting that follows the general setting; {0} is its value.
 #: pe/ui/game_options.cpp
 msgid "Default ({0})"
 msgstr "Προεπιλογή ({0})"
 
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "Default folder"
 msgstr "Προεπιλεγμένος φάκελος"
 
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "Default folder saved. Reopen ProsperoEden to use it."
 msgstr "Ο προεπιλεγμένος φάκελος αποθηκεύτηκε. Ανοίξτε ξανά το ProsperoEden για να χρησιμοποιηθεί."
 
@@ -339,6 +417,15 @@ msgstr "ΔΙΑΓΝΩΣΤΙΚΑ"
 msgid "Docked"
 msgstr "Σε βάση"
 
+#. {0} is a size such as 36.4 MB.
+#: pe/ui/update.cpp
+msgid "Download size: {0}"
+msgstr "Μέγεθος λήψης: {0}"
+
+#: pe/ui/update.cpp
+msgid "Downloading"
+msgstr "Λήψη"
+
 #: pe/ui/settings.cpp
 msgid "Draws an effect once its shader is ready instead of pausing. Things can be missing for a moment."
 msgstr "Σχεδιάζει ένα εφέ μόλις ο shader του είναι έτοιμος, αντί να σταματά. Κάτι μπορεί να λείπει για λίγο."
@@ -346,6 +433,10 @@ msgstr "Σχεδιάζει ένα εφέ μόλις ο shader του είναι 
 #: pe/ui/settings.cpp
 msgid "Draws the menu's small text larger."
 msgstr "Εμφανίζει μεγαλύτερο το μικρό κείμενο του μενού."
+
+#: pe/ui/library.cpp
+msgid "Duplicate game"
+msgstr "Διπλότυπο παιχνίδι"
 
 #: settings_store.h
 msgid "Dutch"
@@ -388,6 +479,10 @@ msgstr "Εξαγωγή αντιγράφου"
 #: eden_services.cpp
 msgid "Export failed. Check that the game files folder can be written."
 msgstr "Η εξαγωγή απέτυχε. Ελέγξτε ότι ο φάκελος των αρχείων παιχνιδιών είναι εγγράψιμος."
+
+#: pe/ui/browse.cpp
+msgid "Exported saves are written here. TRIANGLE uses the folder shown; SQUARE goes back to the default."
+msgstr "Οι εξαγόμενες αποθηκεύσεις γράφονται εδώ. Το ΤΡΙΓΩΝΟ χρησιμοποιεί τον φάκελο που εμφανίζεται· το ΤΕΤΡΑΓΩΝΟ επιστρέφει στην προεπιλογή."
 
 #. {0} is a folder.
 #: eden_services.cpp, host/fake_services.hpp
@@ -438,9 +533,13 @@ msgstr "Αρχεία"
 msgid "Fine-tune your experience"
 msgstr "Προσαρμόστε την εμπειρία σας"
 
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "FIRMWARE"
 msgstr "FIRMWARE"
+
+#: pe/ui/browse.cpp
+msgid "Firmware folder"
+msgstr "Φάκελος firmware"
 
 #: eden_services.cpp
 msgid "Firmware NCA validation failed (code {0}). Check that firmware and prod.keys are compatible."
@@ -454,7 +553,7 @@ msgstr "Το firmware είναι έτοιμο"
 msgid "Firmware SystemVersion data is missing or unreadable. Install a complete firmware dump."
 msgstr "Τα δεδομένα SystemVersion του firmware λείπουν ή δεν διαβάζονται. Εγκαταστήστε ένα πλήρες firmware."
 
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "FOLDERS"
 msgstr "ΦΑΚΕΛΟΙ"
 
@@ -510,13 +609,25 @@ msgstr "Λεπτομέρειες παιχνιδιού"
 msgid "GAME DETAILS"
 msgstr "ΛΕΠΤΟΜΕΡΕΙΕΣ ΠΑΙΧΝΙΔΙΟΥ"
 
-#: pe/ui/browse.cpp, pe/ui/settings.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp, pe/ui/settings.cpp
 msgid "Game files"
 msgstr "Αρχεία παιχνιδιών"
 
 #: pe/ui/settings.cpp
 msgid "GAME FILES"
 msgstr "ΑΡΧΕΙΑ ΠΑΙΧΝΙΔΙΩΝ"
+
+#: pe/ui/locations.cpp
+msgid "GAME FILES FOLDER"
+msgstr "ΦΑΚΕΛΟΣ ΑΡΧΕΙΩΝ ΠΑΙΧΝΙΔΙΩΝ"
+
+#: pe/ui/locations.cpp
+msgid "GAME FOLDER"
+msgstr "ΦΑΚΕΛΟΣ ΠΑΙΧΝΙΔΙΩΝ"
+
+#: pe/ui/locations.cpp, pe/ui/settings.cpp
+msgid "GAME FOLDERS"
+msgstr "ΦΑΚΕΛΟΙ ΠΑΙΧΝΙΔΙΩΝ"
 
 #: pe/ui/library.cpp
 msgid "Game settings"
@@ -534,7 +645,7 @@ msgstr "ΕΝΤΑΣΗ ΠΑΙΧΝΙΔΙΟΥ"
 msgid "Game volume, and the sounds of this menu."
 msgstr "Η ένταση του παιχνιδιού και οι ήχοι αυτού του μενού."
 
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "GAMES"
 msgstr "ΠΑΙΧΝΙΔΙΑ"
 
@@ -545,6 +656,14 @@ msgstr "Τα παιχνίδια χρησιμοποιούν αυτή τη γλώ�
 #: pe/ui/home.cpp
 msgid "Games you launch will appear here."
 msgstr "Τα παιχνίδια που ξεκινάτε θα εμφανίζονται εδώ."
+
+#: pe/ui/browse.cpp
+msgid "Games, updates and mods are read from here. TRIANGLE adds the folder shown."
+msgstr "Τα παιχνίδια, τα updates και τα mods διαβάζονται από εδώ. Το ΤΡΙΓΩΝΟ προσθέτει τον φάκελο που εμφανίζεται."
+
+#: pe/ui/locations.cpp
+msgid "Games, updates and mods are read from this folder. Square twice takes it off the list."
+msgstr "Τα παιχνίδια, τα updates και τα mods διαβάζονται από αυτόν τον φάκελο. Δύο φορές Τετράγωνο τον αφαιρεί από τη λίστα."
 
 #: settings_store.h
 msgid "German"
@@ -567,6 +686,14 @@ msgstr "Η αρχικοποίηση του συστήματος γραφικών
 msgid "Handheld"
 msgstr "Φορητή"
 
+#: pe/ui/locations.cpp
+msgid "HIDE"
+msgstr "ΑΠΟΚΡΥΨΗ"
+
+#: pe/ui/locations.cpp
+msgid "Hide"
+msgstr "Απόκρυψη"
+
 #: pe/ui/settings.cpp
 msgid "HIGH CONTRAST"
 msgstr "ΥΨΗΛΗ ΑΝΤΙΘΕΣΗ"
@@ -575,6 +702,10 @@ msgstr "ΥΨΗΛΗ ΑΝΤΙΘΕΣΗ"
 #: pe/ui/settings.cpp
 msgid "High contrast"
 msgstr "Υψηλή αντίθεση"
+
+#: pe/ui/locations.cpp
+msgid "Holds keys, firmware, roms, updates, mods and saves, unless you choose some of them on their own (Advanced)."
+msgstr "Περιέχει keys, firmware, roms, updates, mods και αποθηκεύσεις, εκτός αν επιλέξετε κάποια από αυτά χωριστά (Επιστημονικά)."
 
 #: pe/ui/settings.cpp
 msgid "How games are drawn and scaled to your TV."
@@ -597,8 +728,12 @@ msgstr "Έγινε εισαγωγή."
 msgid "Imported. The save it replaced was backed up."
 msgstr "Έγινε εισαγωγή. Η αποθήκευση που αντικαταστάθηκε έχει αντίγραφο ασφαλείας."
 
+#: pe/ui/library.cpp
+msgid "In more than one place. You choose which one starts."
+msgstr "Σε περισσότερα από ένα μέρη. Εσείς επιλέγετε ποιο θα ξεκινήσει."
+
 #. Tag on the language or folder that is in use now.
-#: pe/ui/browse.cpp, pe/ui/settings.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp, pe/ui/settings.cpp
 msgid "IN USE"
 msgstr "ΣΕ ΧΡΗΣΗ"
 
@@ -624,13 +759,21 @@ msgid "Keeps what a game reads back from the GPU exact. Off is faster, and some 
 msgstr "Κρατά ακριβές ό,τι διαβάζει το παιχνίδι πίσω από την GPU. Ανενεργό είναι ταχύτερο, αλλά κάποια εφέ χαλάνε."
 
 #. Label: the encryption keys file (prod.keys).
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "KEYS"
 msgstr "ΚΛΕΙΔΙΑ"
 
 #: eden_services.cpp, host/fake_services.cpp
 msgid "Keys and firmware: startup checks passed. Game-specific compatibility is checked at launch."
 msgstr "Κλειδιά και firmware: οι έλεγχοι εκκίνησης πέτυχαν. Η συμβατότητα κάθε παιχνιδιού ελέγχεται στην εκκίνησή του."
+
+#: pe/ui/browse.cpp
+msgid "Keys folder"
+msgstr "Φάκελος keys"
+
+#: pe/ui/locations.cpp
+msgid "Keys, firmware and saves"
+msgstr "Keys, firmware και αποθηκεύσεις"
 
 #: eden_services.cpp
 msgid "Korea"
@@ -743,7 +886,7 @@ msgid "Muted"
 msgstr "Σε σίγαση"
 
 #. Button hint: move the highlight.
-#: pe/ui/home.cpp
+#: pe/ui/home.cpp, pe/ui/update.cpp
 msgid "Navigate"
 msgstr "Πλοήγηση"
 
@@ -761,12 +904,12 @@ msgid "New profile"
 msgstr "Νέο προφίλ"
 
 #. {0} is the folder used the next time the app starts.
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "Next launch: {0}"
 msgstr "Επόμενη εκκίνηση: {0}"
 
 #. Label: the folder used the next time the app starts.
-#: pe/ui/settings.cpp
+#: pe/ui/locations.cpp, pe/ui/settings.cpp
 msgid "NEXT START"
 msgstr "ΕΠΟΜΕΝΗ ΕΚΚΙΝΗΣΗ"
 
@@ -774,7 +917,7 @@ msgstr "ΕΠΟΜΕΝΗ ΕΚΚΙΝΗΣΗ"
 msgid "No cover art"
 msgstr "Χωρίς εξώφυλλο"
 
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "No firmware folder"
 msgstr "Δεν υπάρχει φάκελος firmware"
 
@@ -804,9 +947,13 @@ msgstr "Δεν βρέθηκαν αρχεία ROM."
 msgid "No ROM selected"
 msgstr "Δεν επιλέχθηκε ROM"
 
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "No roms folder"
 msgstr "Δεν υπάρχει φάκελος roms"
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "No updates folder"
+msgstr "Χωρίς φάκελο updates"
 
 #. No add-ons (updates or DLC).
 #: pe/ui/library.cpp
@@ -838,9 +985,13 @@ msgid "OPEN"
 msgstr "ΑΝΟΙΓΜΑ"
 
 #. Button hint: open the highlighted folder.
-#: pe/ui/browse.cpp, pe/ui/game_options.cpp, pe/ui/library.cpp, pe/ui/settings.cpp
+#: pe/ui/browse.cpp, pe/ui/game_options.cpp, pe/ui/library.cpp, pe/ui/locations.cpp, pe/ui/settings.cpp
 msgid "Open"
 msgstr "Άνοιγμα"
+
+#: pe/ui/update.cpp
+msgid "Open it again to use version {0}."
+msgstr "Ανοίξτε το ξανά για να χρησιμοποιήσετε την έκδοση {0}."
 
 #: pe/ui/home.cpp
 msgid "Open library"
@@ -862,7 +1013,7 @@ msgid "Output resolution"
 msgstr "Ανάλυση εξόδου"
 
 #. Button hint: jump a page of the list (L1 / R1).
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "Page"
 msgstr "Σελίδα"
 
@@ -921,6 +1072,11 @@ msgstr "Με την ισχύ του Eden"
 msgid "PREFERENCES"
 msgstr "ΠΡΟΤΙΜΗΣΕΙΣ"
 
+#. Update dialog headline while the download starts.
+#: pe/ui/update.cpp
+msgid "Preparing"
+msgstr "Προετοιμασία"
+
 #. Asked before a save is imported over the one in use.
 #: pe/ui/library.cpp
 msgid "Press again to replace this game's save. The current one is backed up."
@@ -930,11 +1086,15 @@ msgstr "Πατήστε ξανά για να αντικατασταθεί η απ
 msgid "prod.keys could not supply an NCA header key. Replace it with a valid key dump."
 msgstr "Το prod.keys δεν έδωσε κλειδί κεφαλίδας NCA. Αντικαταστήστε το με έγκυρα κλειδιά."
 
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "prod.keys found"
 msgstr "Το prod.keys βρέθηκε"
 
 #: pe/ui/browse.cpp
+msgid "prod.keys is not in this folder."
+msgstr "Το prod.keys δεν είναι σε αυτόν τον φάκελο."
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "prod.keys missing"
 msgstr "Το prod.keys λείπει"
 
@@ -950,6 +1110,14 @@ msgstr "ΠΡΟΦΙΛ"
 msgid "PROJECT CREDITS"
 msgstr "ΣΥΝΤΕΛΕΣΤΕΣ ΤΟΥ ΕΡΓΟΥ"
 
+#: pe/ui/update.cpp
+msgid "ProsperoEden closes now."
+msgstr "Το ProsperoEden κλείνει τώρα."
+
+#: pe/ui/update.cpp
+msgid "ProsperoEden closes to finish the update."
+msgstr "Το ProsperoEden κλείνει για να ολοκληρωθεί η ενημέρωση."
+
 #: pe/ui/browse.cpp
 msgid "ProsperoEden is an unofficial PS5 port brought to you by BlackBearReloaded."
 msgstr "Το ProsperoEden είναι μια ανεπίσημη μεταφορά για PS5 από τον BlackBearReloaded."
@@ -958,6 +1126,10 @@ msgstr "Το ProsperoEden είναι μια ανεπίσημη μεταφορά 
 #: eden_services.cpp, host/fake_services.cpp
 msgid "ProsperoEden stopped because of an error. A report was saved to {0}."
 msgstr "Το ProsperoEden σταμάτησε λόγω σφάλματος. Αποθηκεύτηκε μια αναφορά στο {0}."
+
+#: pe/ui/update.cpp
+msgid "ProsperoEden was not changed."
+msgstr "Το ProsperoEden δεν άλλαξε."
 
 #. Why a game did not start.
 #: eden_services.cpp
@@ -1013,7 +1185,7 @@ msgstr "ΡΥΘΜΟΣ ΑΝΑΝΕΩΣΗΣ"
 msgid "REGION"
 msgstr "ΠΕΡΙΟΧΗ"
 
-#: pe/ui/profiles.cpp
+#: pe/ui/locations.cpp, pe/ui/profiles.cpp
 msgid "Remove"
 msgstr "Αφαίρεση"
 
@@ -1045,7 +1217,7 @@ msgstr "ΑΝΑΛΥΣΗ"
 msgid "Right stick press"
 msgstr "Πάτημα δεξιού μοχλού"
 
-#: eden_services.cpp, pe/ui/launcher.cpp
+#: eden_services.cpp, pe/ui/launcher.cpp, pe/ui/library.cpp
 msgid "ROM missing from the game files folder"
 msgstr "Το ROM λείπει από τον φάκελο των αρχείων παιχνιδιών"
 
@@ -1068,10 +1240,26 @@ msgstr "Περιορισμένη (κωδικός {0}): μόνο ο φάκελο�
 msgid "Save data"
 msgstr "Δεδομένα αποθήκευσης"
 
+#: pe/ui/locations.cpp
+msgid "SAVE EXPORT"
+msgstr "ΕΞΑΓΩΓΗ ΑΠΟΘΗΚΕΥΣΕΩΝ"
+
+#: pe/ui/browse.cpp
+msgid "Save export folder"
+msgstr "Φάκελος εξαγωγής αποθηκεύσεων"
+
 #. Short status at the right of the Save data row: a folder with a save to import.
 #: pe/ui/library.cpp
 msgid "Save folder found"
 msgstr "Βρέθηκε φάκελος αποθήκευσης"
+
+#: pe/ui/locations.cpp
+msgid "SAVE IMPORT"
+msgstr "ΕΙΣΑΓΩΓΗ ΑΠΟΘΗΚΕΥΣΕΩΝ"
+
+#: pe/ui/browse.cpp
+msgid "Save import folder"
+msgstr "Φάκελος εισαγωγής αποθηκεύσεων"
 
 #: pe/ui/game_options.cpp, pe/ui/library.cpp
 msgid "Saved for this game. Applies on next launch."
@@ -1087,11 +1275,23 @@ msgid "Saved. Applies when a game starts."
 msgstr "Αποθηκεύτηκε. Ισχύει όταν ξεκινά ένα παιχνίδι."
 
 #: pe/ui/browse.cpp
+msgid "Saved. Its games are in the Library now."
+msgstr "Αποθηκεύτηκε. Τα παιχνίδια του είναι τώρα στη Βιβλιοθήκη."
+
+#: pe/ui/browse.cpp
 msgid "Saved. Reopen ProsperoEden to use this folder."
 msgstr "Αποθηκεύτηκε. Ανοίξτε ξανά το ProsperoEden για να χρησιμοποιηθεί αυτός ο φάκελος."
 
+#: pe/ui/browse.cpp
+msgid "Saves to import go here, one folder per game ID. TRIANGLE uses the folder shown; SQUARE goes back to the default."
+msgstr "Οι αποθηκεύσεις προς εισαγωγή μπαίνουν εδώ, ένας φάκελος ανά ID παιχνιδιού. Το ΤΡΙΓΩΝΟ χρησιμοποιεί τον φάκελο που εμφανίζεται· το ΤΕΤΡΑΓΩΝΟ επιστρέφει στην προεπιλογή."
+
+#: pe/ui/locations.cpp
+msgid "Saves to import, one folder per game ID. Until you choose one, it is save-import in the game files folder."
+msgstr "Αποθηκεύσεις προς εισαγωγή, ένας φάκελος ανά ID παιχνιδιού. Μέχρι να επιλέξετε, είναι το save-import στον φάκελο αρχείων παιχνιδιών."
+
 #. Button hint: choose the highlighted item (not the Select button).
-#: pe/ui/game_options.cpp, pe/ui/home.cpp, pe/ui/library.cpp, pe/ui/settings.cpp
+#: pe/ui/game_options.cpp, pe/ui/home.cpp, pe/ui/library.cpp, pe/ui/settings.cpp, pe/ui/update.cpp
 msgid "Select"
 msgstr "Επιλογή"
 
@@ -1142,6 +1342,14 @@ msgstr "Κατάσταση ρύθμισης και αναλυτική καταγ
 msgid "Setup validation failed. Check that firmware and key files are readable and valid."
 msgstr "Η επαλήθευση της ρύθμισης απέτυχε. Ελέγξτε ότι τα αρχεία firmware και κλειδιών διαβάζονται και είναι έγκυρα."
 
+#: pe/ui/locations.cpp
+msgid "SHOW"
+msgstr "ΕΜΦΑΝΙΣΗ"
+
+#: pe/ui/locations.cpp
+msgid "Show"
+msgstr "Εμφάνιση"
+
 #: pe/ui/settings.cpp
 msgid "Show or hide the FPS overlay"
 msgstr "Εμφάνιση ή απόκρυψη της ένδειξης FPS"
@@ -1149,6 +1357,11 @@ msgstr "Εμφάνιση ή απόκρυψη της ένδειξης FPS"
 #: pe/ui/library.cpp
 msgid "SIZE"
 msgstr "ΜΕΓΕΘΟΣ"
+
+#. Button and hint: not now (the dialog shows again the next time the app opens).
+#: pe/ui/update.cpp
+msgid "Skip"
+msgstr "Παράλειψη"
 
 #. A switch: fewer checks when a game changes memory the graphics processor uses. CPU stays.
 #: pe/ui/game_options.cpp, pe/ui/settings.cpp
@@ -1180,6 +1393,10 @@ msgstr "Ισπανικά (Λατινική Αμερική)"
 msgid "Square"
 msgstr "Τετράγωνο"
 
+#: pe/ui/locations.cpp
+msgid "Square again takes {0} off the list. Its games stay where they are."
+msgstr "Άλλο ένα Τετράγωνο αφαιρεί το {0} από τη λίστα. Τα παιχνίδια του μένουν εκεί που είναι."
+
 #: pe/ui/profiles.cpp
 msgid "Square again takes {0} off the list. Its save data stays on the console."
 msgstr "Τετράγωνο ξανά αφαιρεί το {0} από τη λίστα. Τα αποθηκευμένα δεδομένα μένουν στην κονσόλα."
@@ -1206,6 +1423,10 @@ msgstr "Χρησιμοποιήστε τα δικά σας αρχεία"
 msgid "Taiwan"
 msgstr "Ταϊβάν"
 
+#: pe/ui/locations.cpp
+msgid "Taken off the list. Its games stay where they are."
+msgstr "Αφαιρέθηκε από τη λίστα. Τα παιχνίδια του μένουν εκεί που είναι."
+
 #: pe/ui/profiles.cpp
 msgid "Taken off the list. Its save data stays on the console."
 msgstr "Αφαιρέθηκε από τη λίστα. Τα αποθηκευμένα δεδομένα μένουν στην κονσόλα."
@@ -1223,9 +1444,25 @@ msgstr "ΕΥΧΑΡΙΣΤΙΕΣ"
 msgid "Thanks to the whole PS5 homebrew community and to every developer whose drivers, tools and libraries make ProsperoEden possible."
 msgstr "Ευχαριστούμε όλη την κοινότητα homebrew του PS5 και κάθε προγραμματιστή του οποίου τα προγράμματα οδήγησης, τα εργαλεία και οι βιβλιοθήκες κάνουν εφικτό το ProsperoEden."
 
+#: pe/ui/browse.cpp
+msgid "The folder shown must hold prod.keys. TRIANGLE uses it; SQUARE goes back to the default."
+msgstr "Ο φάκελος που εμφανίζεται πρέπει να περιέχει το prod.keys. Το ΤΡΙΓΩΝΟ τον χρησιμοποιεί· το ΤΕΤΡΑΓΩΝΟ επιστρέφει στην προεπιλογή."
+
+#: pe/ui/browse.cpp
+msgid "The folder shown must hold the firmware NCA files. TRIANGLE uses it; SQUARE goes back to the default."
+msgstr "Ο φάκελος που εμφανίζεται πρέπει να περιέχει τα αρχεία NCA του firmware. Το ΤΡΙΓΩΝΟ τον χρησιμοποιεί· το ΤΕΤΡΑΓΩΝΟ επιστρέφει στην προεπιλογή."
+
+#: pe/ui/locations.cpp
+msgid "The folder that holds prod.keys. Until you choose one, it is keys in the game files folder."
+msgstr "Ο φάκελος που περιέχει το prod.keys. Μέχρι να επιλέξετε, είναι το keys στον φάκελο αρχείων παιχνιδιών."
+
+#: pe/ui/locations.cpp
+msgid "The folder that holds the firmware NCA files. Until you choose one, it is firmware in the game files folder."
+msgstr "Ο φάκελος που περιέχει τα αρχεία NCA του firmware. Μέχρι να επιλέξετε, είναι το firmware στον φάκελο αρχείων παιχνιδιών."
+
 #: pe/ui/settings.cpp
-msgid "The folder that holds your keys, firmware and games."
-msgstr "Ο φάκελος με τα κλειδιά, το firmware και τα παιχνίδια σας."
+msgid "The folder that holds your keys, firmware and games, and more places for games."
+msgstr "Ο φάκελος με τα keys, το firmware και τα παιχνίδια σας, και περισσότερα μέρη για παιχνίδια."
 
 #. Why a game stopped. 'Settings, Video' is the menu path; 'the game's own settings' is the Game settings dialog of the Library.
 #: eden_services.cpp
@@ -1236,17 +1473,41 @@ msgstr "Το παιχνίδι εξάντλησε τη μνήμη γραφικώ�
 msgid "The language games use when they offer it."
 msgstr "Η γλώσσα που χρησιμοποιούν τα παιχνίδια όταν τη διαθέτουν."
 
+#: pe/ui/browse.cpp
+msgid "The list is full. Remove a folder first."
+msgstr "Η λίστα είναι γεμάτη. Αφαιρέστε πρώτα έναν φάκελο."
+
 #: pe/ui/profiles.cpp
 msgid "The profile that is playing stays. Choose another one first."
 msgstr "Το προφίλ που παίζει παραμένει. Διάλεξε πρώτα άλλο."
 
-#: pe/ui/browse.cpp
+#: pe/ui/update.cpp
+msgid "The update could not finish"
+msgstr "Η ενημέρωση δεν ολοκληρώθηκε"
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "THIS FOLDER"
 msgstr "ΑΥΤΟΣ Ο ΦΑΚΕΛΟΣ"
 
 #: pe/ui/browse.cpp
 msgid "This folder cannot be opened."
 msgstr "Αυτός ο φάκελος δεν μπορεί να ανοίξει."
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "This folder cannot be read"
+msgstr "Αυτός ο φάκελος δεν μπορεί να διαβαστεί"
+
+#: pe/ui/browse.cpp
+msgid "This folder has no firmware NCA files."
+msgstr "Αυτός ο φάκελος δεν έχει αρχεία NCA του firmware."
+
+#: pe/ui/browse.cpp
+msgid "This folder is in the list already."
+msgstr "Αυτός ο φάκελος είναι ήδη στη λίστα."
+
+#: pe/ui/browse.cpp
+msgid "This folder needs a roms folder."
+msgstr "Αυτός ο φάκελος χρειάζεται έναν φάκελο roms."
 
 #. The game has a button mapping of its own.
 #: pe/ui/game_options.cpp
@@ -1260,6 +1521,14 @@ msgstr "Αυτό το παιχνίδι δεν έχει ακόμη αποθήκε
 #: pe/ui/library.cpp
 msgid "This game's settings cannot be saved (no title ID)."
 msgstr "Οι ρυθμίσεις αυτού του παιχνιδιού δεν μπορούν να αποθηκευτούν (δεν υπάρχει αναγνωριστικό τίτλου)."
+
+#: pe/ui/locations.cpp
+msgid "This is the default folder already."
+msgstr "Αυτός είναι ήδη ο προεπιλεγμένος φάκελος."
+
+#: pe/ui/browse.cpp
+msgid "This is the game files folder already."
+msgstr "Αυτός είναι ήδη ο φάκελος αρχείων παιχνιδιών."
 
 #. ryujinx/, save-import/ and roms/ are folder names (unchanged); {0} is the game's ID.
 #: eden_services.cpp
@@ -1276,6 +1545,10 @@ msgstr "Επιφάνεια αφής"
 msgid "Triangle"
 msgstr "Τρίγωνο"
 
+#: pe/ui/update.cpp
+msgid "Try again"
+msgstr "Δοκιμή ξανά"
+
 #. Button hint: switch the highlighted mod on or off.
 #: pe/ui/library.cpp
 msgid "Turn on or off"
@@ -1285,22 +1558,36 @@ msgstr "Εναλλαγή"
 msgid "Unavailable"
 msgstr "Μη διαθέσιμο"
 
+#. Update dialog headline while the downloaded release is extracted.
+#: pe/ui/update.cpp
+msgid "Unpacking"
+msgstr "Αποσυμπίεση"
+
 #. Short tag on the 'Parent folder' row.
 #: pe/ui/browse.cpp
 msgid "UP"
 msgstr "ΠΑΝΩ"
 
 #. Notification title: a newer release of this app is listed (not a game update).
-#: pe/ui/launcher.cpp
+#: pe/ui/launcher.cpp, pe/ui/update.cpp
 msgid "Update available"
 msgstr "Διαθέσιμη ενημέρωση"
+
+#. Button: download and install the newer release of this app now.
+#: pe/ui/update.cpp
+msgid "Update now"
+msgstr "Ενημέρωση τώρα"
+
+#: pe/ui/update.cpp
+msgid "Update ready"
+msgstr "Η ενημέρωση είναι έτοιμη"
 
 #. A game update; {0} is its version, for example 1.2.0.
 #: eden_services.cpp, host/fake_services.cpp
 msgid "Update {0}"
 msgstr "Ενημέρωση {0}"
 
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "UPDATES, DLC"
 msgstr "ΕΝΗΜΕΡΩΣΕΙΣ, DLC"
 
@@ -1324,10 +1611,20 @@ msgstr "Χρησιμοποιήστε εξαγμένα αρχεία NCA του fi
 msgid "Use this folder"
 msgstr "Χρήση αυτού του φακέλου"
 
+#. {0} is the app's new version number, for example 1.000.060.
+#: pe/ui/update.cpp
+msgid "Version {0}"
+msgstr "Έκδοση {0}"
+
 #. {0}: the newer release's number, for example 1.000.050; homebrew.page is a site's name and stays as it is.
 #: pe/ui/launcher.cpp
 msgid "Version {0} is on homebrew.page"
 msgstr "Η έκδοση {0} βρίσκεται στο homebrew.page"
+
+#. Update dialog: a newer release of this app; {0} is its number, for example 1.000.060.
+#: pe/ui/update.cpp
+msgid "Version {0} is ready to install."
+msgstr "Η έκδοση {0} είναι έτοιμη για εγκατάσταση."
 
 #: pe/ui/game_options.cpp, pe/ui/settings.cpp
 msgid "Vibration"
@@ -1366,6 +1663,10 @@ msgstr "ΟΛΑ ΤΑ ΠΑΙΧΝΙΔΙΑ"
 msgid "Vulkan (recommended)"
 msgstr "Vulkan (συνιστάται)"
 
+#: pe/ui/locations.cpp
+msgid "Where exported saves are written. Until you choose one, it is save-export in the game files folder."
+msgstr "Πού γράφονται οι εξαγόμενες αποθηκεύσεις. Μέχρι να επιλέξετε, είναι το save-export στον φάκελο αρχείων παιχνιδιών."
+
 #: pe/ui/settings.cpp
 msgid "Who is playing. Each profile keeps its own save data and settings."
 msgstr "Ποιος παίζει. Κάθε προφίλ έχει δικά του αποθηκευμένα δεδομένα και ρυθμίσεις."
@@ -1373,6 +1674,11 @@ msgstr "Ποιος παίζει. Κάθε προφίλ έχει δικά του 
 #: pe/ui/library.cpp
 msgid "Your games"
 msgstr "Τα παιχνίδια σας"
+
+#. Update dialog: installing the new app version keeps the player's files.
+#: pe/ui/update.cpp
+msgid "Your games, saves and settings are kept."
+msgstr "Τα παιχνίδια, οι αποθηκεύσεις και οι ρυθμίσεις σας διατηρούνται."
 
 #. Headline when no game has been played yet.
 #: pe/ui/home.cpp
@@ -1389,10 +1695,26 @@ msgstr "{0} αλλαγές"
 msgid "{0} DLC"
 msgstr "{0} DLC"
 
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "{0} file"
+msgstr "{0} αρχείο"
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "{0} files"
+msgstr "{0} αρχεία"
+
 #. Exactly one game. In a language with more than two plural forms, word it so that it reads well with any number (Games: {0}).
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "{0} game"
 msgstr "Παιχνίδια: {0}"
+
+#: pe/ui/locations.cpp
+msgid "{0} game folder"
+msgstr "{0} φάκελος παιχνιδιών"
+
+#: pe/ui/locations.cpp
+msgid "{0} game folders"
+msgstr "{0} φάκελοι παιχνιδιών"
 
 #. Exactly one game. See '{0} game'.
 #: eden_services.cpp
@@ -1400,7 +1722,7 @@ msgid "{0} game installed"
 msgstr "Εγκατεστημένα παιχνίδια: {0}"
 
 #. Any number of games other than one (also 0). See '{0} game'.
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "{0} games"
 msgstr "Παιχνίδια: {0}"
 
@@ -1414,6 +1736,10 @@ msgstr "Εγκατεστημένα παιχνίδια: {0}"
 msgid "{0} Hz"
 msgstr "{0} Hz"
 
+#: pe/ui/library.cpp
+msgid "{0} is in more than one place. Choose which one starts."
+msgstr "Το {0} βρίσκεται σε περισσότερα από ένα μέρη. Επιλέξτε ποιο θα ξεκινήσει."
+
 #. Exactly one mod, in the list of what a game comes with (Update 1.2.0, 2 DLC, 1 mod). See '{0} game'.
 #: pe/ui/library.cpp
 msgid "{0} mod"
@@ -1425,12 +1751,12 @@ msgid "{0} mods"
 msgstr "Mods: {0}"
 
 #. Exactly one file. See '{0} game'.
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "{0} NCA file"
 msgstr "Αρχεία NCA: {0}"
 
 #. Any number of files other than one. See '{0} game'.
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "{0} NCA files"
 msgstr "Αρχεία NCA: {0}"
 
@@ -1455,7 +1781,7 @@ msgid "{0} of {1} on"
 msgstr "{0} από {1} ενεργά"
 
 #. A percentage (a volume): write it as the language does, for example with a space before the sign.
-#: pe/ui/game_options.cpp, pe/ui/settings.cpp
+#: pe/ui/game_options.cpp, pe/ui/settings.cpp, pe/ui/update.cpp
 msgid "{0}%"
 msgstr "{0}%"
 

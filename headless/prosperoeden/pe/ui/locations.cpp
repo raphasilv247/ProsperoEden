@@ -402,13 +402,13 @@ void Launcher::draw_locations(Canvas &c)
         heading = focus.index < static_cast<int>(library_folders_.size()) ?
                       library_folders_[static_cast<std::size_t>(focus.index)] :
                       std::string{};
-        about = tr("Only roms and updates are read from this folder. Square twice takes it off the list.");
+        about = tr("Games, updates and mods are read from this folder. Square twice takes it off the list.");
         break;
     case LocationRow::Kind::add:
         label = tr("GAME FOLDERS");
         heading = tr("Add game folder");
-        about = tr("Add another place for games, such as a USB drive. It only needs roms and updates folders: "
-                   "keys and firmware stay with the game files folder.");
+        about = tr("Add another place for games, such as a USB drive. It holds roms, updates and mods. "
+                   "Keys and firmware come from the game files folder first, then from here if it has none.");
         break;
     case LocationRow::Kind::advanced:
         label = tr("ADVANCED");

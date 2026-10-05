@@ -12,6 +12,7 @@
 #include "jit_list.h"
 #ifdef PS5_NATIVE
 #include "elevation/elevation.hpp"
+#include "boot_trace.h"
 #include <sys/stat.h>
 #endif
 #ifdef EDEN_DEV_VULKAN
@@ -142,17 +143,26 @@ static void MigrateSandboxData() {
 
 int main(int argc, char** argv) {
     try {
-#if defined(EDEN_DEV_PROFILE) && defined(PS5_NATIVE)
-        Eden::Stall::Start();
-#endif
         std::FILE* report = stdout;
         SCOPE_EXIT { if (report != stdout) std::fclose(report); };
         std::setvbuf(report, nullptr, _IONBF, 0);
 #ifdef PS5_NATIVE
+        Eden::BootTrace::Begin(Eden::kAppVersion, __DATE__ " " __TIME__);
+        Eden::BootTrace::Line("requesting filesystem access");
         // Filesystem access beyond the sandbox, first: every path below depends on it
-        // (assets_dir.h). Requested once, still single-threaded. Without it the app keeps its
-        // sandbox paths.
+        // (assets_dir.h). A resident upstream Lapy service gets the first opportunity; otherwise
+        // the packaged exact-title upstream helper is sent to the local elfldr. ProsperoEden
+        // contains no locally implemented kernel mutation code. If neither path works, the app
+        // keeps its sandbox paths.
         Eden::FilesystemAccessStatus() = static_cast<int>(elevation::request(elevation::Capability::filesystem));
+        Eden::BootTrace::Line("filesystem access returned status=%d, uid %d/%d gid %d/%d", Eden::FilesystemAccessStatus(),
+                              static_cast<int>(getuid()), static_cast<int>(geteuid()), static_cast<int>(getgid()),
+                              static_cast<int>(getegid()));
+#if defined(EDEN_DEV_PROFILE)
+        // Upstream Lapy deliberately accepts only a single-threaded target. Keep every
+        // development worker behind the completed elevation exchange.
+        Eden::Stall::Start();
+#endif
         // Elevation leaves the effective group (1) apart from the real one (0), and Mesa turns
         // RADV's disk cache off for a process whose real and effective ids differ, so no
         // compiled shader was ever kept between sessions. Match them; the effective user is
@@ -191,6 +201,13 @@ int main(int argc, char** argv) {
         if (!stderr_pipe.Attach(stderr) || !stdout_pipe.Attach(stdout))
             Eden::Report("logs", "Asynchronous log writing unavailable; writing directly");
         Eden::Crash::Install(Eden::LogsDir(), Eden::kAppVersion, last_crash.restarted);
+        Eden::BootTrace::Ready(Eden::LogsDir(), Eden::FilesystemAccess());
+        Eden::BootTrace::Line("logs and crash handler ready (%s)", Eden::LogsDir().c_str());
+        for (const char* folder : {"/app0", Eden::kMountedAppDir, Eden::kInstallDir, "/mnt/sandbox/PPSA99008_000/app0"})
+            Eden::BootTrace::Line("app folder candidate %s: eboot %s, font %s", folder,
+                                  Eden::FileExists(std::string{folder} + "/eboot.bin") ? "yes" : "no",
+                                  Eden::FileExists(std::string{folder} + "/ui/fonts/montserrat-medium.pefont") ? "yes" : "no");
+        Eden::BootTrace::Line("app folder: %s", Eden::AppDir().c_str());
         std::set_new_handler([] {
             ps5_opengl_heap_snapshot("allocation_failure", 0);
             std::fflush(stdout);
@@ -215,6 +232,7 @@ int main(int argc, char** argv) {
         {
             // The ids too: Mesa's disk cache turns itself off when the effective and real ids differ.
             const std::string access = "status=" + std::to_string(Eden::FilesystemAccessStatus()) +
+                " elevation=" + elevation::path() +
                 " app=" + Eden::AppDir() + " data=" + Eden::UserDir() + " game_files=" + Eden::AssetsDir() +
                 " uid=" + std::to_string(getuid()) + "/" + std::to_string(geteuid()) +
                 " gid=" + std::to_string(getgid()) + "/" + std::to_string(getegid());
@@ -394,11 +412,14 @@ int main(int argc, char** argv) {
         if (selected_game.empty())
             throw std::runtime_error("Development ROM not found");
         } else {
+            Eden::BootTrace::Line("opening the launcher");
             selected_game = SelectProsperoEdenGame(launch_error);
         }
 #else
+        Eden::BootTrace::Line("opening the launcher");
         selected_game = SelectProsperoEdenGame(launch_error);
 #endif
+        Eden::BootTrace::Line("launcher closed: %s", selected_game.empty() ? "no game (quit)" : "a game was chosen");
         }
         if (selected_game.empty()) {
             Eden::Report("exit", "Launcher closed");
@@ -534,10 +555,18 @@ int main(int argc, char** argv) {
         Common::FS::CreateEdenPaths();
 #ifdef PS5_NATIVE
         Common::FS::SetEdenPath(Common::FS::EdenPath::KeysDir, Eden::KeysPath());
-        // Mods come from the game files folder's mods/ (mods.h). Without that folder Eden's own
-        // load folder stays, where nothing is expected.
-        if (const std::string mods = Eden::AssetsPath("mods"); Eden::DirectoryExists(mods))
+        // Mods come from the mods/ of every game folder (mods.h, assets_dir.h): the game's folder
+        // in the one that has it, or the game's mods of several of them linked side by side.
+        // Without any, Eden's own load folder stays, where nothing is expected.
+        if (game_title != 0) {
+            bool linked_all = true;
+            const std::string mods = Eden::ModsLoadDir(game_title, &linked_all);
+            if (!mods.empty()) Common::FS::SetEdenPath(Common::FS::EdenPath::LoadDir, mods);
+            if (!linked_all)
+                Eden::Report("launch", "The mods of the other game folders could not be linked in; only the first folder's are used");
+        } else if (const std::string mods = Eden::AssetsPath("mods"); Eden::DirectoryExists(mods)) {
             Common::FS::SetEdenPath(Common::FS::EdenPath::LoadDir, mods);
+        }
 #endif
 #ifdef PS5_NATIVE
         if (Common::FS::GetEdenPath(Common::FS::EdenPath::EdenDir) != user_dir) return 2;
@@ -835,7 +864,7 @@ int main(int argc, char** argv) {
             // Mods): Eden's patch manager skips the names in this list. With the Library's Mods
             // switch off for the game, every one of them is in it.
             const u64 title = eden_game_title_id(guest);
-            const auto all_mods = Eden::Mods::List(Eden::AssetsPath("mods"), title);
+            const auto all_mods = Eden::ModsOf(title);
             auto mods_off = Eden::LoadDisabledMods(title);
             if (!Eden::LoadModsEnabled(title)) {
                 for (const auto& mod : all_mods)
@@ -917,8 +946,10 @@ int main(int argc, char** argv) {
         std::unique_ptr<Eden::Pad> pad;
         bool return_to_menu = false;
         if (devices || game) {
+            Eden::BootTrace::Line("opening the controllers");
             pad = std::make_unique<Eden::Pad>();
             if (!pad->Open()) throw std::runtime_error("PS5 controller initialization failed");
+            Eden::BootTrace::Line("controllers open");
             Settings::values.audio_output_device_id = "ps5";
             // Settings > Controls, or the game's own (Library > Game settings > Controls).
             const auto controls = Eden::PreferencesFor(game_title);
@@ -941,7 +972,9 @@ int main(int argc, char** argv) {
         }
         {
 #ifdef EDEN_PS5_OPENGL
+            Eden::BootTrace::Line("opening the graphics window (%s)", backend == Eden::GraphicsBackend::Vulkan ? "Vulkan" : "OpenGL");
             Eden::GraphicsWindow window(backend == Eden::GraphicsBackend::Vulkan);
+            Eden::BootTrace::Line("graphics window open");
 #ifdef EDEN_GPU_PROBE
             window.RunGpuProbe();
             passed("GPU_PROBE_COMPLETE");
@@ -1061,6 +1094,7 @@ int main(int argc, char** argv) {
                     }
                 });
 #endif
+                Eden::BootTrace::Line("loading the game");
                 Core::SystemResultStatus loaded;
                 try {
                     loaded = system.Load(window, guest, params);
@@ -1095,6 +1129,7 @@ int main(int argc, char** argv) {
                     for (;;) std::this_thread::sleep_for(std::chrono::seconds(1));
                 }
 #endif
+                Eden::BootTrace::Line("game loaded (status %u)", static_cast<unsigned>(loaded));
                 Eden::Report("loader", "Game loaded; initializing renderer");
 #ifdef EDEN_PS5_OPENGL
                 // Retain the failure, then release CPU readiness and complete normal

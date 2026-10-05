@@ -24,6 +24,7 @@
 #include <fcntl.h>
 #include <filesystem>
 #include <initializer_list>
+#include <map>
 #include <set>
 #include <sys/stat.h>
 #include <unistd.h>
@@ -45,25 +46,60 @@ bool HasRom(const std::string& file) { return !Eden::FindRom(file).empty(); }
 // that has it wins. A folder that cannot be read (a USB drive taken out) is skipped.
 struct RomFile {
     std::string file;
-    std::string path;
+    std::string path;                    // in the first folder that has it
+    std::vector<std::string> directories; // every roms/ that has a file of this name, in order
 };
 std::vector<RomFile> ListRoms() {
     std::vector<RomFile> roms;
-    std::set<std::string> seen;
+    std::map<std::string, std::size_t> seen;
     for (const std::string& directory : Eden::RomDirs()) {
         std::error_code error;
         const auto entries = Eden::ReadNativeDirectory(directory, error);
         if (error) continue;
         for (const auto& entry : entries) {
             const std::string file = entry.path().filename().string();
-            if (!Eden::ValidRomFilename(file) || seen.count(file)) continue;
+            if (!Eden::ValidRomFilename(file)) continue;
             const std::string path = directory + "/" + file;
             if (!IsFile(path)) continue;
-            seen.insert(file);
-            roms.push_back({file, path});
+            const auto known = seen.find(file);
+            if (known != seen.end()) {
+                roms[known->second].directories.push_back(directory);
+                continue;
+            }
+            seen.emplace(file, roms.size());
+            roms.push_back({file, path, {directory}});
         }
     }
     return roms;
+}
+
+// Where each of these roms/ folders is, for the question about a duplicate: the drive's label and
+// the folder that holds it. Two folders on one drive are told apart by the next folder's name.
+std::vector<pe::ui::GamePlace> PlacesOf(const std::vector<std::string>& directories) {
+    std::vector<pe::ui::GamePlace> places;
+    for (const std::string& directory : directories)
+        places.push_back({Eden::PlaceLabel(directory, true), Eden::MountRoot(directory)});
+    for (std::size_t i = 0; i < places.size(); ++i) {
+        const bool clash = std::any_of(places.begin(), places.end(), [&](const pe::ui::GamePlace& other) {
+            return &other != &places[i] && other.label == places[i].label && other.root == places[i].root;
+        });
+        if (!clash) continue;
+        const std::string& directory = directories[i];
+        const std::size_t start = places[i].root.size() + 1;
+        const std::size_t end = directory.find('/', start);
+        if (directory.size() > start)
+            places[i].root = directory.substr(0, end == std::string::npos ? directory.size() : end);
+    }
+    return places;
+}
+
+// The roms/ folders that have a file of this name, in order.
+std::vector<std::string> RomDirectoriesOf(const std::string& file) {
+    std::vector<std::string> directories;
+    if (!Eden::ValidRomFilename(file)) return directories;
+    for (const std::string& directory : Eden::RomDirs())
+        if (IsFile(directory + "/" + file)) directories.push_back(directory);
+    return directories;
 }
 
 // A game's update and DLC: "Update 1.2.0, 2 DLC"; brief leaves the word out ("v1.2.0, 2 DLC") for
@@ -475,6 +511,10 @@ std::vector<pe::ui::Game> EdenServices::games() {
         game.format = format;
         game.size = size;
         game.file = file;
+        // Where it is, after the format. A file of the same name in other game folders makes it
+        // a duplicate: listed once, with every place it is in.
+        game.place = Eden::PlaceLabel(rom.directories.front());
+        if (rom.directories.size() > 1) game.places = PlacesOf(rom.directories);
         // A game whose data cannot be read is still listed, by its file name.
         try {
             char title[513]{};
@@ -515,7 +555,32 @@ std::string EdenServices::game_path(const std::string& file) {
     return found.empty() ? Eden::AssetsPath("roms/" + file) : found;
 }
 
-bool EdenServices::take_update(std::string* version) { return Eden::UpdateNotice::Take(version); }
+bool EdenServices::take_update(pe::ui::UpdateOffer* offer) {
+    Eden::UpdateNotice::Offer found;
+    if (!Eden::UpdateNotice::Take(&found)) return false;
+    offer->version = found.version;
+    offer->size = found.size;
+    offer->installable = found.installable;
+    return true;
+}
+
+bool EdenServices::start_update() { return Eden::UpdateNotice::Begin(); }
+
+pe::ui::UpdateStatus EdenServices::update_status() {
+    const Eden::UpdateNotice::Progress progress = Eden::UpdateNotice::Poll();
+    pe::ui::UpdateStatus status;
+    status.phase = static_cast<pe::ui::UpdatePhase>(progress.phase);  // the same order
+    status.done = progress.done;
+    status.total = progress.total;
+    status.error = progress.error;
+    return status;
+}
+
+void EdenServices::cancel_update() { Eden::UpdateNotice::Cancel(); }
+
+bool EdenServices::apply_update() { return Eden::UpdateNotice::Apply(); }
+
+void EdenServices::finish_update() { Eden::UpdateNotice::Finish(); }
 
 std::vector<pe::ui::Profile> EdenServices::profiles() {
     const auto who = Eden::Profiles::Resolve(user_);
@@ -588,6 +653,16 @@ bool EdenServices::remove_profile(int index) {
 }
 
 bool EdenServices::game_exists(const std::string& file) { return HasRom(file); }
+
+std::vector<pe::ui::GamePlace> EdenServices::game_places(const std::string& file) {
+    return PlacesOf(RomDirectoriesOf(file));
+}
+
+std::string EdenServices::game_path_in(const std::string& file, int place) {
+    const std::vector<std::string> directories = RomDirectoriesOf(file);
+    if (place < 0 || place >= static_cast<int>(directories.size())) return game_path(file);
+    return directories[static_cast<std::size_t>(place)] + "/" + file;
+}
 
 bool EdenServices::docked(std::uint64_t title_id) { return Eden::LoadGameDocked(title_id); }
 
@@ -863,13 +938,13 @@ bool EdenServices::save_import(std::uint64_t, std::string*) { return false; }
 bool EdenServices::save_export(std::uint64_t, std::string*) { return false; }
 #endif
 
-// Mods (headless/mods.h): what the game files folder's mods/<title ID>/ holds for a game, which
+// Mods (headless/mods.h): what the mods/<title ID>/ of every game folder holds for a game, which
 // of them are switched off and which cheats are chosen (settings_store.h).
 std::vector<pe::ui::Mod> EdenServices::mods(std::uint64_t title_id) {
     std::vector<pe::ui::Mod> result;
     const auto off = Eden::LoadDisabledMods(title_id);
     const auto chosen = Eden::LoadChosenCheats(title_id);
-    for (const Eden::Mods::Mod& mod : Eden::Mods::List(Eden::AssetsPath("mods"), title_id)) {
+    for (const Eden::Mods::Mod& mod : Eden::ModsOf(title_id)) {
         std::string kind;
         const auto add = [&kind](const char* text) {
             if (!kind.empty()) kind += ", ";
@@ -889,7 +964,7 @@ std::vector<pe::ui::Mod> EdenServices::mods(std::uint64_t title_id) {
 bool EdenServices::set_cheat_enabled(std::uint64_t title_id, const std::string& name, const std::string& cheat,
                                      bool enabled) {
     bool saved = false;
-    for (const Eden::Mods::Mod& mod : Eden::Mods::List(Eden::AssetsPath("mods"), title_id))
+    for (const Eden::Mods::Mod& mod : Eden::ModsOf(title_id))
         if (mod.name == name)
             saved = Eden::SaveChosenCheats(
                 title_id, Eden::Mods::ChooseCheat(mod, cheat, enabled, Eden::LoadChosenCheats(title_id)));
@@ -916,8 +991,10 @@ std::string EdenServices::mods_folder(std::uint64_t title_id) {
 }
 
 bool EdenServices::make_mods_folder(std::uint64_t title_id) {
+    // The game's folder may already be in the mods/ of any game folder; a new one is made in the
+    // game files folder's.
+    if (!Eden::Mods::RootsWith(Eden::ModsDirs(), title_id).empty()) return true;
     const std::string root = Eden::AssetsPath("mods");
-    if (!Eden::Mods::TitleFolder(root, title_id).empty()) return true;
     (void)mkdir(root.c_str(), 0777);
     return mkdir(Eden::Mods::TitleFolderToCreate(root, title_id).c_str(), 0777) == 0;
 }

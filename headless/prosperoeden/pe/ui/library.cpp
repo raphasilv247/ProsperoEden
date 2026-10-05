@@ -11,6 +11,7 @@
 #include <cstdio>
 #include <exception>
 #include <string>
+#include <utility>
 
 namespace pe::ui
 {
@@ -416,10 +417,15 @@ void Launcher::draw_library(Canvas &c)
             const Rect r = row_rect(row);
             list.push_opacity(library_.row_alpha(row, kRowHeight));
             cover(c, game.cover, {r.x + 12.0f, r.y + 11.0f, 56.0f, 56.0f}, 8.0f);
+            // The format, then where the game is ("NSP | USB"). A game in more than one place says
+            // so, in the colour of warnings; its name gives way to the longer line.
+            const std::string meta = format_text(game);
+            const float meta_room = std::min(text_width(c, meta, theme::kSmall), 250.0f);
             text_fit(c, game.name, r.x + 86.0f, baseline(r.y, kRowHeight, theme::kText24),
-                     theme::kText24, Color::rgb(0xf3f5e9), 560.0f);
-            text(c, game.format, r.x + 730.0f, baseline(r.y, kRowHeight, theme::kSmall),
-                 theme::kSmall, theme::kMeta, Align::right);
+                     theme::kText24, Color::rgb(0xf3f5e9), std::min(560.0f, 620.0f - meta_room));
+            text_shrink(c, meta, r.x + 730.0f, baseline(r.y, kRowHeight, theme::kSmall),
+                        theme::kSmall, game.places.size() > 1 ? theme::kWarning : theme::kMeta, 250.0f,
+                        Align::right);
             list.pop_opacity();
         }
         list.pop_clip();
@@ -453,7 +459,8 @@ void Launcher::draw_library(Canvas &c)
         Color color;
     };
     Field fields[] = {
-        {tr("FORMAT"), game != nullptr ? game->format : "-", theme::kValue},
+        {tr("FORMAT"), game != nullptr ? format_text(*game) : "-",
+         game != nullptr && game->places.size() > 1 ? theme::kWarning : theme::kValue},
         {tr("SIZE"), game != nullptr ? game->size : "-", theme::kValue},
         {tr("ADD-ONS"),
          game != nullptr ? addons_line(game->addons, game->mods, game->mods_on) : "-",
@@ -478,6 +485,9 @@ void Launcher::draw_library(Canvas &c)
     if (game != nullptr && !game->language_note.empty())
         notice(c, game->language_note, 1776.0f, baseline(544.0f, 28.0f, 18.0f), 18.0f,
                theme::kWarning, 440.0f, true, Align::right);
+    else if (game != nullptr && game->places.size() > 1)
+        notice(c, tr("In more than one place. You choose which one starts."), 1776.0f,
+               baseline(544.0f, 28.0f, 18.0f), 18.0f, theme::kWarning, 440.0f, true, Align::right);
     text(c, tr("FILE"), 1336.0f, baseline(574.0f, 30.0f, theme::kSmall), theme::kSmall, theme::kLabel);
     text_block(c, game != nullptr ? game->file : "-", 1336.0f,
                baseline(606.0f, 30.0f, theme::kSmall), theme::kSmall, 30.0f, theme::kValue, 440.0f,
@@ -952,6 +962,121 @@ void Launcher::draw_mods(Canvas &c, float open)
                                           {Pad::circle, TR("Back")}};
         draw_hints(c, kHints, 3, 592.0f, kDialogHints, theme::kCopy, 736.0f);
     }
+    list.pop_transform();
+    list.pop_opacity();
+}
+
+std::string Launcher::format_text(const Game &game)
+{
+    if (game.place.empty())
+        return game.format;
+    if (game.places.size() < 2)
+        return game.format + " | " + game.place;
+    // A duplicate: every place that has it.
+    std::string joined;
+    for (const GamePlace &place : game.places)
+    {
+        if (!joined.empty())
+            joined += " + ";
+        joined += place.label;
+    }
+    return game.format + " | " + joined;
+}
+
+void Launcher::open_place(const std::string &file, const std::string &title, const std::string &cover,
+                          std::vector<GamePlace> places)
+{
+    place_file_ = file;
+    place_title_ = title;
+    place_cover_ = cover;
+    place_choices_ = std::move(places);
+    place_rows_.visible = kDialogRowsShown;
+    place_rows_.pitch = kDialogRowPitch;
+    place_rows_.reset(static_cast<int>(place_choices_.size()), 0);
+    modal_ = modal_shown_ = Modal::place;
+    message_.clear();
+    cue(Cue::modal_open);
+}
+
+void Launcher::press_place(Key key)
+{
+    const int count = static_cast<int>(place_choices_.size());
+    switch (key)
+    {
+    case Key::circle:
+        modal_ = Modal::none;
+        message_.clear();
+        cue(Cue::back);
+        return;
+    case Key::up:
+    case Key::down:
+        if (place_rows_.move(key == Key::down ? 1 : -1))
+            cue(Cue::focus);
+        return;
+    case Key::cross:
+    {
+        const int row = std::clamp(place_rows_.selected, 0, std::max(count - 1, 0));
+        // A drive may have been taken out since the question opened.
+        const std::vector<GamePlace> now = services_.game_places(place_file_);
+        modal_ = Modal::none;
+        if (row >= static_cast<int>(now.size()))
+        {
+            read_home();
+            drop_missing_games();
+            say(tr("ROM missing from the game files folder"), true);
+            cue(Cue::error);
+            return;
+        }
+        start_game(services_.game_path_in(place_file_, row), place_title_, place_cover_);
+        return;
+    }
+    default:
+        return;
+    }
+}
+
+void Launcher::draw_place(Canvas &c, float open)
+{
+    gfx::DrawList &list = c.list;
+    list.push_opacity(open);
+    list.push_transform(1.0f - 0.03f * (1.0f - open) * motion(), 960.0f, 540.0f, 0.0f,
+                        (1.0f - open) * 26.0f * motion());
+    glass(c, kDialog, 26.0f, theme::kPanel.with_alpha(0.97f), theme::kPanelEdge.with_alpha(0.66f), 1.6f);
+    text_shrink(c, tr("Duplicate game"), 592.0f, baseline(218.0f, 62.0f, theme::kDisplay), theme::kDisplay,
+                theme::kTitle, 736.0f);
+    text_shrink(c, fill(tr("{0} is in more than one place. Choose which one starts."), {place_title_}), 592.0f,
+                baseline(291.0f, 32.0f, theme::kSmall), theme::kSmall, Color::rgb(0xbecbb9), 736.0f);
+
+    list.push_clip({kDialogWindow.x - 24.0f, kDialogWindow.y - 6.0f, kDialogWindow.w + 48.0f,
+                    kDialogWindow.h + 12.0f});
+    const auto row_top = [&](int row)
+    { return kDialogRowsTop + static_cast<float>(row) * kDialogRowPitch - place_rows_.scroll(); };
+    for (int row = place_rows_.first_row(); row <= place_rows_.last_row(); ++row)
+    {
+        list.push_opacity(place_rows_.row_alpha(row, kDialogRowHeight));
+        plate_rest(c, kRowPlate, {592.0f, row_top(row), 736.0f, kDialogRowHeight});
+        list.pop_opacity();
+    }
+    plate_focus(c, kRowPlate,
+                {592.0f, kDialogRowsTop + place_rows_.cursor() - place_rows_.scroll(), 736.0f, kDialogRowHeight},
+                1.0f);
+    for (int row = place_rows_.first_row(); row <= place_rows_.last_row(); ++row)
+    {
+        const GamePlace &place = place_choices_[static_cast<std::size_t>(row)];
+        const float top = row_top(row);
+        list.push_opacity(place_rows_.row_alpha(row, kDialogRowHeight));
+        // Where it is in a word, and the folder that holds that drive: never the whole path.
+        const float taken = text_shrink(c, place.root, 1296.0f, baseline(top, kDialogRowHeight, theme::kSmall),
+                                        theme::kSmall, theme::kMeta, 300.0f, Align::right);
+        text_shrink(c, place.label, 628.0f, baseline(top, kDialogRowHeight, theme::kText24), theme::kText24,
+                    theme::kValue, 668.0f - taken - 28.0f);
+        list.pop_opacity();
+    }
+    list.pop_clip();
+    scrollbar(c, place_rows_, 1340.0f, kDialogWindow.y, kDialogWindow.h);
+
+    static constexpr Hint kHintsRow[] = {{Pad::cross, TR("Select")}, {Pad::circle, TR("Back")}};
+    draw_hints(c, kHintsRow, 2, 592.0f, kDialogHints, theme::kCopy, 736.0f);
     list.pop_transform();
     list.pop_opacity();
 }

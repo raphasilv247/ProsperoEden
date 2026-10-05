@@ -8,8 +8,11 @@
 //  - keys, firmware, save-import and save-export, each on its own (the Advanced rows). Until
 //    one is chosen it is the game files folder's keys/, firmware/, save-import/ or save-export/.
 //    Resolved once per process, like the game files folder.
-//  - more game folders, each with only roms/ and updates/. The game files folder is always the
-//    first of them. They apply at once: the Library reads them again each time it opens.
+//  - more game folders, each with roms/ and updates/, and mods/ (a game's mods may be in any of
+//    them). The game files folder is always the first of them. They apply at once: the Library
+//    reads them again each time it opens.
+// Keys and firmware that were not chosen are the game files folder's; when it holds none, the
+// other game folders are looked at in order (their keys/ and firmware/, or the folder itself).
 #pragma once
 #include <algorithm>
 #include <mutex>
@@ -17,6 +20,8 @@
 #include <string_view>
 #include <vector>
 
+#include "game_place.h"
+#include "mods.h"
 #include "settings_store.h"
 #include "storage_paths.h"
 
@@ -42,9 +47,35 @@ inline std::string AssetsPath(std::string_view child) { return AssetsDir() + "/"
 
 // ---- keys, firmware and saves, each apart from the game files folder when chosen ----
 // Without filesystem access only the app folder's assets/ is readable, so a choice is ignored.
+// Keys and firmware that are not chosen follow the game files folder; when it has none, they are
+// looked for in the other game folders chosen in Settings (see FindInGameFolders below).
+inline bool HasKeys(const std::string& directory) { return FileExists(directory + "/prod.keys"); }
+inline bool HasFirmware(const std::string& directory) {
+    for (const auto& entry : Mods::ListFolder(directory))
+        if (Mods::Lower(entry.path().extension().string()) == ".nca") return true;
+    return false;
+}
+inline std::vector<std::string> LibraryDirs();
+// The first other game folder that holds what is looked for: its keys/ or firmware/ folder, or the
+// game folder itself (prod.keys or the firmware NCAs put directly in it). Empty when none does.
+template <class Has>
+inline std::string FindInGameFolders(std::string_view child, Has has) {
+    for (const std::string& directory : LibraryDirs()) {
+        const std::string inside = directory + "/" + std::string(child);
+        if (has(inside)) return inside;
+        if (has(directory)) return directory;
+    }
+    return {};
+}
 inline std::string ResolveStoragePath(StoragePath which, std::string_view child) {
-    if (FilesystemAccess())
+    if (FilesystemAccess()) {
         if (std::string saved = LoadSavedStoragePath(which); !saved.empty()) return saved;
+        const std::string own = AssetsPath(child);
+        if (which == StoragePath::keys && !HasKeys(own))
+            if (std::string other = FindInGameFolders(child, HasKeys); !other.empty()) return other;
+        if (which == StoragePath::firmware && !HasFirmware(own))
+            if (std::string other = FindInGameFolders(child, HasFirmware); !other.empty()) return other;
+    }
     return AssetsPath(child);
 }
 // The folder that holds prod.keys (and title.keys).
@@ -108,6 +139,20 @@ inline std::vector<std::string> UpdateDirs() {
     for (const std::string& directory : LibraryDirs()) result.push_back(directory + "/updates");
     return result;
 }
+// Every game folder's mods/, the game files folder's first: a game's mods may be in any of them.
+inline std::vector<std::string> ModsDirs() {
+    std::vector<std::string> result;
+    for (const std::string& directory : LibraryDirs()) result.push_back(directory + "/mods");
+    return result;
+}
+// Where the mods of a game found in several of them are linked together for Eden (mods.h).
+inline std::string ModsStagingDir() { return UserDir() + "/mods-merged"; }
+// The folder Eden reads this game's mods from; empty when no game folder has any for it.
+inline std::string ModsLoadDir(uint64_t title_id, bool* linked_all = nullptr) {
+    return Mods::LoadRootFor(ModsDirs(), ModsStagingDir(), title_id, linked_all);
+}
+// The game's mods, from every game folder.
+inline std::vector<Mods::Mod> ModsOf(uint64_t title_id) { return Mods::ListIn(ModsDirs(), title_id); }
 // The full path of a game file in the first game folder that has it; empty when none does.
 inline std::string FindRom(std::string_view filename) {
     if (!ValidRomFilename(filename)) return {};

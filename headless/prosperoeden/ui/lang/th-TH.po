@@ -43,6 +43,16 @@ msgstr "เกี่ยวกับ"
 msgid "About ProsperoEden"
 msgstr "เกี่ยวกับ ProsperoEden"
 
+#. Time left while downloading; {0} is a number of minutes. Keep it short.
+#: pe/ui/update.cpp
+msgid "About {0} min left"
+msgstr "เหลืออีกประมาณ {0} นาที"
+
+#. Time left while downloading; {0} is a number of seconds. Keep it short.
+#: pe/ui/update.cpp
+msgid "About {0} s left"
+msgstr "เหลืออีกประมาณ {0} วินาที"
+
 #. Label: which folders the app can read.
 #: pe/ui/browse.cpp
 msgid "ACCESS"
@@ -57,9 +67,17 @@ msgstr "การช่วยการเข้าถึง"
 msgid "ACCESSIBILITY"
 msgstr "การช่วยการเข้าถึง"
 
-#: pe/ui/profiles.cpp
+#: pe/ui/locations.cpp, pe/ui/profiles.cpp
 msgid "Add"
 msgstr "เพิ่ม"
+
+#: pe/ui/locations.cpp
+msgid "Add another place for games, such as a USB drive. It holds roms, updates and mods. Keys and firmware come from the game files folder first, then from here if it has none."
+msgstr "เพิ่มที่เก็บเกมอีกแห่ง เช่น ไดรฟ์ USB ซึ่งมี roms, updates และ mods อยู่ ระบบจะใช้ keys และ firmware จากโฟลเดอร์ไฟล์เกมก่อน แล้วค่อยมาที่นี่หากโฟลเดอร์นั้นไม่มี"
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "Add game folder"
+msgstr "เพิ่มโฟลเดอร์เกม"
 
 #. Label: a game's updates, DLC and mods.
 #: pe/ui/library.cpp
@@ -78,6 +96,10 @@ msgstr "เพิ่ม​แล้ว กากบาท​เล่น​ด�
 #: pe/ui/settings.cpp
 msgid "Adjust the essentials without leaving your library behind."
 msgstr "ปรับ​การตั้งค่า​พื้นฐาน​ได้​โดย​ไม่ต้อง​ออกจาก​คลังเกม"
+
+#: pe/ui/locations.cpp
+msgid "ADVANCED"
+msgstr "ขั้นสูง"
 
 #: pe/ui/browse.cpp
 msgid "All credit for the Eden emulator goes to its developers and contributors."
@@ -118,9 +140,13 @@ msgid "Australia"
 msgstr "ออสเตรเลีย"
 
 #. Button hint: go back one screen.
-#: pe/ui/browse.cpp, pe/ui/game_options.cpp, pe/ui/library.cpp, pe/ui/profiles.cpp, pe/ui/settings.cpp
+#: pe/ui/browse.cpp, pe/ui/game_options.cpp, pe/ui/library.cpp, pe/ui/locations.cpp, pe/ui/profiles.cpp, pe/ui/settings.cpp
 msgid "Back"
 msgstr "กลับ"
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "Back to the default folder. Reopen ProsperoEden to use it."
+msgstr "กลับไปใช้โฟลเดอร์เริ่มต้น เปิด ProsperoEden ใหม่เพื่อใช้งาน"
 
 #. An upscaling filter.
 #: settings_store.h
@@ -133,7 +159,7 @@ msgid "Bilinear"
 msgstr "ไบลิเนียร์"
 
 #. Button hint: move through the list.
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "Browse"
 msgstr "เลื่อนดู"
 
@@ -154,14 +180,26 @@ msgstr "การกำหนดปุ่ม"
 msgid "BUTTON MAPPING"
 msgstr "การกำหนดปุ่ม"
 
+#: pe/ui/update.cpp
+msgid "Cancel"
+msgstr "ยกเลิก"
+
+#: pe/ui/update.cpp
+msgid "Cancelling"
+msgstr "กำลังยกเลิก"
+
 #: eden_services.cpp
 msgid "Cannot read firmware/ in {0}. Install extracted firmware NCAs."
 msgstr "อ่าน firmware/ ​ใน {0} ​ไม่ได้ ติดตั้ง​ไฟล์ NCA ​ของ​เฟิร์มแวร์​ที่​แตกไฟล์​แล้ว"
 
 #. Button hint: change the highlighted setting.
-#: pe/ui/game_options.cpp, pe/ui/library.cpp, pe/ui/settings.cpp
+#: pe/ui/game_options.cpp, pe/ui/library.cpp, pe/ui/locations.cpp, pe/ui/settings.cpp
 msgid "Change"
 msgstr "เปลี่ยน"
+
+#: pe/ui/browse.cpp
+msgid "Change game folder"
+msgstr "เปลี่ยนโฟลเดอร์เกม"
 
 #: pe/ui/library.cpp
 msgid "Change mode. Saved per game."
@@ -190,26 +228,58 @@ msgid "Chinese (Traditional)"
 msgstr "จีน (ตัวเต็ม)"
 
 #. Button hint: choose the highlighted language.
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "Choose"
 msgstr "เลือก"
+
+#: pe/ui/browse.cpp
+msgid "Choose a folder with roms and updates inside"
+msgstr "เลือกโฟลเดอร์ที่มี roms และ updates"
 
 #: pe/ui/home.cpp
 msgid "Choose a game from your library."
 msgstr "เลือกเกม​จาก​คลังเกม​ของคุณ"
 
 #: pe/ui/browse.cpp
+msgid "Choose the folder that holds prod.keys"
+msgstr "เลือกโฟลเดอร์ที่มี prod.keys"
+
+#: pe/ui/browse.cpp
+msgid "Choose the folder that holds the firmware NCA files"
+msgstr "เลือกโฟลเดอร์ที่มีไฟล์ NCA ของเฟิร์มแวร์"
+
+#: pe/ui/browse.cpp
 msgid "Choose the folder that holds your keys, firmware and games"
 msgstr "เลือก​โฟลเดอร์​ที่​เก็บ​คีย์ เฟิร์มแวร์ ​และ​เกม​ของคุณ"
+
+#: pe/ui/browse.cpp
+msgid "Choose the folder with one folder per game ID"
+msgstr "เลือกโฟลเดอร์ที่มีโฟลเดอร์แยกตามไอดีเกม"
+
+#: pe/ui/locations.cpp
+msgid "Choose the keys, firmware, save import and save export folders on their own. Until you do, they are inside the game files folder."
+msgstr "เลือกโฟลเดอร์ keys, firmware, นำเข้าเซฟ และส่งออกเซฟแยกกันได้ จนกว่าจะเลือก โฟลเดอร์เหล่านี้อยู่ในโฟลเดอร์ไฟล์เกม"
 
 #: pe/ui/browse.cpp
 msgid "Choose the language games use"
 msgstr "เลือก​ภาษา​ที่​เกม​ใช้"
 
+#: pe/ui/browse.cpp
+msgid "Choose where exported saves are written"
+msgstr "เลือกที่เขียนเซฟที่ส่งออก"
+
+#: pe/ui/locations.cpp
+msgid "Choose where your games, keys, firmware and saves are"
+msgstr "เลือกที่เก็บเกม keys, firmware และเซฟของคุณ"
+
 #. A DualSense button.
 #: pe/ui/game_options.cpp
 msgid "Circle"
 msgstr "วงกลม"
+
+#: pe/ui/update.cpp
+msgid "Close"
+msgstr "ปิด"
 
 #. A switch: the program code a game used in earlier sessions is prepared (compiled) while the game starts. Keep it short.
 #: pe/ui/game_options.cpp, pe/ui/settings.cpp
@@ -260,7 +330,7 @@ msgstr "บันทึก​โหมดเครื่อง​ไม่ได
 msgid "Could not save settings. Please try again."
 msgstr "บันทึก​การตั้งค่า​ไม่ได้ โปรด​ลอง​อีกครั้ง"
 
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "Could not save the folder. Please try again."
 msgstr "บันทึก​โฟลเดอร์​ไม่ได้ โปรด​ลอง​อีกครั้ง"
 
@@ -292,16 +362,24 @@ msgstr "เครดิตและการเตรียมระบบ"
 msgid "Cross"
 msgstr "กากบาท"
 
+#: pe/ui/locations.cpp
+msgid "CUSTOM"
+msgstr "กำหนดเอง"
+
+#: pe/ui/locations.cpp
+msgid "DEFAULT"
+msgstr "ค่าเริ่มต้น"
+
 #. A per-game setting that follows the general setting; {0} is its value.
 #: pe/ui/game_options.cpp
 msgid "Default ({0})"
 msgstr "ค่าเริ่มต้น ({0})"
 
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "Default folder"
 msgstr "โฟลเดอร์เริ่มต้น"
 
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "Default folder saved. Reopen ProsperoEden to use it."
 msgstr "บันทึก​โฟลเดอร์​เริ่มต้น​แล้ว เปิด ProsperoEden ​ใหม่​เพื่อ​ใช้งาน"
 
@@ -339,6 +417,15 @@ msgstr "การวินิจฉัย"
 msgid "Docked"
 msgstr "โหมด TV"
 
+#. {0} is a size such as 36.4 MB.
+#: pe/ui/update.cpp
+msgid "Download size: {0}"
+msgstr "ขนาดดาวน์โหลด: {0}"
+
+#: pe/ui/update.cpp
+msgid "Downloading"
+msgstr "กำลังดาวน์โหลด"
+
 #: pe/ui/settings.cpp
 msgid "Draws an effect once its shader is ready instead of pausing. Things can be missing for a moment."
 msgstr "วาดเอฟเฟกต์เมื่อเชเดอร์พร้อมแทนการหยุดเกม บางอย่างอาจหายไปชั่วครู่"
@@ -346,6 +433,10 @@ msgstr "วาดเอฟเฟกต์เมื่อเชเดอร์พ
 #: pe/ui/settings.cpp
 msgid "Draws the menu's small text larger."
 msgstr "แสดง​ตัวอักษร​ขนาดเล็ก​ของ​เมนู​ให้​ใหญ่ขึ้น"
+
+#: pe/ui/library.cpp
+msgid "Duplicate game"
+msgstr "เกมซ้ำ"
 
 #: settings_store.h
 msgid "Dutch"
@@ -388,6 +479,10 @@ msgstr "ส่งออกสำเนา"
 #: eden_services.cpp
 msgid "Export failed. Check that the game files folder can be written."
 msgstr "ส่งออก​ไม่สำเร็จ ตรวจสอบ​ว่า​เขียน​ลง​โฟลเดอร์​ไฟล์เกม​ได้"
+
+#: pe/ui/browse.cpp
+msgid "Exported saves are written here. TRIANGLE uses the folder shown; SQUARE goes back to the default."
+msgstr "เซฟที่ส่งออกจะถูกเขียนที่นี่ สามเหลี่ยมใช้โฟลเดอร์ที่แสดง สี่เหลี่ยมกลับไปใช้ค่าเริ่มต้น"
 
 #. {0} is a folder.
 #: eden_services.cpp, host/fake_services.hpp
@@ -438,9 +533,13 @@ msgstr "ไฟล์"
 msgid "Fine-tune your experience"
 msgstr "ปรับแต่งประสบการณ์ของคุณ"
 
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "FIRMWARE"
 msgstr "เฟิร์มแวร์"
+
+#: pe/ui/browse.cpp
+msgid "Firmware folder"
+msgstr "โฟลเดอร์ firmware"
 
 #: eden_services.cpp
 msgid "Firmware NCA validation failed (code {0}). Check that firmware and prod.keys are compatible."
@@ -454,7 +553,7 @@ msgstr "เฟิร์มแวร์พร้อม"
 msgid "Firmware SystemVersion data is missing or unreadable. Install a complete firmware dump."
 msgstr "ข้อมูล SystemVersion ​ของ​เฟิร์มแวร์​หายไป​หรือ​อ่าน​ไม่ได้ ติดตั้ง​เฟิร์มแวร์​ฉบับ​สมบูรณ์"
 
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "FOLDERS"
 msgstr "โฟลเดอร์"
 
@@ -510,13 +609,25 @@ msgstr "รายละเอียดเกม"
 msgid "GAME DETAILS"
 msgstr "รายละเอียดเกม"
 
-#: pe/ui/browse.cpp, pe/ui/settings.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp, pe/ui/settings.cpp
 msgid "Game files"
 msgstr "ไฟล์เกม"
 
 #: pe/ui/settings.cpp
 msgid "GAME FILES"
 msgstr "ไฟล์เกม"
+
+#: pe/ui/locations.cpp
+msgid "GAME FILES FOLDER"
+msgstr "โฟลเดอร์ไฟล์เกม"
+
+#: pe/ui/locations.cpp
+msgid "GAME FOLDER"
+msgstr "โฟลเดอร์เกม"
+
+#: pe/ui/locations.cpp, pe/ui/settings.cpp
+msgid "GAME FOLDERS"
+msgstr "โฟลเดอร์เกม"
 
 #: pe/ui/library.cpp
 msgid "Game settings"
@@ -534,7 +645,7 @@ msgstr "ระดับเสียงเกม"
 msgid "Game volume, and the sounds of this menu."
 msgstr "ระดับเสียง​ของ​เกม​และ​เสียง​ของ​เมนู​นี้"
 
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "GAMES"
 msgstr "เกม"
 
@@ -545,6 +656,14 @@ msgstr "เกม​จะ​ใช้​ภาษา​นี้​เมื่
 #: pe/ui/home.cpp
 msgid "Games you launch will appear here."
 msgstr "เกม​ที่​คุณ​เปิด​จะ​แสดง​ที่นี่"
+
+#: pe/ui/browse.cpp
+msgid "Games, updates and mods are read from here. TRIANGLE adds the folder shown."
+msgstr "เกม updates และ mods จะถูกอ่านจากที่นี่ สามเหลี่ยมเพิ่มโฟลเดอร์ที่แสดง"
+
+#: pe/ui/locations.cpp
+msgid "Games, updates and mods are read from this folder. Square twice takes it off the list."
+msgstr "เกม updates และ mods จะถูกอ่านจากโฟลเดอร์นี้ กดสี่เหลี่ยมสองครั้งเพื่อนำออกจากรายการ"
 
 #: settings_store.h
 msgid "German"
@@ -567,6 +686,14 @@ msgstr "เริ่ม​ระบบ​กราฟิก​ไม่สำเ
 msgid "Handheld"
 msgstr "โหมดพกพา"
 
+#: pe/ui/locations.cpp
+msgid "HIDE"
+msgstr "ซ่อน"
+
+#: pe/ui/locations.cpp
+msgid "Hide"
+msgstr "ซ่อน"
+
 #: pe/ui/settings.cpp
 msgid "HIGH CONTRAST"
 msgstr "คอนทราสต์สูง"
@@ -575,6 +702,10 @@ msgstr "คอนทราสต์สูง"
 #: pe/ui/settings.cpp
 msgid "High contrast"
 msgstr "คอนทราสต์สูง"
+
+#: pe/ui/locations.cpp
+msgid "Holds keys, firmware, roms, updates, mods and saves, unless you choose some of them on their own (Advanced)."
+msgstr "มี keys, firmware, roms, updates, mods และเซฟ เว้นแต่คุณเลือกบางอย่างแยกต่างหาก (ขั้นสูง)"
 
 #: pe/ui/settings.cpp
 msgid "How games are drawn and scaled to your TV."
@@ -597,8 +728,12 @@ msgstr "นำเข้าแล้ว"
 msgid "Imported. The save it replaced was backed up."
 msgstr "นำเข้า​แล้ว เซฟ​ที่​ถูก​แทนที่​ได้​สำรอง​ไว้​แล้ว"
 
+#: pe/ui/library.cpp
+msgid "In more than one place. You choose which one starts."
+msgstr "อยู่ในหลายที่ คุณเลือกได้ว่าจะเริ่มอันไหน"
+
 #. Tag on the language or folder that is in use now.
-#: pe/ui/browse.cpp, pe/ui/settings.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp, pe/ui/settings.cpp
 msgid "IN USE"
 msgstr "ใช้อยู่"
 
@@ -624,13 +759,21 @@ msgid "Keeps what a game reads back from the GPU exact. Off is faster, and some 
 msgstr "รักษาความถูกต้องของข้อมูลที่เกมอ่านกลับจาก GPU ปิดแล้วเร็วขึ้น แต่เอฟเฟกต์บางอย่างเสีย"
 
 #. Label: the encryption keys file (prod.keys).
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "KEYS"
 msgstr "คีย์"
 
 #: eden_services.cpp, host/fake_services.cpp
 msgid "Keys and firmware: startup checks passed. Game-specific compatibility is checked at launch."
 msgstr "คีย์​และ​เฟิร์มแวร์: ผ่าน​การตรวจสอบ​ตอน​เริ่ม​แล้ว ความเข้ากันได้​ของ​แต่ละ​เกม​จะ​ตรวจ​ตอน​เปิด​เกม"
+
+#: pe/ui/browse.cpp
+msgid "Keys folder"
+msgstr "โฟลเดอร์ keys"
+
+#: pe/ui/locations.cpp
+msgid "Keys, firmware and saves"
+msgstr "keys, firmware และเซฟ"
 
 #: eden_services.cpp
 msgid "Korea"
@@ -743,7 +886,7 @@ msgid "Muted"
 msgstr "ปิดเสียงอยู่"
 
 #. Button hint: move the highlight.
-#: pe/ui/home.cpp
+#: pe/ui/home.cpp, pe/ui/update.cpp
 msgid "Navigate"
 msgstr "เลื่อน"
 
@@ -761,12 +904,12 @@ msgid "New profile"
 msgstr "โปรไฟล์ใหม่"
 
 #. {0} is the folder used the next time the app starts.
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "Next launch: {0}"
 msgstr "เปิดครั้งถัดไป: {0}"
 
 #. Label: the folder used the next time the app starts.
-#: pe/ui/settings.cpp
+#: pe/ui/locations.cpp, pe/ui/settings.cpp
 msgid "NEXT START"
 msgstr "เปิดครั้งถัดไป"
 
@@ -774,7 +917,7 @@ msgstr "เปิดครั้งถัดไป"
 msgid "No cover art"
 msgstr "ไม่มีภาพปก"
 
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "No firmware folder"
 msgstr "ไม่มีโฟลเดอร์ firmware"
 
@@ -804,9 +947,13 @@ msgstr "ไม่พบไฟล์ ROM"
 msgid "No ROM selected"
 msgstr "ยังไม่ได้เลือก ROM"
 
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "No roms folder"
 msgstr "ไม่มีโฟลเดอร์ roms"
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "No updates folder"
+msgstr "ไม่มีโฟลเดอร์ updates"
 
 #. No add-ons (updates or DLC).
 #: pe/ui/library.cpp
@@ -838,9 +985,13 @@ msgid "OPEN"
 msgstr "เปิด"
 
 #. Button hint: open the highlighted folder.
-#: pe/ui/browse.cpp, pe/ui/game_options.cpp, pe/ui/library.cpp, pe/ui/settings.cpp
+#: pe/ui/browse.cpp, pe/ui/game_options.cpp, pe/ui/library.cpp, pe/ui/locations.cpp, pe/ui/settings.cpp
 msgid "Open"
 msgstr "เปิด"
+
+#: pe/ui/update.cpp
+msgid "Open it again to use version {0}."
+msgstr "เปิดอีกครั้งเพื่อใช้เวอร์ชัน {0}"
 
 #: pe/ui/home.cpp
 msgid "Open library"
@@ -862,7 +1013,7 @@ msgid "Output resolution"
 msgstr "ความละเอียด​เอาต์พุต"
 
 #. Button hint: jump a page of the list (L1 / R1).
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "Page"
 msgstr "หน้า"
 
@@ -921,6 +1072,11 @@ msgstr "ขับเคลื่อนโดย Eden"
 msgid "PREFERENCES"
 msgstr "การตั้งค่าทั่วไป"
 
+#. Update dialog headline while the download starts.
+#: pe/ui/update.cpp
+msgid "Preparing"
+msgstr "กำลังเตรียม"
+
 #. Asked before a save is imported over the one in use.
 #: pe/ui/library.cpp
 msgid "Press again to replace this game's save. The current one is backed up."
@@ -930,11 +1086,15 @@ msgstr "กด​อีกครั้ง​เพื่อ​แทนที่
 msgid "prod.keys could not supply an NCA header key. Replace it with a valid key dump."
 msgstr "prod.keys ​ให้​คีย์​ส่วนหัว NCA ​ไม่ได้ เปลี่ยน​เป็น​ไฟล์​คีย์​ที่​ถูกต้อง"
 
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "prod.keys found"
 msgstr "พบ prod.keys"
 
 #: pe/ui/browse.cpp
+msgid "prod.keys is not in this folder."
+msgstr "ไม่มี prod.keys ในโฟลเดอร์นี้"
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "prod.keys missing"
 msgstr "ไม่มี prod.keys"
 
@@ -950,6 +1110,14 @@ msgstr "โปรไฟล์"
 msgid "PROJECT CREDITS"
 msgstr "เครดิตโครงการ"
 
+#: pe/ui/update.cpp
+msgid "ProsperoEden closes now."
+msgstr "ProsperoEden จะปิดตอนนี้"
+
+#: pe/ui/update.cpp
+msgid "ProsperoEden closes to finish the update."
+msgstr "ProsperoEden จะปิดเพื่อให้การอัปเดตเสร็จสมบูรณ์"
+
 #: pe/ui/browse.cpp
 msgid "ProsperoEden is an unofficial PS5 port brought to you by BlackBearReloaded."
 msgstr "ProsperoEden ​เป็น​พอร์ต PS5 ​อย่าง​ไม่เป็นทางการ​โดย BlackBearReloaded"
@@ -958,6 +1126,10 @@ msgstr "ProsperoEden ​เป็น​พอร์ต PS5 ​อย่าง​
 #: eden_services.cpp, host/fake_services.cpp
 msgid "ProsperoEden stopped because of an error. A report was saved to {0}."
 msgstr "ProsperoEden หยุด​ทำงาน​เนื่องจาก​ข้อผิดพลาด บันทึก​รายงาน​ไว้ที่ {0} แล้ว"
+
+#: pe/ui/update.cpp
+msgid "ProsperoEden was not changed."
+msgstr "ProsperoEden ไม่มีการเปลี่ยนแปลง"
 
 #. Why a game did not start.
 #: eden_services.cpp
@@ -1013,7 +1185,7 @@ msgstr "อัตรา​รีเฟรช"
 msgid "REGION"
 msgstr "ภูมิภาค"
 
-#: pe/ui/profiles.cpp
+#: pe/ui/locations.cpp, pe/ui/profiles.cpp
 msgid "Remove"
 msgstr "เอาออก"
 
@@ -1045,7 +1217,7 @@ msgstr "ความละเอียด"
 msgid "Right stick press"
 msgstr "กดแท่งอนาล็อกขวา"
 
-#: eden_services.cpp, pe/ui/launcher.cpp
+#: eden_services.cpp, pe/ui/launcher.cpp, pe/ui/library.cpp
 msgid "ROM missing from the game files folder"
 msgstr "ไม่มี ROM ในโฟลเดอร์ไฟล์เกม"
 
@@ -1068,10 +1240,26 @@ msgstr "แซนด์บ็อกซ์ (รหัส {0}): เฉพาะโ
 msgid "Save data"
 msgstr "ข้อมูลเซฟ"
 
+#: pe/ui/locations.cpp
+msgid "SAVE EXPORT"
+msgstr "ส่งออกเซฟ"
+
+#: pe/ui/browse.cpp
+msgid "Save export folder"
+msgstr "โฟลเดอร์ส่งออกเซฟ"
+
 #. Short status at the right of the Save data row: a folder with a save to import.
 #: pe/ui/library.cpp
 msgid "Save folder found"
 msgstr "พบโฟลเดอร์เซฟ"
+
+#: pe/ui/locations.cpp
+msgid "SAVE IMPORT"
+msgstr "นำเข้าเซฟ"
+
+#: pe/ui/browse.cpp
+msgid "Save import folder"
+msgstr "โฟลเดอร์นำเข้าเซฟ"
 
 #: pe/ui/game_options.cpp, pe/ui/library.cpp
 msgid "Saved for this game. Applies on next launch."
@@ -1087,11 +1275,23 @@ msgid "Saved. Applies when a game starts."
 msgstr "บันทึก​แล้ว มีผล​เมื่อ​เริ่มเกม"
 
 #: pe/ui/browse.cpp
+msgid "Saved. Its games are in the Library now."
+msgstr "บันทึกแล้ว เกมในโฟลเดอร์นี้อยู่ในคลังเกมแล้ว"
+
+#: pe/ui/browse.cpp
 msgid "Saved. Reopen ProsperoEden to use this folder."
 msgstr "บันทึก​แล้ว เปิด ProsperoEden ​ใหม่​เพื่อ​ใช้​โฟลเดอร์​นี้"
 
+#: pe/ui/browse.cpp
+msgid "Saves to import go here, one folder per game ID. TRIANGLE uses the folder shown; SQUARE goes back to the default."
+msgstr "เซฟที่จะนำเข้าวางที่นี่ โฟลเดอร์ละหนึ่งไอดีเกม สามเหลี่ยมใช้โฟลเดอร์ที่แสดง สี่เหลี่ยมกลับไปใช้ค่าเริ่มต้น"
+
+#: pe/ui/locations.cpp
+msgid "Saves to import, one folder per game ID. Until you choose one, it is save-import in the game files folder."
+msgstr "เซฟที่จะนำเข้า โฟลเดอร์ละหนึ่งไอดีเกม จนกว่าจะเลือก จะใช้ save-import ในโฟลเดอร์ไฟล์เกม"
+
 #. Button hint: choose the highlighted item (not the Select button).
-#: pe/ui/game_options.cpp, pe/ui/home.cpp, pe/ui/library.cpp, pe/ui/settings.cpp
+#: pe/ui/game_options.cpp, pe/ui/home.cpp, pe/ui/library.cpp, pe/ui/settings.cpp, pe/ui/update.cpp
 msgid "Select"
 msgstr "เลือก"
 
@@ -1142,6 +1342,14 @@ msgstr "สถานะ​การเตรียม​ระบบ​และ
 msgid "Setup validation failed. Check that firmware and key files are readable and valid."
 msgstr "ตรวจสอบ​การเตรียม​ระบบ​ไม่ผ่าน ตรวจสอบ​ว่า​ไฟล์​เฟิร์มแวร์​และ​คีย์​อ่าน​ได้​และ​ถูกต้อง"
 
+#: pe/ui/locations.cpp
+msgid "SHOW"
+msgstr "แสดง"
+
+#: pe/ui/locations.cpp
+msgid "Show"
+msgstr "แสดง"
+
 #: pe/ui/settings.cpp
 msgid "Show or hide the FPS overlay"
 msgstr "แสดง​หรือ​ซ่อน​ตัวแสดง FPS"
@@ -1149,6 +1357,11 @@ msgstr "แสดง​หรือ​ซ่อน​ตัวแสดง FPS"
 #: pe/ui/library.cpp
 msgid "SIZE"
 msgstr "ขนาด"
+
+#. Button and hint: not now (the dialog shows again the next time the app opens).
+#: pe/ui/update.cpp
+msgid "Skip"
+msgstr "ข้าม"
 
 #. A switch: fewer checks when a game changes memory the graphics processor uses. CPU stays.
 #: pe/ui/game_options.cpp, pe/ui/settings.cpp
@@ -1180,6 +1393,10 @@ msgstr "สเปน (ลาตินอเมริกา)"
 msgid "Square"
 msgstr "สี่เหลี่ยม"
 
+#: pe/ui/locations.cpp
+msgid "Square again takes {0} off the list. Its games stay where they are."
+msgstr "กดสี่เหลี่ยมอีกครั้งเพื่อนำ {0} ออกจากรายการ เกมในนั้นยังอยู่ที่เดิม"
+
 #: pe/ui/profiles.cpp
 msgid "Square again takes {0} off the list. Its save data stays on the console."
 msgstr "กด​สี่เหลี่ยม​อีกครั้ง​เพื่อ​เอา {0} ออก​จาก​รายการ ข้อมูล​เซฟ​ยัง​อยู่​ใน​เครื่อง"
@@ -1206,6 +1423,10 @@ msgstr "ใช้ไฟล์ของคุณเอง"
 msgid "Taiwan"
 msgstr "ไต้หวัน"
 
+#: pe/ui/locations.cpp
+msgid "Taken off the list. Its games stay where they are."
+msgstr "นำออกจากรายการแล้ว เกมในนั้นยังอยู่ที่เดิม"
+
 #: pe/ui/profiles.cpp
 msgid "Taken off the list. Its save data stays on the console."
 msgstr "เอา​ออก​จาก​รายการ​แล้ว ข้อมูล​เซฟ​ยัง​อยู่​ใน​เครื่อง"
@@ -1223,9 +1444,25 @@ msgstr "ขอบคุณ"
 msgid "Thanks to the whole PS5 homebrew community and to every developer whose drivers, tools and libraries make ProsperoEden possible."
 msgstr "ขอบคุณ​ชุมชน​โฮมบรูว์ PS5 ​ทั้งหมด ​และ​นักพัฒนา​ทุกคน​ที่​ไดรเวอร์ เครื่องมือ ​และ​ไลบรารี​ของ​พวกเขา​ทำให้ ProsperoEden ​เกิดขึ้น​ได้"
 
+#: pe/ui/browse.cpp
+msgid "The folder shown must hold prod.keys. TRIANGLE uses it; SQUARE goes back to the default."
+msgstr "โฟลเดอร์ที่แสดงต้องมี prod.keys สามเหลี่ยมใช้โฟลเดอร์นี้ สี่เหลี่ยมกลับไปใช้ค่าเริ่มต้น"
+
+#: pe/ui/browse.cpp
+msgid "The folder shown must hold the firmware NCA files. TRIANGLE uses it; SQUARE goes back to the default."
+msgstr "โฟลเดอร์ที่แสดงต้องมีไฟล์ NCA ของเฟิร์มแวร์ สามเหลี่ยมใช้โฟลเดอร์นี้ สี่เหลี่ยมกลับไปใช้ค่าเริ่มต้น"
+
+#: pe/ui/locations.cpp
+msgid "The folder that holds prod.keys. Until you choose one, it is keys in the game files folder."
+msgstr "โฟลเดอร์ที่มี prod.keys จนกว่าจะเลือก จะใช้ keys ในโฟลเดอร์ไฟล์เกม"
+
+#: pe/ui/locations.cpp
+msgid "The folder that holds the firmware NCA files. Until you choose one, it is firmware in the game files folder."
+msgstr "โฟลเดอร์ที่มีไฟล์ NCA ของเฟิร์มแวร์ จนกว่าจะเลือก จะใช้ firmware ในโฟลเดอร์ไฟล์เกม"
+
 #: pe/ui/settings.cpp
-msgid "The folder that holds your keys, firmware and games."
-msgstr "โฟลเดอร์​ที่​เก็บ​คีย์ เฟิร์มแวร์ ​และ​เกม​ของคุณ"
+msgid "The folder that holds your keys, firmware and games, and more places for games."
+msgstr "โฟลเดอร์ที่มี keys, firmware และเกมของคุณ รวมถึงที่เก็บเกมเพิ่มเติม"
 
 #. Why a game stopped. 'Settings, Video' is the menu path; 'the game's own settings' is the Game settings dialog of the Library.
 #: eden_services.cpp
@@ -1236,17 +1473,41 @@ msgstr "หน่วยความจำ​กราฟิก​ของ​เ
 msgid "The language games use when they offer it."
 msgstr "ภาษา​ที่​เกม​ใช้​เมื่อ​เกม​รองรับ"
 
+#: pe/ui/browse.cpp
+msgid "The list is full. Remove a folder first."
+msgstr "รายการเต็มแล้ว นำโฟลเดอร์ออกก่อน"
+
 #: pe/ui/profiles.cpp
 msgid "The profile that is playing stays. Choose another one first."
 msgstr "โปรไฟล์​ที่​กำลัง​เล่น​ต้อง​อยู่ เลือก​อัน​อื่น​ก่อน"
 
-#: pe/ui/browse.cpp
+#: pe/ui/update.cpp
+msgid "The update could not finish"
+msgstr "ไม่สามารถอัปเดตให้เสร็จได้"
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "THIS FOLDER"
 msgstr "โฟลเดอร์นี้"
 
 #: pe/ui/browse.cpp
 msgid "This folder cannot be opened."
 msgstr "เปิดโฟลเดอร์นี้ไม่ได้"
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "This folder cannot be read"
+msgstr "อ่านโฟลเดอร์นี้ไม่ได้"
+
+#: pe/ui/browse.cpp
+msgid "This folder has no firmware NCA files."
+msgstr "โฟลเดอร์นี้ไม่มีไฟล์ NCA ของเฟิร์มแวร์"
+
+#: pe/ui/browse.cpp
+msgid "This folder is in the list already."
+msgstr "โฟลเดอร์นี้อยู่ในรายการแล้ว"
+
+#: pe/ui/browse.cpp
+msgid "This folder needs a roms folder."
+msgstr "โฟลเดอร์นี้ต้องมีโฟลเดอร์ roms"
 
 #. The game has a button mapping of its own.
 #: pe/ui/game_options.cpp
@@ -1260,6 +1521,14 @@ msgstr "เกม​นี้​ยัง​ไม่มี​เซฟ​ให
 #: pe/ui/library.cpp
 msgid "This game's settings cannot be saved (no title ID)."
 msgstr "บันทึก​การตั้งค่า​ของ​เกม​นี้​ไม่ได้ (ไม่มี ID ​ของ​เกม)"
+
+#: pe/ui/locations.cpp
+msgid "This is the default folder already."
+msgstr "นี่คือโฟลเดอร์เริ่มต้นอยู่แล้ว"
+
+#: pe/ui/browse.cpp
+msgid "This is the game files folder already."
+msgstr "นี่คือโฟลเดอร์ไฟล์เกมอยู่แล้ว"
 
 #. ryujinx/, save-import/ and roms/ are folder names (unchanged); {0} is the game's ID.
 #: eden_services.cpp
@@ -1276,6 +1545,10 @@ msgstr "ทัชแพด"
 msgid "Triangle"
 msgstr "สามเหลี่ยม"
 
+#: pe/ui/update.cpp
+msgid "Try again"
+msgstr "ลองอีกครั้ง"
+
 #. Button hint: switch the highlighted mod on or off.
 #: pe/ui/library.cpp
 msgid "Turn on or off"
@@ -1285,22 +1558,36 @@ msgstr "เปิด​หรือ​ปิด"
 msgid "Unavailable"
 msgstr "ใช้ไม่ได้"
 
+#. Update dialog headline while the downloaded release is extracted.
+#: pe/ui/update.cpp
+msgid "Unpacking"
+msgstr "กำลังแตกไฟล์"
+
 #. Short tag on the 'Parent folder' row.
 #: pe/ui/browse.cpp
 msgid "UP"
 msgstr "ขึ้น"
 
 #. Notification title: a newer release of this app is listed (not a game update).
-#: pe/ui/launcher.cpp
+#: pe/ui/launcher.cpp, pe/ui/update.cpp
 msgid "Update available"
 msgstr "มีอัปเดตใหม่"
+
+#. Button: download and install the newer release of this app now.
+#: pe/ui/update.cpp
+msgid "Update now"
+msgstr "อัปเดตเลย"
+
+#: pe/ui/update.cpp
+msgid "Update ready"
+msgstr "อัปเดตพร้อมแล้ว"
 
 #. A game update; {0} is its version, for example 1.2.0.
 #: eden_services.cpp, host/fake_services.cpp
 msgid "Update {0}"
 msgstr "อัปเดต {0}"
 
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "UPDATES, DLC"
 msgstr "อัปเดต, DLC"
 
@@ -1324,10 +1611,20 @@ msgstr "ใช้​ไฟล์ NCA ​ของ​เฟิร์มแวร�
 msgid "Use this folder"
 msgstr "ใช้โฟลเดอร์นี้"
 
+#. {0} is the app's new version number, for example 1.000.060.
+#: pe/ui/update.cpp
+msgid "Version {0}"
+msgstr "เวอร์ชัน {0}"
+
 #. {0}: the newer release's number, for example 1.000.050; homebrew.page is a site's name and stays as it is.
 #: pe/ui/launcher.cpp
 msgid "Version {0} is on homebrew.page"
 msgstr "เวอร์ชัน {0} อยู่ที่ homebrew.page"
+
+#. Update dialog: a newer release of this app; {0} is its number, for example 1.000.060.
+#: pe/ui/update.cpp
+msgid "Version {0} is ready to install."
+msgstr "เวอร์ชัน {0} พร้อมติดตั้งแล้ว"
 
 #: pe/ui/game_options.cpp, pe/ui/settings.cpp
 msgid "Vibration"
@@ -1366,6 +1663,10 @@ msgstr "ดูเกมทั้งหมด"
 msgid "Vulkan (recommended)"
 msgstr "Vulkan (แนะนำ)"
 
+#: pe/ui/locations.cpp
+msgid "Where exported saves are written. Until you choose one, it is save-export in the game files folder."
+msgstr "ที่ที่เขียนเซฟที่ส่งออก จนกว่าจะเลือก จะใช้ save-export ในโฟลเดอร์ไฟล์เกม"
+
 #: pe/ui/settings.cpp
 msgid "Who is playing. Each profile keeps its own save data and settings."
 msgstr "ใคร​กำลัง​เล่น แต่ละ​โปรไฟล์​มี​ข้อมูล​เซฟ​และ​การ​ตั้งค่า​ของ​ตัวเอง"
@@ -1373,6 +1674,11 @@ msgstr "ใคร​กำลัง​เล่น แต่ละ​โปร�
 #: pe/ui/library.cpp
 msgid "Your games"
 msgstr "เกมของคุณ"
+
+#. Update dialog: installing the new app version keeps the player's files.
+#: pe/ui/update.cpp
+msgid "Your games, saves and settings are kept."
+msgstr "เกม ข้อมูลบันทึก และการตั้งค่าของคุณจะยังคงอยู่"
 
 #. Headline when no game has been played yet.
 #: pe/ui/home.cpp
@@ -1389,10 +1695,26 @@ msgstr "เปลี่ยน {0} รายการ"
 msgid "{0} DLC"
 msgstr "DLC {0} รายการ"
 
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "{0} file"
+msgstr "{0} ไฟล์"
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "{0} files"
+msgstr "{0} ไฟล์"
+
 #. Exactly one game. In a language with more than two plural forms, word it so that it reads well with any number (Games: {0}).
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "{0} game"
 msgstr "{0} เกม"
+
+#: pe/ui/locations.cpp
+msgid "{0} game folder"
+msgstr "{0} โฟลเดอร์เกม"
+
+#: pe/ui/locations.cpp
+msgid "{0} game folders"
+msgstr "{0} โฟลเดอร์เกม"
 
 #. Exactly one game. See '{0} game'.
 #: eden_services.cpp
@@ -1400,7 +1722,7 @@ msgid "{0} game installed"
 msgstr "ติดตั้งแล้ว {0} เกม"
 
 #. Any number of games other than one (also 0). See '{0} game'.
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "{0} games"
 msgstr "{0} เกม"
 
@@ -1414,6 +1736,10 @@ msgstr "ติดตั้งแล้ว {0} เกม"
 msgid "{0} Hz"
 msgstr "{0} Hz"
 
+#: pe/ui/library.cpp
+msgid "{0} is in more than one place. Choose which one starts."
+msgstr "{0} อยู่ในหลายที่ เลือกว่าจะเริ่มอันไหน"
+
 #. Exactly one mod, in the list of what a game comes with (Update 1.2.0, 2 DLC, 1 mod). See '{0} game'.
 #: pe/ui/library.cpp
 msgid "{0} mod"
@@ -1425,12 +1751,12 @@ msgid "{0} mods"
 msgstr "{0} ม็อด"
 
 #. Exactly one file. See '{0} game'.
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "{0} NCA file"
 msgstr "ไฟล์ NCA {0} ไฟล์"
 
 #. Any number of files other than one. See '{0} game'.
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "{0} NCA files"
 msgstr "ไฟล์ NCA {0} ไฟล์"
 
@@ -1455,7 +1781,7 @@ msgid "{0} of {1} on"
 msgstr "เปิด {0} จาก {1}"
 
 #. A percentage (a volume): write it as the language does, for example with a space before the sign.
-#: pe/ui/game_options.cpp, pe/ui/settings.cpp
+#: pe/ui/game_options.cpp, pe/ui/settings.cpp, pe/ui/update.cpp
 msgid "{0}%"
 msgstr "{0}%"
 

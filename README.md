@@ -10,7 +10,17 @@
 
 **ProsperoEden is an unofficial PlayStation 5 port of [Eden](https://github.com/eden-emulator/mirror)** - an accurate, high-performance emulator. All credit for the emulator core belongs to the Eden project and its contributors. ProsperoEden is not affiliated with or endorsed by the Eden team or Sony.
 
-This is an early alpha. Video, audio, controller input, and saves have been confirmed working. Compatibility and performance will vary between games. The current release is **v1.000.040**.
+This is an early alpha. Video, audio, controller input, and saves have been confirmed working. Compatibility and performance will vary between games. The current release is **v1.000.070**.
+
+> [!WARNING]
+> **ProsperoEden includes an exact-title one-shot helper built from upstream
+> [PS5-Lapy-JB-Daemon](https://github.com/mpereiraesaa/PS5-Lapy-JB-Daemon).** The PS5 jailbreak
+> environment must provide a local ELF loader on TCP port 9021. If a resident Lapy service is
+> already running, ProsperoEden gives it the first bounded opportunity; otherwise it sends the
+> packaged helper over that local connection. No separate Lapy payload is required for normal use.
+> The packaged helper's corrected donor lifecycle passed five automated launch/elevate/close cycles
+> on both firmware 6.02 and 12.70. Other supported firmware remains experimental and should be
+> tested cautiously; the helper also refuses unknown runtime layouts instead of guessing.
 
 ## Source code
 
@@ -56,17 +66,21 @@ The complete ProsperoEden source is in this repository: the PS5 frontend and lau
 - **Shader cache** - shaders compiled in earlier sessions are loaded when a game starts, so an effect stutters only the first time it appears.
 - **In-game shortcuts** - a performance overlay (Touchpad + R1), and Touchpad + L1 to end the game and return to the library. Leaving takes ten seconds at most, also while a game is still loading.
 - **Settings in one place** - a single JSON file under `/data/prosperoeden`, with game volume, mute, and detailed logging options. Logs keep the previous session.
-- **Update notice** - when a newer release is listed on [homebrew.page](https://homebrew.page/ps5), the menu says so at the top right for ten seconds; see [Updating](#updating).
+- **Updates from the menu** - when a newer release is listed on [homebrew.page](https://homebrew.page/ps5), ProsperoEden offers to install it each time it opens; **Skip** keeps the current version; see [Updating](#updating).
 - **Crash reports** - if ProsperoEden stops because of an error, it saves a report with that session's logs, starts again and shows where the report is.
 - **Controllers, audio, and saves** - up to four DualSense controllers (one per signed-in PS5 user) with rumble and motion controls, game audio, and save data work out of the box.
 
 ## Install
 
+> [!TIP]
+> **Use the newest ShadowMountPlus, [1.7beta4](https://github.com/drakmor/ShadowMountPlus/releases/tag/1.7beta4)**, especially on newer firmwares. It is what mounts ProsperoEden from the folder (or drive) you copy it to.
+
 1. Download and extract the release ZIP.
-2. Copy the included `PPSA99008` folder to `/data/homebrew/PPSA99008` on the PS5.
-3. Put your own legally dumped keys, firmware, and games in a **game files folder** (layout below). It can be anywhere the PS5 can read: internal storage, an M.2 or external drive, or a USB device.
-4. Launch **ProsperoEden**, open **Settings > Game files**, browse to that folder and select it. The default is `/data/prosperoeden`.
-5. Close and reopen ProsperoEden, then open **Library**. Setup is checked when the app opens, so reopen it after changing the folder or adding keys or firmware.
+2. Copy the included `PPSA99008` folder to `/data/homebrew/PPSA99008` on the PS5 (or to another folder ShadowMountPlus scans, such as `/mnt/usb0/homebrew/PPSA99008`).
+3. Make sure your jailbreak environment's local ELF loader is listening on TCP port 9021. ProsperoEden includes and sends its title-specific upstream Lapy helper automatically; a separately loaded resident Lapy service is optional.
+4. Put your own legally dumped keys, firmware, and games in a **game files folder** (layout below). It can be anywhere the PS5 can read: internal storage, an M.2 or external drive, or a USB device.
+5. Launch **ProsperoEden**, open **Settings > Game files**, browse to that folder and select it. The default is `/data/prosperoeden`.
+6. Close and reopen ProsperoEden, then open **Library**. Setup is checked when the app opens, so reopen it after changing the folder or adding keys or firmware.
 
 ### Game files folder
 
@@ -112,7 +126,12 @@ ProsperoEden does not include keys, firmware, games, or other copyrighted consol
 
 Close ProsperoEden first. Your settings, saves, covers and logs are in `/data/prosperoeden`, outside the app, so an update keeps them. Afterwards the About screen shows the version that is running.
 
-Once each time it starts, ProsperoEden asks [homebrew.page](https://homebrew.page/ps5) which release of it is listed there. If that release is newer than the one running, the menu shows **Update available** with its version at the top right for ten seconds. The request carries the app's title ID and nothing else; nothing is downloaded or installed, so updating stays the steps below. Without a network, or without an answer, nothing is shown.
+Once each time it opens, ProsperoEden asks [homebrew.page](https://homebrew.page/ps5) which release of it is listed there. The request carries the app's title ID and nothing else. If the listed release is newer than the one running, a dialog offers it, with its version and download size:
+
+- **Update now** downloads the release ZIP from its GitHub release, checks it against the SHA-256 in the catalog's signed list, and unpacks it beside the app. A ring shows how far it is and the time left; Circle cancels, and nothing has changed until the end. Then ProsperoEden closes, the update helper (`self-updater.elf`, sent to the console's payload loader on port 9021) replaces the app's files, and the console shows a notification. Open ProsperoEden again to use the new version.
+- **Skip** keeps the version you have. The dialog shows again the next time ProsperoEden opens, not when you come back from a game.
+
+If the download or the unpacking fails, the dialog says why and offers **Try again**; the app stays as it was. Without a network, or without an answer, nothing is shown. When ProsperoEden cannot install the release itself (no payload loader, or an install it cannot find), the menu says **Update available** at the top right for ten seconds instead, and the steps below still work:
 
 - **Folder install.** Copy the `PPSA99008` folder from the new release ZIP over `/data/homebrew/PPSA99008`, replacing the files it has, then start ProsperoEden. Files you put there yourself, such as `language.txt`, stay.
 - **Package image (`.ffpfsc`).** Delete the old image, copy the new one to the same place, then restart ShadowMountPlus (send its payload again, or restart the console) and start ProsperoEden. ShadowMountPlus 1.6 keeps the old image mounted until it restarts; 1.7 finds a replaced image by itself at its next scan, and a restart does no harm there. Keep one image only, and no `PPSA99008` folder next to it: two copies of the app are reported as a duplicate. The image install is still untested (see the [Roadmap](#roadmap)), so these steps follow how ShadowMountPlus handles images.
@@ -202,22 +221,6 @@ A game can have its own: in its settings, **Controls**, set **Button mapping** t
 
 The D-pad, the sticks and the [in-game shortcuts](#in-game-shortcuts) do not change. With the usual mapping the touchpad is the game's Minus; the Create button presses whatever the touchpad presses, unless it has a game button of its own.
 
-### Game folders, keys, firmware and saves on their own
-
-**Settings > Game files** lists the game files folder and any number of extra game folders (a USB drive, `ext0`, another internal folder).
-
-- **Game files folder**: the one above. It stays the default and is always the first game folder.
-- **Add game folder**: another place for games. It only needs `roms/` and `updates/`; keys and firmware stay with the game files folder. The Library reads every game folder (a file name found in two of them is listed once, from the first) and updates and DLC are picked up from every `updates/`. Changes apply at once, no restart. A drive that is not plugged in is skipped.
-- **Advanced** (hidden until opened): keys, firmware, save import and save export can each be chosen on their own. The folder must hold `prod.keys` or the firmware NCAs directly. Until one is chosen it is the game files folder's `keys/`, `firmware/`, `save-import/` or `save-export/`. These apply after reopening ProsperoEden.
-
-The choices are saved in `config/prosperoeden.json` under `storage`:
-
-```json
-"storage": { "keys": "/mnt/usb0/keys", "firmware": "/mnt/usb0/firmware",
-             "save_import": "/mnt/usb0/save-import", "save_export": "/mnt/usb0/save-export",
-             "library": ["/mnt/usb0/games", "/mnt/ext0/user/app/PPSA99008/assets"] }
-```
-
 ### Language and accessibility
 
 The launcher follows the language the PS5 is set to: Arabic, Chinese (simplified and traditional), Czech, Danish, Dutch, Finnish, French, German, Greek, Hungarian, Indonesian, Italian, Japanese, Korean, Norwegian, Polish, Portuguese, Romanian, Russian, Spanish, Swedish, Thai, Turkish, Ukrainian and Vietnamese (with the regional variants the PS5 has for French, Portuguese and Spanish), and English otherwise. Arabic, Chinese, Greek, Japanese, Korean and Thai are drawn with the PS5's own system fonts. Arabic text runs right to left; the screens themselves are not mirrored. To use another one, put a file named `language.txt` holding its tag (for example `en-US` or `pt-BR`) in `/data/homebrew/PPSA99008`. The language *games* use is a separate setting, **Settings > Language**.
@@ -227,6 +230,19 @@ The launcher follows the language the PS5 is set to: Arabic, Chinese (simplified
 ### Upgrading from an earlier alpha
 
 Earlier versions read everything from `/data/homebrew/PPSA99008/assets/`. That folder keeps working until you choose a game files folder, and settings are migrated automatically on first launch. To move to the new layout, move `assets/keys`, `assets/firmware` and `assets/roms` into any folder, then select it in **Settings > Game files**. The release ZIP contains no user files, so copy its app files over your installation without deleting your own data.
+
+## Changes in v1.000.070
+
+- **ProsperoEden starts wherever it is installed.** On a USB drive, extended storage, an etaHEN games folder or any other place ShadowMountPlus mounts it from, it could not find its own files and closed after a moment. It now reads its files from where the PS5 mounts the running app.
+- **Updates from the menu work on those installs too.** The update helper updates the folder ShadowMountPlus mounted the app from; an app installed as an image is not changed, and the dialog says to replace the image.
+- **Clearer error when the menu cannot start**, naming the file and the reason.
+- **Start-up trace for bug reports.** Each start-up step is written to the kernel log (`[ProsperoEden diag]`) and to `/data/prosperoeden/logs/boot-trace.txt`.
+
+## Changes in v1.000.060
+
+- **Updates from the menu.** When a newer release is listed on homebrew.page, ProsperoEden offers it each time it opens. **Update now** downloads and checks it, unpacks it beside the app, then closes so the update helper can replace its files; **Skip** keeps the current version until the next time it opens. Your saves, settings and own files in the app folder are kept. See [Updating](#updating).
+- **Lapy elevation included.** ProsperoEden carries its own one-shot helper built from upstream Lapy and sends it over the local ELF loader on port 9021; loading Lapy separately is no longer needed.
+- **The elevation helper no longer crashes when ProsperoEden starts.** Its start-up runs on one thread, and it is built from a corrected upstream release.
 
 ## Changes in v1.000.050
 
@@ -314,6 +330,9 @@ The touchpad is pressed as a button. On its own, a tap of the touchpad presses t
 - **FPKG support** - install ProsperoEden as a fake package, alongside the current homebrew folder install. Each release includes a ShadowMountPlus package image (`.ffpfsc`); installing it still needs testing.
 - **More performance** - CPU and GPU work to keep demanding games at their target frame rate: the short stutter when a game reaches new areas (the block list, **Compile ahead** in **Settings > Performance**, once it has run in more games and can be on by default), heavy cutscenes, and games that run slower in Docked mode than in Handheld.
 - **More reliable game loading** - a game that hangs while it loads can now be left with Touchpad + L1; the hangs themselves still need a log from a game that does it.
+- **Controller type per game** - some games only work with a Handheld controller or Joy-Cons, not the Pro Controller every player gets today. Add a **Controller type** choice to each game's Controls: Pro Controller (the default), Handheld, Dual Joy-Cons, Left Joy-Con or Right Joy-Con.
+- **Sideways play for single Joy-Con games** - games that use one Joy-Con held sideways have the DualSense held sideways too. Turn its motion sensors to match that grip (today tilting moves the wrong way), and keep the in-game shortcuts from being pressed by accident in it: holding the controller that way, Touchpad + L1 is easy to hit and ends the game.
+- **Real Joy-Cons and Pro Controllers (investigation)** - play with the original controllers connected to the PS5. The PS5 does not pair them itself, so this first needs to find out whether a homebrew app can read them: a wired Pro Controller over USB looks more likely than Joy-Cons, which only connect over Bluetooth.
 - **DualShock 4 controllers** - use DualShock 4 controllers as players too, next to the DualSense, so multiplayer games do not need four DualSense controllers.
 - **Better OpenGL performance** - make the OpenGL renderer faster, and add tuning options for it.
 - **More game compatibility** - validate more games on the PS5, and fix what keeps them from running well, such as games that crash at launch.
@@ -323,6 +342,29 @@ The touchpad is pressed as a button. On its own, a tap of the touchpad presses t
 GitHub issues are turned off for this repository on purpose. ProsperoEden is a general-purpose emulator port, and the project does not host discussion of console makers, specific commercial games, compatibility reports, or where to find game files. Issue threads tend to fill up with exactly that, so there are none.
 
 Please do not use pull requests or other channels to post that kind of content either.
+
+## Elevation credits
+
+Filesystem elevation uses [PS5-Lapy-JB-Daemon](https://github.com/ArkSama/PS5-Lapy-JB-Daemon),
+created by ArkSama. ProsperoEden follows the cooperative owned-root design and implementation
+from [mpereiraesaa's Lapy fork](https://github.com/mpereiraesaa/PS5-Lapy-JB-Daemon). The build
+pins that upstream source, builds its exact-title one-shot helper without local payload changes,
+verifies the upstream-generated manifest, and includes the resulting ELF in the release.
+The donor-release fix pinned here is proposed upstream in
+[PS5-Lapy-JB-Daemon PR #48](https://github.com/mpereiraesaa/PS5-Lapy-JB-Daemon/pull/48).
+The same packaged helper passed five automated launch/elevate/close cycles on firmware 6.02 and
+five on 12.70 with root access, balanced donor references, clean helper exits, and no fatal signal,
+app crash, coredump, nonsleeping-lock warning, or kernel panic in the captured kernel-log windows.
+
+## Thanks
+
+Thank you to the people who test ProsperoEden on their own consoles and report what they find:
+
+- **Jones** ([X](https://x.com/Jonesskulls), [GitHub](https://github.com/AgentJonesy)), for helping with testing.
+- **Phronesis**, for helping with testing.
+- **szampan** ([GitHub](https://github.com/heni0xyz)), for helping with testing.
+- **BunkinBacon**, for helping with testing.
+- **Cold** ([GitHub](https://github.com/JMUtechnologies)), for helping with testing.
 
 <!-- bbr-footer:start -->
 <!-- Generated by ps5-homebrew-dev-protocol/scripts/readme-footer. Edit the template there, not here. -->

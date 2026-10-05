@@ -216,4 +216,61 @@ inline std::string Summary(const std::vector<Mod>& mods, const std::vector<std::
     if (off != 0) used += " (" + std::to_string(off) + " switched off)";
     return used;
 }
+// ---- several mods folders: one per game folder (assets_dir.h: ModsDirs) ----
+// A game's mods are whatever its title folder holds in any of them. A mod name found in two of
+// them counts once, from the first (the game files folder's comes first).
+inline std::vector<Mod> ListIn(const std::vector<std::string>& roots, uint64_t title_id) {
+    std::vector<Mod> mods;
+    for (const std::string& root : roots)
+        for (Mod& mod : List(root, title_id))
+            if (std::none_of(mods.begin(), mods.end(), [&](const Mod& other) { return other.name == mod.name; }))
+                mods.push_back(std::move(mod));
+    std::sort(mods.begin(), mods.end(), [](const Mod& a, const Mod& b) { return a.name < b.name; });
+    return mods;
+}
+
+// The mods folders that have a folder for this game, in order.
+inline std::vector<std::string> RootsWith(const std::vector<std::string>& roots, uint64_t title_id) {
+    std::vector<std::string> found;
+    for (const std::string& root : roots)
+        if (!TitleFolder(root, title_id).empty()) found.push_back(root);
+    return found;
+}
+
+// The folder Eden reads this game's mods from (its load folder). With one mods folder holding the
+// game's folder that is the folder itself. With several, the game's mods are linked side by side
+// under staging/<title ID>/, the first folder's mod winning a name, so Eden sees all of them. A
+// link that cannot be made leaves the first folder alone (the others' mods are then not used).
+// Empty when no folder has mods for the game.
+inline std::string LoadRootFor(const std::vector<std::string>& roots, const std::string& staging,
+                               uint64_t title_id, bool* linked_all = nullptr) {
+    if (linked_all) *linked_all = true;
+    const std::vector<std::string> with = RootsWith(roots, title_id);
+    if (with.empty()) return {};
+    if (with.size() == 1) return with.front();
+    std::error_code error;
+    const fs::path game = fs::path(staging) / TitleName(title_id);
+    fs::remove_all(game, error);  // only links are in there: remove_all does not follow them
+    fs::create_directories(game, error);
+    if (error) {
+        if (linked_all) *linked_all = false;
+        return with.front();
+    }
+    std::set<std::string> taken;
+    for (const std::string& root : with) {
+        for (const auto& entry : ListFolder(TitleFolder(root, title_id))) {
+            const std::string name = entry.path().filename().string();
+            if (!taken.insert(Lower(name)).second) continue;
+            std::error_code link_error;
+            if (IsFolder(entry)) fs::create_directory_symlink(entry.path(), game / name, link_error);
+            else fs::create_symlink(entry.path(), game / name, link_error);
+            if (link_error) {
+                if (linked_all) *linked_all = false;
+                fs::remove_all(game, error);
+                return with.front();
+            }
+        }
+    }
+    return staging;
+}
 } // namespace Eden::Mods

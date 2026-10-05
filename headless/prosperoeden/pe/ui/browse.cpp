@@ -408,7 +408,7 @@ void Launcher::draw_files(Canvas &c)
              folder_info_.updates < 0 ? tr("No updates folder") :
                                         counted(folder_info_.updates, tr("{0} file"), tr("{0} files")),
              theme::kValue);
-        note = tr("Only roms and updates are read from here. TRIANGLE adds the folder shown.");
+        note = tr("Games, updates and mods are read from here. TRIANGLE adds the folder shown.");
         break;
     case Pick::keys:
         line(378.0f, tr("KEYS"), folder_info_.own_keys ? tr("prod.keys found") : tr("prod.keys missing"),

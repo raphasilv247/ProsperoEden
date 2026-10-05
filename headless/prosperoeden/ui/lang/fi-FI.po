@@ -43,6 +43,16 @@ msgstr "Tietoja"
 msgid "About ProsperoEden"
 msgstr "Tietoja ProsperoEdenistä"
 
+#. Time left while downloading; {0} is a number of minutes. Keep it short.
+#: pe/ui/update.cpp
+msgid "About {0} min left"
+msgstr "Noin {0} min jäljellä"
+
+#. Time left while downloading; {0} is a number of seconds. Keep it short.
+#: pe/ui/update.cpp
+msgid "About {0} s left"
+msgstr "Noin {0} s jäljellä"
+
 #. Label: which folders the app can read.
 #: pe/ui/browse.cpp
 msgid "ACCESS"
@@ -57,9 +67,17 @@ msgstr "Esteettömyys"
 msgid "ACCESSIBILITY"
 msgstr "ESTEETTÖMYYS"
 
-#: pe/ui/profiles.cpp
+#: pe/ui/locations.cpp, pe/ui/profiles.cpp
 msgid "Add"
 msgstr "Lisää"
+
+#: pe/ui/locations.cpp
+msgid "Add another place for games, such as a USB drive. It holds roms, updates and mods. Keys and firmware come from the game files folder first, then from here if it has none."
+msgstr "Lisää toinen paikka peleille, esimerkiksi USB-asema. Siinä on roms-, updates- ja mods-kansiot. Keys ja firmware haetaan ensin pelitiedostojen kansiosta ja sitten täältä, jos siinä niitä ei ole."
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "Add game folder"
+msgstr "Lisää pelikansio"
 
 #. Label: a game's updates, DLC and mods.
 #: pe/ui/library.cpp
@@ -78,6 +96,10 @@ msgstr "Lisätty. Risti pelaa tällä profiililla; vasen ja oikea vaihtavat nime
 #: pe/ui/settings.cpp
 msgid "Adjust the essentials without leaving your library behind."
 msgstr "Säädä tärkeimmät asetukset poistumatta kirjastostasi."
+
+#: pe/ui/locations.cpp
+msgid "ADVANCED"
+msgstr "LISÄASETUKSET"
 
 #: pe/ui/browse.cpp
 msgid "All credit for the Eden emulator goes to its developers and contributors."
@@ -118,9 +140,13 @@ msgid "Australia"
 msgstr "Australia"
 
 #. Button hint: go back one screen.
-#: pe/ui/browse.cpp, pe/ui/game_options.cpp, pe/ui/library.cpp, pe/ui/profiles.cpp, pe/ui/settings.cpp
+#: pe/ui/browse.cpp, pe/ui/game_options.cpp, pe/ui/library.cpp, pe/ui/locations.cpp, pe/ui/profiles.cpp, pe/ui/settings.cpp
 msgid "Back"
 msgstr "Takaisin"
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "Back to the default folder. Reopen ProsperoEden to use it."
+msgstr "Takaisin oletuskansioon. Avaa ProsperoEden uudelleen ottaaksesi sen käyttöön."
 
 #. An upscaling filter.
 #: settings_store.h
@@ -133,7 +159,7 @@ msgid "Bilinear"
 msgstr "Bilineaarinen"
 
 #. Button hint: move through the list.
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "Browse"
 msgstr "Selaa"
 
@@ -154,14 +180,26 @@ msgstr "Painikkeiden määritys"
 msgid "BUTTON MAPPING"
 msgstr "PAINIKKEIDEN MÄÄRITYS"
 
+#: pe/ui/update.cpp
+msgid "Cancel"
+msgstr "Peruuta"
+
+#: pe/ui/update.cpp
+msgid "Cancelling"
+msgstr "Peruutetaan"
+
 #: eden_services.cpp
 msgid "Cannot read firmware/ in {0}. Install extracted firmware NCAs."
 msgstr "Kansiota firmware/ ei voi lukea sijainnissa {0}. Asenna puretut laiteohjelmiston NCA-tiedostot."
 
 #. Button hint: change the highlighted setting.
-#: pe/ui/game_options.cpp, pe/ui/library.cpp, pe/ui/settings.cpp
+#: pe/ui/game_options.cpp, pe/ui/library.cpp, pe/ui/locations.cpp, pe/ui/settings.cpp
 msgid "Change"
 msgstr "Muuta"
+
+#: pe/ui/browse.cpp
+msgid "Change game folder"
+msgstr "Vaihda pelikansio"
 
 #: pe/ui/library.cpp
 msgid "Change mode. Saved per game."
@@ -190,26 +228,58 @@ msgid "Chinese (Traditional)"
 msgstr "Kiina (perinteinen)"
 
 #. Button hint: choose the highlighted language.
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "Choose"
 msgstr "Valitse"
+
+#: pe/ui/browse.cpp
+msgid "Choose a folder with roms and updates inside"
+msgstr "Valitse kansio, jossa on roms ja updates"
 
 #: pe/ui/home.cpp
 msgid "Choose a game from your library."
 msgstr "Valitse peli kirjastostasi."
 
 #: pe/ui/browse.cpp
+msgid "Choose the folder that holds prod.keys"
+msgstr "Valitse kansio, jossa prod.keys on"
+
+#: pe/ui/browse.cpp
+msgid "Choose the folder that holds the firmware NCA files"
+msgstr "Valitse kansio, jossa laiteohjelmiston NCA-tiedostot ovat"
+
+#: pe/ui/browse.cpp
 msgid "Choose the folder that holds your keys, firmware and games"
 msgstr "Valitse kansio, jossa avaimesi, laiteohjelmisto ja pelisi ovat"
+
+#: pe/ui/browse.cpp
+msgid "Choose the folder with one folder per game ID"
+msgstr "Valitse kansio, jossa on yksi kansio pelin tunnusta kohti"
+
+#: pe/ui/locations.cpp
+msgid "Choose the keys, firmware, save import and save export folders on their own. Until you do, they are inside the game files folder."
+msgstr "Valitse keys-, firmware-, tallenteiden tuonti- ja tallenteiden vientikansiot erikseen. Siihen asti ne ovat pelitiedostojen kansiossa."
 
 #: pe/ui/browse.cpp
 msgid "Choose the language games use"
 msgstr "Valitse pelien käyttämä kieli"
 
+#: pe/ui/browse.cpp
+msgid "Choose where exported saves are written"
+msgstr "Valitse, minne viedyt tallenteet kirjoitetaan"
+
+#: pe/ui/locations.cpp
+msgid "Choose where your games, keys, firmware and saves are"
+msgstr "Valitse, missä pelisi, keys, firmware ja tallenteet ovat"
+
 #. A DualSense button.
 #: pe/ui/game_options.cpp
 msgid "Circle"
 msgstr "Ympyrä"
+
+#: pe/ui/update.cpp
+msgid "Close"
+msgstr "Sulje"
 
 #. A switch: the program code a game used in earlier sessions is prepared (compiled) while the game starts. Keep it short.
 #: pe/ui/game_options.cpp, pe/ui/settings.cpp
@@ -260,7 +330,7 @@ msgstr "Konsolitilaa ei voitu tallentaa. Yritä uudelleen."
 msgid "Could not save settings. Please try again."
 msgstr "Asetuksia ei voitu tallentaa. Yritä uudelleen."
 
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "Could not save the folder. Please try again."
 msgstr "Kansiota ei voitu tallentaa. Yritä uudelleen."
 
@@ -292,16 +362,24 @@ msgstr "Tekijät ja määritys"
 msgid "Cross"
 msgstr "Risti"
 
+#: pe/ui/locations.cpp
+msgid "CUSTOM"
+msgstr "MUKAUTETTU"
+
+#: pe/ui/locations.cpp
+msgid "DEFAULT"
+msgstr "OLETUS"
+
 #. A per-game setting that follows the general setting; {0} is its value.
 #: pe/ui/game_options.cpp
 msgid "Default ({0})"
 msgstr "Oletus ({0})"
 
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "Default folder"
 msgstr "Oletuskansio"
 
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "Default folder saved. Reopen ProsperoEden to use it."
 msgstr "Oletuskansio tallennettu. Avaa ProsperoEden uudelleen, niin se otetaan käyttöön."
 
@@ -339,6 +417,15 @@ msgstr "DIAGNOSTIIKKA"
 msgid "Docked"
 msgstr "Telakoitu"
 
+#. {0} is a size such as 36.4 MB.
+#: pe/ui/update.cpp
+msgid "Download size: {0}"
+msgstr "Latauksen koko: {0}"
+
+#: pe/ui/update.cpp
+msgid "Downloading"
+msgstr "Ladataan"
+
 #: pe/ui/settings.cpp
 msgid "Draws an effect once its shader is ready instead of pausing. Things can be missing for a moment."
 msgstr "Piirtää tehosteen, kun sen varjostin on valmis, eikä pysäytä peliä. Jotain voi puuttua hetken."
@@ -346,6 +433,10 @@ msgstr "Piirtää tehosteen, kun sen varjostin on valmis, eikä pysäytä peliä
 #: pe/ui/settings.cpp
 msgid "Draws the menu's small text larger."
 msgstr "Näyttää valikon pienen tekstin suurempana."
+
+#: pe/ui/library.cpp
+msgid "Duplicate game"
+msgstr "Kaksoiskappale pelistä"
 
 #: settings_store.h
 msgid "Dutch"
@@ -388,6 +479,10 @@ msgstr "Vie kopio"
 #: eden_services.cpp
 msgid "Export failed. Check that the game files folder can be written."
 msgstr "Vienti epäonnistui. Varmista, että pelitiedostojen kansioon voi kirjoittaa."
+
+#: pe/ui/browse.cpp
+msgid "Exported saves are written here. TRIANGLE uses the folder shown; SQUARE goes back to the default."
+msgstr "Viedyt tallenteet kirjoitetaan tänne. KOLMIO käyttää näytettyä kansiota; NELIÖ palaa oletukseen."
 
 #. {0} is a folder.
 #: eden_services.cpp, host/fake_services.hpp
@@ -438,9 +533,13 @@ msgstr "Tiedostot"
 msgid "Fine-tune your experience"
 msgstr "Hienosäädä pelikokemustasi"
 
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "FIRMWARE"
 msgstr "LAITEOHJELMISTO"
+
+#: pe/ui/browse.cpp
+msgid "Firmware folder"
+msgstr "Firmware-kansio"
 
 #: eden_services.cpp
 msgid "Firmware NCA validation failed (code {0}). Check that firmware and prod.keys are compatible."
@@ -454,7 +553,7 @@ msgstr "Laiteohjelmisto valmis"
 msgid "Firmware SystemVersion data is missing or unreadable. Install a complete firmware dump."
 msgstr "Laiteohjelmiston SystemVersion-tiedot puuttuvat tai niitä ei voi lukea. Asenna täydellinen laiteohjelmistovedos."
 
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "FOLDERS"
 msgstr "KANSIOT"
 
@@ -510,13 +609,25 @@ msgstr "Pelin tiedot"
 msgid "GAME DETAILS"
 msgstr "PELIN TIEDOT"
 
-#: pe/ui/browse.cpp, pe/ui/settings.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp, pe/ui/settings.cpp
 msgid "Game files"
 msgstr "Pelitiedostot"
 
 #: pe/ui/settings.cpp
 msgid "GAME FILES"
 msgstr "PELITIEDOSTOT"
+
+#: pe/ui/locations.cpp
+msgid "GAME FILES FOLDER"
+msgstr "PELITIEDOSTOJEN KANSIO"
+
+#: pe/ui/locations.cpp
+msgid "GAME FOLDER"
+msgstr "PELIKANSIO"
+
+#: pe/ui/locations.cpp, pe/ui/settings.cpp
+msgid "GAME FOLDERS"
+msgstr "PELIKANSIOT"
 
 #: pe/ui/library.cpp
 msgid "Game settings"
@@ -534,7 +645,7 @@ msgstr "PELIÄÄNET"
 msgid "Game volume, and the sounds of this menu."
 msgstr "Pelien äänenvoimakkuus ja tämän valikon äänet."
 
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "GAMES"
 msgstr "PELIT"
 
@@ -545,6 +656,14 @@ msgstr "Pelit käyttävät tätä kieltä, jos ne tukevat sitä, ja muuten omaa 
 #: pe/ui/home.cpp
 msgid "Games you launch will appear here."
 msgstr "Käynnistämäsi pelit näkyvät täällä."
+
+#: pe/ui/browse.cpp
+msgid "Games, updates and mods are read from here. TRIANGLE adds the folder shown."
+msgstr "Pelit, updates ja mods luetaan täältä. KOLMIO lisää näytetyn kansion."
+
+#: pe/ui/locations.cpp
+msgid "Games, updates and mods are read from this folder. Square twice takes it off the list."
+msgstr "Pelit, updates ja mods luetaan tästä kansiosta. Neliö kahdesti poistaa sen luettelosta."
 
 #: settings_store.h
 msgid "German"
@@ -567,6 +686,14 @@ msgstr "Renderöijän alustus epäonnistui. Kokeile toista Asetuksissa; katso aj
 msgid "Handheld"
 msgstr "Kannettava"
 
+#: pe/ui/locations.cpp
+msgid "HIDE"
+msgstr "PIILOTA"
+
+#: pe/ui/locations.cpp
+msgid "Hide"
+msgstr "Piilota"
+
 #: pe/ui/settings.cpp
 msgid "HIGH CONTRAST"
 msgstr "SUURI KONTRASTI"
@@ -575,6 +702,10 @@ msgstr "SUURI KONTRASTI"
 #: pe/ui/settings.cpp
 msgid "High contrast"
 msgstr "Suuri kontrasti"
+
+#: pe/ui/locations.cpp
+msgid "Holds keys, firmware, roms, updates, mods and saves, unless you choose some of them on their own (Advanced)."
+msgstr "Sisältää keys, firmware, roms, updates, mods ja tallenteet, ellet valitse joitakin niistä erikseen (Lisäasetukset)."
 
 #: pe/ui/settings.cpp
 msgid "How games are drawn and scaled to your TV."
@@ -597,8 +728,12 @@ msgstr "Tuotu."
 msgid "Imported. The save it replaced was backed up."
 msgstr "Tuotu. Korvattu tallennus varmuuskopioitiin."
 
+#: pe/ui/library.cpp
+msgid "In more than one place. You choose which one starts."
+msgstr "Useassa paikassa. Valitset, mikä käynnistyy."
+
 #. Tag on the language or folder that is in use now.
-#: pe/ui/browse.cpp, pe/ui/settings.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp, pe/ui/settings.cpp
 msgid "IN USE"
 msgstr "KÄYTÖSSÄ"
 
@@ -624,13 +759,21 @@ msgid "Keeps what a game reads back from the GPU exact. Off is faster, and some 
 msgstr "Pitää tarkkana sen, mitä peli lukee takaisin GPU:lta. Pois päältä on nopeampi, mutta jotkin tehosteet hajoavat."
 
 #. Label: the encryption keys file (prod.keys).
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "KEYS"
 msgstr "AVAIMET"
 
 #: eden_services.cpp, host/fake_services.cpp
 msgid "Keys and firmware: startup checks passed. Game-specific compatibility is checked at launch."
 msgstr "Avaimet ja laiteohjelmisto: käynnistystarkistukset läpäisty. Kunkin pelin yhteensopivuus tarkistetaan käynnistettäessä."
+
+#: pe/ui/browse.cpp
+msgid "Keys folder"
+msgstr "Keys-kansio"
+
+#: pe/ui/locations.cpp
+msgid "Keys, firmware and saves"
+msgstr "Keys, firmware ja tallenteet"
 
 #: eden_services.cpp
 msgid "Korea"
@@ -743,7 +886,7 @@ msgid "Muted"
 msgstr "Mykistetty"
 
 #. Button hint: move the highlight.
-#: pe/ui/home.cpp
+#: pe/ui/home.cpp, pe/ui/update.cpp
 msgid "Navigate"
 msgstr "Siirry"
 
@@ -761,12 +904,12 @@ msgid "New profile"
 msgstr "Uusi profiili"
 
 #. {0} is the folder used the next time the app starts.
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "Next launch: {0}"
 msgstr "Seuraava käynnistys: {0}"
 
 #. Label: the folder used the next time the app starts.
-#: pe/ui/settings.cpp
+#: pe/ui/locations.cpp, pe/ui/settings.cpp
 msgid "NEXT START"
 msgstr "SEURAAVAKSI"
 
@@ -774,7 +917,7 @@ msgstr "SEURAAVAKSI"
 msgid "No cover art"
 msgstr "Ei kansikuvaa"
 
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "No firmware folder"
 msgstr "Ei firmware-kansiota"
 
@@ -804,9 +947,13 @@ msgstr "ROM-tiedostoja ei löytynyt."
 msgid "No ROM selected"
 msgstr "ROM-tiedostoa ei valittu"
 
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "No roms folder"
 msgstr "Ei roms-kansiota"
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "No updates folder"
+msgstr "Ei updates-kansiota"
 
 #. No add-ons (updates or DLC).
 #: pe/ui/library.cpp
@@ -838,9 +985,13 @@ msgid "OPEN"
 msgstr "AVAA"
 
 #. Button hint: open the highlighted folder.
-#: pe/ui/browse.cpp, pe/ui/game_options.cpp, pe/ui/library.cpp, pe/ui/settings.cpp
+#: pe/ui/browse.cpp, pe/ui/game_options.cpp, pe/ui/library.cpp, pe/ui/locations.cpp, pe/ui/settings.cpp
 msgid "Open"
 msgstr "Avaa"
+
+#: pe/ui/update.cpp
+msgid "Open it again to use version {0}."
+msgstr "Avaa se uudelleen käyttääksesi versiota {0}."
 
 #: pe/ui/home.cpp
 msgid "Open library"
@@ -862,7 +1013,7 @@ msgid "Output resolution"
 msgstr "Lähtöresoluutio"
 
 #. Button hint: jump a page of the list (L1 / R1).
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "Page"
 msgstr "Sivu"
 
@@ -921,6 +1072,11 @@ msgstr "Pohjana Eden"
 msgid "PREFERENCES"
 msgstr "VALINNAT"
 
+#. Update dialog headline while the download starts.
+#: pe/ui/update.cpp
+msgid "Preparing"
+msgstr "Valmistellaan"
+
 #. Asked before a save is imported over the one in use.
 #: pe/ui/library.cpp
 msgid "Press again to replace this game's save. The current one is backed up."
@@ -930,11 +1086,15 @@ msgstr "Paina uudelleen, niin pelin tallennus korvataan. Nykyinen varmuuskopioid
 msgid "prod.keys could not supply an NCA header key. Replace it with a valid key dump."
 msgstr "Tiedosto prod.keys ei sisällä NCA-otsakkeen avainta. Korvaa se kelvollisella avainvedoksella."
 
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "prod.keys found"
 msgstr "prod.keys löytyi"
 
 #: pe/ui/browse.cpp
+msgid "prod.keys is not in this folder."
+msgstr "prod.keys ei ole tässä kansiossa."
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "prod.keys missing"
 msgstr "prod.keys puuttuu"
 
@@ -950,6 +1110,14 @@ msgstr "PROFIILIT"
 msgid "PROJECT CREDITS"
 msgstr "PROJEKTIN TEKIJÄT"
 
+#: pe/ui/update.cpp
+msgid "ProsperoEden closes now."
+msgstr "ProsperoEden sulkeutuu nyt."
+
+#: pe/ui/update.cpp
+msgid "ProsperoEden closes to finish the update."
+msgstr "ProsperoEden sulkeutuu päivityksen viimeistelemiseksi."
+
 #: pe/ui/browse.cpp
 msgid "ProsperoEden is an unofficial PS5 port brought to you by BlackBearReloaded."
 msgstr "ProsperoEden on epävirallinen PS5-versio, jonka tarjoaa BlackBearReloaded."
@@ -958,6 +1126,10 @@ msgstr "ProsperoEden on epävirallinen PS5-versio, jonka tarjoaa BlackBearReload
 #: eden_services.cpp, host/fake_services.cpp
 msgid "ProsperoEden stopped because of an error. A report was saved to {0}."
 msgstr "ProsperoEden pysähtyi virheen vuoksi. Raportti tallennettiin kohteeseen {0}."
+
+#: pe/ui/update.cpp
+msgid "ProsperoEden was not changed."
+msgstr "ProsperoEdeniä ei muutettu."
 
 #. Why a game did not start.
 #: eden_services.cpp
@@ -1013,7 +1185,7 @@ msgstr "VIRKISTYSTAAJUUS"
 msgid "REGION"
 msgstr "ALUE"
 
-#: pe/ui/profiles.cpp
+#: pe/ui/locations.cpp, pe/ui/profiles.cpp
 msgid "Remove"
 msgstr "Poista"
 
@@ -1045,7 +1217,7 @@ msgstr "RESOLUUTIO"
 msgid "Right stick press"
 msgstr "Oikean sauvan painallus"
 
-#: eden_services.cpp, pe/ui/launcher.cpp
+#: eden_services.cpp, pe/ui/launcher.cpp, pe/ui/library.cpp
 msgid "ROM missing from the game files folder"
 msgstr "ROM puuttuu pelitiedostojen kansiosta"
 
@@ -1068,10 +1240,26 @@ msgstr "Rajoitettu (koodi {0}): vain sovelluskansio"
 msgid "Save data"
 msgstr "Tallennetut tiedot"
 
+#: pe/ui/locations.cpp
+msgid "SAVE EXPORT"
+msgstr "TALLENTEIDEN VIENTI"
+
+#: pe/ui/browse.cpp
+msgid "Save export folder"
+msgstr "Tallenteiden vientikansio"
+
 #. Short status at the right of the Save data row: a folder with a save to import.
 #: pe/ui/library.cpp
 msgid "Save folder found"
 msgstr "Tallennuskansio löytyi"
+
+#: pe/ui/locations.cpp
+msgid "SAVE IMPORT"
+msgstr "TALLENTEIDEN TUONTI"
+
+#: pe/ui/browse.cpp
+msgid "Save import folder"
+msgstr "Tallenteiden tuontikansio"
 
 #: pe/ui/game_options.cpp, pe/ui/library.cpp
 msgid "Saved for this game. Applies on next launch."
@@ -1087,11 +1275,23 @@ msgid "Saved. Applies when a game starts."
 msgstr "Tallennettu. Tulee voimaan, kun peli käynnistyy."
 
 #: pe/ui/browse.cpp
+msgid "Saved. Its games are in the Library now."
+msgstr "Tallennettu. Sen pelit ovat nyt kirjastossa."
+
+#: pe/ui/browse.cpp
 msgid "Saved. Reopen ProsperoEden to use this folder."
 msgstr "Tallennettu. Avaa ProsperoEden uudelleen, niin kansio otetaan käyttöön."
 
+#: pe/ui/browse.cpp
+msgid "Saves to import go here, one folder per game ID. TRIANGLE uses the folder shown; SQUARE goes back to the default."
+msgstr "Tuotavat tallenteet laitetaan tänne, yksi kansio pelin tunnusta kohti. KOLMIO käyttää näytettyä kansiota; NELIÖ palaa oletukseen."
+
+#: pe/ui/locations.cpp
+msgid "Saves to import, one folder per game ID. Until you choose one, it is save-import in the game files folder."
+msgstr "Tuotavat tallenteet, yksi kansio pelin tunnusta kohti. Kunnes valitset kansion, se on pelitiedostojen kansion save-import."
+
 #. Button hint: choose the highlighted item (not the Select button).
-#: pe/ui/game_options.cpp, pe/ui/home.cpp, pe/ui/library.cpp, pe/ui/settings.cpp
+#: pe/ui/game_options.cpp, pe/ui/home.cpp, pe/ui/library.cpp, pe/ui/settings.cpp, pe/ui/update.cpp
 msgid "Select"
 msgstr "Valitse"
 
@@ -1142,6 +1342,14 @@ msgstr "Määrityksen tila ja tarkat lokit."
 msgid "Setup validation failed. Check that firmware and key files are readable and valid."
 msgstr "Määrityksen tarkistus epäonnistui. Varmista, että laiteohjelmisto ja avaintiedostot ovat luettavissa ja kelvollisia."
 
+#: pe/ui/locations.cpp
+msgid "SHOW"
+msgstr "NÄYTÄ"
+
+#: pe/ui/locations.cpp
+msgid "Show"
+msgstr "Näytä"
+
 #: pe/ui/settings.cpp
 msgid "Show or hide the FPS overlay"
 msgstr "Näytä tai piilota FPS-laskuri"
@@ -1149,6 +1357,11 @@ msgstr "Näytä tai piilota FPS-laskuri"
 #: pe/ui/library.cpp
 msgid "SIZE"
 msgstr "KOKO"
+
+#. Button and hint: not now (the dialog shows again the next time the app opens).
+#: pe/ui/update.cpp
+msgid "Skip"
+msgstr "Ohita"
 
 #. A switch: fewer checks when a game changes memory the graphics processor uses. CPU stays.
 #: pe/ui/game_options.cpp, pe/ui/settings.cpp
@@ -1180,6 +1393,10 @@ msgstr "Espanja (Latinalainen Amerikka)"
 msgid "Square"
 msgstr "Neliö"
 
+#: pe/ui/locations.cpp
+msgid "Square again takes {0} off the list. Its games stay where they are."
+msgstr "Neliö uudelleen poistaa kansion {0} luettelosta. Sen pelit pysyvät paikoillaan."
+
 #: pe/ui/profiles.cpp
 msgid "Square again takes {0} off the list. Its save data stays on the console."
 msgstr "Neliö uudelleen poistaa profiilin {0} luettelosta. Tallennukset jäävät konsoliin."
@@ -1206,6 +1423,10 @@ msgstr "Käytä omia tiedostojasi"
 msgid "Taiwan"
 msgstr "Taiwan"
 
+#: pe/ui/locations.cpp
+msgid "Taken off the list. Its games stay where they are."
+msgstr "Poistettu luettelosta. Sen pelit pysyvät paikoillaan."
+
 #: pe/ui/profiles.cpp
 msgid "Taken off the list. Its save data stays on the console."
 msgstr "Poistettu luettelosta. Tallennukset jäävät konsoliin."
@@ -1223,9 +1444,25 @@ msgstr "KIITOKSET"
 msgid "Thanks to the whole PS5 homebrew community and to every developer whose drivers, tools and libraries make ProsperoEden possible."
 msgstr "Kiitos koko PS5:n homebrew-yhteisölle ja kaikille kehittäjille, joiden ajurien, työkalujen ja kirjastojen ansiosta ProsperoEden on mahdollinen."
 
+#: pe/ui/browse.cpp
+msgid "The folder shown must hold prod.keys. TRIANGLE uses it; SQUARE goes back to the default."
+msgstr "Näytetyssä kansiossa on oltava prod.keys. KOLMIO ottaa sen käyttöön; NELIÖ palaa oletukseen."
+
+#: pe/ui/browse.cpp
+msgid "The folder shown must hold the firmware NCA files. TRIANGLE uses it; SQUARE goes back to the default."
+msgstr "Näytetyssä kansiossa on oltava laiteohjelmiston NCA-tiedostot. KOLMIO ottaa sen käyttöön; NELIÖ palaa oletukseen."
+
+#: pe/ui/locations.cpp
+msgid "The folder that holds prod.keys. Until you choose one, it is keys in the game files folder."
+msgstr "Kansio, jossa prod.keys on. Kunnes valitset kansion, se on pelitiedostojen kansion keys."
+
+#: pe/ui/locations.cpp
+msgid "The folder that holds the firmware NCA files. Until you choose one, it is firmware in the game files folder."
+msgstr "Kansio, jossa laiteohjelmiston NCA-tiedostot ovat. Kunnes valitset kansion, se on pelitiedostojen kansion firmware."
+
 #: pe/ui/settings.cpp
-msgid "The folder that holds your keys, firmware and games."
-msgstr "Kansio, jossa avaimesi, laiteohjelmisto ja pelisi ovat."
+msgid "The folder that holds your keys, firmware and games, and more places for games."
+msgstr "Kansio, jossa keys, firmware ja pelit ovat, sekä lisää paikkoja peleille."
 
 #. Why a game stopped. 'Settings, Video' is the menu path; 'the game's own settings' is the Game settings dialog of the Library.
 #: eden_services.cpp
@@ -1236,17 +1473,41 @@ msgstr "Peliltä loppui grafiikkamuisti. Pienennä resoluutiota kohdassa Asetuks
 msgid "The language games use when they offer it."
 msgstr "Kieli, jota pelit käyttävät, jos ne tukevat sitä."
 
+#: pe/ui/browse.cpp
+msgid "The list is full. Remove a folder first."
+msgstr "Luettelo on täynnä. Poista ensin yksi kansio."
+
 #: pe/ui/profiles.cpp
 msgid "The profile that is playing stays. Choose another one first."
 msgstr "Pelaava profiili pysyy. Valitse ensin toinen."
 
-#: pe/ui/browse.cpp
+#: pe/ui/update.cpp
+msgid "The update could not finish"
+msgstr "Päivitystä ei voitu viedä loppuun"
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "THIS FOLDER"
 msgstr "TÄMÄ KANSIO"
 
 #: pe/ui/browse.cpp
 msgid "This folder cannot be opened."
 msgstr "Tätä kansiota ei voi avata."
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "This folder cannot be read"
+msgstr "Tätä kansiota ei voi lukea"
+
+#: pe/ui/browse.cpp
+msgid "This folder has no firmware NCA files."
+msgstr "Tässä kansiossa ei ole firmwaren NCA-tiedostoja."
+
+#: pe/ui/browse.cpp
+msgid "This folder is in the list already."
+msgstr "Tämä kansio on jo luettelossa."
+
+#: pe/ui/browse.cpp
+msgid "This folder needs a roms folder."
+msgstr "Tässä kansiossa on oltava roms-kansio."
 
 #. The game has a button mapping of its own.
 #: pe/ui/game_options.cpp
@@ -1260,6 +1521,14 @@ msgstr "Tällä pelillä ei ole vielä vietävää tallennusta."
 #: pe/ui/library.cpp
 msgid "This game's settings cannot be saved (no title ID)."
 msgstr "Tämän pelin asetuksia ei voi tallentaa (nimiketunnus puuttuu)."
+
+#: pe/ui/locations.cpp
+msgid "This is the default folder already."
+msgstr "Tämä on jo oletuskansio."
+
+#: pe/ui/browse.cpp
+msgid "This is the game files folder already."
+msgstr "Tämä on jo pelitiedostojen kansio."
 
 #. ryujinx/, save-import/ and roms/ are folder names (unchanged); {0} is the game's ID.
 #: eden_services.cpp
@@ -1276,6 +1545,10 @@ msgstr "Kosketuslevy"
 msgid "Triangle"
 msgstr "Kolmio"
 
+#: pe/ui/update.cpp
+msgid "Try again"
+msgstr "Yritä uudelleen"
+
 #. Button hint: switch the highlighted mod on or off.
 #: pe/ui/library.cpp
 msgid "Turn on or off"
@@ -1285,22 +1558,36 @@ msgstr "Ota käyttöön tai pois"
 msgid "Unavailable"
 msgstr "Ei käytettävissä"
 
+#. Update dialog headline while the downloaded release is extracted.
+#: pe/ui/update.cpp
+msgid "Unpacking"
+msgstr "Puretaan"
+
 #. Short tag on the 'Parent folder' row.
 #: pe/ui/browse.cpp
 msgid "UP"
 msgstr "YLÖS"
 
 #. Notification title: a newer release of this app is listed (not a game update).
-#: pe/ui/launcher.cpp
+#: pe/ui/launcher.cpp, pe/ui/update.cpp
 msgid "Update available"
 msgstr "Päivitys saatavilla"
+
+#. Button: download and install the newer release of this app now.
+#: pe/ui/update.cpp
+msgid "Update now"
+msgstr "Päivitä nyt"
+
+#: pe/ui/update.cpp
+msgid "Update ready"
+msgstr "Päivitys valmis"
 
 #. A game update; {0} is its version, for example 1.2.0.
 #: eden_services.cpp, host/fake_services.cpp
 msgid "Update {0}"
 msgstr "Päivitys {0}"
 
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "UPDATES, DLC"
 msgstr "PÄIVITYKSET, DLC"
 
@@ -1324,10 +1611,20 @@ msgstr "Käytä purettuja laiteohjelmiston NCA-tiedostoja. Valitse kansio kohdas
 msgid "Use this folder"
 msgstr "Käytä tätä kansiota"
 
+#. {0} is the app's new version number, for example 1.000.060.
+#: pe/ui/update.cpp
+msgid "Version {0}"
+msgstr "Versio {0}"
+
 #. {0}: the newer release's number, for example 1.000.050; homebrew.page is a site's name and stays as it is.
 #: pe/ui/launcher.cpp
 msgid "Version {0} is on homebrew.page"
 msgstr "Versio {0} on osoitteessa homebrew.page"
+
+#. Update dialog: a newer release of this app; {0} is its number, for example 1.000.060.
+#: pe/ui/update.cpp
+msgid "Version {0} is ready to install."
+msgstr "Versio {0} on valmis asennettavaksi."
 
 #: pe/ui/game_options.cpp, pe/ui/settings.cpp
 msgid "Vibration"
@@ -1366,6 +1663,10 @@ msgstr "NÄYTÄ KAIKKI PELIT"
 msgid "Vulkan (recommended)"
 msgstr "Vulkan (suositeltu)"
 
+#: pe/ui/locations.cpp
+msgid "Where exported saves are written. Until you choose one, it is save-export in the game files folder."
+msgstr "Minne viedyt tallenteet kirjoitetaan. Kunnes valitset kansion, se on pelitiedostojen kansion save-export."
+
 #: pe/ui/settings.cpp
 msgid "Who is playing. Each profile keeps its own save data and settings."
 msgstr "Kuka pelaa. Jokaisella profiililla on omat tallennuksensa ja asetuksensa."
@@ -1373,6 +1674,11 @@ msgstr "Kuka pelaa. Jokaisella profiililla on omat tallennuksensa ja asetuksensa
 #: pe/ui/library.cpp
 msgid "Your games"
 msgstr "Omat pelit"
+
+#. Update dialog: installing the new app version keeps the player's files.
+#: pe/ui/update.cpp
+msgid "Your games, saves and settings are kept."
+msgstr "Pelisi, tallennukset ja asetukset säilyvät."
 
 #. Headline when no game has been played yet.
 #: pe/ui/home.cpp
@@ -1389,10 +1695,26 @@ msgstr "{0} muutettu"
 msgid "{0} DLC"
 msgstr "{0} DLC"
 
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "{0} file"
+msgstr "{0} tiedosto"
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "{0} files"
+msgstr "{0} tiedostoa"
+
 #. Exactly one game. In a language with more than two plural forms, word it so that it reads well with any number (Games: {0}).
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "{0} game"
 msgstr "{0} peli"
+
+#: pe/ui/locations.cpp
+msgid "{0} game folder"
+msgstr "{0} pelikansio"
+
+#: pe/ui/locations.cpp
+msgid "{0} game folders"
+msgstr "{0} pelikansiota"
 
 #. Exactly one game. See '{0} game'.
 #: eden_services.cpp
@@ -1400,7 +1722,7 @@ msgid "{0} game installed"
 msgstr "{0} peli asennettu"
 
 #. Any number of games other than one (also 0). See '{0} game'.
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "{0} games"
 msgstr "{0} peliä"
 
@@ -1414,6 +1736,10 @@ msgstr "{0} peliä asennettu"
 msgid "{0} Hz"
 msgstr "{0} Hz"
 
+#: pe/ui/library.cpp
+msgid "{0} is in more than one place. Choose which one starts."
+msgstr "{0} on useassa paikassa. Valitse, mikä käynnistyy."
+
 #. Exactly one mod, in the list of what a game comes with (Update 1.2.0, 2 DLC, 1 mod). See '{0} game'.
 #: pe/ui/library.cpp
 msgid "{0} mod"
@@ -1425,12 +1751,12 @@ msgid "{0} mods"
 msgstr "{0} modia"
 
 #. Exactly one file. See '{0} game'.
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "{0} NCA file"
 msgstr "{0} NCA-tiedosto"
 
 #. Any number of files other than one. See '{0} game'.
-#: pe/ui/browse.cpp
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "{0} NCA files"
 msgstr "{0} NCA-tiedostoa"
 
@@ -1455,7 +1781,7 @@ msgid "{0} of {1} on"
 msgstr "{0}/{1} käytössä"
 
 #. A percentage (a volume): write it as the language does, for example with a space before the sign.
-#: pe/ui/game_options.cpp, pe/ui/settings.cpp
+#: pe/ui/game_options.cpp, pe/ui/settings.cpp, pe/ui/update.cpp
 msgid "{0}%"
 msgstr "{0} %"
 
