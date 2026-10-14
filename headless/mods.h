@@ -216,9 +216,8 @@ inline std::string Summary(const std::vector<Mod>& mods, const std::vector<std::
     if (off != 0) used += " (" + std::to_string(off) + " switched off)";
     return used;
 }
-// ---- several mods folders: one per game folder (assets_dir.h: ModsDirs) ----
-// A game's mods are whatever its title folder holds in any of them. A mod name found in two of
-// them counts once, from the first (the game files folder's comes first).
+// ---- several mods folders: one per game folder ----
+// A mod name found in two of them counts once, from the first.
 inline std::vector<Mod> ListIn(const std::vector<std::string>& roots, uint64_t title_id) {
     std::vector<Mod> mods;
     for (const std::string& root : roots)
@@ -237,11 +236,8 @@ inline std::vector<std::string> RootsWith(const std::vector<std::string>& roots,
     return found;
 }
 
-// The folder Eden reads this game's mods from (its load folder). With one mods folder holding the
-// game's folder that is the folder itself. With several, the game's mods are linked side by side
-// under staging/<title ID>/, the first folder's mod winning a name, so Eden sees all of them. A
-// link that cannot be made leaves the first folder alone (the others' mods are then not used).
-// Empty when no folder has mods for the game.
+// The folder Eden reads this game's mods from. With several mods folders they are linked
+// under staging/<title ID>/, the first folder winning a name. Empty when there are none.
 inline std::string LoadRootFor(const std::vector<std::string>& roots, const std::string& staging,
                                uint64_t title_id, bool* linked_all = nullptr) {
     if (linked_all) *linked_all = true;

@@ -24,7 +24,7 @@ cp "$scratch/native-local/bin/eden-headless.map" "$out/link.map"
 cp "$scratch/native-local/CMakeCache.txt" "$out/CMakeCache.txt"
 stub_flags=(--stub-dir "$scratch/sdk/target/lib")
 if grep -qx 'EDEN_PS5_OPENGL:BOOL=ON' "$out/CMakeCache.txt"; then
-    gl46="$root/.deps/ps5-opengl-sdk-1.0.0/sdk"
+    gl46="$root/.deps/ps5-opengl-sdk-1.0.2/sdk"
     stub_flags=()
     for stub in "$scratch/sdk/target/lib/"*.so; do
         case "${stub##*/}" in libSceAgc.so|libSceAgcDriver.so) continue ;; esac
@@ -36,6 +36,8 @@ if grep -qx 'EDEN_PS5_OPENGL:BOOL=ON' "$out/CMakeCache.txt"; then
     fi
     stub_flags+=(--stub "$gl46/lib/libSceAgc.so" --stub "$driver_stub")
 fi
+# The PS5 keyboard's libSceCommonDialog import (tools/build-common-dialog-stub.sh).
+stub_flags+=(--stub "$root/build/stubs/libSceCommonDialog.so")
 "$builder" link --in "$out/llvm-pie.elf" --out "$out/eboot.elf" \
     "${stub_flags[@]}" --module-sdk 0x02000009 \
     --companion-sdk 0x08050001 --file-name eboot.elf
@@ -58,6 +60,12 @@ cp "$root/build/self-update/self-updater.elf" "$app/self-updater.elf"
 cp "$root/sce_sys/"{param.json,icon0.png,pic0.dds,pic1.dds,snd0.at9} "$app/sce_sys/"
 rm -rf "$app/ui"
 cp -a "$root/headless/prosperoeden/ui" "$app/ui"
+# The switches the runner reads from the app folder (headless/main.cpp). Only a development
+# package gets them: the profile title otherwise takes its timed input replay instead of the
+# controller, and a release build never parses the file.
+if [[ ${EDEN_DEV_PROFILE:-} == ON && -f "$root/headless/dev-settings.txt" ]]; then
+    cp "$root/headless/dev-settings.txt" "$app/dev-settings.txt"
+fi
 # The exact-title upstream Lapy helper is verified before it reaches this package.
 python3 - "$root" "$scratch" "$app" "${1:-}" <<'PY'
 import json, pathlib, re, runpy, shutil, sys
@@ -79,7 +87,15 @@ built = re.search(r'EDEN_APP_VERSION "([0-9.]+)"',
 assert built == value['contentVersion'], f'the program says {built}, param.json {value["contentVersion"]}'
 # The console gives a 120 Hz output (Settings > Video, headless/display_refresh.h) only to a title
 # that declares it. Declaring it changes nothing by itself: the output stays at 60 Hz until asked.
-assert int(value['attribute3']) & 0x80040 == 0x80040, 'param.json no longer declares the 120 Hz output'
+# With it goes bit 18, a variable refresh rate as system software 6.02 already knows it: bit 19
+# (the newer way to say so) is refused there as an unknown parameter, and the title is then
+# listed without a variable refresh rate at all.
+assert int(value['attribute3']) & 0x40040 == 0x40040, 'param.json no longer declares the 120 Hz output'
+# Bit 22: PS5 Pro memory mode, a 13,504 MiB direct memory pool instead of 12,288 MiB on a Pro.
+assert int(value['attribute3']) & 0x400000, 'param.json no longer asks for PS5 Pro memory mode'
+# The flexible memory pool: what it is smaller than the system's 448 MiB goes to the direct pool,
+# which is the one games run out of. A game session was measured to use 203 MiB of it.
+assert value['kernel']['flexibleMemorySize'] == 320 << 20, 'param.json no longer sets the flexible memory pool'
 runpy.run_path(str(root / 'tools/load_alignment.py'))['check_load_alignment']((app / 'eboot.bin').read_bytes())
 profile = (root / 'build/headless-native/CMakeCache.txt').read_text()
 assert sum(profile.count('EDEN_DEVICE_FRONTEND:BOOL=' + v) for v in ('ON', 'OFF')) == 1

@@ -25,7 +25,10 @@ builds on the following projects, each under its own license.
   and `tools/validate-loader-elf.py`.
 - **[miniz](https://github.com/richgel999/miniz)** 3.0.2, MIT, unmodified in
   `third_party/miniz` with its `LICENSE`. The self-update helper reads release
-  ZIPs with it.
+  ZIPs with it; the app packs and unpacks save data for the save sync with it.
+- **[QR Code generator library](https://github.com/nayuki/QR-Code-generator)** (C), MIT,
+  unmodified in `third_party/qrcodegen` with its `LICENSE`. The launcher draws the QR code
+  of a save sync's pairing with it.
 - **LLVM compiler-rt** `emutls.c`, Apache-2.0 WITH LLVM-exception.
 
 ## Graphics
@@ -50,7 +53,8 @@ builds on the following projects, each under its own license.
   [SharpProspero](https://github.com/SvenGDK/SharpProspero).
 - **[PS5-Lapy-JB-Daemon](https://github.com/ArkSama/PS5-Lapy-JB-Daemon)** by
   ArkSama, with the cooperative owned-root design from
-  **[mpereiraesaa's fork](https://github.com/mpereiraesaa/PS5-Lapy-JB-Daemon)**.
+  **[mpereiraesaa's fork](https://github.com/mpereiraesaa/PS5-Lapy-JB-Daemon)** and the pinned
+  **[ProsperoEden compatibility fork](https://github.com/blackbearreloaded/PS5-Lapy-JB-Daemon)**.
   Lapy is MIT licensed; its shared protocol header is LGPL-2.1-or-later.
   ProsperoEden pins the fork, invokes its unmodified exact-title helper build,
   verifies its generated manifest and bundles the helper ELF with its license.
@@ -60,6 +64,10 @@ builds on the following projects, each under its own license.
 - **[ProsperoPuzzles](https://github.com/blackbearreloaded/ProsperoPuzzles)**,
   GPL-3.0-or-later. The launcher's drawing, text, animation and sound code
   (`headless/prosperoeden/pe`) started there.
+- **[ps5-homebrew-ui](https://github.com/blackbearreloaded/ps5-homebrew-ui)**,
+  GPL-3.0-or-later. The launcher's themes start from its theme recipes: its
+  theme table (`src/ui/theme.cpp`) is compiled into the launcher. Fetched at
+  the commit pinned in `tools/deps.json`.
 - **Montserrat** by Julieta Ulanovsky and contributors, SIL Open Font License
   1.1 (`third_party/fonts`). The launcher's font is baked from Montserrat Medium.
 - **[HarfBuzz](https://github.com/harfbuzz/harfbuzz)**, "Old MIT" license (its
@@ -71,11 +79,8 @@ builds on the following projects, each under its own license.
   not have. `stb_image_write` saves the PC previews and is not part of the app.
 - The launcher's sound effects were generated with
   [ElevenLabs](https://elevenlabs.io) and edited for this project.
-- `third_party/ps5_pad.hpp` comes from
-  [ps5-native-gamepad-input-research](https://github.com/blackbearreloaded/ps5-native-gamepad-input-research),
-  and `third_party/native_audio.hpp` from
-  [ps5-audio-decoding-research](https://github.com/blackbearreloaded/ps5-audio-decoding-research).
-  Both are GPL-3.0-or-later.
+- `third_party/ps5_pad.hpp` and `third_party/native_audio.hpp` are this
+  project's own platform declarations, GPL-3.0-or-later.
 
 ## Thanks
 

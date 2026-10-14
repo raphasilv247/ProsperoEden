@@ -1,11 +1,6 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
-// Where a game folder is, in a word: the Library shows it after the file format ("NSP | USB").
-//   /mnt/usb0, /mnt/usb1 ...   USB   (USB0, USB1 ... where two have to be told apart)
-//   /mnt/ext0, /ext1 ...       EXT   (EXT0, EXT1 ...)
-//   /data and the rest of the console's own storage   SSD
-//   any other mount under /mnt   its own name, capitals
-// MountRoot is the folder that holds the drive ("/mnt/usb0", "/data"): all the player is told of
-// a game's place when one game is found in two of them. Never a full path.
+// Short label for where a game folder is, shown after the file format ("NSP | EXT0"):
+//   /mnt/usb0 -> USB0, /mnt/ext1 -> EXT1, /data and other console storage -> SSD, other /mnt/x -> X
 #pragma once
 #include <cctype>
 #include <string>
@@ -47,23 +42,23 @@ inline std::string DriveName(const std::vector<std::string>& parts) {
 }
 } // namespace place_detail
 
-// "/mnt/usb0/games" -> "/mnt/usb0"; "/ext0/games" -> "/ext0"; "/data/prosperoeden" -> "/data".
-inline std::string MountRoot(std::string_view path) {
-    const auto parts = place_detail::Parts(path);
-    if (parts.empty()) return "/";
-    if (parts[0] == "mnt" && parts.size() > 1) return "/mnt/" + parts[1];
-    return "/" + parts[0];
+// "/ext0/games/roms" -> "/ext0/games": the game files folder of a roms/ folder.
+inline std::string GameFolderOf(std::string_view roms) {
+    const std::string_view suffix = "/roms";
+    if (roms.size() >= suffix.size() && roms.substr(roms.size() - suffix.size()) == suffix)
+        roms.remove_suffix(suffix.size());
+    return std::string{roms};
 }
 
-// numbered: "USB0" instead of "USB", for telling two drives of one kind apart.
-inline std::string PlaceLabel(std::string_view path, bool numbered = false) {
+// The drive's number follows the kind: "USB0", "USB1", "EXT0", "EXT1" (for telling two drives of one kind apart).
+inline std::string PlaceLabel(std::string_view path) {
     const std::string name = place_detail::DriveName(place_detail::Parts(path));
     if (name.empty()) return "SSD";
     const std::string lower = place_detail::Lower(name);
     for (const char* kind : {"usb", "ext"}) {
         const std::string prefix = kind;
         if (lower.rfind(prefix, 0) == 0)
-            return place_detail::Upper(prefix) + (numbered ? name.substr(prefix.size()) : std::string{});
+            return place_detail::Upper(prefix) + name.substr(prefix.size());
     }
     std::string label = place_detail::Upper(name);
     if (label.size() > 8) label.resize(8);

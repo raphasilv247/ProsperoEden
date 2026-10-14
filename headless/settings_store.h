@@ -4,13 +4,17 @@
 //   {
 //     "version": 1,
 //     "video": { "renderer": "vulkan", "fps_overlay": true, "resolution": "1x",
-//                "upscaling_filter": "bilinear", "refresh_rate": "60",
-//                "output_resolution": "1080p" },
+//                "upscaling_filter": "bilinear", "astc_textures": "compressed",
+//                "refresh_rate": "60",
+//                "output_resolution": "1080p", "frame_gen": false,
+//                "frame_gen_target": "auto", "frame_gen_multiplier": "2" },
 //     "audio": { "volume": 100, "mute": false, "menu_volume": 70 },
-//     "controls": { "vibration": true, "mapping": { "a": "cross", "b": "circle" } },
+//     "controls": { "vibration": true, "vibration_strength": 100,
+//                   "mapping": { "a": "cross", "b": "circle" } },
 //     "system": { "language": "en-US" },
 //     "accessibility": { "large_text": false, "high_contrast": false, "reduce_motion": false },
-//     "diagnostics": { "detailed_logging": false },
+//     "launcher": { "theme": "canopy" },
+//     "diagnostics": { "detailed_logging": false, "immediate_logs": false },
 //     "performance": { "block_list": false, "async_shaders": false, "fast_gpu": false,
 //                      "unsafe_cpu": false, "unsafe_dma": false, "reactive_flushing": true,
 //                      "skip_invalidation": false },
@@ -21,9 +25,13 @@
 //     "library": { "last_game": "Game [id].nsp", "recent": ["Game [id].nsp"] },
 //     "games": { "0100000000010000": { "console_mode": "handheld", "renderer": "opengl",
 //                                      "resolution": "0.75x", "upscaling_filter": "fsr",
+//                                      "astc_textures": "full",
 //                                      "refresh_rate": "120", "fps_overlay": false,
+//                                      "frame_gen": true,
+//                                      "frame_gen_target": "120", "frame_gen_multiplier": "3",
 //                                      "volume": 80, "mute": false, "vibration": false,
 //                                      "language": "ja", "mapping": { "a": "cross" },
+//                                      "controller": "handheld",
 //                                      "mods": false,
 //                                      "mods_off": ["A mod's folder name"],
 //                                      "cheats_on": ["A mod's folder name#A cheat's name"],
@@ -50,6 +58,7 @@
 
 #include "button_mapping.h"
 #include "storage_paths.h"
+#include "multiplayer.h"
 
 namespace Eden {
 enum class GraphicsBackend { OpenGL, Vulkan };
@@ -67,10 +76,38 @@ static_assert(std::size(kResolutionLabels) == std::size(kResolutionKeys));
 inline constexpr int kNativeResolution = 2;
 inline constexpr const char* kUpscalingFilterKeys[] = {"bilinear", "fsr", "bicubic", "nearest"};
 inline constexpr const char* kUpscalingFilterLabels[] = {"Bilinear", "AMD FSR", "Bicubic", "Nearest"};
+// Settings > Video: how a texture in ASTC, a format the console's GPU cannot read, is held.
+// Compressed keeps it as BC3; full quality keeps it decoded, at four times the graphics memory
+// (headless/main.cpp has the numbers).
+inline constexpr const char* kAstcTextureKeys[] = {"compressed", "full"};
+inline constexpr const char* kAstcTextureLabels[] = {"Compressed", "Full quality"};
+static_assert(std::size(kAstcTextureLabels) == std::size(kAstcTextureKeys));
 // Settings > Video: the refresh rate of the output while a game runs. 120 Hz is asked of the
 // display (display_refresh.h); one that cannot show it stays at 60 Hz.
 inline constexpr const char* kRefreshKeys[] = {"60", "120"};
 inline constexpr int kRefreshHz[] = {60, 120};
+// Lossless Scaling frame generation (Vulkan only): the multiplier is how many frames the driver
+// makes out of each one the game draws, and the target is the rate it aims for instead. Eden
+// ignores the multiplier once a target rate is set (FrameGenMaxGenerations in settings.cpp lets
+// the pacer add up to its own maximum then), so "auto" passes 0 and leaves the ratio in charge.
+// The target's limits are Eden's own: 0 to 240 Hz.
+inline constexpr const char* kFrameGenTargetKeys[] = {"auto", "60", "90", "120", "144", "240"};
+inline constexpr int kFrameGenTargetHz[] = {0, 60, 90, 120, 144, 240};
+static_assert(std::size(kFrameGenTargetKeys) == std::size(kFrameGenTargetHz));
+inline constexpr const char* kFrameGenMultiplierKeys[] = {"2", "3", "4"};
+inline constexpr int kFrameGenMultiplierValue[] = {2, 3, 4};
+static_assert(std::size(kFrameGenMultiplierKeys) == std::size(kFrameGenMultiplierValue));
+// Settings > Video > Overlay size: how large the overlay's chip is drawn. "regular" is the size
+// every earlier build drew; "medium" is one and a half times it; "large" is twice it, for reading
+// the line from across a room. The corner it stands in is a switch of its own
+// (Preferences::hud_corner), and the order here is the one the launchers walk
+// (hud.h's kHudCornerCount). The value is the chip's scale times two, as hud.h's field carries it.
+inline constexpr const char* kHudSizeKeys[] = {"regular", "medium", "large"};
+inline constexpr int kHudSizeValue[] = {2, 3, 4};
+static_assert(std::size(kHudSizeKeys) == std::size(kHudSizeValue));
+// Settings > Video > Overlay corner: which corner of the picture the chip is drawn against.
+inline constexpr const char* kHudCornerKeys[] = {"top_left", "top_right", "bottom_left", "bottom_right"};
+static_assert(std::size(kHudCornerKeys) == 4);
 // Settings > Video: the size of the picture the app puts out, for the menu and for a game (its
 // frame after the upscaling filter). The console scales it to what the TV shows.
 inline constexpr const char* kOutputKeys[] = {"1080p", "1440p", "2160p"};
@@ -98,15 +135,31 @@ struct Preferences {
     GraphicsBackend backend = GraphicsBackend::Vulkan;
     int resolution = kNativeResolution;  // index into kResolutionKeys
     int upscaling_filter = 0;            // index into kUpscalingFilterKeys
+    int astc_textures = 0;               // index into kAstcTextureKeys (0 is compressed)
     int refresh = 0;                     // index into kRefreshKeys
     int output = 0;                      // index into kOutputKeys
+    bool frame_gen = false;              // Lossless Scaling frame generation (Vulkan only)
+    int frame_gen_target = 0;            // index into kFrameGenTargetKeys (0 is "auto")
+    int frame_gen_multiplier = 0;        // index into kFrameGenMultiplierKeys (0 is 2x)
     bool vibration = true;
+    int vibration_strength = 100;        // percent of what a game asks for: 25, 50, 75 or 100
     int language = 0;                    // index into kLanguageKeys (English (US), Eden's default)
     int menu_volume = 70;                // the launcher's own sounds, 0 (off) to 100
     bool large_text = false;             // Settings > Accessibility: the launcher's look
     bool high_contrast = false;
     bool reduce_motion = false;
+    std::string theme = "canopy";        // Settings > Theme: the launcher's look, by its id
     ButtonMapping mapping = kDefaultMapping;  // Settings > Controls > Button mapping
+    int controller = -1;                 // a game's own Controller type (kControllerKeys); -1: automatic
+    bool immediate_logs = false;         // Settings > Diagnostics: log lines written as they come
+    // Settings > Video: the overlay's chip, which draws over whatever the game shows. Kept at the
+    // end so the aggregate initialisations the checks use still mean what they did.
+    int hud_size = 0;        // index into kHudSizeKeys: 0 regular, 1 medium, 2 large
+    int hud_corner = 0;      // index into kHudCornerKeys: which corner of the picture it stands in
+    bool hud_colors = true;  // the line in its inks rather than one (bake-loading-text.py)
+    // What the overlay's line may say, bit by bit (hud.h's kHudField*): the pieces the user has
+    // chosen to show. All of them by default.
+    int hud_fields = 0xff;
 };
 
 inline int KeyIndex(const std::string& value, const char* const* keys, int count, int fallback) {
@@ -266,7 +319,7 @@ inline bool Write(const Json& document, const std::string& file) {
     whole["version"] = 1;
     // The game files folder is the console's: a profile that changes it changes it for everyone.
     if (document.contains("game_files")) whole["game_files"] = document["game_files"];
-    // So are the folders chosen next to it (keys, firmware, saves, extra game folders).
+    // So are the folders next to it.
     if (document.contains("storage")) whole["storage"] = document["storage"];
     else whole.erase("storage");
     return WriteWhole(whole, file);
@@ -309,6 +362,15 @@ inline Preferences LoadPreferences(const std::string& file = SettingsFile()) {
     const Json document = Settings::Load(file);
     Preferences result;
     result.hud = Settings::Bool(document, Json::json_pointer("/video/fps_overlay"), result.hud);
+    result.hud_size = KeyIndex(Settings::String(document, Json::json_pointer("/video/fps_overlay_size")),
+                               kHudSizeKeys, int(std::size(kHudSizeKeys)), result.hud_size);
+    result.hud_corner = KeyIndex(Settings::String(document, Json::json_pointer("/video/fps_overlay_corner")),
+                                 kHudCornerKeys, int(std::size(kHudCornerKeys)), result.hud_corner);
+    result.hud_colors = Settings::Bool(document, Json::json_pointer("/video/fps_overlay_colors"),
+                                       result.hud_colors);
+    const int hud_fields =
+        Settings::Int(document, Json::json_pointer("/video/fps_overlay_fields"), result.hud_fields);
+    if (hud_fields >= 0 && hud_fields <= 0x1ff) result.hud_fields = hud_fields;
     result.backend = Settings::String(document, Json::json_pointer("/video/renderer")) == "opengl" ?
         GraphicsBackend::OpenGL : GraphicsBackend::Vulkan;
     const int volume = Settings::Int(document, Json::json_pointer("/audio/volume"), result.volume);
@@ -316,18 +378,38 @@ inline Preferences LoadPreferences(const std::string& file = SettingsFile()) {
     result.mute = Settings::Bool(document, Json::json_pointer("/audio/mute"), result.mute);
     const int menu_volume = Settings::Int(document, Json::json_pointer("/audio/menu_volume"), result.menu_volume);
     if (menu_volume >= 0 && menu_volume <= 100) result.menu_volume = menu_volume;
+    // A theme's id is a short plain word; anything else reads as the default.
+    const std::string theme = Settings::String(document, Json::json_pointer("/launcher/theme"));
+    if (!theme.empty() && theme.size() <= 32 &&
+        std::all_of(theme.begin(), theme.end(), [](char c) { return (c >= 'a' && c <= 'z') || (c >= '0' && c <= '9') || c == '-'; }))
+        result.theme = theme;
     result.detailed_logging = Settings::Bool(document, Json::json_pointer("/diagnostics/detailed_logging"),
                                              result.detailed_logging);
+    result.immediate_logs = Settings::Bool(document, Json::json_pointer("/diagnostics/immediate_logs"),
+                                           result.immediate_logs);
     result.resolution = KeyIndex(Settings::String(document, Json::json_pointer("/video/resolution")),
                                  kResolutionKeys, int(std::size(kResolutionKeys)), result.resolution);
     result.upscaling_filter = KeyIndex(Settings::String(document, Json::json_pointer("/video/upscaling_filter")),
                                        kUpscalingFilterKeys, int(std::size(kUpscalingFilterKeys)),
                                        result.upscaling_filter);
+    result.astc_textures = KeyIndex(Settings::String(document, Json::json_pointer("/video/astc_textures")),
+                                    kAstcTextureKeys, int(std::size(kAstcTextureKeys)), result.astc_textures);
     result.refresh = KeyIndex(Settings::String(document, Json::json_pointer("/video/refresh_rate")),
                               kRefreshKeys, int(std::size(kRefreshKeys)), result.refresh);
     result.output = KeyIndex(Settings::String(document, Json::json_pointer("/video/output_resolution")),
                              kOutputKeys, int(std::size(kOutputKeys)), result.output);
+    result.frame_gen = Settings::Bool(document, Json::json_pointer("/video/frame_gen"), result.frame_gen);
+    result.frame_gen_target = KeyIndex(
+        Settings::String(document, Json::json_pointer("/video/frame_gen_target")), kFrameGenTargetKeys,
+        int(std::size(kFrameGenTargetKeys)), result.frame_gen_target);
+    result.frame_gen_multiplier = KeyIndex(
+        Settings::String(document, Json::json_pointer("/video/frame_gen_multiplier")),
+        kFrameGenMultiplierKeys, int(std::size(kFrameGenMultiplierKeys)), result.frame_gen_multiplier);
     result.vibration = Settings::Bool(document, Json::json_pointer("/controls/vibration"), result.vibration);
+    // A strength between the steps is read as the step below it; out of range as the nearest end.
+    result.vibration_strength = std::clamp(
+        Settings::Int(document, Json::json_pointer("/controls/vibration_strength"), result.vibration_strength), 25,
+        100) / 25 * 25;
     result.language = KeyIndex(Settings::String(document, Json::json_pointer("/system/language")),
                                kLanguageKeys, int(std::size(kLanguageKeys)), result.language);
     result.large_text = Settings::Bool(document, Json::json_pointer("/accessibility/large_text"), false);
@@ -342,29 +424,43 @@ inline bool SavePreferences(const Preferences& value, const std::string& file = 
         (value.backend != GraphicsBackend::OpenGL && value.backend != GraphicsBackend::Vulkan) ||
         value.resolution < 0 || value.resolution >= int(std::size(kResolutionKeys)) ||
         value.upscaling_filter < 0 || value.upscaling_filter >= int(std::size(kUpscalingFilterKeys)) ||
+        value.astc_textures < 0 || value.astc_textures >= int(std::size(kAstcTextureKeys)) ||
         value.refresh < 0 || value.refresh >= int(std::size(kRefreshKeys)) ||
         value.output < 0 || value.output >= int(std::size(kOutputKeys)) ||
         value.language < 0 || value.language >= int(std::size(kLanguageKeys)) ||
-        !ValidMapping(value.mapping)) return false;
+        value.hud_size < 0 || value.hud_size >= int(std::size(kHudSizeKeys)) ||
+        value.hud_corner < 0 || value.hud_corner >= int(std::size(kHudCornerKeys)) ||
+        value.hud_fields < 0 || value.hud_fields > 0x1ff || !ValidMapping(value.mapping)) return false;
     Settings::Json document = Settings::Load(file);
     document["version"] = 1;
     document["video"]["renderer"] = value.backend == GraphicsBackend::Vulkan ? "vulkan" : "opengl";
     document["video"]["fps_overlay"] = value.hud;
+    document["video"]["fps_overlay_size"] = kHudSizeKeys[value.hud_size];
+    document["video"]["fps_overlay_corner"] = kHudCornerKeys[value.hud_corner];
+    document["video"]["fps_overlay_colors"] = value.hud_colors;
+    document["video"]["fps_overlay_fields"] = value.hud_fields;
     document["video"]["resolution"] = kResolutionKeys[value.resolution];
     document["video"]["upscaling_filter"] = kUpscalingFilterKeys[value.upscaling_filter];
+    document["video"]["astc_textures"] = kAstcTextureKeys[value.astc_textures];
     document["video"]["refresh_rate"] = kRefreshKeys[value.refresh];
     document["video"]["output_resolution"] = kOutputKeys[value.output];
+    document["video"]["frame_gen"] = value.frame_gen;
+    document["video"]["frame_gen_target"] = kFrameGenTargetKeys[value.frame_gen_target];
+    document["video"]["frame_gen_multiplier"] = kFrameGenMultiplierKeys[value.frame_gen_multiplier];
     document["audio"]["volume"] = value.volume;
     document["audio"]["mute"] = value.mute;
     document["audio"]["menu_volume"] = value.menu_volume;
     document["controls"]["vibration"] = value.vibration;
+    document["controls"]["vibration_strength"] = value.vibration_strength;
     if (value.mapping == kDefaultMapping) document["controls"].erase("mapping");
     else document["controls"]["mapping"] = Settings::MappingJson(value.mapping);
     document["system"]["language"] = kLanguageKeys[value.language];
     document["diagnostics"]["detailed_logging"] = value.detailed_logging;
+    document["diagnostics"]["immediate_logs"] = value.immediate_logs;
     document["accessibility"]["large_text"] = value.large_text;
     document["accessibility"]["high_contrast"] = value.high_contrast;
     document["accessibility"]["reduce_motion"] = value.reduce_motion;
+    document["launcher"]["theme"] = value.theme;
     return Settings::Write(document, file);
 }
 
@@ -403,15 +499,37 @@ struct GameSettings {
     int upscaling_filter = -1;  // index into kUpscalingFilterKeys
     int refresh = -1;           // index into kRefreshKeys
     int hud = -1;               // FPS overlay
+    int hud_size = -1;          // index into kHudSizeKeys
+    int hud_corner = -1;        // index into kHudCornerKeys
+    int frame_gen = -1;         // Lossless Scaling frame generation (Vulkan only)
+    int frame_gen_target = -1;  // index into kFrameGenTargetKeys
+    int frame_gen_multiplier = -1;  // index into kFrameGenMultiplierKeys
+    int astc_textures = -1;     // index into kAstcTextureKeys
     int volume = -1;            // game volume, 0 to 100
     int mute = -1;
     int vibration = -1;
     int language = -1;          // index into kLanguageKeys
+    int controller = -1;        // index into kControllerKeys
     bool own_mapping = false;   // the game has a button mapping of its own: mapping
     ButtonMapping mapping = kDefaultMapping;
     std::array<int, kPerformanceSwitches> performance{-1, -1, -1, -1, -1, -1, -1};  // kPerformanceKeys
+    int64_t rng_seed = -1;      // 0 to 4294967295, or -1: no seed (load_address.h)
 };
+// The seed a typed text names: digits and nothing else, 0 to 4294967295. -1 for any other text.
+inline int64_t RngSeedFromText(std::string_view text) {
+    if (text.empty() || text.size() > 10) return -1;
+    uint64_t seed = 0;
+    for (const char digit : text) {
+        if (digit < '0' || digit > '9') return -1;
+        seed = seed * 10 + static_cast<uint64_t>(digit - '0');
+    }
+    return seed <= 0xffffffffULL ? static_cast<int64_t>(seed) : -1;
+}
 inline constexpr const char* kRendererKeys[] = {"opengl", "vulkan"};
+// Library > Game settings > Controls > Controller type: the controller every player of the game
+// gets (the handheld: player 1 only). Without one a game gets what it takes, a Pro Controller
+// first (controller_applet.h).
+inline constexpr const char* kControllerKeys[] = {"pro", "handheld", "dual_joycons", "left_joycon", "right_joycon"};
 
 inline GameSettings LoadGameSettings(uint64_t title_id, const std::string& file = SettingsFile()) {
     GameSettings result;
@@ -424,19 +542,37 @@ inline GameSettings LoadGameSettings(uint64_t title_id, const std::string& file 
     result.resolution = KeyIndex(key("resolution"), kResolutionKeys, int(std::size(kResolutionKeys)), -1);
     result.upscaling_filter = KeyIndex(key("upscaling_filter"), kUpscalingFilterKeys,
                                        int(std::size(kUpscalingFilterKeys)), -1);
+    result.astc_textures = KeyIndex(key("astc_textures"), kAstcTextureKeys, int(std::size(kAstcTextureKeys)), -1);
     result.refresh = KeyIndex(key("refresh_rate"), kRefreshKeys, int(std::size(kRefreshKeys)), -1);
+    result.hud_size = KeyIndex(key("fps_overlay_size"), kHudSizeKeys, int(std::size(kHudSizeKeys)), -1);
+    result.hud_corner = KeyIndex(key("fps_overlay_corner"), kHudCornerKeys,
+                                 int(std::size(kHudCornerKeys)), -1);
+    result.frame_gen_target = KeyIndex(key("frame_gen_target"), kFrameGenTargetKeys,
+                                       int(std::size(kFrameGenTargetKeys)), -1);
+    result.frame_gen_multiplier = KeyIndex(key("frame_gen_multiplier"), kFrameGenMultiplierKeys,
+                                           int(std::size(kFrameGenMultiplierKeys)), -1);
     result.language = KeyIndex(key("language"), kLanguageKeys, int(std::size(kLanguageKeys)), -1);
+    result.controller = KeyIndex(key("controller"), kControllerKeys, int(std::size(kControllerKeys)), -1);
     const auto flag = [&](const std::string& path) {
         const Json::json_pointer at(base + path);
         return document.contains(at) && document.at(at).is_boolean() ? int(document.at(at).get<bool>()) : -1;
     };
     result.hud = flag("/fps_overlay");
+    result.frame_gen = flag("/frame_gen");
     result.mute = flag("/mute");
     result.vibration = flag("/vibration");
     for (int i = 0; i < kPerformanceSwitches; ++i)
         result.performance[i] = flag(std::string("/performance/") + kPerformanceKeys[i]);
     const int volume = Settings::Int(document, Json::json_pointer(base + "/volume"), -1);
     result.volume = volume >= 0 && volume <= 100 ? volume : -1;
+    const Json::json_pointer seed_at(base + "/rng_seed");
+    if (document.contains(seed_at) && (document.at(seed_at).is_number_integer() ||
+                                       document.at(seed_at).is_number_unsigned())) {
+        const auto& seed_value = document.at(seed_at);
+        const auto seed = seed_value.is_number_unsigned() ? seed_value.get<uint64_t>() :
+                                                             static_cast<uint64_t>(seed_value.get<int64_t>());
+        result.rng_seed = seed <= 0xffffffffULL ? static_cast<int64_t>(seed) : -1;
+    }
     const Json::json_pointer mapping(base + "/mapping");
     result.own_mapping = document.contains(mapping);
     if (result.own_mapping) result.mapping = Settings::Mapping(document, mapping, kDefaultMapping);
@@ -448,8 +584,17 @@ inline bool SaveGameSettings(uint64_t title_id, const GameSettings& value, const
     if (!title_id || value.renderer >= int(std::size(kRendererKeys)) ||
         value.resolution >= int(std::size(kResolutionKeys)) ||
         value.upscaling_filter >= int(std::size(kUpscalingFilterKeys)) ||
+        value.astc_textures >= int(std::size(kAstcTextureKeys)) ||
         value.refresh >= int(std::size(kRefreshKeys)) || value.language >= int(std::size(kLanguageKeys)) ||
-        value.volume > 100 || !flag_ok(value.hud) || !flag_ok(value.mute) || !flag_ok(value.vibration) ||
+        value.controller >= int(std::size(kControllerKeys)) ||
+        value.frame_gen_target >= int(std::size(kFrameGenTargetKeys)) ||
+        value.frame_gen_multiplier >= int(std::size(kFrameGenMultiplierKeys)) ||
+        value.volume > 100 || value.rng_seed < -1 || value.rng_seed > 0xffffffffLL ||
+        value.hud_size >= int(std::size(kHudSizeKeys)) ||
+        value.hud_corner >= int(std::size(kHudCornerKeys)) ||
+        !flag_ok(value.hud) || !flag_ok(value.frame_gen) ||
+        !flag_ok(value.mute) ||
+        !flag_ok(value.vibration) ||
         !std::all_of(value.performance.begin(), value.performance.end(), flag_ok) ||
         (value.own_mapping && !ValidMapping(value.mapping))) return false;
     Settings::Json document = Settings::Load(file);
@@ -463,17 +608,26 @@ inline bool SaveGameSettings(uint64_t title_id, const GameSettings& value, const
     store("renderer", value.renderer, kRendererKeys);
     store("resolution", value.resolution, kResolutionKeys);
     store("upscaling_filter", value.upscaling_filter, kUpscalingFilterKeys);
+    store("astc_textures", value.astc_textures, kAstcTextureKeys);
     store("refresh_rate", value.refresh, kRefreshKeys);
+    store("fps_overlay_size", value.hud_size, kHudSizeKeys);
+    store("fps_overlay_corner", value.hud_corner, kHudCornerKeys);
+    store("frame_gen_target", value.frame_gen_target, kFrameGenTargetKeys);
+    store("frame_gen_multiplier", value.frame_gen_multiplier, kFrameGenMultiplierKeys);
     store("language", value.language, kLanguageKeys);
+    store("controller", value.controller, kControllerKeys);
     const auto flag = [](Settings::Json& owner, const char* name, int value) {
         if (value < 0) owner.erase(name);
         else owner[name] = value == 1;
     };
     flag(game, "fps_overlay", value.hud);
+    flag(game, "frame_gen", value.frame_gen);
     flag(game, "mute", value.mute);
     flag(game, "vibration", value.vibration);
     if (value.volume < 0) game.erase("volume");
     else game["volume"] = value.volume;
+    if (value.rng_seed < 0) game.erase("rng_seed");
+    else game["rng_seed"] = value.rng_seed;
     if (value.own_mapping) game["mapping"] = Settings::MappingJson(value.mapping);
     else game.erase("mapping");
     auto& performance = game["performance"];
@@ -491,13 +645,20 @@ inline Preferences PreferencesFor(uint64_t title_id, const std::string& file = S
     if (game.renderer >= 0) result.backend = game.renderer == 0 ? GraphicsBackend::OpenGL : GraphicsBackend::Vulkan;
     if (game.resolution >= 0) result.resolution = game.resolution;
     if (game.upscaling_filter >= 0) result.upscaling_filter = game.upscaling_filter;
+    if (game.astc_textures >= 0) result.astc_textures = game.astc_textures;
     if (game.refresh >= 0) result.refresh = game.refresh;
     if (game.hud >= 0) result.hud = game.hud == 1;
+    if (game.hud_size >= 0) result.hud_size = game.hud_size;
+    if (game.hud_corner >= 0) result.hud_corner = game.hud_corner;
+    if (game.frame_gen >= 0) result.frame_gen = game.frame_gen == 1;
+    if (game.frame_gen_target >= 0) result.frame_gen_target = game.frame_gen_target;
+    if (game.frame_gen_multiplier >= 0) result.frame_gen_multiplier = game.frame_gen_multiplier;
     if (game.volume >= 0) result.volume = game.volume;
     if (game.mute >= 0) result.mute = game.mute == 1;
     if (game.vibration >= 0) result.vibration = game.vibration == 1;
     if (game.language >= 0) result.language = game.language;
     if (game.own_mapping) result.mapping = game.mapping;
+    result.controller = game.controller;
     return result;
 }
 
@@ -686,13 +847,35 @@ inline bool SaveAssetsDir(std::string_view directory, const std::string& file = 
     return Settings::Write(document, file);
 }
 
+inline Multiplayer::Connection LoadRoomConnection(const std::string& file = SettingsFile()) {
+    const auto document = Settings::Load(file);
+    Multiplayer::Connection result;
+    result.host = Settings::String(document, Settings::Json::json_pointer("/multiplayer/host"));
+    result.nickname = Settings::String(document, Settings::Json::json_pointer("/multiplayer/nickname"));
+    result.password = Settings::String(document, Settings::Json::json_pointer("/multiplayer/password"));
+    const int port = Settings::Int(document, Settings::Json::json_pointer("/multiplayer/port"), 24872);
+    result.port = port > 0 && port <= 65535 ? port : 24872;
+    if (result.host.size() > 253) result.host.clear();
+    if (result.nickname.size() > 20) result.nickname.clear();
+    if (result.password.size() > 128) result.password.clear();
+    return result;
+}
+
+inline bool SaveRoomConnection(const Multiplayer::Connection& value,
+                               const std::string& file = SettingsFile()) {
+    if (value.password.size() > 128) return false;
+    auto document = Settings::Load(file);
+    document["multiplayer"] = {{"host", value.host}, {"port", value.port},
+                               {"nickname", value.nickname}, {"password", value.password}};
+    return Settings::Write(document, file);
+}
+
 // ---- the folders next to the game files folder ----
-// Keys, firmware, save-import and save-export follow the game files folder (its keys/, firmware/,
-// save-import/ and save-export/) until one is chosen on its own: the folder named here holds
-// prod.keys, the firmware NCAs or the saves directly. Settings > Game files > Advanced.
+// Keys, firmware, save-import and save-export follow the game files folder until one is chosen;
+// the folder named here holds prod.keys, the firmware NCAs or the saves directly.
 enum class StoragePath { keys, firmware, save_import, save_export };
 inline constexpr const char* kStorageKeys[] = {"keys", "firmware", "save_import", "save_export"};
-// Game folders beyond the game files folder: each needs only roms/ and updates/.
+// Extra game folders: each needs only roms/ and updates/.
 inline constexpr std::size_t kMostLibraryDirs = 16;
 
 inline const char* StorageKey(StoragePath which) { return kStorageKeys[static_cast<int>(which)]; }
@@ -719,7 +902,7 @@ inline bool SaveStoragePath(StoragePath which, std::string_view directory, const
     return Settings::Write(document, file);
 }
 
-// The extra game folders, in the order they were added; invalid and repeated ones are left out.
+// The extra game folders, in order; invalid and repeated ones are left out.
 inline std::vector<std::string> LoadLibraryDirs(const std::string& file = SettingsFile()) {
     std::vector<std::string> result;
     const Settings::Json document = Settings::Load(file);

@@ -17,8 +17,12 @@ using audio::Cue;
 namespace
 {
 
-// Placed as the folder browser is (browse.cpp): the list on the left, what the focused row holds
-// on the right.
+// The same fitting of the panels as the folder browser (browse.cpp).
+constexpr float kFit = layout::kWidth / 1692.0f;
+constexpr float kFitX = layout::kLeft - 108.0f * kFit;
+constexpr float kFitY = 152.0f - 188.0f * kFit;
+
+// Placed as in the folder browser (browse.cpp): list on the left, detail on the right.
 constexpr Rect kListPanel{108.0f, 188.0f, 820.0f, 720.0f};
 constexpr Rect kDetailPanel{980.0f, 188.0f, 820.0f, 720.0f};
 constexpr Rect kWindow{138.0f, 292.0f, 760.0f, 518.0f};
@@ -48,8 +52,8 @@ void draw_folder(Canvas &c, float x, float cy, Color ink)
 void draw_plus(Canvas &c, float x, float cy)
 {
     const float cx = x + 20.0f;
-    c.list.line(cx - 12.0f, cy, cx + 12.0f, cy, 2.8f, theme::kLime);
-    c.list.line(cx, cy - 12.0f, cx, cy + 12.0f, 2.8f, theme::kLime);
+    c.list.line(cx - 12.0f, cy, cx + 12.0f, cy, 2.8f, th().accent);
+    c.list.line(cx, cy - 12.0f, cx, cy + 12.0f, 2.8f, th().accent);
 }
 
 // A chevron: down while the rows below are shown, right while they are hidden.
@@ -81,8 +85,7 @@ void Launcher::read_library_folders()
 void Launcher::library_folders_changed()
 {
     read_library_folders();
-    // The home screen counts the games and names the last one; the Library lists them: both read
-    // the game folders again.
+    // The home screen and the Library read the game folders again.
     read_home();
     name_home_games();
     finish_scan(false);
@@ -293,12 +296,14 @@ void Launcher::draw_locations(Canvas &c)
     const int count = static_cast<int>(location_list_.size());
     draw_frame(c, tr("Game files"), tr("Choose where your games, keys, firmware and saves are"));
 
+    c.list.push_transform(kFit, 0.0f, 0.0f, kFitX, kFitY);
+
     // ---- the rows ----
-    glass(c, kListPanel, 26.0f, theme::kPanel.with_alpha(0.80f), theme::kPanelEdge.with_alpha(0.55f));
-    text(c, tr("FOLDERS"), 138.0f, baseline(208.0f, 28.0f, theme::kSmall), theme::kSmall, theme::kLimePale,
+    glass(c, kListPanel, th().radius_panel, th().panel.with_alpha(0.80f), th().panel_edge.with_alpha(0.55f));
+    text(c, tr("FOLDERS"), 138.0f, baseline(208.0f, 28.0f, th().size_small), th().size_small, th().accent_pale,
          Align::left, 3.0f);
     text(c, counted(static_cast<int>(library_folders_.size()) + 1, tr("{0} game folder"), tr("{0} game folders")),
-         138.0f, baseline(246.0f, 28.0f, theme::kSmall), theme::kSmall, theme::kBody);
+         138.0f, baseline(246.0f, 28.0f, th().size_small), th().size_small, th().body);
     list.push_clip({kWindow.x - 24.0f, kWindow.y - 6.0f, kWindow.w + 48.0f, kWindow.h + 12.0f});
     const auto row_rect = [&](int row) -> Rect
     {
@@ -308,10 +313,10 @@ void Launcher::draw_locations(Canvas &c)
     for (int row = location_rows_.first_row(); row <= location_rows_.last_row(); ++row)
     {
         list.push_opacity(location_rows_.row_alpha(row, kRowHeight));
-        plate_rest(c, kListPlate, row_rect(row));
+        plate_rest(c, list_plate(), row_rect(row));
         list.pop_opacity();
     }
-    plate_focus(c, kListPlate,
+    plate_focus(c, list_plate(),
                 {kWindow.x, kWindow.y + location_rows_.cursor() - location_rows_.scroll(), kWindow.w, kRowHeight},
                 1.0f);
     for (int row = location_rows_.first_row(); row <= location_rows_.last_row(); ++row)
@@ -326,42 +331,42 @@ void Launcher::draw_locations(Canvas &c)
                                    Color tag_color)
         {
             const float tag_width =
-                tag[0] ? text(c, tag, right, baseline(r.y, kRowHeight, theme::kSmall), theme::kSmall, tag_color,
+                tag[0] ? text(c, tag, right, baseline(r.y, kRowHeight, th().size_small), th().size_small, tag_color,
                               Align::right)
                        : 0.0f;
             const float room = right - (r.x + 84.0f + indent) - (tag_width > 0.0f ? tag_width + 24.0f : 0.0f);
-            text_fit(c, label, r.x + 84.0f + indent, baseline(r.y + 6.0f, 30.0f, theme::kSmall), theme::kSmall,
-                     theme::kLabel, room);
-            text_fit(c, short_path(value, 46), r.x + 84.0f + indent, baseline(r.y + 38.0f, 34.0f, theme::kText24),
-                     theme::kText24, Color::rgb(0xf3f5e9), room);
+            text_fit(c, label, r.x + 84.0f + indent, baseline(r.y + 6.0f, 30.0f, th().size_small), th().size_small,
+                     th().label, room);
+            text_fit(c, short_path(value, 46), r.x + 84.0f + indent, baseline(r.y + 38.0f, 34.0f, th().size_text),
+                     th().size_text, Color::rgb(0xf3f5e9), room);
         };
         switch (entry.kind)
         {
         case LocationRow::Kind::main:
-            draw_folder(c, r.x + 24.0f, middle, theme::kLimePale);
+            draw_folder(c, r.x + 24.0f, middle, th().accent_pale);
             two_lines(0.0f, tr("GAME FILES FOLDER"), main_saved_.empty() ? main_used_ : main_saved_,
-                      !main_saved_.empty() && main_saved_ != main_used_ ? tr("NEXT START") : "", theme::kMeta);
+                      !main_saved_.empty() && main_saved_ != main_used_ ? tr("NEXT START") : "", th().meta);
             break;
         case LocationRow::Kind::folder:
             draw_folder(c, r.x + 24.0f, middle, Color::rgb(0xc9d6bd));
             two_lines(0.0f, tr("GAME FOLDER"), library_folders_[static_cast<std::size_t>(entry.index)], "",
-                      theme::kMeta);
+                      th().meta);
             break;
         case LocationRow::Kind::add:
             draw_plus(c, r.x + 24.0f, middle);
-            text_fit(c, tr("Add game folder"), r.x + 84.0f, baseline(r.y, kRowHeight, theme::kText24),
-                     theme::kText24, theme::kValue, 646.0f);
+            text_fit(c, tr("Add game folder"), r.x + 84.0f, baseline(r.y, kRowHeight, th().size_text),
+                     th().size_text, th().value, 646.0f);
             break;
         case LocationRow::Kind::advanced:
-            draw_chevron(c, r.x + 24.0f, middle, advanced_open_, theme::kLimePale);
+            draw_chevron(c, r.x + 24.0f, middle, advanced_open_, th().accent_pale);
             {
                 const float tag = text(c, advanced_open_ ? tr("HIDE") : tr("SHOW"), right,
-                                       baseline(r.y, kRowHeight, theme::kSmall), theme::kSmall, theme::kMeta,
+                                       baseline(r.y, kRowHeight, th().size_small), th().size_small, th().meta,
                                        Align::right);
-                text_fit(c, tr("ADVANCED"), r.x + 84.0f, baseline(r.y + 6.0f, 30.0f, theme::kSmall),
-                         theme::kSmall, theme::kLabel, 646.0f - tag);
+                text_fit(c, tr("ADVANCED"), r.x + 84.0f, baseline(r.y + 6.0f, 30.0f, th().size_small),
+                         th().size_small, th().label, 646.0f - tag);
                 text_fit(c, tr("Keys, firmware and saves"), r.x + 84.0f,
-                         baseline(r.y + 38.0f, 34.0f, theme::kText24), theme::kText24, Color::rgb(0xf3f5e9),
+                         baseline(r.y + 38.0f, 34.0f, th().size_text), th().size_text, Color::rgb(0xf3f5e9),
                          646.0f - tag);
             }
             break;
@@ -371,7 +376,7 @@ void Launcher::draw_locations(Canvas &c)
             const std::string &saved = storage_saved_[role];
             draw_folder(c, r.x + 24.0f + kIndent, middle, Color::rgb(0xc9d6bd));
             two_lines(kIndent, tr(kStorageLabels[role]), saved.empty() ? storage_used_[role] : saved,
-                      saved.empty() ? tr("DEFAULT") : tr("CUSTOM"), saved.empty() ? theme::kMeta : theme::kLime);
+                      saved.empty() ? tr("DEFAULT") : tr("CUSTOM"), saved.empty() ? th().meta : th().accent);
             break;
         }
         }
@@ -380,10 +385,10 @@ void Launcher::draw_locations(Canvas &c)
     list.pop_clip();
     scrollbar(c, location_rows_, 910.0f, kWindow.y, kWindow.h);
     text(c, list_position(count > 0 ? location_rows_.selected + 1 : 0, count), 898.0f,
-         baseline(866.0f, 28.0f, theme::kSmall), theme::kSmall, theme::kLimePale, Align::right);
+         baseline(866.0f, 28.0f, th().size_small), th().size_small, th().accent_pale, Align::right);
 
     // ---- what the focused row is, and what its folder holds ----
-    glass(c, kDetailPanel, 26.0f, theme::kPanel.with_alpha(0.80f), theme::kPanelEdge.with_alpha(0.55f));
+    glass(c, kDetailPanel, th().radius_panel, th().panel.with_alpha(0.80f), th().panel_edge.with_alpha(0.55f));
     const LocationRow focus = count > 0 ? location_list_[static_cast<std::size_t>(
                                               std::clamp(location_rows_.selected, 0, count - 1))]
                                         : LocationRow{};
@@ -438,24 +443,23 @@ void Launcher::draw_locations(Canvas &c)
         }
         break;
     }
-    text(c, label, 1016.0f, baseline(210.0f, 28.0f, theme::kSmall), theme::kSmall, theme::kLimePale, Align::left,
+    text(c, label, 1016.0f, baseline(210.0f, 28.0f, th().size_small), th().size_small, th().accent_pale, Align::left,
          3.0f);
-    text_block(c, heading, 1016.0f, baseline(250.0f, 42.0f, theme::kHeading), theme::kHeading, 42.0f, theme::kTitle,
+    text_block(c, heading, 1016.0f, baseline(250.0f, 42.0f, th().size_heading), th().size_heading, 42.0f, th().title,
                748.0f, 2);
     const float column = value_column(
         c, {tr("KEYS"), tr("FIRMWARE"), tr("GAMES"), tr("UPDATES, DLC"), tr("IN USE")}, 1016.0f, 1216.0f,
-        theme::kSmall, 2.0f);
+        th().size_small, 2.0f);
     // A line whose value is in the warning colour carries the warning mark too.
     const auto line = [&](float top, const char *name, const std::string &value, Color color)
     {
-        text(c, name, 1016.0f, baseline(top, 30.0f, theme::kSmall), theme::kSmall, theme::kLabel, Align::left, 2.0f);
-        notice(c, value, column, baseline(top, 30.0f, theme::kSmall), theme::kSmall, color, 1764.0f - column,
-               color.r == theme::kWarning.r && color.g == theme::kWarning.g);
+        text(c, name, 1016.0f, baseline(top, 30.0f, th().size_small), th().size_small, th().label, Align::left, 2.0f);
+        notice(c, value, column, baseline(top, 30.0f, th().size_small), th().size_small, color, 1764.0f - column,
+               color.r == th().warning.r && color.g == th().warning.g);
     };
-    const auto state = [](bool ready) { return ready ? theme::kLimePale : theme::kWarning; };
+    const auto state = [](bool ready) { return ready ? th().accent_pale : th().warning; };
     const FolderInfo &info = location_info_;
-    // The game files folder's games and updates, and those of a game folder: counts are -1 where
-    // the subfolder is missing.
+    // Games and updates of the game files folder and of a game folder; -1 where a subfolder is missing.
     const auto games_line = [&](float top)
     {
         line(top, tr("GAMES"),
@@ -466,14 +470,14 @@ void Launcher::draw_locations(Canvas &c)
     {
         line(top, tr("UPDATES, DLC"),
              info.updates < 0 ? tr("No updates folder") : counted(info.updates, tr("{0} file"), tr("{0} files")),
-             theme::kValue);
+             th().value);
     };
     const auto in_use_line = [&](float top, const std::string &used, const std::string &saved)
     {
         line(top, tr("IN USE"),
              !saved.empty() && saved != used ? fill(tr("Next launch: {0}"), {short_path(saved, 32)}) :
                                                short_path(used, 40),
-             theme::kValue);
+             th().value);
     };
     switch (focus.kind)
     {
@@ -505,12 +509,13 @@ void Launcher::draw_locations(Canvas &c)
     default:
         break;
     }
-    list.rounded_rect({1016.0f, 640.0f, 748.0f, 1.0f}, 0.0f, theme::kRule);
+    list.rounded_rect({1016.0f, 640.0f, 748.0f, 1.0f}, 0.0f, th().rule);
     notice_block(c, message_.empty() ? std::string{about} : message_, 1016.0f,
-                 baseline(662.0f, 36.0f, theme::kText24), theme::kText24, 36.0f,
-                 message_.empty() ? theme::kCopy : message_warning_ ? theme::kWarning : theme::kLimePale, 748.0f, 5,
+                 baseline(662.0f, 36.0f, th().size_text), th().size_text, 36.0f,
+                 message_.empty() ? th().copy : message_warning_ ? th().warning : th().accent_pale, 748.0f, 5,
                  !message_.empty() && message_warning_);
 
+    c.list.pop_transform();
     switch (focus.kind)
     {
     case LocationRow::Kind::main:
