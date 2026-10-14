@@ -364,6 +364,7 @@ void Launcher::update(float dt)
     profile_rows_.update(dt);
     source_rows_.update(dt);
     choice_rows_.update(dt);
+    place_rows_.update(dt);
     sync_rows_.update(dt);
     sync_setup_rows_.update(dt);
     mode_.target = selected_docked_ ? 0.0f : 1.0f;
