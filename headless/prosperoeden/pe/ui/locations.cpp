@@ -338,7 +338,7 @@ void Launcher::draw_locations(Canvas &c)
             text_fit(c, label, r.x + 84.0f + indent, baseline(r.y + 6.0f, 30.0f, th().size_small), th().size_small,
                      th().label, room);
             text_fit(c, short_path(value, 46), r.x + 84.0f + indent, baseline(r.y + 38.0f, 34.0f, th().size_text),
-                     th().size_text, Color::rgb(0xf3f5e9), room);
+                     th().size_text, th().value, room);
         };
         switch (entry.kind)
         {
@@ -348,7 +348,7 @@ void Launcher::draw_locations(Canvas &c)
                       !main_saved_.empty() && main_saved_ != main_used_ ? tr("NEXT START") : "", th().meta);
             break;
         case LocationRow::Kind::folder:
-            draw_folder(c, r.x + 24.0f, middle, Color::rgb(0xc9d6bd));
+            draw_folder(c, r.x + 24.0f, middle, th().copy);
             two_lines(0.0f, tr("GAME FOLDER"), library_folders_[static_cast<std::size_t>(entry.index)], "",
                       th().meta);
             break;
@@ -366,7 +366,7 @@ void Launcher::draw_locations(Canvas &c)
                 text_fit(c, tr("ADVANCED"), r.x + 84.0f, baseline(r.y + 6.0f, 30.0f, th().size_small),
                          th().size_small, th().label, 646.0f - tag);
                 text_fit(c, tr("Keys, firmware and saves"), r.x + 84.0f,
-                         baseline(r.y + 38.0f, 34.0f, th().size_text), th().size_text, Color::rgb(0xf3f5e9),
+                         baseline(r.y + 38.0f, 34.0f, th().size_text), th().size_text, th().value,
                          646.0f - tag);
             }
             break;
@@ -374,7 +374,7 @@ void Launcher::draw_locations(Canvas &c)
         {
             const auto role = static_cast<std::size_t>(entry.index);
             const std::string &saved = storage_saved_[role];
-            draw_folder(c, r.x + 24.0f + kIndent, middle, Color::rgb(0xc9d6bd));
+            draw_folder(c, r.x + 24.0f + kIndent, middle, th().copy);
             two_lines(kIndent, tr(kStorageLabels[role]), saved.empty() ? storage_used_[role] : saved,
                       saved.empty() ? tr("DEFAULT") : tr("CUSTOM"), saved.empty() ? th().meta : th().accent);
             break;

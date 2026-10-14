@@ -364,13 +364,13 @@ void Launcher::draw_files(Canvas &c)
             const Rect r = row_rect(row);
             list.push_opacity(files_.row_alpha(row, kRowHeight));
             draw_folder(c, r.x + 24.0f, r.y + kRowHeight * 0.5f,
-                        up ? th().accent_pale : Color::rgb(0xc9d6bd), up);
+                        up ? th().accent_pale : th().copy, up);
             const float tag = text(c, up ? tr("UP") : tr("OPEN"), r.x + 730.0f,
                                    baseline(r.y, kRowHeight, th().size_small), th().size_small,
                                    th().meta, Align::right);
             text_fit(c, up ? tr("Parent folder") : entry, r.x + 84.0f,
                      baseline(r.y, kRowHeight, th().size_text), th().size_text,
-                     up ? th().accent_pale : Color::rgb(0xf3f5e9), 730.0f - 84.0f - tag - 24.0f);
+                     up ? th().accent_pale : th().value, 730.0f - 84.0f - tag - 24.0f);
             list.pop_opacity();
         }
         list.pop_clip();
