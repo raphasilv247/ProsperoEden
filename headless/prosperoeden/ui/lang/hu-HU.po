@@ -1303,10 +1303,6 @@ msgstr "Játszik: {0}"
 msgid "Games, updates and mods are read from here. TRIANGLE adds the folder shown."
 msgstr "A játékok, updates és mods innen olvashatók. A HÁROMSZÖG hozzáadja a mutatott mappát."
 
-#: pe/ui/locations.cpp
-msgid "Games, updates and mods are read from this folder. Square twice takes it off the list."
-msgstr "A játékok, updates és mods ebből a mappából olvashatók. A Négyzet kétszeri megnyomása eltávolítja a listáról."
-
 #: settings_store.h
 msgid "Polish"
 msgstr "Lengyel"
@@ -2264,10 +2260,6 @@ msgstr "{0}/ (NSP vagy XCI)"
 msgid "{0}/ (one folder per game ID)"
 msgstr "{0}/ (játékazonosítónként egy mappa)"
 
-#: pe/ui/locations.cpp
-msgid "Add another place for games, such as a USB drive. It holds roms, updates and mods. Keys and firmware come from the game files folder first, then from here if it has none."
-msgstr "Adj hozzá egy másik helyet a játékoknak, például egy USB-meghajtót. Ebben roms, updates és mods van. A keys és a firmware először a játékfájlok mappájából jön, utána innen, ha ott nincs."
-
 #: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "Add game folder"
 msgstr "Játékmappa hozzáadása"
@@ -2303,10 +2295,6 @@ msgstr "Válaszd ki, hová kerüljenek az exportált mentések"
 #: pe/ui/locations.cpp
 msgid "Choose where your games, keys, firmware and saves are"
 msgstr "Válaszd ki, hol vannak a játékaid, a keys, a firmware és a mentések"
-
-#: pe/ui/library.cpp
-msgid "In more than one place. You choose which one starts."
-msgstr "Több helyen is megvan. Te választod ki, melyik induljon."
 
 #. Label: the folder used the next time the app starts.
 #: pe/ui/locations.cpp, pe/ui/settings.cpp
@@ -2428,3 +2416,30 @@ msgstr "A keys, a firmware és a játékok mappája, valamint további helyek a 
 #: pe/ui/locations.cpp
 msgid "Where exported saves are written. Until you choose one, it is save-export in the game files folder."
 msgstr "Ahová az exportált mentések kerülnek. Amíg nem választasz, ez a save-export a játékfájlok mappájában."
+
+msgid "Available in more than one place. Choose which one to start."
+msgstr "Több helyen is megtalálható. Válaszd ki, melyiket indítsd."
+
+msgid "Add other game folders, with roms, updates and mods on an external HD or SSD over USB, or in the console's extended storage."
+msgstr "Adj hozzá más játékmappákat roms, frissítések és modok tartalommal külső HDD-n vagy SSD-n USB-n keresztül, vagy a konzol bővített tárhelyén."
+
+msgid "Games, updates and mods are read from this folder. Press Square twice to take it off the list."
+msgstr "A játékok, frissítések és modok ebből a mappából töltődnek be. Két alkalommal nyomd meg a Négyzetet a listából való eltávolításhoz."
+
+msgid "Could not delete the ROM from this folder."
+msgstr "A ROM-ot nem sikerült törölni ebből a mappából."
+
+msgid "Deleted from this folder."
+msgstr "Törölve ebből a mappából."
+
+msgid "Extended storage"
+msgstr "Bővített tárhely"
+
+msgid "External HD or SSD"
+msgstr "Külső HDD vagy SSD"
+
+msgid "Path tips"
+msgstr "Útvonal-tippek"
+
+msgid "Press Square again to delete this copy from {0}. Its updates and mods stay."
+msgstr "Nyomd meg újra a Négyzetet, hogy töröld ezt a példányt innen: {0}. A frissítések és modok megmaradnak."

@@ -1303,10 +1303,6 @@ msgstr "Spiller som {0}"
 msgid "Games, updates and mods are read from here. TRIANGLE adds the folder shown."
 msgstr "Spil, updates og mods læses herfra. TREKANT tilføjer den viste mappe."
 
-#: pe/ui/locations.cpp
-msgid "Games, updates and mods are read from this folder. Square twice takes it off the list."
-msgstr "Spil, updates og mods læses fra denne mappe. Firkant to gange fjerner den fra listen."
-
 #: settings_store.h
 msgid "Polish"
 msgstr "Polsk"
@@ -2264,10 +2260,6 @@ msgstr "{0}/ (NSP eller XCI)"
 msgid "{0}/ (one folder per game ID)"
 msgstr "{0}/ (en mappe pr. titel-id)"
 
-#: pe/ui/locations.cpp
-msgid "Add another place for games, such as a USB drive. It holds roms, updates and mods. Keys and firmware come from the game files folder first, then from here if it has none."
-msgstr "Tilføj et andet sted til spil, f.eks. et USB-drev. Det indeholder roms, updates og mods. Keys og firmware hentes først fra mappen med spilfiler, derefter herfra, hvis den ingen har."
-
 #: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "Add game folder"
 msgstr "Tilføj spilmappe"
@@ -2303,10 +2295,6 @@ msgstr "Vælg, hvor eksporterede gemte data skrives"
 #: pe/ui/locations.cpp
 msgid "Choose where your games, keys, firmware and saves are"
 msgstr "Vælg, hvor dine spil, keys, firmware og gemte data er"
-
-#: pe/ui/library.cpp
-msgid "In more than one place. You choose which one starts."
-msgstr "Flere steder. Du vælger, hvilket der starter."
 
 #. Label: the folder used the next time the app starts.
 #: pe/ui/locations.cpp, pe/ui/settings.cpp
@@ -2428,3 +2416,30 @@ msgstr "Mappen med dine keys, din firmware og dine spil samt flere steder til sp
 #: pe/ui/locations.cpp
 msgid "Where exported saves are written. Until you choose one, it is save-export in the game files folder."
 msgstr "Hvor eksporterede gemte data skrives. Indtil du vælger en, er det save-export i mappen med spilfiler."
+
+msgid "Available in more than one place. Choose which one to start."
+msgstr "Findes flere steder. Vælg hvilket der skal startes."
+
+msgid "Add other game folders, with roms, updates and mods on an external HD or SSD over USB, or in the console's extended storage."
+msgstr "Tilføj andre spilmapper med roms, updates og mods på en ekstern HD eller SSD via USB, eller i konsollens udvidede lager."
+
+msgid "Games, updates and mods are read from this folder. Press Square twice to take it off the list."
+msgstr "Spil, opdateringer og mods læses fra denne mappe. Tryk to gange på Firkant for at fjerne den fra listen."
+
+msgid "Could not delete the ROM from this folder."
+msgstr "ROM'en kunne ikke slettes fra denne mappe."
+
+msgid "Deleted from this folder."
+msgstr "Slettet fra denne mappe."
+
+msgid "Extended storage"
+msgstr "Udvidet lager"
+
+msgid "External HD or SSD"
+msgstr "Ekstern HDD eller SSD"
+
+msgid "Path tips"
+msgstr "Stiforslag"
+
+msgid "Press Square again to delete this copy from {0}. Its updates and mods stay."
+msgstr "Tryk Firkant igen for at slette denne kopi fra {0}. Opdateringer og mods bliver."

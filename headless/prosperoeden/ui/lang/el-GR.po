@@ -1303,10 +1303,6 @@ msgstr "Παίζει: {0}"
 msgid "Games, updates and mods are read from here. TRIANGLE adds the folder shown."
 msgstr "Τα παιχνίδια, τα updates και τα mods διαβάζονται από εδώ. Το ΤΡΙΓΩΝΟ προσθέτει τον φάκελο που εμφανίζεται."
 
-#: pe/ui/locations.cpp
-msgid "Games, updates and mods are read from this folder. Square twice takes it off the list."
-msgstr "Τα παιχνίδια, τα updates και τα mods διαβάζονται από αυτόν τον φάκελο. Δύο φορές Τετράγωνο τον αφαιρεί από τη λίστα."
-
 #: settings_store.h
 msgid "Polish"
 msgstr "Πολωνικά"
@@ -2264,10 +2260,6 @@ msgstr "{0}/ (NSP ή XCI)"
 msgid "{0}/ (one folder per game ID)"
 msgstr "{0}/ (ένας φάκελος ανά αναγνωριστικό τίτλου)"
 
-#: pe/ui/locations.cpp
-msgid "Add another place for games, such as a USB drive. It holds roms, updates and mods. Keys and firmware come from the game files folder first, then from here if it has none."
-msgstr "Προσθέστε ένα ακόμη μέρος για παιχνίδια, όπως μια μονάδα USB. Περιέχει roms, updates και mods. Τα keys και το firmware λαμβάνονται πρώτα από τον φάκελο αρχείων παιχνιδιών και μετά από εδώ, αν εκείνος δεν έχει."
-
 #: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "Add game folder"
 msgstr "Προσθήκη φακέλου παιχνιδιών"
@@ -2303,10 +2295,6 @@ msgstr "Επιλέξτε πού γράφονται οι εξαγόμενες α�
 #: pe/ui/locations.cpp
 msgid "Choose where your games, keys, firmware and saves are"
 msgstr "Επιλέξτε πού βρίσκονται τα παιχνίδια, τα keys, το firmware και οι αποθηκεύσεις σας"
-
-#: pe/ui/library.cpp
-msgid "In more than one place. You choose which one starts."
-msgstr "Σε περισσότερα από ένα μέρη. Εσείς επιλέγετε ποιο θα ξεκινήσει."
 
 #. Label: the folder used the next time the app starts.
 #: pe/ui/locations.cpp, pe/ui/settings.cpp
@@ -2428,3 +2416,30 @@ msgstr "Ο φάκελος με τα keys, το firmware και τα παιχνί
 #: pe/ui/locations.cpp
 msgid "Where exported saves are written. Until you choose one, it is save-export in the game files folder."
 msgstr "Πού γράφονται οι εξαγόμενες αποθηκεύσεις. Μέχρι να επιλέξετε, είναι το save-export στον φάκελο αρχείων παιχνιδιών."
+
+msgid "Available in more than one place. Choose which one to start."
+msgstr "Υπάρχει σε περισσότερα από ένα μέρη. Επιλέξτε ποιο να ξεκινήσει."
+
+msgid "Add other game folders, with roms, updates and mods on an external HD or SSD over USB, or in the console's extended storage."
+msgstr "Προσθέστε άλλους φακέλους παιχνιδιών, με roms, ενημερώσεις και mods, σε εξωτερικό HD ή SSD μέσω USB, ή στον εκτεταμένο αποθηκευτικό χώρο της κονσόλας."
+
+msgid "Games, updates and mods are read from this folder. Press Square twice to take it off the list."
+msgstr "Τα παιχνίδια, οι ενημερώσεις και τα mods διαβάζονται από αυτόν τον φάκελο. Πατήστε Τετράγωνο δύο φορές για να τον αφαιρέσετε από τη λίστα."
+
+msgid "Could not delete the ROM from this folder."
+msgstr "Δεν ήταν δυνατή η διαγραφή του ROM από αυτόν τον φάκελο."
+
+msgid "Deleted from this folder."
+msgstr "Διαγράφηκε από αυτόν τον φάκελο."
+
+msgid "Extended storage"
+msgstr "Εκτεταμένος αποθηκευτικός χώρος"
+
+msgid "External HD or SSD"
+msgstr "Εξωτερικός HDD ή SSD"
+
+msgid "Path tips"
+msgstr "Συμβουλές για διαδρομές"
+
+msgid "Press Square again to delete this copy from {0}. Its updates and mods stay."
+msgstr "Πατήστε ξανά Τετράγωνο για να διαγράψετε αυτό το αντίγραφο από το {0}. Οι ενημερώσεις και τα mods μένουν."

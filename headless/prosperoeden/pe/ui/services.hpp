@@ -670,6 +670,12 @@ class Services
     {
         return false;
     }
+    // Deletes the ROM of one copy of a game, the one in the game folder given. Its updates and mods
+    // stay. Only for a game that is in more than one place (library.cpp).
+    virtual bool delete_place(const std::string &, const std::string &)
+    {
+        return false;
+    }
 
     // ---- save sync: a game's save data in step with the profile's save store ----
     // Whether the profile playing syncs the game's save data before it starts and after it ended.

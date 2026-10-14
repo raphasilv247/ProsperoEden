@@ -1303,10 +1303,6 @@ msgstr "اللعب باسم {0}"
 msgid "Games, updates and mods are read from here. TRIANGLE adds the folder shown."
 msgstr "تُقرأ الألعاب وupdates وmods من هنا. مثلث يضيف المجلد المعروض."
 
-#: pe/ui/locations.cpp
-msgid "Games, updates and mods are read from this folder. Square twice takes it off the list."
-msgstr "تُقرأ الألعاب وupdates وmods من هذا المجلد. الضغط على مربع مرتين يزيله من القائمة."
-
 #: settings_store.h
 msgid "Polish"
 msgstr "البولندية"
@@ -2264,10 +2260,6 @@ msgstr "{0}/‎ (NSP أو XCI)"
 msgid "{0}/ (one folder per game ID)"
 msgstr "{0}/‎ (مجلد لكل معرّف لعبة)"
 
-#: pe/ui/locations.cpp
-msgid "Add another place for games, such as a USB drive. It holds roms, updates and mods. Keys and firmware come from the game files folder first, then from here if it has none."
-msgstr "أضف مكانًا آخر للألعاب، مثل محرك USB. يحتوي على roms وupdates وmods. تؤخذ keys وfirmware أولًا من مجلد ملفات الألعاب، ثم من هنا إن لم تكن فيه."
-
 #: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "Add game folder"
 msgstr "إضافة مجلد ألعاب"
@@ -2303,10 +2295,6 @@ msgstr "اختر مكان كتابة البيانات المحفوظة المص�
 #: pe/ui/locations.cpp
 msgid "Choose where your games, keys, firmware and saves are"
 msgstr "اختر مكان ألعابك وkeys وfirmware والبيانات المحفوظة"
-
-#: pe/ui/library.cpp
-msgid "In more than one place. You choose which one starts."
-msgstr "في أكثر من مكان. أنت تختار أيها يبدأ."
 
 #. Label: the folder used the next time the app starts.
 #: pe/ui/locations.cpp, pe/ui/settings.cpp
@@ -2428,3 +2416,30 @@ msgstr "المجلد الذي يضم keys وfirmware وألعابك، وأماك
 #: pe/ui/locations.cpp
 msgid "Where exported saves are written. Until you choose one, it is save-export in the game files folder."
 msgstr "المكان الذي تُكتب فيه البيانات المحفوظة المصدّرة. إلى أن تختار مجلدًا، يكون save-export في مجلد ملفات الألعاب."
+
+msgid "Available in more than one place. Choose which one to start."
+msgstr "متوفر في أكثر من مكان. اختر أيها تبدأ."
+
+msgid "Add other game folders, with roms, updates and mods on an external HD or SSD over USB, or in the console's extended storage."
+msgstr "أضف مجلدات ألعاب أخرى، فيها roms وupdates وmods على قرص HD أو SSD خارجي عبر USB، أو في التخزين الموسّع للجهاز."
+
+msgid "Games, updates and mods are read from this folder. Press Square twice to take it off the list."
+msgstr "تُقرأ الألعاب والتحديثات والمودات من هذا المجلد. اضغط Square مرتين لإزالته من القائمة."
+
+msgid "Could not delete the ROM from this folder."
+msgstr "تعذّر حذف ملف ROM من هذا المجلد."
+
+msgid "Deleted from this folder."
+msgstr "تم الحذف من هذا المجلد."
+
+msgid "Extended storage"
+msgstr "التخزين الموسّع"
+
+msgid "External HD or SSD"
+msgstr "قرص HD أو SSD خارجي"
+
+msgid "Path tips"
+msgstr "نصائح للمسارات"
+
+msgid "Press Square again to delete this copy from {0}. Its updates and mods stay."
+msgstr "اضغط Square مرة أخرى لحذف هذه النسخة من {0}. التحديثات والمودات تبقى."

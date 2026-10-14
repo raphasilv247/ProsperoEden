@@ -1303,10 +1303,6 @@ msgstr "Hraje {0}"
 msgid "Games, updates and mods are read from here. TRIANGLE adds the folder shown."
 msgstr "Hry, updates a mods se čtou odsud. TROJÚHELNÍK přidá zobrazenou složku."
 
-#: pe/ui/locations.cpp
-msgid "Games, updates and mods are read from this folder. Square twice takes it off the list."
-msgstr "Hry, updates a mods se čtou z této složky. Dvojí stisk čtverce ji odebere ze seznamu."
-
 #: settings_store.h
 msgid "Polish"
 msgstr "Polština"
@@ -2264,10 +2260,6 @@ msgstr "{0}/ (NSP nebo XCI)"
 msgid "{0}/ (one folder per game ID)"
 msgstr "{0}/ (složka pro každé ID titulu)"
 
-#: pe/ui/locations.cpp
-msgid "Add another place for games, such as a USB drive. It holds roms, updates and mods. Keys and firmware come from the game files folder first, then from here if it has none."
-msgstr "Přidejte další místo pro hry, například USB disk. Obsahuje roms, updates a mods. Keys a firmware se berou nejdřív ze složky s herními soubory, potom odsud, pokud je tam nemá."
-
 #: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "Add game folder"
 msgstr "Přidat složku her"
@@ -2303,10 +2295,6 @@ msgstr "Vyberte, kam se zapisují exportovaná uložená data"
 #: pe/ui/locations.cpp
 msgid "Choose where your games, keys, firmware and saves are"
 msgstr "Vyberte, kde jsou vaše hry, keys, firmware a uložená data"
-
-#: pe/ui/library.cpp
-msgid "In more than one place. You choose which one starts."
-msgstr "Na více místech. Vy vybíráte, která se spustí."
 
 #. Label: the folder used the next time the app starts.
 #: pe/ui/locations.cpp, pe/ui/settings.cpp
@@ -2428,3 +2416,30 @@ msgstr "Složka s vašimi keys, firmwarem a hrami a další místa pro hry."
 #: pe/ui/locations.cpp
 msgid "Where exported saves are written. Until you choose one, it is save-export in the game files folder."
 msgstr "Kam se zapisují exportovaná uložená data. Dokud žádnou nezvolíte, je to save-export ve složce s herními soubory."
+
+msgid "Available in more than one place. Choose which one to start."
+msgstr "Je na více místech. Vyberte, které spustit."
+
+msgid "Add other game folders, with roms, updates and mods on an external HD or SSD over USB, or in the console's extended storage."
+msgstr "Přidejte další složky her s roms, updates a mody na externím HD nebo SSD přes USB, nebo v rozšířeném úložišti konzole."
+
+msgid "Games, updates and mods are read from this folder. Press Square twice to take it off the list."
+msgstr "Hry, updaty a mody se čtou z této složky. Pro odebrání ze seznamu stiskněte Čtverec dvakrát."
+
+msgid "Could not delete the ROM from this folder."
+msgstr "ROM z této složky nelze smazat."
+
+msgid "Deleted from this folder."
+msgstr "Smazáno z této složky."
+
+msgid "Extended storage"
+msgstr "Rozšířené úložiště"
+
+msgid "External HD or SSD"
+msgstr "Externí HDD nebo SSD"
+
+msgid "Path tips"
+msgstr "Tipy k cestám"
+
+msgid "Press Square again to delete this copy from {0}. Its updates and mods stay."
+msgstr "Stisknutím Čtverce znovu smažete tuto kopii z {0}. Aktualizace a mody zůstanou."

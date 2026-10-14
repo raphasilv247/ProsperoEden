@@ -1303,10 +1303,6 @@ msgstr "{0}でプレイ"
 msgid "Games, updates and mods are read from here. TRIANGLE adds the folder shown."
 msgstr "ゲーム、updates、modsはここから読み込まれます。サンカクで表示中のフォルダを追加します。"
 
-#: pe/ui/locations.cpp
-msgid "Games, updates and mods are read from this folder. Square twice takes it off the list."
-msgstr "ゲーム、updates、modsはこのフォルダから読み込まれます。シカクを2回押すと一覧から外します。"
-
 #: settings_store.h
 msgid "Polish"
 msgstr "ポーランド語"
@@ -2264,10 +2260,6 @@ msgstr "{0}/（NSPまたはXCI）"
 msgid "{0}/ (one folder per game ID)"
 msgstr "{0}/（タイトルIDごとに1フォルダー）"
 
-#: pe/ui/locations.cpp
-msgid "Add another place for games, such as a USB drive. It holds roms, updates and mods. Keys and firmware come from the game files folder first, then from here if it has none."
-msgstr "USBドライブなど、ゲームの置き場所をもう1つ追加します。roms、updates、modsが入っています。keysとfirmwareはまずゲームファイルのフォルダから、ない場合はここから読み込まれます。"
-
 #: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "Add game folder"
 msgstr "ゲームフォルダを追加"
@@ -2303,10 +2295,6 @@ msgstr "書き出したセーブデータの保存先を選んでください"
 #: pe/ui/locations.cpp
 msgid "Choose where your games, keys, firmware and saves are"
 msgstr "ゲーム、keys、firmware、セーブデータの場所を選んでください"
-
-#: pe/ui/library.cpp
-msgid "In more than one place. You choose which one starts."
-msgstr "複数の場所にあります。どちらを起動するか選んでください。"
 
 #. Label: the folder used the next time the app starts.
 #: pe/ui/locations.cpp, pe/ui/settings.cpp
@@ -2428,3 +2416,30 @@ msgstr "keys、firmware、ゲームが入っているフォルダと、ゲーム
 #: pe/ui/locations.cpp
 msgid "Where exported saves are written. Until you choose one, it is save-export in the game files folder."
 msgstr "書き出したセーブデータの保存先。選ぶまではゲームファイルのフォルダのsave-exportです。"
+
+msgid "Available in more than one place. Choose which one to start."
+msgstr "複数の場所にあります。起動する場所を選んでください。"
+
+msgid "Add other game folders, with roms, updates and mods on an external HD or SSD over USB, or in the console's extended storage."
+msgstr "ROM、アップデート、MODを入れた別のゲームフォルダーを、USB接続の外付けHDDやSSD、または本体の拡張ストレージに追加します。"
+
+msgid "Games, updates and mods are read from this folder. Press Square twice to take it off the list."
+msgstr "このフォルダーからゲーム、アップデート、MODを読み込みます。リストから外すには□を2回押してください。"
+
+msgid "Could not delete the ROM from this folder."
+msgstr "このフォルダーからROMを削除できませんでした。"
+
+msgid "Deleted from this folder."
+msgstr "このフォルダーから削除しました。"
+
+msgid "Extended storage"
+msgstr "拡張ストレージ"
+
+msgid "External HD or SSD"
+msgstr "外付けHDD / SSD"
+
+msgid "Path tips"
+msgstr "パスのヒント"
+
+msgid "Press Square again to delete this copy from {0}. Its updates and mods stay."
+msgstr "□をもう一度押すと、{0} のこのコピーを削除します。アップデートとMODは残ります。"

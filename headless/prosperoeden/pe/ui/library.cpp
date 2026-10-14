@@ -23,33 +23,6 @@ using audio::Cue;
 namespace
 {
 
-// A game folder as the duplicate question shows it: its first two parts and "...", as in
-// "/ext0/games..."; "/data/prosperoeden" whole when it is that short.
-std::string short_place_path(const std::string &path)
-{
-    std::vector<std::string> parts;
-    std::string part;
-    for (const char c : path)
-    {
-        if (c != '/')
-        {
-            part += c;
-            continue;
-        }
-        if (!part.empty())
-            parts.push_back(part);
-        part.clear();
-    }
-    if (!part.empty())
-        parts.push_back(part);
-    std::string shown;
-    for (std::size_t i = 0; i < parts.size() && i < 2; ++i)
-        shown += "/" + parts[i];
-    if (parts.size() > 2)
-        shown += "...";
-    return shown.empty() ? "/" : shown;
-}
-
 // The duplicate question: placed as the source choice is (remote.cpp), four rows show.
 constexpr Rect kPlaceDialog{550.0f, 180.0f, 820.0f, 720.0f};
 constexpr float kPlaceRowsTop = 334.0f;
@@ -585,7 +558,7 @@ void Launcher::draw_library(Canvas &c)
             else
             {
                 // Where it is after the format; a duplicate shows in the warning colour.
-                text_shrink(c, format_text(game) + "  /  " + game.size, r.x, baseline(under, 24.0f, 18.0f), 18.0f,
+                text_shrink(c, format_text(game) + " | " + game.size, r.x, baseline(under, 24.0f, 18.0f), 18.0f,
                             game.places.size() > 1 ? t.warning : gfx::mix(t.faint, t.accent_pale, f), kCover);
             }
             list.pop_transform();
@@ -636,7 +609,7 @@ void Launcher::draw_library(Canvas &c)
     }
     if (game != nullptr)
     {
-        text_shrink(c, format_text(*game) + "  /  " + game->size, x, baseline(y, 30.0f, 22.0f), 22.0f,
+        text_shrink(c, format_text(*game) + " | " + game->size, x, baseline(y, 30.0f, 22.0f), 22.0f,
                     game->places.size() > 1 ? t.warning : t.copy, width);
         y += 30.0f;
         text_fit(c, game->file, x, baseline(y, 26.0f, 18.0f), 18.0f, t.faint, width);
@@ -678,7 +651,7 @@ void Launcher::draw_library(Canvas &c)
         }
         if (!remote && game->places.size() > 1)
         {
-            notice(c, tr("In more than one place. You choose which one starts."), x, baseline(y, 26.0f, 18.0f), 18.0f,
+            notice(c, tr("Available in more than one place. Choose which one to start."), x, baseline(y, 26.0f, 18.0f), 18.0f,
                    t.warning, width, true);
             y += 30.0f;
         }
@@ -958,6 +931,8 @@ void Launcher::open_place(const std::string &file, const std::string &title, con
 void Launcher::press_place(Key key)
 {
     const int count = static_cast<int>(place_choices_.size());
+    if (key != Key::square)
+        place_delete_armed_ = false;
     switch (key)
     {
     case Key::circle:
@@ -970,6 +945,47 @@ void Launcher::press_place(Key key)
         if (place_rows_.move(key == Key::down ? 1 : -1))
             cue(Cue::focus);
         return;
+    case Key::square:
+    {
+        // Square asks about the copy under the cursor; a second Square on the same copy deletes it.
+        const int row = std::clamp(place_rows_.selected, 0, std::max(count - 1, 0));
+        if (count == 0)
+            return;
+        if (!place_delete_armed_ || place_delete_row_ != row)
+        {
+            place_delete_armed_ = true;
+            place_delete_row_ = row;
+            say(fill(tr("Press Square again to delete this copy from {0}. Its updates and mods stay."),
+                     {place_choices_[static_cast<std::size_t>(row)].path}),
+                true);
+            cue(Cue::notify);
+            return;
+        }
+        place_delete_armed_ = false;
+        const std::string folder = place_choices_[static_cast<std::size_t>(row)].path;
+        if (!services_.delete_place(place_file_, folder))
+        {
+            say(tr("Could not delete the ROM from this folder."), true);
+            cue(Cue::error);
+            return;
+        }
+        // The list is read again: with one copy left the game starts without asking.
+        read_home();
+        drop_missing_games();
+        place_choices_ = services_.game_places(place_file_);
+        if (place_choices_.size() < 2)
+        {
+            modal_ = Modal::none;
+            message_.clear();
+            cue(Cue::saved);
+            return;
+        }
+        place_rows_.reset(static_cast<int>(place_choices_.size()),
+                          std::min(row, static_cast<int>(place_choices_.size()) - 1));
+        say(tr("Deleted from this folder."));
+        cue(Cue::saved);
+        return;
+    }
     case Key::cross:
     {
         const int row = std::clamp(place_rows_.selected, 0, std::max(count - 1, 0));
@@ -1025,15 +1041,16 @@ void Launcher::draw_place(Canvas &c, float open)
         // The drive's label, and the game folder under it.
         text_shrink(c, place.label, 628.0f, baseline(top + 14.0f, 38.0f, th().size_text), th().size_text, th().value,
                     664.0f);
-        text_fit(c, short_place_path(place.path), 628.0f, baseline(top + 52.0f, 28.0f, th().size_small), th().size_small,
+        text_fit(c, place.path, 628.0f, baseline(top + 52.0f, 28.0f, th().size_small), th().size_small,
                  th().meta, 664.0f);
         list.pop_opacity();
     }
     list.pop_clip();
     scrollbar(c, place_rows_, 1340.0f, kPlaceWindow.y, kPlaceWindow.h);
 
-    static constexpr Hint kHintsRow[] = {{Pad::updown, TR("Select")}, {Pad::cross, TR("Play")}, {Pad::circle, TR("Back")}};
-    draw_hints(c, kHintsRow, 3, 592.0f, kPlaceHints, th().copy, 736.0f);
+    static constexpr Hint kHintsRow[] = {{Pad::updown, TR("Select")}, {Pad::cross, TR("Play")},
+                                                 {Pad::square, TR("Delete")}, {Pad::circle, TR("Back")}};
+    draw_hints(c, kHintsRow, 4, 592.0f, kPlaceHints, th().copy, 736.0f);
     list.pop_transform();
     list.pop_opacity();
 }
@@ -1328,7 +1345,7 @@ void Launcher::draw_save_pane(Canvas &c, const Rect &pane, bool removing)
     if (removing)
     {
         text_shrink(c, tr("Delete from console"), x, baseline(r.y + 70.0f, 40.0f, 28.0f), 28.0f, t.warning, width);
-        text_shrink(c, format_text(game) + "  /  " + game.size, x, baseline(r.y + 118.0f, 32.0f, 22.0f), 22.0f,
+        text_shrink(c, format_text(game) + " | " + game.size, x, baseline(r.y + 118.0f, 32.0f, 22.0f), 22.0f,
                     game.places.size() > 1 ? t.warning : t.copy, width);
         return;
     }

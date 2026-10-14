@@ -1303,10 +1303,6 @@ msgstr "Joueur : {0}"
 msgid "Games, updates and mods are read from here. TRIANGLE adds the folder shown."
 msgstr "Les jeux, updates et mods sont lus ici. TRIANGLE ajoute le dossier affiché."
 
-#: pe/ui/locations.cpp
-msgid "Games, updates and mods are read from this folder. Square twice takes it off the list."
-msgstr "Les jeux, updates et mods sont lus dans ce dossier. Carré deux fois le retire de la liste."
-
 #: settings_store.h
 msgid "Polish"
 msgstr "Polonais"
@@ -2264,10 +2260,6 @@ msgstr "{0}/ (NSP ou XCI)"
 msgid "{0}/ (one folder per game ID)"
 msgstr "{0}/ (un dossier par ID de titre)"
 
-#: pe/ui/locations.cpp
-msgid "Add another place for games, such as a USB drive. It holds roms, updates and mods. Keys and firmware come from the game files folder first, then from here if it has none."
-msgstr "Ajoutez un autre emplacement pour les jeux, comme une clé USB. Il contient roms, updates et mods. Les keys et le firmware viennent d'abord du dossier des fichiers de jeu, puis d'ici s'il n'en a pas."
-
 #: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "Add game folder"
 msgstr "Ajouter un dossier de jeux"
@@ -2303,10 +2295,6 @@ msgstr "Choisissez où les sauvegardes exportées sont écrites"
 #: pe/ui/locations.cpp
 msgid "Choose where your games, keys, firmware and saves are"
 msgstr "Choisissez où se trouvent vos jeux, keys, firmware et sauvegardes"
-
-#: pe/ui/library.cpp
-msgid "In more than one place. You choose which one starts."
-msgstr "À plusieurs endroits. Vous choisissez lequel démarre."
 
 #. Label: the folder used the next time the app starts.
 #: pe/ui/locations.cpp, pe/ui/settings.cpp
@@ -2428,3 +2416,30 @@ msgstr "Le dossier de vos keys, firmware et jeux, et d'autres emplacements pour 
 #: pe/ui/locations.cpp
 msgid "Where exported saves are written. Until you choose one, it is save-export in the game files folder."
 msgstr "Où les sauvegardes exportées sont écrites. Tant que vous n'en choisissez pas, c'est save-export dans le dossier des fichiers de jeu."
+
+msgid "Available in more than one place. Choose which one to start."
+msgstr "Disponible à plus d'un endroit. Choisissez lequel lancer."
+
+msgid "Add other game folders, with roms, updates and mods on an external HD or SSD over USB, or in the console's extended storage."
+msgstr "Ajoutez d'autres dossiers de jeux, avec roms, mises à jour et mods, sur un disque dur ou SSD externe par USB, ou dans le stockage étendu de la console."
+
+msgid "Games, updates and mods are read from this folder. Press Square twice to take it off the list."
+msgstr "Les jeux, mises à jour et mods sont lus dans ce dossier. Appuyez deux fois sur Carré pour le retirer de la liste."
+
+msgid "Could not delete the ROM from this folder."
+msgstr "Impossible de supprimer la ROM de ce dossier."
+
+msgid "Deleted from this folder."
+msgstr "Supprimé de ce dossier."
+
+msgid "Extended storage"
+msgstr "Stockage étendu"
+
+msgid "External HD or SSD"
+msgstr "Disque dur ou SSD externe"
+
+msgid "Path tips"
+msgstr "Conseils de chemins"
+
+msgid "Press Square again to delete this copy from {0}. Its updates and mods stay."
+msgstr "Appuyez à nouveau sur Carré pour supprimer cette copie de {0}. Les mises à jour et mods restent."

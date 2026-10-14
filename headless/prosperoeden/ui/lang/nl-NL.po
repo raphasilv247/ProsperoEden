@@ -1303,10 +1303,6 @@ msgstr "Speelt als {0}"
 msgid "Games, updates and mods are read from here. TRIANGLE adds the folder shown."
 msgstr "Games, updates en mods worden hier gelezen. DRIEHOEK voegt de getoonde map toe."
 
-#: pe/ui/locations.cpp
-msgid "Games, updates and mods are read from this folder. Square twice takes it off the list."
-msgstr "Games, updates en mods worden uit deze map gelezen. Twee keer Vierkant haalt hem uit de lijst."
-
 #: settings_store.h
 msgid "Polish"
 msgstr "Pools"
@@ -2264,10 +2260,6 @@ msgstr "{0}/ (NSP of XCI)"
 msgid "{0}/ (one folder per game ID)"
 msgstr "{0}/ (één map per titel-ID)"
 
-#: pe/ui/locations.cpp
-msgid "Add another place for games, such as a USB drive. It holds roms, updates and mods. Keys and firmware come from the game files folder first, then from here if it has none."
-msgstr "Voeg een andere plek voor games toe, zoals een USB-stick. Daar staan roms, updates en mods. Keys en firmware komen eerst uit de map met gamebestanden en daarna van hier, als die er geen heeft."
-
 #: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "Add game folder"
 msgstr "Gamemap toevoegen"
@@ -2303,10 +2295,6 @@ msgstr "Kies waar geëxporteerde opgeslagen data worden geschreven"
 #: pe/ui/locations.cpp
 msgid "Choose where your games, keys, firmware and saves are"
 msgstr "Kies waar je games, keys, firmware en opgeslagen data staan"
-
-#: pe/ui/library.cpp
-msgid "In more than one place. You choose which one starts."
-msgstr "Op meer dan één plek. Jij kiest welke start."
 
 #. Label: the folder used the next time the app starts.
 #: pe/ui/locations.cpp, pe/ui/settings.cpp
@@ -2428,3 +2416,30 @@ msgstr "De map met je keys, firmware en games, en meer plekken voor games."
 #: pe/ui/locations.cpp
 msgid "Where exported saves are written. Until you choose one, it is save-export in the game files folder."
 msgstr "Waar geëxporteerde opgeslagen data worden geschreven. Tot je er een kiest, is het save-export in de map met gamebestanden."
+
+msgid "Available in more than one place. Choose which one to start."
+msgstr "Staat op meer dan één plek. Kies welke je start."
+
+msgid "Add other game folders, with roms, updates and mods on an external HD or SSD over USB, or in the console's extended storage."
+msgstr "Voeg andere spelmappen toe met roms, updates en mods op een externe hdd of ssd via USB, of in de uitgebreide opslag van de console."
+
+msgid "Games, updates and mods are read from this folder. Press Square twice to take it off the list."
+msgstr "Games, updates en mods worden uit deze map gelezen. Druk twee keer op Vierkant om hem van de lijst te halen."
+
+msgid "Could not delete the ROM from this folder."
+msgstr "De ROM kon niet uit deze map worden verwijderd."
+
+msgid "Deleted from this folder."
+msgstr "Verwijderd uit deze map."
+
+msgid "Extended storage"
+msgstr "Uitgebreide opslag"
+
+msgid "External HD or SSD"
+msgstr "Externe hdd of ssd"
+
+msgid "Path tips"
+msgstr "Tips voor paden"
+
+msgid "Press Square again to delete this copy from {0}. Its updates and mods stay."
+msgstr "Druk nogmaals op Vierkant om deze kopie uit {0} te verwijderen. Updates en mods blijven staan."

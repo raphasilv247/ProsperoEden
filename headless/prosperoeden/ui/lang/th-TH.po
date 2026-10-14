@@ -1303,10 +1303,6 @@ msgstr "เล่น​เป็น {0}"
 msgid "Games, updates and mods are read from here. TRIANGLE adds the folder shown."
 msgstr "เกม updates และ mods จะถูกอ่านจากที่นี่ สามเหลี่ยมเพิ่มโฟลเดอร์ที่แสดง"
 
-#: pe/ui/locations.cpp
-msgid "Games, updates and mods are read from this folder. Square twice takes it off the list."
-msgstr "เกม updates และ mods จะถูกอ่านจากโฟลเดอร์นี้ กดสี่เหลี่ยมสองครั้งเพื่อนำออกจากรายการ"
-
 #: settings_store.h
 msgid "Polish"
 msgstr "โปแลนด์"
@@ -2264,10 +2260,6 @@ msgstr "{0}/ (NSP หรือ XCI)"
 msgid "{0}/ (one folder per game ID)"
 msgstr "{0}/ (หนึ่ง​โฟลเดอร์​ต่อ ID ​ของ​เกม)"
 
-#: pe/ui/locations.cpp
-msgid "Add another place for games, such as a USB drive. It holds roms, updates and mods. Keys and firmware come from the game files folder first, then from here if it has none."
-msgstr "เพิ่มที่เก็บเกมอีกแห่ง เช่น ไดรฟ์ USB ซึ่งมี roms, updates และ mods อยู่ ระบบจะใช้ keys และ firmware จากโฟลเดอร์ไฟล์เกมก่อน แล้วค่อยมาที่นี่หากโฟลเดอร์นั้นไม่มี"
-
 #: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "Add game folder"
 msgstr "เพิ่มโฟลเดอร์เกม"
@@ -2303,10 +2295,6 @@ msgstr "เลือกที่เขียนเซฟที่ส่งออ
 #: pe/ui/locations.cpp
 msgid "Choose where your games, keys, firmware and saves are"
 msgstr "เลือกที่เก็บเกม keys, firmware และเซฟของคุณ"
-
-#: pe/ui/library.cpp
-msgid "In more than one place. You choose which one starts."
-msgstr "อยู่ในหลายที่ คุณเลือกได้ว่าจะเริ่มอันไหน"
 
 #. Label: the folder used the next time the app starts.
 #: pe/ui/locations.cpp, pe/ui/settings.cpp
@@ -2428,3 +2416,30 @@ msgstr "โฟลเดอร์ที่มี keys, firmware และเก�
 #: pe/ui/locations.cpp
 msgid "Where exported saves are written. Until you choose one, it is save-export in the game files folder."
 msgstr "ที่ที่เขียนเซฟที่ส่งออก จนกว่าจะเลือก จะใช้ save-export ในโฟลเดอร์ไฟล์เกม"
+
+msgid "Available in more than one place. Choose which one to start."
+msgstr "มีในมากกว่าหนึ่งที่ เลือกว่าจะเริ่มจากที่ไหน"
+
+msgid "Add other game folders, with roms, updates and mods on an external HD or SSD over USB, or in the console's extended storage."
+msgstr "เพิ่มโฟลเดอร์เกมอื่น ที่มี roms การอัปเดต และม็อด ในฮาร์ดดิสก์หรือ SSD ภายนอกผ่าน USB หรือในพื้นที่จัดเก็บขยายของคอนโซล"
+
+msgid "Games, updates and mods are read from this folder. Press Square twice to take it off the list."
+msgstr "เกม การอัปเดต และม็อดจะถูกอ่านจากโฟลเดอร์นี้ กดสี่เหลี่ยมสองครั้งเพื่อเอาออกจากรายการ"
+
+msgid "Could not delete the ROM from this folder."
+msgstr "ไม่สามารถลบ ROM จากโฟลเดอร์นี้ได้"
+
+msgid "Deleted from this folder."
+msgstr "ลบจากโฟลเดอร์นี้แล้ว"
+
+msgid "Extended storage"
+msgstr "พื้นที่จัดเก็บขยาย"
+
+msgid "External HD or SSD"
+msgstr "ฮาร์ดดิสก์หรือ SSD ภายนอก"
+
+msgid "Path tips"
+msgstr "เคล็ดลับเกี่ยวกับเส้นทาง"
+
+msgid "Press Square again to delete this copy from {0}. Its updates and mods stay."
+msgstr "กดสี่เหลี่ยมอีกครั้งเพื่อลบสำเนานี้จาก {0} การอัปเดตและม็อดจะยังคงอยู่"

@@ -1432,6 +1432,13 @@ std::vector<pe::ui::Download> EdenServices::downloads() {
     return list;
 }
 
+bool EdenServices::delete_place(const std::string& file, const std::string& folder) {
+    if (!Eden::FilesystemAccess() || !Eden::ValidRomFilename(file)) return false;
+    const std::lock_guard lock(bridge_);
+    // Only this copy: the game's updates and mods in its folder are left where they are.
+    return std::remove((folder + "/roms/" + file).c_str()) == 0;
+}
+
 bool EdenServices::delete_game(const pe::ui::Game& game, std::string* message) {
     if (!Eden::FilesystemAccess() || game.sources.empty() || game.remote || !Eden::ValidRomFilename(game.file))
         return false;

@@ -1303,10 +1303,6 @@ msgstr "{0} oynuyor"
 msgid "Games, updates and mods are read from here. TRIANGLE adds the folder shown."
 msgstr "Oyunlar, updates ve mods buradan okunur. ÜÇGEN gösterilen klasörü ekler."
 
-#: pe/ui/locations.cpp
-msgid "Games, updates and mods are read from this folder. Square twice takes it off the list."
-msgstr "Oyunlar, updates ve mods bu klasörden okunur. Kare'ye iki kez basmak onu listeden çıkarır."
-
 #: settings_store.h
 msgid "Polish"
 msgstr "Lehçe"
@@ -2264,10 +2260,6 @@ msgstr "{0}/ (NSP veya XCI)"
 msgid "{0}/ (one folder per game ID)"
 msgstr "{0}/ (her oyun kimliği için bir klasör)"
 
-#: pe/ui/locations.cpp
-msgid "Add another place for games, such as a USB drive. It holds roms, updates and mods. Keys and firmware come from the game files folder first, then from here if it has none."
-msgstr "Oyunlar için USB bellek gibi başka bir yer ekleyin. İçinde roms, updates ve mods bulunur. Keys ve firmware önce oyun dosyaları klasöründen, orada yoksa buradan alınır."
-
 #: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "Add game folder"
 msgstr "Oyun klasörü ekle"
@@ -2303,10 +2295,6 @@ msgstr "Dışa aktarılan kayıtların nereye yazılacağını seçin"
 #: pe/ui/locations.cpp
 msgid "Choose where your games, keys, firmware and saves are"
 msgstr "Oyunlarınızın, keys, firmware ve kayıtların nerede olduğunu seçin"
-
-#: pe/ui/library.cpp
-msgid "In more than one place. You choose which one starts."
-msgstr "Birden fazla yerde. Hangisinin başlayacağını siz seçersiniz."
 
 #. Label: the folder used the next time the app starts.
 #: pe/ui/locations.cpp, pe/ui/settings.cpp
@@ -2428,3 +2416,30 @@ msgstr "Keys, firmware ve oyunlarınızın klasörü ve oyunlar için başka yer
 #: pe/ui/locations.cpp
 msgid "Where exported saves are written. Until you choose one, it is save-export in the game files folder."
 msgstr "Dışa aktarılan kayıtların yazıldığı yer. Siz seçene kadar bu, oyun dosyaları klasöründeki save-export'tur."
+
+msgid "Available in more than one place. Choose which one to start."
+msgstr "Birden fazla yerde var. Hangisinin başlatılacağını seçin."
+
+msgid "Add other game folders, with roms, updates and mods on an external HD or SSD over USB, or in the console's extended storage."
+msgstr "USB üzerinden harici HDD veya SSD'de ya da konsolun genişletilmiş depolama alanında roms, güncelleme ve modların bulunduğu başka oyun klasörleri ekleyin."
+
+msgid "Games, updates and mods are read from this folder. Press Square twice to take it off the list."
+msgstr "Oyunlar, güncellemeler ve modlar bu klasörden okunur. Listeden çıkarmak için Kare'ye iki kez basın."
+
+msgid "Could not delete the ROM from this folder."
+msgstr "ROM bu klasörden silinemedi."
+
+msgid "Deleted from this folder."
+msgstr "Bu klasörden silindi."
+
+msgid "Extended storage"
+msgstr "Genişletilmiş depolama"
+
+msgid "External HD or SSD"
+msgstr "Harici HDD veya SSD"
+
+msgid "Path tips"
+msgstr "Yol ipuçları"
+
+msgid "Press Square again to delete this copy from {0}. Its updates and mods stay."
+msgstr "Bu kopyayı {0} konumundan silmek için Kare'ye tekrar basın. Güncellemeler ve modlar kalır."

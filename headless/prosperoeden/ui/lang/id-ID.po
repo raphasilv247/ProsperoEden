@@ -1303,10 +1303,6 @@ msgstr "Bermain sebagai {0}"
 msgid "Games, updates and mods are read from here. TRIANGLE adds the folder shown."
 msgstr "Game, updates, dan mods dibaca dari sini. SEGITIGA menambahkan folder yang ditampilkan."
 
-#: pe/ui/locations.cpp
-msgid "Games, updates and mods are read from this folder. Square twice takes it off the list."
-msgstr "Game, updates, dan mods dibaca dari folder ini. Kotak dua kali menghapusnya dari daftar."
-
 #: settings_store.h
 msgid "Polish"
 msgstr "Polandia"
@@ -2264,10 +2260,6 @@ msgstr "{0}/ (NSP atau XCI)"
 msgid "{0}/ (one folder per game ID)"
 msgstr "{0}/ (satu folder per ID judul)"
 
-#: pe/ui/locations.cpp
-msgid "Add another place for games, such as a USB drive. It holds roms, updates and mods. Keys and firmware come from the game files folder first, then from here if it has none."
-msgstr "Tambahkan tempat lain untuk game, misalnya drive USB. Isinya roms, updates, dan mods. Keys dan firmware diambil dulu dari folder file game, lalu dari sini jika folder itu tidak punya."
-
 #: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "Add game folder"
 msgstr "Tambah folder game"
@@ -2303,10 +2295,6 @@ msgstr "Pilih tempat data tersimpan yang diekspor ditulis"
 #: pe/ui/locations.cpp
 msgid "Choose where your games, keys, firmware and saves are"
 msgstr "Pilih lokasi game, keys, firmware, dan data tersimpan Anda"
-
-#: pe/ui/library.cpp
-msgid "In more than one place. You choose which one starts."
-msgstr "Ada di lebih dari satu tempat. Anda yang memilih mana yang dijalankan."
 
 #. Label: the folder used the next time the app starts.
 #: pe/ui/locations.cpp, pe/ui/settings.cpp
@@ -2428,3 +2416,30 @@ msgstr "Folder keys, firmware, dan game Anda, serta tempat lain untuk game."
 #: pe/ui/locations.cpp
 msgid "Where exported saves are written. Until you choose one, it is save-export in the game files folder."
 msgstr "Tempat data tersimpan yang diekspor ditulis. Sebelum Anda memilih, ini adalah save-export di folder file game."
+
+msgid "Available in more than one place. Choose which one to start."
+msgstr "Tersedia di lebih dari satu tempat. Pilih yang akan dijalankan."
+
+msgid "Add other game folders, with roms, updates and mods on an external HD or SSD over USB, or in the console's extended storage."
+msgstr "Tambahkan folder game lain, dengan roms, update, dan mod di HD atau SSD eksternal lewat USB, atau di penyimpanan tambahan konsol."
+
+msgid "Games, updates and mods are read from this folder. Press Square twice to take it off the list."
+msgstr "Game, update, dan mod dibaca dari folder ini. Tekan Kotak dua kali untuk menghapusnya dari daftar."
+
+msgid "Could not delete the ROM from this folder."
+msgstr "ROM tidak dapat dihapus dari folder ini."
+
+msgid "Deleted from this folder."
+msgstr "Dihapus dari folder ini."
+
+msgid "Extended storage"
+msgstr "Penyimpanan tambahan"
+
+msgid "External HD or SSD"
+msgstr "HD atau SSD eksternal"
+
+msgid "Path tips"
+msgstr "Tips jalur"
+
+msgid "Press Square again to delete this copy from {0}. Its updates and mods stay."
+msgstr "Tekan Kotak lagi untuk menghapus salinan ini dari {0}. Update dan mod tetap ada."

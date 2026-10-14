@@ -76,12 +76,12 @@ msgstr ""
 msgid "Add"
 msgstr ""
 
-#: pe/ui/locations.cpp
-msgid "Add another place for games, such as a USB drive. It holds roms, updates and mods. Keys and firmware come from the game files folder first, then from here if it has none."
-msgstr ""
-
 #: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "Add game folder"
+msgstr ""
+
+#: pe/ui/locations.cpp
+msgid "Add other game folders, with roms, updates and mods on an external HD or SSD over USB, or in the console's extended storage."
 msgstr ""
 
 #: pe/ui/remote.cpp
@@ -141,6 +141,10 @@ msgstr ""
 
 #: pe/ui/game_options.cpp
 msgid "Automatic"
+msgstr ""
+
+#: pe/ui/library.cpp
+msgid "Available in more than one place. Choose which one to start."
 msgstr ""
 
 #. Button hint: go back one screen.
@@ -391,6 +395,10 @@ msgstr ""
 msgid "Could not delete the game."
 msgstr ""
 
+#: pe/ui/library.cpp
+msgid "Could not delete the ROM from this folder."
+msgstr ""
+
 #: eden_services.cpp
 msgid "Could not delete {0}."
 msgstr ""
@@ -474,6 +482,10 @@ msgstr ""
 
 #: eden_services.cpp
 msgid "Deleted 1 file ({0}). Save data and settings are kept."
+msgstr ""
+
+#: pe/ui/library.cpp
+msgid "Deleted from this folder."
 msgstr ""
 
 #: eden_services.cpp, host/fake_services.cpp
@@ -640,6 +652,14 @@ msgstr ""
 #. {0} is a folder.
 #: eden_services.cpp, host/fake_services.hpp
 msgid "Exported to {0}."
+msgstr ""
+
+#: pe/ui/locations.cpp
+msgid "Extended storage"
+msgstr ""
+
+#: pe/ui/locations.cpp
+msgid "External HD or SSD"
 msgstr ""
 
 #. A switch: the emulated processor's floating-point math is less exact and faster. CPU stays.
@@ -815,7 +835,7 @@ msgid "Games, updates and mods are read from here. TRIANGLE adds the folder show
 msgstr ""
 
 #: pe/ui/locations.cpp
-msgid "Games, updates and mods are read from this folder. Square twice takes it off the list."
+msgid "Games, updates and mods are read from this folder. Press Square twice to take it off the list."
 msgstr ""
 
 #: settings_store.h
@@ -888,10 +908,6 @@ msgstr ""
 
 #: eden_services.cpp, host/fake_services.hpp
 msgid "Imported. The save it replaced was backed up."
-msgstr ""
-
-#: pe/ui/library.cpp
-msgid "In more than one place. You choose which one starts."
 msgstr ""
 
 #. Tag on the language or folder that is in use now.
@@ -1338,6 +1354,10 @@ msgstr ""
 msgid "Patch"
 msgstr ""
 
+#: pe/ui/locations.cpp
+msgid "Path tips"
+msgstr ""
+
 #. A settings category: options that make games run faster, at some cost in accuracy.
 #: pe/ui/library.cpp, pe/ui/settings.cpp
 msgid "Performance"
@@ -1409,6 +1429,10 @@ msgstr ""
 #. Asked before a save is imported over the one in use.
 #: pe/ui/library.cpp
 msgid "Press again to replace this game's save. The current one is backed up."
+msgstr ""
+
+#: pe/ui/library.cpp
+msgid "Press Square again to delete this copy from {0}. Its updates and mods stay."
 msgstr ""
 
 #: pe/ui/multiplayer.cpp

@@ -1303,10 +1303,6 @@ msgstr "以 {0} 游玩"
 msgid "Games, updates and mods are read from here. TRIANGLE adds the folder shown."
 msgstr "游戏、updates 和 mods 会从这里读取。三角键添加当前显示的文件夹。"
 
-#: pe/ui/locations.cpp
-msgid "Games, updates and mods are read from this folder. Square twice takes it off the list."
-msgstr "游戏、updates 和 mods 会从此文件夹读取。按两次方块键可将其从列表中移除。"
-
 #: settings_store.h
 msgid "Polish"
 msgstr "波兰语"
@@ -2264,10 +2260,6 @@ msgstr "{0}/（NSP 或 XCI）"
 msgid "{0}/ (one folder per game ID)"
 msgstr "{0}/（每个游戏 ID 一个文件夹）"
 
-#: pe/ui/locations.cpp
-msgid "Add another place for games, such as a USB drive. It holds roms, updates and mods. Keys and firmware come from the game files folder first, then from here if it has none."
-msgstr "再添加一个存放游戏的位置,例如 USB 驱动器。其中包含 roms、updates 和 mods。keys 和 firmware 先从游戏文件文件夹读取,没有时再从这里读取。"
-
 #: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "Add game folder"
 msgstr "添加游戏文件夹"
@@ -2303,10 +2295,6 @@ msgstr "请选择导出存档的写入位置"
 #: pe/ui/locations.cpp
 msgid "Choose where your games, keys, firmware and saves are"
 msgstr "请选择游戏、keys、firmware 和存档所在的位置"
-
-#: pe/ui/library.cpp
-msgid "In more than one place. You choose which one starts."
-msgstr "存在于多个位置。请选择启动哪一个。"
 
 #. Label: the folder used the next time the app starts.
 #: pe/ui/locations.cpp, pe/ui/settings.cpp
@@ -2428,3 +2416,30 @@ msgstr "存放 keys、firmware 和游戏的文件夹,以及更多存放游戏的
 #: pe/ui/locations.cpp
 msgid "Where exported saves are written. Until you choose one, it is save-export in the game files folder."
 msgstr "导出的存档写入的位置。在你选择之前,它是游戏文件文件夹中的 save-export。"
+
+msgid "Available in more than one place. Choose which one to start."
+msgstr "有多个位置。请选择从哪一个启动。"
+
+msgid "Add other game folders, with roms, updates and mods on an external HD or SSD over USB, or in the console's extended storage."
+msgstr "添加其他游戏文件夹（含 roms、更新和模组），可放在通过 USB 连接的外置硬盘或固态硬盘上，或放在主机的扩展存储中。"
+
+msgid "Games, updates and mods are read from this folder. Press Square twice to take it off the list."
+msgstr "游戏、更新和模组从此文件夹读取。连按两次方块键即可将其从列表中移除。"
+
+msgid "Could not delete the ROM from this folder."
+msgstr "无法从此文件夹删除该 ROM。"
+
+msgid "Deleted from this folder."
+msgstr "已从此文件夹删除。"
+
+msgid "Extended storage"
+msgstr "扩展存储"
+
+msgid "External HD or SSD"
+msgstr "外置硬盘或固态硬盘"
+
+msgid "Path tips"
+msgstr "路径提示"
+
+msgid "Press Square again to delete this copy from {0}. Its updates and mods stay."
+msgstr "再按一次方块键即可从 {0} 删除此副本。更新和模组会保留。"

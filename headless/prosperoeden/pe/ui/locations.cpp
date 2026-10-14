@@ -407,13 +407,13 @@ void Launcher::draw_locations(Canvas &c)
         heading = focus.index < static_cast<int>(library_folders_.size()) ?
                       library_folders_[static_cast<std::size_t>(focus.index)] :
                       std::string{};
-        about = tr("Games, updates and mods are read from this folder. Square twice takes it off the list.");
+        about = tr("Games, updates and mods are read from this folder. Press Square twice to take it off the list.");
         break;
     case LocationRow::Kind::add:
         label = tr("GAME FOLDERS");
         heading = tr("Add game folder");
-        about = tr("Add another place for games, such as a USB drive. It holds roms, updates and mods. "
-                   "Keys and firmware come from the game files folder first, then from here if it has none.");
+        about = tr("Add other game folders, with roms, updates and mods on an external HD or SSD over USB, "
+                   "or in the console's extended storage.");
         break;
     case LocationRow::Kind::advanced:
         label = tr("ADVANCED");
@@ -481,6 +481,21 @@ void Launcher::draw_locations(Canvas &c)
     };
     switch (focus.kind)
     {
+    case LocationRow::Kind::add:
+    {
+        // Tips for the paths a folder can take, all in the text colour (not a theme's warning).
+        text(c, tr("Path tips"), 1016.0f, baseline(378.0f, 36.0f, th().size_text), th().size_text, th().value,
+             Align::left);
+        text(c, tr("Extended storage"), 1016.0f, baseline(430.0f, 30.0f, th().size_small), th().size_small, th().value,
+             Align::left);
+        text(c, "/extX/prosperoeden/", 1764.0f, baseline(430.0f, 30.0f, th().size_small), th().size_small, th().value,
+             Align::right);
+        text(c, tr("External HD or SSD"), 1016.0f, baseline(482.0f, 30.0f, th().size_small), th().size_small,
+             th().value, Align::left);
+        text(c, "/usbX/prosperoeden/", 1764.0f, baseline(482.0f, 30.0f, th().size_small), th().size_small, th().value,
+             Align::right);
+        break;
+    }
     case LocationRow::Kind::main:
         line(378.0f, tr("KEYS"), info.keys ? tr("prod.keys found") : tr("prod.keys missing"), state(info.keys));
         line(430.0f, tr("FIRMWARE"),

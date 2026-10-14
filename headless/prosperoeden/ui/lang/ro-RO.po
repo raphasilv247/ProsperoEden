@@ -1303,10 +1303,6 @@ msgstr "Joacă {0}"
 msgid "Games, updates and mods are read from here. TRIANGLE adds the folder shown."
 msgstr "Jocurile, updates și mods se citesc de aici. TRIUNGHI adaugă dosarul afișat."
 
-#: pe/ui/locations.cpp
-msgid "Games, updates and mods are read from this folder. Square twice takes it off the list."
-msgstr "Jocurile, updates și mods se citesc din acest dosar. Pătrat de două ori îl scoate din listă."
-
 #: settings_store.h
 msgid "Polish"
 msgstr "Poloneză"
@@ -2264,10 +2260,6 @@ msgstr "{0}/ (NSP sau XCI)"
 msgid "{0}/ (one folder per game ID)"
 msgstr "{0}/ (un dosar pentru fiecare ID de titlu)"
 
-#: pe/ui/locations.cpp
-msgid "Add another place for games, such as a USB drive. It holds roms, updates and mods. Keys and firmware come from the game files folder first, then from here if it has none."
-msgstr "Adaugă un alt loc pentru jocuri, de exemplu o unitate USB. Conține roms, updates și mods. Keys și firmware se iau mai întâi din dosarul cu fișierele de joc, apoi de aici dacă acela nu are."
-
 #: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "Add game folder"
 msgstr "Adaugă dosar de jocuri"
@@ -2303,10 +2295,6 @@ msgstr "Alege unde se scriu salvările exportate"
 #: pe/ui/locations.cpp
 msgid "Choose where your games, keys, firmware and saves are"
 msgstr "Alege unde sunt jocurile, keys, firmware și salvările"
-
-#: pe/ui/library.cpp
-msgid "In more than one place. You choose which one starts."
-msgstr "În mai multe locuri. Tu alegi care pornește."
 
 #. Label: the folder used the next time the app starts.
 #: pe/ui/locations.cpp, pe/ui/settings.cpp
@@ -2428,3 +2416,30 @@ msgstr "Dosarul cu keys, firmware și jocurile tale, plus alte locuri pentru joc
 #: pe/ui/locations.cpp
 msgid "Where exported saves are written. Until you choose one, it is save-export in the game files folder."
 msgstr "Unde se scriu salvările exportate. Până alegi unul, este save-export în dosarul cu fișierele de joc."
+
+msgid "Available in more than one place. Choose which one to start."
+msgstr "Disponibil în mai mult de un loc. Alege care să pornească."
+
+msgid "Add other game folders, with roms, updates and mods on an external HD or SSD over USB, or in the console's extended storage."
+msgstr "Adaugă alte foldere de jocuri, cu roms, actualizări și mod-uri, pe un HDD sau SSD extern prin USB, sau în spațiul de stocare extins al consolei."
+
+msgid "Games, updates and mods are read from this folder. Press Square twice to take it off the list."
+msgstr "Jocurile, actualizările și mod-urile sunt citite din acest dosar. Apasă de două ori Pătrat ca să-l scoți din listă."
+
+msgid "Could not delete the ROM from this folder."
+msgstr "ROM-ul nu a putut fi șters din acest dosar."
+
+msgid "Deleted from this folder."
+msgstr "Șters din acest dosar."
+
+msgid "Extended storage"
+msgstr "Stocare extinsă"
+
+msgid "External HD or SSD"
+msgstr "HDD sau SSD extern"
+
+msgid "Path tips"
+msgstr "Sfaturi pentru căi"
+
+msgid "Press Square again to delete this copy from {0}. Its updates and mods stay."
+msgstr "Apasă din nou Pătrat ca să ștergi această copie din {0}. Actualizările și mod-urile rămân."

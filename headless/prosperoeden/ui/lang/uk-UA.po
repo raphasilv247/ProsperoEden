@@ -1303,10 +1303,6 @@ msgstr "Грає {0}"
 msgid "Games, updates and mods are read from here. TRIANGLE adds the folder shown."
 msgstr "Ігри, updates і mods читаються звідси. ТРИКУТНИК додає показану теку."
 
-#: pe/ui/locations.cpp
-msgid "Games, updates and mods are read from this folder. Square twice takes it off the list."
-msgstr "Ігри, updates і mods читаються з цієї теки. Подвійне натискання квадрата прибирає її зі списку."
-
 #: settings_store.h
 msgid "Polish"
 msgstr "Польська"
@@ -2264,10 +2260,6 @@ msgstr "{0}/ (NSP, XCI)"
 msgid "{0}/ (one folder per game ID)"
 msgstr "{0}/ (тека на кожен ID гри)"
 
-#: pe/ui/locations.cpp
-msgid "Add another place for games, such as a USB drive. It holds roms, updates and mods. Keys and firmware come from the game files folder first, then from here if it has none."
-msgstr "Додайте ще одне місце для ігор, наприклад USB-накопичувач. У ньому лежать roms, updates і mods. Keys і firmware беруться спочатку з теки з файлами ігор, потім звідси, якщо там їх немає."
-
 #: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "Add game folder"
 msgstr "Додати теку ігор"
@@ -2303,10 +2295,6 @@ msgstr "Виберіть, куди записувати експортовані
 #: pe/ui/locations.cpp
 msgid "Choose where your games, keys, firmware and saves are"
 msgstr "Виберіть, де знаходяться ваші ігри, keys, firmware і збереження"
-
-#: pe/ui/library.cpp
-msgid "In more than one place. You choose which one starts."
-msgstr "Є в кількох місцях. Ви вибираєте, яка запуститься."
 
 #. Label: the folder used the next time the app starts.
 #: pe/ui/locations.cpp, pe/ui/settings.cpp
@@ -2428,3 +2416,30 @@ msgstr "Тека з вашими keys, firmware та іграми, а також
 #: pe/ui/locations.cpp
 msgid "Where exported saves are written. Until you choose one, it is save-export in the game files folder."
 msgstr "Куди записуються експортовані збереження. Доки ви не виберете теку, це save-export у теці з файлами ігор."
+
+msgid "Available in more than one place. Choose which one to start."
+msgstr "Є в кількох місцях. Виберіть, звідки запустити."
+
+msgid "Add other game folders, with roms, updates and mods on an external HD or SSD over USB, or in the console's extended storage."
+msgstr "Додайте інші папки з іграми, з roms, оновленнями та модами, на зовнішньому HDD або SSD через USB чи в розширеному сховищі консолі."
+
+msgid "Games, updates and mods are read from this folder. Press Square twice to take it off the list."
+msgstr "Ігри, оновлення та моди читаються з цієї папки. Двічі натисніть Квадрат, щоб прибрати її зі списку."
+
+msgid "Could not delete the ROM from this folder."
+msgstr "Не вдалося видалити ROM з цієї папки."
+
+msgid "Deleted from this folder."
+msgstr "Видалено з цієї папки."
+
+msgid "Extended storage"
+msgstr "Розширене сховище"
+
+msgid "External HD or SSD"
+msgstr "Зовнішній HDD або SSD"
+
+msgid "Path tips"
+msgstr "Підказки щодо шляхів"
+
+msgid "Press Square again to delete this copy from {0}. Its updates and mods stay."
+msgstr "Натисніть Квадрат ще раз, щоб видалити цю копію з {0}. Оновлення та моди залишаться."

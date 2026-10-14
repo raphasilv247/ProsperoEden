@@ -549,6 +549,9 @@ class Launcher
     ListView place_rows_;
     // The place picked for the game being started: its full path, empty while none is picked.
     std::string place_path_;
+    // Square once asks, again deletes: the row it was pressed on.
+    bool place_delete_armed_ = false;
+    int place_delete_row_ = -1;
     // The Mods list's rows: each mod, then its cheats when it lists several.
     struct ModRow
     {

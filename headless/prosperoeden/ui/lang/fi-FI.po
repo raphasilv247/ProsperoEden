@@ -1303,10 +1303,6 @@ msgstr "Pelaaja: {0}"
 msgid "Games, updates and mods are read from here. TRIANGLE adds the folder shown."
 msgstr "Pelit, updates ja mods luetaan täältä. KOLMIO lisää näytetyn kansion."
 
-#: pe/ui/locations.cpp
-msgid "Games, updates and mods are read from this folder. Square twice takes it off the list."
-msgstr "Pelit, updates ja mods luetaan tästä kansiosta. Neliö kahdesti poistaa sen luettelosta."
-
 #: settings_store.h
 msgid "Polish"
 msgstr "Puola"
@@ -2264,10 +2260,6 @@ msgstr "{0}/ (NSP tai XCI)"
 msgid "{0}/ (one folder per game ID)"
 msgstr "{0}/ (kansio kutakin nimiketunnusta kohden)"
 
-#: pe/ui/locations.cpp
-msgid "Add another place for games, such as a USB drive. It holds roms, updates and mods. Keys and firmware come from the game files folder first, then from here if it has none."
-msgstr "Lisää toinen paikka peleille, esimerkiksi USB-asema. Siinä on roms-, updates- ja mods-kansiot. Keys ja firmware haetaan ensin pelitiedostojen kansiosta ja sitten täältä, jos siinä niitä ei ole."
-
 #: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "Add game folder"
 msgstr "Lisää pelikansio"
@@ -2303,10 +2295,6 @@ msgstr "Valitse, minne viedyt tallenteet kirjoitetaan"
 #: pe/ui/locations.cpp
 msgid "Choose where your games, keys, firmware and saves are"
 msgstr "Valitse, missä pelisi, keys, firmware ja tallenteet ovat"
-
-#: pe/ui/library.cpp
-msgid "In more than one place. You choose which one starts."
-msgstr "Useassa paikassa. Valitset, mikä käynnistyy."
 
 #. Label: the folder used the next time the app starts.
 #: pe/ui/locations.cpp, pe/ui/settings.cpp
@@ -2428,3 +2416,30 @@ msgstr "Kansio, jossa keys, firmware ja pelit ovat, sekä lisää paikkoja pelei
 #: pe/ui/locations.cpp
 msgid "Where exported saves are written. Until you choose one, it is save-export in the game files folder."
 msgstr "Minne viedyt tallenteet kirjoitetaan. Kunnes valitset kansion, se on pelitiedostojen kansion save-export."
+
+msgid "Available in more than one place. Choose which one to start."
+msgstr "Löytyy useasta paikasta. Valitse, mistä käynnistetään."
+
+msgid "Add other game folders, with roms, updates and mods on an external HD or SSD over USB, or in the console's extended storage."
+msgstr "Lisää muita pelikansioita, joissa on roms, päivitykset ja modit ulkoisella HD- tai SSD-levyllä USB:n kautta tai konsolin laajennetussa tallennustilassa."
+
+msgid "Games, updates and mods are read from this folder. Press Square twice to take it off the list."
+msgstr "Pelit, päivitykset ja modit luetaan tästä kansiosta. Poista se listalta painamalla Neliötä kahdesti."
+
+msgid "Could not delete the ROM from this folder."
+msgstr "ROM-tiedostoa ei voitu poistaa tästä kansiosta."
+
+msgid "Deleted from this folder."
+msgstr "Poistettu tästä kansiosta."
+
+msgid "Extended storage"
+msgstr "Laajennettu tallennus"
+
+msgid "External HD or SSD"
+msgstr "Ulkoinen HD tai SSD"
+
+msgid "Path tips"
+msgstr "Polkuvinkit"
+
+msgid "Press Square again to delete this copy from {0}. Its updates and mods stay."
+msgstr "Paina Neliötä uudelleen poistaaksesi tämän kopion kohteesta {0}. Päivitykset ja modit jäävät."

@@ -1303,10 +1303,6 @@ msgstr "Đang chơi: {0}"
 msgid "Games, updates and mods are read from here. TRIANGLE adds the folder shown."
 msgstr "Trò chơi, updates và mods được đọc từ đây. TAM GIÁC thêm thư mục đang hiển thị."
 
-#: pe/ui/locations.cpp
-msgid "Games, updates and mods are read from this folder. Square twice takes it off the list."
-msgstr "Trò chơi, updates và mods được đọc từ thư mục này. Nhấn Vuông hai lần để gỡ khỏi danh sách."
-
 #: settings_store.h
 msgid "Polish"
 msgstr "Tiếng Ba Lan"
@@ -2264,10 +2260,6 @@ msgstr "{0}/ (NSP hoặc XCI)"
 msgid "{0}/ (one folder per game ID)"
 msgstr "{0}/ (mỗi ID trò chơi một thư mục)"
 
-#: pe/ui/locations.cpp
-msgid "Add another place for games, such as a USB drive. It holds roms, updates and mods. Keys and firmware come from the game files folder first, then from here if it has none."
-msgstr "Thêm một nơi khác để chứa trò chơi, chẳng hạn ổ USB. Nơi đó có roms, updates và mods. Keys và firmware được lấy trước từ thư mục tệp trò chơi, rồi mới từ đây nếu thư mục kia không có."
-
 #: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "Add game folder"
 msgstr "Thêm thư mục trò chơi"
@@ -2303,10 +2295,6 @@ msgstr "Chọn nơi ghi các bản lưu đã xuất"
 #: pe/ui/locations.cpp
 msgid "Choose where your games, keys, firmware and saves are"
 msgstr "Chọn nơi chứa trò chơi, keys, firmware và bản lưu của bạn"
-
-#: pe/ui/library.cpp
-msgid "In more than one place. You choose which one starts."
-msgstr "Có ở nhiều nơi. Bạn chọn bản nào sẽ chạy."
 
 #. Label: the folder used the next time the app starts.
 #: pe/ui/locations.cpp, pe/ui/settings.cpp
@@ -2428,3 +2416,30 @@ msgstr "Thư mục chứa keys, firmware và trò chơi của bạn, cùng các 
 #: pe/ui/locations.cpp
 msgid "Where exported saves are written. Until you choose one, it is save-export in the game files folder."
 msgstr "Nơi ghi các bản lưu đã xuất. Cho đến khi bạn chọn, đó là save-export trong thư mục tệp trò chơi."
+
+msgid "Available in more than one place. Choose which one to start."
+msgstr "Có ở nhiều nơi. Chọn nơi để chạy."
+
+msgid "Add other game folders, with roms, updates and mods on an external HD or SSD over USB, or in the console's extended storage."
+msgstr "Thêm thư mục game khác, có roms, bản cập nhật và mod, trên ổ HDD hoặc SSD ngoài qua USB, hoặc trong bộ nhớ mở rộng của máy."
+
+msgid "Games, updates and mods are read from this folder. Press Square twice to take it off the list."
+msgstr "Game, bản cập nhật và mod được đọc từ thư mục này. Nhấn Ô vuông hai lần để bỏ khỏi danh sách."
+
+msgid "Could not delete the ROM from this folder."
+msgstr "Không thể xóa ROM khỏi thư mục này."
+
+msgid "Deleted from this folder."
+msgstr "Đã xóa khỏi thư mục này."
+
+msgid "Extended storage"
+msgstr "Bộ nhớ mở rộng"
+
+msgid "External HD or SSD"
+msgstr "HDD hoặc SSD ngoài"
+
+msgid "Path tips"
+msgstr "Mẹo về đường dẫn"
+
+msgid "Press Square again to delete this copy from {0}. Its updates and mods stay."
+msgstr "Nhấn Ô vuông lần nữa để xóa bản sao này khỏi {0}. Bản cập nhật và mod sẽ được giữ lại."
