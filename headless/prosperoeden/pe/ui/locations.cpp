@@ -27,8 +27,6 @@ constexpr Rect kListPanel{108.0f, 188.0f, 820.0f, 720.0f};
 constexpr Rect kDetailPanel{980.0f, 188.0f, 820.0f, 720.0f};
 constexpr Rect kWindow{138.0f, 292.0f, 760.0f, 518.0f};
 constexpr float kRowHeight = 78.0f;
-// The rows of keys, firmware and saves sit a little in from the others.
-constexpr float kIndent = 20.0f;
 
 std::string short_path(const std::string &path, std::size_t limit)
 {
@@ -54,22 +52,6 @@ void draw_plus(Canvas &c, float x, float cy)
     const float cx = x + 20.0f;
     c.list.line(cx - 12.0f, cy, cx + 12.0f, cy, 2.8f, th().accent);
     c.list.line(cx, cy - 12.0f, cx, cy + 12.0f, 2.8f, th().accent);
-}
-
-// A chevron: down while the rows below are shown, right while they are hidden.
-void draw_chevron(Canvas &c, float x, float cy, bool open, Color ink)
-{
-    const float cx = x + 20.0f;
-    if (open)
-    {
-        c.list.line(cx - 10.0f, cy - 5.0f, cx, cy + 6.0f, 2.8f, ink);
-        c.list.line(cx + 10.0f, cy - 5.0f, cx, cy + 6.0f, 2.8f, ink);
-    }
-    else
-    {
-        c.list.line(cx - 5.0f, cy - 10.0f, cx + 6.0f, cy, 2.8f, ink);
-        c.list.line(cx - 5.0f, cy + 10.0f, cx + 6.0f, cy, 2.8f, ink);
-    }
 }
 
 } // namespace
