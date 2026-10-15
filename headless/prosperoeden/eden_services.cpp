@@ -12,6 +12,7 @@
 #include "update_notice.h"
 #include "game_name.h"
 #include "native_directory.h"
+#include "pe/core/file.hpp"
 #include "pe/core/strings.hpp"
 #include "radio_input.h"
 #include "remote/backends.h"
