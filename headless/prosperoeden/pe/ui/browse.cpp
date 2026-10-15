@@ -520,11 +520,40 @@ void Launcher::draw_files(Canvas &c)
 
 // ---------------------------------------------------------------- language
 
+// The launcher's languages: its catalogs (ui/lang) and English, with each name in its own
+// language. The first is Automatic: the console's language. frontend.cpp reads the tag back.
+struct AppLanguage
+{
+    const char *tag;
+    const char *name;
+};
+constexpr AppLanguage kAppLanguages[] = {
+    {"", ""}, {"ar", "العربية"}, {"cs-CZ", "Čeština"}, {"da-DK", "Dansk"}, {"de-DE", "Deutsch"},
+    {"el-GR", "Ελληνικά"}, {"en-US", "English"}, {"es-419", "Español (Latinoamérica)"}, {"es-ES", "Español (España)"},
+    {"fi-FI", "Suomi"}, {"fr-CA", "Français (Canada)"}, {"fr-FR", "Français"}, {"hu-HU", "Magyar"},
+    {"id-ID", "Bahasa Indonesia"}, {"it-IT", "Italiano"}, {"ja-JP", "日本語"}, {"ko-KR", "한국어"},
+    {"nb-NO", "Norsk bokmål"}, {"nl-NL", "Nederlands"}, {"pl-PL", "Polski"}, {"pt-BR", "Português (Brasil)"},
+    {"pt-PT", "Português (Portugal)"}, {"ro-RO", "Română"}, {"ru-RU", "Русский"}, {"sv-SE", "Svenska"},
+    {"th-TH", "ไทย"}, {"tr-TR", "Türkçe"}, {"uk-UA", "Українська"}, {"vi-VN", "Tiếng Việt"},
+    {"zh-Hans", "简体中文"}, {"zh-Hant", "繁體中文"},
+};
+constexpr int kAppLanguageCount = static_cast<int>(sizeof(kAppLanguages) / sizeof(kAppLanguages[0]));
+
+// The row the launcher's language is on: 0 is Automatic, which the file does not hold.
+int AppLanguageRow(const std::string &tag)
+{
+    for (int row = 1; row < kAppLanguageCount; ++row)
+        if (tag == kAppLanguages[row].tag)
+            return row;
+    return 0;
+}
+
 void Launcher::enter_language()
 {
     language_.visible = 6;
     language_.pitch = 88.0f;
-    language_.reset(static_cast<int>(services_.language_labels().size()), prefs_.language);
+    language_.reset(language_app_ ? kAppLanguageCount : static_cast<int>(services_.language_labels().size()),
+                    language_app_ ? AppLanguageRow(services_.app_language()) : prefs_.language);
     message_.clear();
 }
 
@@ -556,8 +585,23 @@ void Launcher::press_language(Key key)
             cue(Cue::page);
         }
         return;
+    case Key::triangle:
+        // Switches between the games' language and the launcher's.
+        language_app_ = !language_app_;
+        enter_language();
+        cue(Cue::focus);
+        return;
     case Key::cross:
     {
+        if (language_app_)
+        {
+            const bool saved = services_.set_app_language(kAppLanguages[language_.selected].tag);
+            say(saved ? tr("Saved. ProsperoEden speaks it after it starts again.") :
+                        tr("Could not save. Please try again."),
+                !saved);
+            cue(saved ? Cue::saved : Cue::error);
+            return;
+        }
         const int before = prefs_.language;
         prefs_.language = language_.selected;
         const bool saved = services_.set_preferences(prefs_);
@@ -576,9 +620,21 @@ void Launcher::press_language(Key key)
 void Launcher::draw_language(Canvas &c)
 {
     gfx::DrawList &list = c.list;
-    const auto &labels = services_.language_labels();
+    // The games' languages, or the launcher's (Automatic first, then each catalog's name).
+    std::vector<std::string> app_names;
+    if (language_app_)
+    {
+        app_names.push_back(tr("Automatic (console)"));
+        for (int row = 1; row < kAppLanguageCount; ++row)
+            app_names.push_back(kAppLanguages[row].name);
+    }
+    const std::vector<std::string> &labels = language_app_ ? app_names : services_.language_labels();
     const int count = static_cast<int>(labels.size());
-    draw_frame(c, tr("Language"), tr("Choose the language games use"));
+    const int in_use = language_app_ ? AppLanguageRow(services_.app_language()) : prefs_.language;
+    if (language_app_)
+        draw_frame(c, tr("App language"), tr("Choose the language ProsperoEden speaks"));
+    else
+        draw_frame(c, tr("Language"), tr("Choose the language games use"));
     c.list.push_transform(kFit, 0.0f, 0.0f, kFitX, kFitY);
 
     glass(c, kListPanel, th().radius_panel, th().panel.with_alpha(0.80f), th().panel_edge.with_alpha(0.55f));
@@ -608,8 +664,8 @@ void Launcher::draw_language(Canvas &c)
         const float width = text_width(c, tr("IN USE"), 18.0f, 2.0f) + 28.0f;
         text_shrink(c, labels[static_cast<std::size_t>(row)], r.x + 26.0f,
                     baseline(r.y, kRowHeight, th().size_text), th().size_text, th().value,
-                    row == prefs_.language ? 734.0f - 26.0f - width - 24.0f : 708.0f);
-        if (row == prefs_.language)
+                    row == in_use ? 734.0f - 26.0f - width - 24.0f : 708.0f);
+        if (row == in_use)
         {
             // The tag is as tall as its letters need.
             const float tall = std::max(30.0f, text_size(18.0f) + 10.0f);
@@ -645,12 +701,15 @@ void Launcher::draw_language(Canvas &c)
         text_shrink(c, value, column, baseline(top, 30.0f, th().size_small), th().size_small, color,
                     1764.0f - column);
     };
-    line(378.0f, tr("REGION"), services_.language_region(language_.selected), th().accent_pale);
-    line(434.0f, tr("IN USE"), label_at(prefs_.language), th().value);
+    line(378.0f, tr("REGION"), language_app_ ? std::string{} : services_.language_region(language_.selected),
+         th().accent_pale);
+    line(434.0f, tr("IN USE"), label_at(in_use), th().value);
     list.rounded_rect({1016.0f, 554.0f, 748.0f, 1.0f}, 0.0f, th().rule);
     text_block(c,
-               tr("Games use this language when they offer it, and their own default otherwise. It "
-               "applies when a game starts."),
+               language_app_ ?
+                   tr("ProsperoEden speaks this language after it starts again. Automatic follows the console.") :
+                   tr("Games use this language when they offer it, and their own default otherwise. It "
+                      "applies when a game starts."),
                1016.0f, baseline(578.0f, 34.0f, 22.0f), 22.0f, 34.0f, th().copy, 748.0f, 3,
                kShrink);
     if (!message_.empty())
@@ -659,11 +718,12 @@ void Launcher::draw_language(Canvas &c)
                      message_warning_);
 
     c.list.pop_transform();
-    static constexpr Hint kHints[] = {{Pad::cross, TR("Choose")},
-                                      {Pad::circle, TR("Back")},
-                                      {Pad::updown, TR("Browse")},
-                                      {Pad::l1, TR("Page"), Pad::r1}};
-    draw_footer(c, kHints, 4);
+    const Hint kHints[] = {{Pad::cross, TR("Choose")},
+                           {Pad::circle, TR("Back")},
+                           {Pad::triangle, language_app_ ? TR("Game language") : TR("App language")},
+                           {Pad::updown, TR("Browse")},
+                           {Pad::l1, TR("Page"), Pad::r1}};
+    draw_footer(c, kHints, 5);
 }
 
 // ---------------------------------------------------------------- about

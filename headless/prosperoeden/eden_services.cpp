@@ -1131,6 +1131,34 @@ const std::vector<std::string>& EdenServices::language_labels() {
     return labels;
 }
 
+std::string EdenServices::app_language() {
+    // frontend.cpp reads this file when the launcher starts; it is the same choice. It lives in
+    // the config folder, which is kept between starts; the app's own folder is not (it is a copy
+    // mounted for each run), so a file left there is read only when the config one is not there.
+    std::string tag;
+    if (!pe::read_file(Eden::ConfigFile("language.txt"), &tag, 64) &&
+        !pe::read_file(Eden::AppFile("language.txt"), &tag, 64))
+        return {};
+    while (!tag.empty() && static_cast<unsigned char>(tag.back()) <= ' ') tag.pop_back();
+    return tag;
+}
+
+bool EdenServices::set_app_language(const std::string& tag) {
+    // The config folder, so the choice survives a restart (see app_language).
+    const std::string path = Eden::ConfigFile("language.txt");
+    if (tag.empty()) {
+        // Automatic: the file goes from both places, so an older copy cannot come back.
+        const bool removed = std::remove(path.c_str()) == 0 || errno == ENOENT;
+        (void)std::remove(Eden::AppFile("language.txt").c_str());
+        return removed;
+    }
+    (void)mkdir(Eden::ConfigDir().c_str(), 0777);
+    std::FILE* file = std::fopen(path.c_str(), "wb");
+    if (!file) return false;
+    const bool written = std::fprintf(file, "%s\n", tag.c_str()) > 0;
+    return std::fclose(file) == 0 && written;
+}
+
 std::string EdenServices::language_region(int language) {
     static constexpr const char* kRegions[] = {TR("Japan"), TR("USA"), TR("Europe"), TR("Australia"), TR("China"),
                                                TR("Korea"), TR("Taiwan")};

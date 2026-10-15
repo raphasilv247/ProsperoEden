@@ -508,6 +508,10 @@ class Services
     }
     virtual const std::vector<std::string> &language_labels() = 0;
     virtual std::string language_region(int language) = 0;
+    // The language the launcher speaks, as its tag ("pt-BR"); empty when it follows the console.
+    virtual std::string app_language() { return {}; }
+    // Saves the launcher's language; empty follows the console again. It applies at the next start.
+    virtual bool set_app_language(const std::string &) { return false; }
     virtual std::string setup_details() = 0;
 
     // ---- game files ----

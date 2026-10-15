@@ -94,8 +94,11 @@ void LoadLanguage(pe::gfx::Font& font) {
     if (first) {
         rc = sceSystemServiceParamGetInt(ps5::i18n::kSystemLanguageParameter, &system_language);
         tag = rc == 0 ? ps5::i18n::language_tag(system_language) : ps5::i18n::kFallbackLanguage;
+        // The choice is kept in the config folder (see EdenServices::app_language); the app's own
+        // folder is read only when that one has none.
         std::string chosen;
-        if (pe::read_file(Eden::AppFile("language.txt"), &chosen, 64)) {
+        if (pe::read_file(Eden::ConfigFile("language.txt"), &chosen, 64) ||
+            pe::read_file(Eden::AppFile("language.txt"), &chosen, 64)) {
             while (!chosen.empty() && static_cast<unsigned char>(chosen.back()) <= ' ') chosen.pop_back();
             if (!chosen.empty()) tag = chosen;
         }

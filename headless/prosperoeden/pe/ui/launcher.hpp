@@ -399,6 +399,8 @@ class Launcher
     void draw_files(Canvas &c);
     void enter_language();
     void press_language(Key key);
+    // The language screen shows the games' languages, or the launcher's (Triangle switches).
+    bool language_app_ = false;
     void draw_language(Canvas &c);
     void draw_about(Canvas &c);
 

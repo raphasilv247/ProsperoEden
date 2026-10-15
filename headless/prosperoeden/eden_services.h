@@ -53,6 +53,8 @@ public:
     int frame_gen_state() override;
     const std::vector<std::string>& language_labels() override;
     std::string language_region(int language) override;
+    std::string app_language() override;
+    bool set_app_language(const std::string &tag) override;
     std::string setup_details() override;
 
     bool folders(const std::string& directory, std::vector<std::string>* names) override;
