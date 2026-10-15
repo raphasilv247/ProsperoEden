@@ -84,10 +84,6 @@ msgstr "已加入下载。可在“设置”的“下载”中查看队列。"
 msgid "Added. Cross plays as this profile; left and right change its name."
 msgstr "已添加。叉键以此档案游玩；左右更改名称。"
 
-#: pe/ui/locations.cpp
-msgid "ADVANCED"
-msgstr "高级"
-
 #: pe/ui/browse.cpp
 msgid "All credit for the Eden emulator goes to its developers and contributors."
 msgstr "Eden 模拟器的全部功劳归于其开发者和贡献者。"
@@ -402,14 +398,6 @@ msgstr "制作人员与设置说明"
 #: pe/ui/game_options.cpp
 msgid "Cross"
 msgstr "叉键"
-
-#: pe/ui/locations.cpp
-msgid "CUSTOM"
-msgstr "自定义"
-
-#: pe/ui/locations.cpp
-msgid "DEFAULT"
-msgstr "默认"
 
 #. A per-game setting that follows the general setting; {0} is its value.
 #: pe/ui/game_options.cpp
@@ -1434,14 +1422,6 @@ msgstr "正在读取游戏列表..."
 msgid "Reading..."
 msgstr "正在读取..."
 
-#: pe/ui/locations.cpp
-msgid "HIDE"
-msgstr "隐藏"
-
-#: pe/ui/locations.cpp
-msgid "Hide"
-msgstr "隐藏"
-
 #: pe/ui/settings.cpp
 msgid "Ready"
 msgstr "就绪"
@@ -1765,10 +1745,6 @@ msgstr "系统"
 #: pe/ui/browse.cpp
 msgid "Keys folder"
 msgstr "keys 文件夹"
-
-#: pe/ui/locations.cpp
-msgid "Keys, firmware and saves"
-msgstr "keys、firmware 和存档"
 
 #: eden_services.cpp
 msgid "Taiwan"
@@ -2217,14 +2193,6 @@ msgstr "已开启 {0}/{1} 个模组"
 msgid "{0} of {1} on"
 msgstr "已开启 {0}/{1}"
 
-#: pe/ui/locations.cpp
-msgid "SHOW"
-msgstr "显示"
-
-#: pe/ui/locations.cpp
-msgid "Show"
-msgstr "显示"
-
 #: pe/ui/settings.cpp
 msgid "{0} of {1} profiles"
 msgstr "{0}/{1} 个档案"
@@ -2284,10 +2252,6 @@ msgstr "请选择包含固件 NCA 文件的文件夹"
 msgid "Choose the folder with one folder per game ID"
 msgstr "请选择每个游戏 ID 对应一个文件夹的文件夹"
 
-#: pe/ui/locations.cpp
-msgid "Choose the keys, firmware, save import and save export folders on their own. Until you do, they are inside the game files folder."
-msgstr "可分别选择 keys、firmware、存档导入和存档导出的文件夹。在此之前,它们都在游戏文件文件夹内。"
-
 #: pe/ui/browse.cpp
 msgid "Choose where exported saves are written"
 msgstr "请选择导出存档的写入位置"
@@ -2304,14 +2268,6 @@ msgstr "下次启动"
 #: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "No updates folder"
 msgstr "没有 updates 文件夹"
-
-#: pe/ui/locations.cpp
-msgid "SAVE EXPORT"
-msgstr "存档导出"
-
-#: pe/ui/locations.cpp
-msgid "SAVE IMPORT"
-msgstr "存档导入"
 
 #: pe/ui/browse.cpp
 msgid "Save export folder"
@@ -2330,10 +2286,6 @@ msgid "Saves to import go here, one folder per game ID. TRIANGLE uses the folder
 msgstr "要导入的存档放在这里,每个游戏 ID 对应一个文件夹。三角键使用当前显示的文件夹;方块键恢复为默认。"
 
 #: pe/ui/locations.cpp
-msgid "Saves to import, one folder per game ID. Until you choose one, it is save-import in the game files folder."
-msgstr "要导入的存档,每个游戏 ID 对应一个文件夹。在你选择之前,它是游戏文件文件夹中的 save-import。"
-
-#: pe/ui/locations.cpp
 msgid "Square again takes {0} off the list. Its games stay where they are."
 msgstr "再按一次方块键,将 {0} 从列表中移除。其中的游戏会保留在原处。"
 
@@ -2348,14 +2300,6 @@ msgstr "所显示的文件夹必须包含 prod.keys。三角键使用它;方块�
 #: pe/ui/browse.cpp
 msgid "The folder shown must hold the firmware NCA files. TRIANGLE uses it; SQUARE goes back to the default."
 msgstr "所显示的文件夹必须包含固件 NCA 文件。三角键使用它;方块键恢复为默认。"
-
-#: pe/ui/locations.cpp
-msgid "The folder that holds prod.keys. Until you choose one, it is keys in the game files folder."
-msgstr "包含 prod.keys 的文件夹。在你选择之前,它是游戏文件文件夹中的 keys。"
-
-#: pe/ui/locations.cpp
-msgid "The folder that holds the firmware NCA files. Until you choose one, it is firmware in the game files folder."
-msgstr "包含固件 NCA 文件的文件夹。在你选择之前,它是游戏文件文件夹中的 firmware。"
 
 #: pe/ui/browse.cpp
 msgid "The list is full. Remove a folder first."
@@ -2376,10 +2320,6 @@ msgstr "此文件夹已在列表中。"
 #: pe/ui/browse.cpp
 msgid "This folder needs a roms folder."
 msgstr "此文件夹需要有 roms 文件夹。"
-
-#: pe/ui/locations.cpp
-msgid "This is the default folder already."
-msgstr "这已经是默认文件夹。"
 
 #: pe/ui/browse.cpp
 msgid "This is the game files folder already."
@@ -2413,10 +2353,6 @@ msgstr "{0} 存在于多个位置。请选择启动哪一个。"
 msgid "The folder that holds your keys, firmware and games, and more places for games."
 msgstr "存放 keys、firmware 和游戏的文件夹,以及更多存放游戏的位置。"
 
-#: pe/ui/locations.cpp
-msgid "Where exported saves are written. Until you choose one, it is save-export in the game files folder."
-msgstr "导出的存档写入的位置。在你选择之前,它是游戏文件文件夹中的 save-export。"
-
 msgid "Available in more than one place. Choose which one to start."
 msgstr "有多个位置。请选择从哪一个启动。"
 
@@ -2432,14 +2368,20 @@ msgstr "无法从此文件夹删除该 ROM。"
 msgid "Deleted from this folder."
 msgstr "已从此文件夹删除。"
 
-msgid "Extended storage"
-msgstr "扩展存储"
-
-msgid "External HD or SSD"
-msgstr "外置硬盘或固态硬盘"
-
-msgid "Path tips"
+msgid "PATH TIPS"
 msgstr "路径提示"
 
-msgid "Press Square again to delete this copy from {0}. Its updates and mods stay."
-msgstr "再按一次方块键即可从 {0} 删除此副本。更新和模组会保留。"
+msgid "EXTENDED STORAGE"
+msgstr "扩展存储"
+
+msgid "EXTERNAL HD OR SSD"
+msgstr "外置硬盘或固态硬盘"
+
+msgid "Delete {0}?"
+msgstr "删除 {0}？"
+
+msgid "Also delete the duplicated updates and DLC in this folder."
+msgstr "同时删除此文件夹中重复的更新和 DLC。"
+
+msgid "Confirm"
+msgstr "确认"

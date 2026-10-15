@@ -235,6 +235,8 @@ void Launcher::press(Key key)
         return press_profiles(key);
     if (modal_ == Modal::place)
         return press_place(key);
+    if (modal_ == Modal::place_delete)
+        return press_place_delete(key);
     if (modal_ == Modal::update)
         return press_update(key);
     if (modal_ == Modal::download)
@@ -686,6 +688,8 @@ void Launcher::draw(gfx::DrawList &list)
             draw_profiles(c, opened);
         else if (modal_shown_ == Modal::place)
             draw_place(c, opened);
+        else if (modal_shown_ == Modal::place_delete)
+            draw_place_delete(c, opened);
         else if (modal_shown_ == Modal::update)
             draw_update(c, opened);
         else if (modal_shown_ == Modal::download)

@@ -1432,11 +1432,35 @@ std::vector<pe::ui::Download> EdenServices::downloads() {
     return list;
 }
 
-bool EdenServices::delete_place(const std::string& file, const std::string& folder) {
+// The updates and DLC a game folder holds for the game, found by the title ID its ROM holds.
+static std::vector<std::string> PlaceAddons(const std::string& folder, const std::string& rom) {
+    std::vector<std::string> files;
+    const std::uint64_t title_id = eden_game_title_id(rom.c_str());
+    if (title_id != 0)
+        (void)eden_game_addon_files(title_id, (folder + "/updates").c_str(), Eden::KeysPath().c_str(),
+                                    [](void* user, const char* path) {
+                                        static_cast<std::vector<std::string>*>(user)->emplace_back(path);
+                                    },
+                                    &files);
+    return files;
+}
+
+bool EdenServices::delete_place(const std::string& file, const std::string& folder, bool addons) {
     if (!Eden::FilesystemAccess() || !Eden::ValidRomFilename(file)) return false;
     const std::lock_guard lock(bridge_);
-    // Only this copy: the game's updates and mods in its folder are left where they are.
-    return std::remove((folder + "/roms/" + file).c_str()) == 0;
+    const std::string rom = folder + "/roms/" + file;
+    // The copy's updates and DLC go too when asked: the ones in this folder only.
+    std::vector<std::string> extra;
+    if (addons) extra = PlaceAddons(folder, rom);
+    const bool removed = std::remove(rom.c_str()) == 0;
+    for (const std::string& path : extra) (void)std::remove(path.c_str());
+    return removed;
+}
+
+int EdenServices::place_addon_count(const std::string& file, const std::string& folder) {
+    if (!Eden::ValidRomFilename(file)) return 0;
+    const std::lock_guard lock(bridge_);
+    return static_cast<int>(PlaceAddons(folder, folder + "/roms/" + file).size());
 }
 
 bool EdenServices::delete_game(const pe::ui::Game& game, std::string* message) {

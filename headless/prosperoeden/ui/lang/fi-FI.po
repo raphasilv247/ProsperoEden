@@ -84,10 +84,6 @@ msgstr "Lisätty latauksiin. Jono näkyy kohdassa Asetukset, Lataukset."
 msgid "Added. Cross plays as this profile; left and right change its name."
 msgstr "Lisätty. Risti pelaa tällä profiililla; vasen ja oikea vaihtavat nimen."
 
-#: pe/ui/locations.cpp
-msgid "ADVANCED"
-msgstr "LISÄASETUKSET"
-
 #: pe/ui/browse.cpp
 msgid "All credit for the Eden emulator goes to its developers and contributors."
 msgstr "Kaikki kunnia Eden-emulaattorista kuuluu sen kehittäjille ja avustajille."
@@ -402,14 +398,6 @@ msgstr "Tekijät ja määritys"
 #: pe/ui/game_options.cpp
 msgid "Cross"
 msgstr "Risti"
-
-#: pe/ui/locations.cpp
-msgid "CUSTOM"
-msgstr "MUKAUTETTU"
-
-#: pe/ui/locations.cpp
-msgid "DEFAULT"
-msgstr "OLETUS"
 
 #. A per-game setting that follows the general setting; {0} is its value.
 #: pe/ui/game_options.cpp
@@ -1434,14 +1422,6 @@ msgstr "Luetaan peliluetteloita..."
 msgid "Reading..."
 msgstr "Luetaan..."
 
-#: pe/ui/locations.cpp
-msgid "HIDE"
-msgstr "PIILOTA"
-
-#: pe/ui/locations.cpp
-msgid "Hide"
-msgstr "Piilota"
-
 #: pe/ui/settings.cpp
 msgid "Ready"
 msgstr "Valmis"
@@ -1765,10 +1745,6 @@ msgstr "Järjestelmä"
 #: pe/ui/browse.cpp
 msgid "Keys folder"
 msgstr "Keys-kansio"
-
-#: pe/ui/locations.cpp
-msgid "Keys, firmware and saves"
-msgstr "Keys, firmware ja tallenteet"
 
 #: eden_services.cpp
 msgid "Taiwan"
@@ -2217,14 +2193,6 @@ msgstr "{0}/{1} modia käytössä"
 msgid "{0} of {1} on"
 msgstr "{0}/{1} käytössä"
 
-#: pe/ui/locations.cpp
-msgid "SHOW"
-msgstr "NÄYTÄ"
-
-#: pe/ui/locations.cpp
-msgid "Show"
-msgstr "Näytä"
-
 #: pe/ui/settings.cpp
 msgid "{0} of {1} profiles"
 msgstr "{0}/{1} profiilia"
@@ -2284,10 +2252,6 @@ msgstr "Valitse kansio, jossa laiteohjelmiston NCA-tiedostot ovat"
 msgid "Choose the folder with one folder per game ID"
 msgstr "Valitse kansio, jossa on yksi kansio pelin tunnusta kohti"
 
-#: pe/ui/locations.cpp
-msgid "Choose the keys, firmware, save import and save export folders on their own. Until you do, they are inside the game files folder."
-msgstr "Valitse keys-, firmware-, tallenteiden tuonti- ja tallenteiden vientikansiot erikseen. Siihen asti ne ovat pelitiedostojen kansiossa."
-
 #: pe/ui/browse.cpp
 msgid "Choose where exported saves are written"
 msgstr "Valitse, minne viedyt tallenteet kirjoitetaan"
@@ -2304,14 +2268,6 @@ msgstr "SEURAAVAKSI"
 #: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "No updates folder"
 msgstr "Ei updates-kansiota"
-
-#: pe/ui/locations.cpp
-msgid "SAVE EXPORT"
-msgstr "TALLENTEIDEN VIENTI"
-
-#: pe/ui/locations.cpp
-msgid "SAVE IMPORT"
-msgstr "TALLENTEIDEN TUONTI"
 
 #: pe/ui/browse.cpp
 msgid "Save export folder"
@@ -2330,10 +2286,6 @@ msgid "Saves to import go here, one folder per game ID. TRIANGLE uses the folder
 msgstr "Tuotavat tallenteet laitetaan tänne, yksi kansio pelin tunnusta kohti. KOLMIO käyttää näytettyä kansiota; NELIÖ palaa oletukseen."
 
 #: pe/ui/locations.cpp
-msgid "Saves to import, one folder per game ID. Until you choose one, it is save-import in the game files folder."
-msgstr "Tuotavat tallenteet, yksi kansio pelin tunnusta kohti. Kunnes valitset kansion, se on pelitiedostojen kansion save-import."
-
-#: pe/ui/locations.cpp
 msgid "Square again takes {0} off the list. Its games stay where they are."
 msgstr "Neliö uudelleen poistaa kansion {0} luettelosta. Sen pelit pysyvät paikoillaan."
 
@@ -2348,14 +2300,6 @@ msgstr "Näytetyssä kansiossa on oltava prod.keys. KOLMIO ottaa sen käyttöön
 #: pe/ui/browse.cpp
 msgid "The folder shown must hold the firmware NCA files. TRIANGLE uses it; SQUARE goes back to the default."
 msgstr "Näytetyssä kansiossa on oltava laiteohjelmiston NCA-tiedostot. KOLMIO ottaa sen käyttöön; NELIÖ palaa oletukseen."
-
-#: pe/ui/locations.cpp
-msgid "The folder that holds prod.keys. Until you choose one, it is keys in the game files folder."
-msgstr "Kansio, jossa prod.keys on. Kunnes valitset kansion, se on pelitiedostojen kansion keys."
-
-#: pe/ui/locations.cpp
-msgid "The folder that holds the firmware NCA files. Until you choose one, it is firmware in the game files folder."
-msgstr "Kansio, jossa laiteohjelmiston NCA-tiedostot ovat. Kunnes valitset kansion, se on pelitiedostojen kansion firmware."
 
 #: pe/ui/browse.cpp
 msgid "The list is full. Remove a folder first."
@@ -2376,10 +2320,6 @@ msgstr "Tämä kansio on jo luettelossa."
 #: pe/ui/browse.cpp
 msgid "This folder needs a roms folder."
 msgstr "Tässä kansiossa on oltava roms-kansio."
-
-#: pe/ui/locations.cpp
-msgid "This is the default folder already."
-msgstr "Tämä on jo oletuskansio."
 
 #: pe/ui/browse.cpp
 msgid "This is the game files folder already."
@@ -2413,10 +2353,6 @@ msgstr "{0} on useassa paikassa. Valitse, mikä käynnistyy."
 msgid "The folder that holds your keys, firmware and games, and more places for games."
 msgstr "Kansio, jossa keys, firmware ja pelit ovat, sekä lisää paikkoja peleille."
 
-#: pe/ui/locations.cpp
-msgid "Where exported saves are written. Until you choose one, it is save-export in the game files folder."
-msgstr "Minne viedyt tallenteet kirjoitetaan. Kunnes valitset kansion, se on pelitiedostojen kansion save-export."
-
 msgid "Available in more than one place. Choose which one to start."
 msgstr "Löytyy useasta paikasta. Valitse, mistä käynnistetään."
 
@@ -2432,14 +2368,20 @@ msgstr "ROM-tiedostoa ei voitu poistaa tästä kansiosta."
 msgid "Deleted from this folder."
 msgstr "Poistettu tästä kansiosta."
 
-msgid "Extended storage"
-msgstr "Laajennettu tallennus"
+msgid "PATH TIPS"
+msgstr "POLKUVINKIT"
 
-msgid "External HD or SSD"
-msgstr "Ulkoinen HD tai SSD"
+msgid "EXTENDED STORAGE"
+msgstr "LAAJENNETTU TALLENNUS"
 
-msgid "Path tips"
-msgstr "Polkuvinkit"
+msgid "EXTERNAL HD OR SSD"
+msgstr "ULKOINEN HD TAI SSD"
 
-msgid "Press Square again to delete this copy from {0}. Its updates and mods stay."
-msgstr "Paina Neliötä uudelleen poistaaksesi tämän kopion kohteesta {0}. Päivitykset ja modit jäävät."
+msgid "Delete {0}?"
+msgstr "Poistetaanko {0}?"
+
+msgid "Also delete the duplicated updates and DLC in this folder."
+msgstr "Poista myös tämän kansion kaksoiskappaleet päivitykset ja DLC:t."
+
+msgid "Confirm"
+msgstr "Vahvista"

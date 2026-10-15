@@ -84,10 +84,6 @@ msgstr "Toegevoegd aan de downloads. Instellingen, Downloads toont de wachtrij."
 msgid "Added. Cross plays as this profile; left and right change its name."
 msgstr "Toegevoegd. Kruis speelt met dit profiel; links en rechts wijzigen de naam."
 
-#: pe/ui/locations.cpp
-msgid "ADVANCED"
-msgstr "GEAVANCEERD"
-
 #: pe/ui/browse.cpp
 msgid "All credit for the Eden emulator goes to its developers and contributors."
 msgstr "Alle eer voor de Eden-emulator komt toe aan de ontwikkelaars en bijdragers ervan."
@@ -402,14 +398,6 @@ msgstr "Credits en configuratie"
 #: pe/ui/game_options.cpp
 msgid "Cross"
 msgstr "Kruis"
-
-#: pe/ui/locations.cpp
-msgid "CUSTOM"
-msgstr "AANGEPAST"
-
-#: pe/ui/locations.cpp
-msgid "DEFAULT"
-msgstr "STANDAARD"
 
 #. A per-game setting that follows the general setting; {0} is its value.
 #: pe/ui/game_options.cpp
@@ -1434,14 +1422,6 @@ msgstr "Gamelijsten lezen..."
 msgid "Reading..."
 msgstr "Lezen..."
 
-#: pe/ui/locations.cpp
-msgid "HIDE"
-msgstr "VERBERGEN"
-
-#: pe/ui/locations.cpp
-msgid "Hide"
-msgstr "Verbergen"
-
 #: pe/ui/settings.cpp
 msgid "Ready"
 msgstr "Gereed"
@@ -1765,10 +1745,6 @@ msgstr "Systeem"
 #: pe/ui/browse.cpp
 msgid "Keys folder"
 msgstr "Map voor keys"
-
-#: pe/ui/locations.cpp
-msgid "Keys, firmware and saves"
-msgstr "Keys, firmware en opgeslagen data"
 
 #: eden_services.cpp
 msgid "Taiwan"
@@ -2217,14 +2193,6 @@ msgstr "{0} van {1} mods aan"
 msgid "{0} of {1} on"
 msgstr "{0} van {1} aan"
 
-#: pe/ui/locations.cpp
-msgid "SHOW"
-msgstr "TONEN"
-
-#: pe/ui/locations.cpp
-msgid "Show"
-msgstr "Tonen"
-
 #: pe/ui/settings.cpp
 msgid "{0} of {1} profiles"
 msgstr "{0} van {1} profielen"
@@ -2284,10 +2252,6 @@ msgstr "Kies de map met de NCA-bestanden van de firmware"
 msgid "Choose the folder with one folder per game ID"
 msgstr "Kies de map met één map per game-ID"
 
-#: pe/ui/locations.cpp
-msgid "Choose the keys, firmware, save import and save export folders on their own. Until you do, they are inside the game files folder."
-msgstr "Kies de mappen voor keys, firmware, import van opgeslagen data en export van opgeslagen data apart. Tot die tijd staan ze in de map met gamebestanden."
-
 #: pe/ui/browse.cpp
 msgid "Choose where exported saves are written"
 msgstr "Kies waar geëxporteerde opgeslagen data worden geschreven"
@@ -2304,14 +2268,6 @@ msgstr "VOLGENDE START"
 #: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "No updates folder"
 msgstr "Geen updates-map"
-
-#: pe/ui/locations.cpp
-msgid "SAVE EXPORT"
-msgstr "EXPORT OPGESLAGEN DATA"
-
-#: pe/ui/locations.cpp
-msgid "SAVE IMPORT"
-msgstr "IMPORT OPGESLAGEN DATA"
 
 #: pe/ui/browse.cpp
 msgid "Save export folder"
@@ -2330,10 +2286,6 @@ msgid "Saves to import go here, one folder per game ID. TRIANGLE uses the folder
 msgstr "Op te halen opgeslagen data komen hier, één map per game-ID. DRIEHOEK gebruikt de getoonde map; VIERKANT gaat terug naar de standaard."
 
 #: pe/ui/locations.cpp
-msgid "Saves to import, one folder per game ID. Until you choose one, it is save-import in the game files folder."
-msgstr "Te importeren opgeslagen data, één map per game-ID. Tot je er een kiest, is het save-import in de map met gamebestanden."
-
-#: pe/ui/locations.cpp
 msgid "Square again takes {0} off the list. Its games stay where they are."
 msgstr "Nog een keer Vierkant haalt {0} uit de lijst. De games blijven waar ze zijn."
 
@@ -2348,14 +2300,6 @@ msgstr "De getoonde map moet prod.keys bevatten. DRIEHOEK gebruikt hem; VIERKANT
 #: pe/ui/browse.cpp
 msgid "The folder shown must hold the firmware NCA files. TRIANGLE uses it; SQUARE goes back to the default."
 msgstr "De getoonde map moet de NCA-bestanden van de firmware bevatten. DRIEHOEK gebruikt hem; VIERKANT gaat terug naar de standaard."
-
-#: pe/ui/locations.cpp
-msgid "The folder that holds prod.keys. Until you choose one, it is keys in the game files folder."
-msgstr "De map met prod.keys. Tot je er een kiest, is het keys in de map met gamebestanden."
-
-#: pe/ui/locations.cpp
-msgid "The folder that holds the firmware NCA files. Until you choose one, it is firmware in the game files folder."
-msgstr "De map met de NCA-bestanden van de firmware. Tot je er een kiest, is het firmware in de map met gamebestanden."
 
 #: pe/ui/browse.cpp
 msgid "The list is full. Remove a folder first."
@@ -2376,10 +2320,6 @@ msgstr "Deze map staat al in de lijst."
 #: pe/ui/browse.cpp
 msgid "This folder needs a roms folder."
 msgstr "Deze map heeft een roms-map nodig."
-
-#: pe/ui/locations.cpp
-msgid "This is the default folder already."
-msgstr "Dit is al de standaardmap."
 
 #: pe/ui/browse.cpp
 msgid "This is the game files folder already."
@@ -2413,10 +2353,6 @@ msgstr "{0} staat op meer dan één plek. Kies welke start."
 msgid "The folder that holds your keys, firmware and games, and more places for games."
 msgstr "De map met je keys, firmware en games, en meer plekken voor games."
 
-#: pe/ui/locations.cpp
-msgid "Where exported saves are written. Until you choose one, it is save-export in the game files folder."
-msgstr "Waar geëxporteerde opgeslagen data worden geschreven. Tot je er een kiest, is het save-export in de map met gamebestanden."
-
 msgid "Available in more than one place. Choose which one to start."
 msgstr "Staat op meer dan één plek. Kies welke je start."
 
@@ -2432,14 +2368,20 @@ msgstr "De ROM kon niet uit deze map worden verwijderd."
 msgid "Deleted from this folder."
 msgstr "Verwijderd uit deze map."
 
-msgid "Extended storage"
-msgstr "Uitgebreide opslag"
+msgid "PATH TIPS"
+msgstr "TIPS VOOR PADEN"
 
-msgid "External HD or SSD"
-msgstr "Externe hdd of ssd"
+msgid "EXTENDED STORAGE"
+msgstr "UITGEBREIDE OPSLAG"
 
-msgid "Path tips"
-msgstr "Tips voor paden"
+msgid "EXTERNAL HD OR SSD"
+msgstr "EXTERNE HDD OF SSD"
 
-msgid "Press Square again to delete this copy from {0}. Its updates and mods stay."
-msgstr "Druk nogmaals op Vierkant om deze kopie uit {0} te verwijderen. Updates en mods blijven staan."
+msgid "Delete {0}?"
+msgstr "{0} verwijderen?"
+
+msgid "Also delete the duplicated updates and DLC in this folder."
+msgstr "Verwijder ook de dubbele updates en DLC in deze map."
+
+msgid "Confirm"
+msgstr "Bevestigen"

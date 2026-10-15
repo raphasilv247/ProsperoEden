@@ -84,10 +84,6 @@ msgstr "Añadido a las descargas. La cola está en Ajustes, Descargas."
 msgid "Added. Cross plays as this profile; left and right change its name."
 msgstr "Añadido. Cruz juega con este perfil; izquierda y derecha cambian su nombre."
 
-#: pe/ui/locations.cpp
-msgid "ADVANCED"
-msgstr "AVANZADO"
-
 #: pe/ui/browse.cpp
 msgid "All credit for the Eden emulator goes to its developers and contributors."
 msgstr "Todo el mérito del emulador Eden es de sus desarrolladores y colaboradores."
@@ -402,14 +398,6 @@ msgstr "Créditos y configuración"
 #: pe/ui/game_options.cpp
 msgid "Cross"
 msgstr "Cruz"
-
-#: pe/ui/locations.cpp
-msgid "CUSTOM"
-msgstr "PERSONALIZADA"
-
-#: pe/ui/locations.cpp
-msgid "DEFAULT"
-msgstr "PREDETERMINADA"
 
 #. A per-game setting that follows the general setting; {0} is its value.
 #: pe/ui/game_options.cpp
@@ -1434,14 +1422,6 @@ msgstr "Leyendo las listas de juegos..."
 msgid "Reading..."
 msgstr "Leyendo..."
 
-#: pe/ui/locations.cpp
-msgid "HIDE"
-msgstr "OCULTAR"
-
-#: pe/ui/locations.cpp
-msgid "Hide"
-msgstr "Ocultar"
-
 #: pe/ui/settings.cpp
 msgid "Ready"
 msgstr "Todo listo"
@@ -1765,10 +1745,6 @@ msgstr "Sistema"
 #: pe/ui/browse.cpp
 msgid "Keys folder"
 msgstr "Carpeta de keys"
-
-#: pe/ui/locations.cpp
-msgid "Keys, firmware and saves"
-msgstr "Keys, firmware y partidas"
 
 #: eden_services.cpp
 msgid "Taiwan"
@@ -2217,14 +2193,6 @@ msgstr "{0} de {1} mods activados"
 msgid "{0} of {1} on"
 msgstr "{0} de {1} activados"
 
-#: pe/ui/locations.cpp
-msgid "SHOW"
-msgstr "MOSTRAR"
-
-#: pe/ui/locations.cpp
-msgid "Show"
-msgstr "Mostrar"
-
 #: pe/ui/settings.cpp
 msgid "{0} of {1} profiles"
 msgstr "{0} de {1} perfiles"
@@ -2284,10 +2252,6 @@ msgstr "Elige la carpeta con los archivos NCA del firmware"
 msgid "Choose the folder with one folder per game ID"
 msgstr "Elige la carpeta con una carpeta por ID de juego"
 
-#: pe/ui/locations.cpp
-msgid "Choose the keys, firmware, save import and save export folders on their own. Until you do, they are inside the game files folder."
-msgstr "Elige por separado las carpetas de keys, firmware, importación y exportación de partidas. Hasta entonces, están dentro de la carpeta de archivos del juego."
-
 #: pe/ui/browse.cpp
 msgid "Choose where exported saves are written"
 msgstr "Elige dónde se guardan las partidas exportadas"
@@ -2304,14 +2268,6 @@ msgstr "PRÓXIMO INICIO"
 #: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "No updates folder"
 msgstr "Sin carpeta updates"
-
-#: pe/ui/locations.cpp
-msgid "SAVE EXPORT"
-msgstr "EXPORTAR PARTIDAS"
-
-#: pe/ui/locations.cpp
-msgid "SAVE IMPORT"
-msgstr "IMPORTAR PARTIDAS"
 
 #: pe/ui/browse.cpp
 msgid "Save export folder"
@@ -2330,10 +2286,6 @@ msgid "Saves to import go here, one folder per game ID. TRIANGLE uses the folder
 msgstr "Las partidas por importar van aquí, una carpeta por ID de juego. TRIÁNGULO usa la carpeta mostrada; CUADRADO vuelve a la predeterminada."
 
 #: pe/ui/locations.cpp
-msgid "Saves to import, one folder per game ID. Until you choose one, it is save-import in the game files folder."
-msgstr "Partidas por importar, una carpeta por ID de juego. Hasta que elijas una, es save-import dentro de la carpeta de archivos del juego."
-
-#: pe/ui/locations.cpp
 msgid "Square again takes {0} off the list. Its games stay where they are."
 msgstr "Cuadrado otra vez quita {0} de la lista. Sus juegos siguen donde están."
 
@@ -2348,14 +2300,6 @@ msgstr "La carpeta mostrada debe contener prod.keys. TRIÁNGULO la usa; CUADRADO
 #: pe/ui/browse.cpp
 msgid "The folder shown must hold the firmware NCA files. TRIANGLE uses it; SQUARE goes back to the default."
 msgstr "La carpeta mostrada debe contener los archivos NCA del firmware. TRIÁNGULO la usa; CUADRADO vuelve a la predeterminada."
-
-#: pe/ui/locations.cpp
-msgid "The folder that holds prod.keys. Until you choose one, it is keys in the game files folder."
-msgstr "La carpeta que contiene prod.keys. Hasta que elijas una, es keys dentro de la carpeta de archivos del juego."
-
-#: pe/ui/locations.cpp
-msgid "The folder that holds the firmware NCA files. Until you choose one, it is firmware in the game files folder."
-msgstr "La carpeta con los archivos NCA del firmware. Hasta que elijas una, es firmware dentro de la carpeta de archivos del juego."
 
 #: pe/ui/browse.cpp
 msgid "The list is full. Remove a folder first."
@@ -2376,10 +2320,6 @@ msgstr "Esta carpeta ya está en la lista."
 #: pe/ui/browse.cpp
 msgid "This folder needs a roms folder."
 msgstr "Esta carpeta necesita una carpeta roms."
-
-#: pe/ui/locations.cpp
-msgid "This is the default folder already."
-msgstr "Esta ya es la carpeta predeterminada."
 
 #: pe/ui/browse.cpp
 msgid "This is the game files folder already."
@@ -2413,10 +2353,6 @@ msgstr "{0} está en más de un lugar. Elige cuál se inicia."
 msgid "The folder that holds your keys, firmware and games, and more places for games."
 msgstr "La carpeta con tus keys, firmware y juegos, y más lugares para juegos."
 
-#: pe/ui/locations.cpp
-msgid "Where exported saves are written. Until you choose one, it is save-export in the game files folder."
-msgstr "Dónde se guardan las partidas exportadas. Hasta que elijas una, es save-export dentro de la carpeta de archivos del juego."
-
 msgid "Available in more than one place. Choose which one to start."
 msgstr "Disponible en más de un lugar. Elige cuál iniciar."
 
@@ -2432,14 +2368,20 @@ msgstr "No se pudo borrar la ROM de esta carpeta."
 msgid "Deleted from this folder."
 msgstr "Borrado de esta carpeta."
 
-msgid "Extended storage"
-msgstr "Almacenamiento extendido"
+msgid "PATH TIPS"
+msgstr "CONSEJOS DE RUTAS"
 
-msgid "External HD or SSD"
-msgstr "Disco duro o SSD externo"
+msgid "EXTENDED STORAGE"
+msgstr "ALMACENAMIENTO EXTENDIDO"
 
-msgid "Path tips"
-msgstr "Consejos de rutas"
+msgid "EXTERNAL HD OR SSD"
+msgstr "DISCO DURO O SSD EXTERNO"
 
-msgid "Press Square again to delete this copy from {0}. Its updates and mods stay."
-msgstr "Pulsa Cuadrado otra vez para borrar esta copia de {0}. Los updates y mods se quedan."
+msgid "Delete {0}?"
+msgstr "¿Borrar {0}?"
+
+msgid "Also delete the duplicated updates and DLC in this folder."
+msgstr "Borrar también los updates y DLC duplicados en esta carpeta."
+
+msgid "Confirm"
+msgstr "Confirmar"

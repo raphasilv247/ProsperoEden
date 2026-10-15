@@ -84,10 +84,6 @@ msgstr "Ditambahkan ke unduhan. Pengaturan, Unduhan menampilkan antrean."
 msgid "Added. Cross plays as this profile; left and right change its name."
 msgstr "Ditambahkan. Silang bermain dengan profil ini; kiri dan kanan mengubah namanya."
 
-#: pe/ui/locations.cpp
-msgid "ADVANCED"
-msgstr "LANJUTAN"
-
 #: pe/ui/browse.cpp
 msgid "All credit for the Eden emulator goes to its developers and contributors."
 msgstr "Semua kredit untuk emulator Eden adalah milik para pengembang dan kontributornya."
@@ -402,14 +398,6 @@ msgstr "Kredit dan penyiapan"
 #: pe/ui/game_options.cpp
 msgid "Cross"
 msgstr "Silang"
-
-#: pe/ui/locations.cpp
-msgid "CUSTOM"
-msgstr "KUSTOM"
-
-#: pe/ui/locations.cpp
-msgid "DEFAULT"
-msgstr "DEFAULT"
 
 #. A per-game setting that follows the general setting; {0} is its value.
 #: pe/ui/game_options.cpp
@@ -1434,14 +1422,6 @@ msgstr "Membaca daftar game..."
 msgid "Reading..."
 msgstr "Membaca..."
 
-#: pe/ui/locations.cpp
-msgid "HIDE"
-msgstr "SEMBUNYIKAN"
-
-#: pe/ui/locations.cpp
-msgid "Hide"
-msgstr "Sembunyikan"
-
 #: pe/ui/settings.cpp
 msgid "Ready"
 msgstr "Siap"
@@ -1765,10 +1745,6 @@ msgstr "Sistem"
 #: pe/ui/browse.cpp
 msgid "Keys folder"
 msgstr "Folder keys"
-
-#: pe/ui/locations.cpp
-msgid "Keys, firmware and saves"
-msgstr "Keys, firmware, dan data tersimpan"
 
 #: eden_services.cpp
 msgid "Taiwan"
@@ -2217,14 +2193,6 @@ msgstr "{0} dari {1} mod aktif"
 msgid "{0} of {1} on"
 msgstr "{0} dari {1} aktif"
 
-#: pe/ui/locations.cpp
-msgid "SHOW"
-msgstr "TAMPILKAN"
-
-#: pe/ui/locations.cpp
-msgid "Show"
-msgstr "Tampilkan"
-
 #: pe/ui/settings.cpp
 msgid "{0} of {1} profiles"
 msgstr "{0} dari {1} profil"
@@ -2284,10 +2252,6 @@ msgstr "Pilih folder yang berisi file NCA firmware"
 msgid "Choose the folder with one folder per game ID"
 msgstr "Pilih folder dengan satu folder per ID game"
 
-#: pe/ui/locations.cpp
-msgid "Choose the keys, firmware, save import and save export folders on their own. Until you do, they are inside the game files folder."
-msgstr "Pilih folder keys, firmware, impor data tersimpan, dan ekspor data tersimpan secara terpisah. Sebelum itu, semuanya ada di dalam folder file game."
-
 #: pe/ui/browse.cpp
 msgid "Choose where exported saves are written"
 msgstr "Pilih tempat data tersimpan yang diekspor ditulis"
@@ -2304,14 +2268,6 @@ msgstr "SESI BERIKUTNYA"
 #: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "No updates folder"
 msgstr "Tidak ada folder updates"
-
-#: pe/ui/locations.cpp
-msgid "SAVE EXPORT"
-msgstr "EKSPOR DATA TERSIMPAN"
-
-#: pe/ui/locations.cpp
-msgid "SAVE IMPORT"
-msgstr "IMPOR DATA TERSIMPAN"
 
 #: pe/ui/browse.cpp
 msgid "Save export folder"
@@ -2330,10 +2286,6 @@ msgid "Saves to import go here, one folder per game ID. TRIANGLE uses the folder
 msgstr "Data tersimpan yang akan diimpor diletakkan di sini, satu folder per ID game. SEGITIGA memakai folder yang ditampilkan; KOTAK kembali ke default."
 
 #: pe/ui/locations.cpp
-msgid "Saves to import, one folder per game ID. Until you choose one, it is save-import in the game files folder."
-msgstr "Data tersimpan yang akan diimpor, satu folder per ID game. Sebelum Anda memilih, ini adalah save-import di folder file game."
-
-#: pe/ui/locations.cpp
 msgid "Square again takes {0} off the list. Its games stay where they are."
 msgstr "Kotak lagi menghapus {0} dari daftar. Game-nya tetap di tempatnya."
 
@@ -2348,14 +2300,6 @@ msgstr "Folder yang ditampilkan harus berisi prod.keys. SEGITIGA memakainya; KOT
 #: pe/ui/browse.cpp
 msgid "The folder shown must hold the firmware NCA files. TRIANGLE uses it; SQUARE goes back to the default."
 msgstr "Folder yang ditampilkan harus berisi file NCA firmware. SEGITIGA memakainya; KOTAK kembali ke default."
-
-#: pe/ui/locations.cpp
-msgid "The folder that holds prod.keys. Until you choose one, it is keys in the game files folder."
-msgstr "Folder yang berisi prod.keys. Sebelum Anda memilih, ini adalah keys di folder file game."
-
-#: pe/ui/locations.cpp
-msgid "The folder that holds the firmware NCA files. Until you choose one, it is firmware in the game files folder."
-msgstr "Folder yang berisi file NCA firmware. Sebelum Anda memilih, ini adalah firmware di folder file game."
 
 #: pe/ui/browse.cpp
 msgid "The list is full. Remove a folder first."
@@ -2376,10 +2320,6 @@ msgstr "Folder ini sudah ada di daftar."
 #: pe/ui/browse.cpp
 msgid "This folder needs a roms folder."
 msgstr "Folder ini membutuhkan folder roms."
-
-#: pe/ui/locations.cpp
-msgid "This is the default folder already."
-msgstr "Ini sudah folder default."
 
 #: pe/ui/browse.cpp
 msgid "This is the game files folder already."
@@ -2413,10 +2353,6 @@ msgstr "{0} ada di lebih dari satu tempat. Pilih mana yang dijalankan."
 msgid "The folder that holds your keys, firmware and games, and more places for games."
 msgstr "Folder keys, firmware, dan game Anda, serta tempat lain untuk game."
 
-#: pe/ui/locations.cpp
-msgid "Where exported saves are written. Until you choose one, it is save-export in the game files folder."
-msgstr "Tempat data tersimpan yang diekspor ditulis. Sebelum Anda memilih, ini adalah save-export di folder file game."
-
 msgid "Available in more than one place. Choose which one to start."
 msgstr "Tersedia di lebih dari satu tempat. Pilih yang akan dijalankan."
 
@@ -2432,14 +2368,20 @@ msgstr "ROM tidak dapat dihapus dari folder ini."
 msgid "Deleted from this folder."
 msgstr "Dihapus dari folder ini."
 
-msgid "Extended storage"
-msgstr "Penyimpanan tambahan"
+msgid "PATH TIPS"
+msgstr "TIPS JALUR"
 
-msgid "External HD or SSD"
-msgstr "HD atau SSD eksternal"
+msgid "EXTENDED STORAGE"
+msgstr "PENYIMPANAN TAMBAHAN"
 
-msgid "Path tips"
-msgstr "Tips jalur"
+msgid "EXTERNAL HD OR SSD"
+msgstr "HD ATAU SSD EKSTERNAL"
 
-msgid "Press Square again to delete this copy from {0}. Its updates and mods stay."
-msgstr "Tekan Kotak lagi untuk menghapus salinan ini dari {0}. Update dan mod tetap ada."
+msgid "Delete {0}?"
+msgstr "Hapus {0}?"
+
+msgid "Also delete the duplicated updates and DLC in this folder."
+msgstr "Hapus juga update dan DLC duplikat di folder ini."
+
+msgid "Confirm"
+msgstr "Konfirmasi"

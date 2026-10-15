@@ -95,7 +95,8 @@ public:
     bool cancel_download(const std::string& file) override;
     std::vector<pe::ui::Download> downloads() override;
     bool delete_game(const pe::ui::Game& game, std::string* message) override;
-    bool delete_place(const std::string &file, const std::string &folder) override;
+    bool delete_place(const std::string &file, const std::string &folder, bool addons) override;
+    int place_addon_count(const std::string &file, const std::string &folder) override;
 
     bool save_sync_wanted(const std::string& file) override;
     void start_save_sync(const std::string& file, bool before) override;

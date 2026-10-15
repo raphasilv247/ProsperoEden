@@ -84,10 +84,6 @@ msgstr "Hozzáadva a letöltésekhez. A sor a Beállítások, Letöltések alatt
 msgid "Added. Cross plays as this profile; left and right change its name."
 msgstr "Hozzáadva. A Kereszt ezzel a profillal játszik; a bal és a jobb a nevét váltja."
 
-#: pe/ui/locations.cpp
-msgid "ADVANCED"
-msgstr "HALADÓ"
-
 #: pe/ui/browse.cpp
 msgid "All credit for the Eden emulator goes to its developers and contributors."
 msgstr "Az Eden emulátorért minden elismerés a fejlesztőit és közreműködőit illeti."
@@ -402,14 +398,6 @@ msgstr "Készítők és előkészítés"
 #: pe/ui/game_options.cpp
 msgid "Cross"
 msgstr "Kereszt"
-
-#: pe/ui/locations.cpp
-msgid "CUSTOM"
-msgstr "EGYÉNI"
-
-#: pe/ui/locations.cpp
-msgid "DEFAULT"
-msgstr "ALAPÉRTELMEZETT"
 
 #. A per-game setting that follows the general setting; {0} is its value.
 #: pe/ui/game_options.cpp
@@ -1434,14 +1422,6 @@ msgstr "Játéklisták beolvasása..."
 msgid "Reading..."
 msgstr "Beolvasás..."
 
-#: pe/ui/locations.cpp
-msgid "HIDE"
-msgstr "ELREJTÉS"
-
-#: pe/ui/locations.cpp
-msgid "Hide"
-msgstr "Elrejtés"
-
 #: pe/ui/settings.cpp
 msgid "Ready"
 msgstr "Kész"
@@ -1765,10 +1745,6 @@ msgstr "Rendszer"
 #: pe/ui/browse.cpp
 msgid "Keys folder"
 msgstr "Keys mappa"
-
-#: pe/ui/locations.cpp
-msgid "Keys, firmware and saves"
-msgstr "Keys, firmware és mentések"
 
 #: eden_services.cpp
 msgid "Taiwan"
@@ -2217,14 +2193,6 @@ msgstr "{0} / {1} mod bekapcsolva"
 msgid "{0} of {1} on"
 msgstr "{0} / {1} bekapcsolva"
 
-#: pe/ui/locations.cpp
-msgid "SHOW"
-msgstr "MEGJELENÍTÉS"
-
-#: pe/ui/locations.cpp
-msgid "Show"
-msgstr "Megjelenítés"
-
 #: pe/ui/settings.cpp
 msgid "{0} of {1} profiles"
 msgstr "{1} profilból {0}"
@@ -2284,10 +2252,6 @@ msgstr "Válaszd ki a firmware NCA-fájljait tartalmazó mappát"
 msgid "Choose the folder with one folder per game ID"
 msgstr "Válaszd ki a mappát, amelyben játékazonosítónként egy mappa van"
 
-#: pe/ui/locations.cpp
-msgid "Choose the keys, firmware, save import and save export folders on their own. Until you do, they are inside the game files folder."
-msgstr "A keys, a firmware, a mentések importálásának és a mentések exportálásának mappáját külön is kiválaszthatod. Addig a játékfájlok mappájában vannak."
-
 #: pe/ui/browse.cpp
 msgid "Choose where exported saves are written"
 msgstr "Válaszd ki, hová kerüljenek az exportált mentések"
@@ -2304,14 +2268,6 @@ msgstr "KÖVETKEZŐ INDÍTÁS"
 #: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "No updates folder"
 msgstr "Nincs updates mappa"
-
-#: pe/ui/locations.cpp
-msgid "SAVE EXPORT"
-msgstr "MENTÉSEK EXPORTÁLÁSA"
-
-#: pe/ui/locations.cpp
-msgid "SAVE IMPORT"
-msgstr "MENTÉSEK IMPORTÁLÁSA"
 
 #: pe/ui/browse.cpp
 msgid "Save export folder"
@@ -2330,10 +2286,6 @@ msgid "Saves to import go here, one folder per game ID. TRIANGLE uses the folder
 msgstr "Az importálandó mentések ide kerülnek, játékazonosítónként egy mappában. A HÁROMSZÖG a mutatott mappát használja; a NÉGYZET visszaáll az alapértelmezettre."
 
 #: pe/ui/locations.cpp
-msgid "Saves to import, one folder per game ID. Until you choose one, it is save-import in the game files folder."
-msgstr "Importálandó mentések, játékazonosítónként egy mappa. Amíg nem választasz, ez a save-import a játékfájlok mappájában."
-
-#: pe/ui/locations.cpp
 msgid "Square again takes {0} off the list. Its games stay where they are."
 msgstr "A Négyzet ismételt megnyomása eltávolítja a(z) {0} mappát a listáról. A játékai a helyükön maradnak."
 
@@ -2348,14 +2300,6 @@ msgstr "A mutatott mappának tartalmaznia kell a prod.keys-t. A HÁROMSZÖG hasz
 #: pe/ui/browse.cpp
 msgid "The folder shown must hold the firmware NCA files. TRIANGLE uses it; SQUARE goes back to the default."
 msgstr "A mutatott mappának tartalmaznia kell a firmware NCA-fájljait. A HÁROMSZÖG használja; a NÉGYZET visszaáll az alapértelmezettre."
-
-#: pe/ui/locations.cpp
-msgid "The folder that holds prod.keys. Until you choose one, it is keys in the game files folder."
-msgstr "A prod.keys-t tartalmazó mappa. Amíg nem választasz, ez a keys a játékfájlok mappájában."
-
-#: pe/ui/locations.cpp
-msgid "The folder that holds the firmware NCA files. Until you choose one, it is firmware in the game files folder."
-msgstr "A firmware NCA-fájljait tartalmazó mappa. Amíg nem választasz, ez a firmware a játékfájlok mappájában."
 
 #: pe/ui/browse.cpp
 msgid "The list is full. Remove a folder first."
@@ -2376,10 +2320,6 @@ msgstr "Ez a mappa már szerepel a listán."
 #: pe/ui/browse.cpp
 msgid "This folder needs a roms folder."
 msgstr "Ennek a mappának kell egy roms mappa."
-
-#: pe/ui/locations.cpp
-msgid "This is the default folder already."
-msgstr "Ez már az alapértelmezett mappa."
 
 #: pe/ui/browse.cpp
 msgid "This is the game files folder already."
@@ -2413,10 +2353,6 @@ msgstr "A(z) {0} több helyen is megvan. Válaszd ki, melyik induljon."
 msgid "The folder that holds your keys, firmware and games, and more places for games."
 msgstr "A keys, a firmware és a játékok mappája, valamint további helyek a játékoknak."
 
-#: pe/ui/locations.cpp
-msgid "Where exported saves are written. Until you choose one, it is save-export in the game files folder."
-msgstr "Ahová az exportált mentések kerülnek. Amíg nem választasz, ez a save-export a játékfájlok mappájában."
-
 msgid "Available in more than one place. Choose which one to start."
 msgstr "Több helyen is megtalálható. Válaszd ki, melyiket indítsd."
 
@@ -2432,14 +2368,20 @@ msgstr "A ROM-ot nem sikerült törölni ebből a mappából."
 msgid "Deleted from this folder."
 msgstr "Törölve ebből a mappából."
 
-msgid "Extended storage"
-msgstr "Bővített tárhely"
+msgid "PATH TIPS"
+msgstr "ÚTVONAL-TIPPEK"
 
-msgid "External HD or SSD"
-msgstr "Külső HDD vagy SSD"
+msgid "EXTENDED STORAGE"
+msgstr "BŐVÍTETT TÁRHELY"
 
-msgid "Path tips"
-msgstr "Útvonal-tippek"
+msgid "EXTERNAL HD OR SSD"
+msgstr "KÜLSŐ HDD VAGY SSD"
 
-msgid "Press Square again to delete this copy from {0}. Its updates and mods stay."
-msgstr "Nyomd meg újra a Négyzetet, hogy töröld ezt a példányt innen: {0}. A frissítések és modok megmaradnak."
+msgid "Delete {0}?"
+msgstr "Törlöd ezt: {0}?"
+
+msgid "Also delete the duplicated updates and DLC in this folder."
+msgstr "A duplikált frissítések és DLC-k törlése is ebben a mappában."
+
+msgid "Confirm"
+msgstr "Megerősítés"

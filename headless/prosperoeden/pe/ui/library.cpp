@@ -931,8 +931,6 @@ void Launcher::open_place(const std::string &file, const std::string &title, con
 void Launcher::press_place(Key key)
 {
     const int count = static_cast<int>(place_choices_.size());
-    if (key != Key::square)
-        place_delete_armed_ = false;
     switch (key)
     {
     case Key::circle:
@@ -947,43 +945,10 @@ void Launcher::press_place(Key key)
         return;
     case Key::square:
     {
-        // Square asks about the copy under the cursor; a second Square on the same copy deletes it.
+        // The copy under the cursor is asked about first; the confirmation does the deleting.
         const int row = std::clamp(place_rows_.selected, 0, std::max(count - 1, 0));
-        if (count == 0)
-            return;
-        if (!place_delete_armed_ || place_delete_row_ != row)
-        {
-            place_delete_armed_ = true;
-            place_delete_row_ = row;
-            say(fill(tr("Press Square again to delete this copy from {0}. Its updates and mods stay."),
-                     {place_choices_[static_cast<std::size_t>(row)].path}),
-                true);
-            cue(Cue::notify);
-            return;
-        }
-        place_delete_armed_ = false;
-        const std::string folder = place_choices_[static_cast<std::size_t>(row)].path;
-        if (!services_.delete_place(place_file_, folder))
-        {
-            say(tr("Could not delete the ROM from this folder."), true);
-            cue(Cue::error);
-            return;
-        }
-        // The list is read again: with one copy left the game starts without asking.
-        read_home();
-        drop_missing_games();
-        place_choices_ = services_.game_places(place_file_);
-        if (place_choices_.size() < 2)
-        {
-            modal_ = Modal::none;
-            message_.clear();
-            cue(Cue::saved);
-            return;
-        }
-        place_rows_.reset(static_cast<int>(place_choices_.size()),
-                          std::min(row, static_cast<int>(place_choices_.size()) - 1));
-        say(tr("Deleted from this folder."));
-        cue(Cue::saved);
+        if (count > 0)
+            open_place_delete(row);
         return;
     }
     case Key::cross:
@@ -1008,6 +973,136 @@ void Launcher::press_place(Key key)
     default:
         return;
     }
+}
+
+void Launcher::open_place_delete(int row)
+{
+    const GamePlace &place = place_choices_[static_cast<std::size_t>(row)];
+    delete_file_ = place_file_;
+    delete_title_ = place_title_;
+    delete_folder_ = place.path;
+    delete_label_ = place.label;
+    delete_size_.clear();
+    for (const Game &game : games_)
+        if (game.file == place_file_)
+            delete_size_ = game.size;
+    // The updates and DLC are offered only when this copy and another one both have some.
+    const int here = services_.place_addon_count(place_file_, place.path);
+    int elsewhere = 0;
+    for (const GamePlace &other : place_choices_)
+        if (other.path != place.path)
+            elsewhere += services_.place_addon_count(place_file_, other.path);
+    delete_addons_shown_ = here > 0 && elsewhere > 0;
+    delete_addons_checked_ = false;
+    delete_cursor_ = 0;
+    modal_ = modal_shown_ = Modal::place_delete;
+    message_.clear();
+    cue(Cue::modal_open);
+}
+
+void Launcher::press_place_delete(Key key)
+{
+    // Rows: 2 is the box (only when shown), 0 Cancel and 1 Confirm side by side under it.
+    switch (key)
+    {
+    case Key::circle:
+        modal_ = Modal::none;
+        cue(Cue::back);
+        return;
+    case Key::left:
+        if (delete_cursor_ == 1)
+            delete_cursor_ = 0;
+        return;
+    case Key::right:
+        if (delete_cursor_ == 0)
+            delete_cursor_ = 1;
+        return;
+    case Key::up:
+        if (delete_cursor_ != 2 && delete_addons_shown_)
+            delete_cursor_ = 2;
+        return;
+    case Key::down:
+        if (delete_cursor_ == 2)
+            delete_cursor_ = 0;
+        return;
+    case Key::cross:
+        if (delete_cursor_ == 2)
+        {
+            delete_addons_checked_ = !delete_addons_checked_;
+            cue(Cue::toggle);
+            return;
+        }
+        if (delete_cursor_ == 0)
+        {
+            modal_ = Modal::none;
+            cue(Cue::back);
+            return;
+        }
+        // Confirm: only this copy's ROM, and its updates and DLC when the box is ticked.
+        modal_ = Modal::none;
+        if (!services_.delete_place(delete_file_, delete_folder_, delete_addons_shown_ && delete_addons_checked_))
+        {
+            say(tr("Could not delete the ROM from this folder."), true);
+            cue(Cue::error);
+            return;
+        }
+        read_home();
+        drop_missing_games();
+        say(tr("Deleted from this folder."));
+        cue(Cue::saved);
+        return;
+    default:
+        return;
+    }
+}
+
+void Launcher::draw_place_delete(Canvas &c, float open)
+{
+    gfx::DrawList &list = c.list;
+    list.push_opacity(open);
+    list.push_transform(1.0f - 0.03f * (1.0f - open) * motion(), 960.0f, 540.0f, 0.0f,
+                        (1.0f - open) * 26.0f * motion());
+    glass(c, kPlaceDialog, th().radius_panel, th().panel.with_alpha(0.97f), th().panel_edge.with_alpha(0.66f), 1.6f);
+    text_shrink(c, fill(tr("Delete {0}?"), {delete_title_}), 592.0f, baseline(218.0f, 62.0f, th().size_display),
+                th().size_display, th().title, 736.0f);
+    // The copy: its drive and size, then the folder it is in.
+    text_fit(c, delete_label_ + " | " + delete_size_, 592.0f, baseline(322.0f, 40.0f, th().size_text),
+             th().size_text, th().value, 736.0f);
+    text_fit(c, delete_folder_, 592.0f, baseline(372.0f, 28.0f, th().size_small), th().size_small, th().meta, 736.0f);
+
+    if (delete_addons_shown_)
+    {
+        const Rect row{592.0f, 462.0f, 736.0f, 94.0f};
+        plate_rest(c, row_plate(), row);
+        if (delete_cursor_ == 2)
+            plate_focus(c, row_plate(), row, 1.0f);
+        const Rect box{628.0f, row.y + 30.0f, 34.0f, 34.0f};
+        c.list.rounded_rect(box, 6.0f, th().panel_edge.with_alpha(0.9f));
+        if (delete_addons_checked_)
+            c.list.rounded_rect({box.x + 7.0f, box.y + 7.0f, box.w - 14.0f, box.h - 14.0f}, 3.0f, th().accent_pale);
+        text_fit(c, tr("Also delete the duplicated updates and DLC in this folder."), 690.0f,
+                 baseline(row.y + 47.0f, 30.0f, th().size_small), th().size_small, th().value, 620.0f);
+    }
+
+    // Cancel and Confirm: the cursor starts on Cancel.
+    const Rect cancel{592.0f, 590.0f, 352.0f, 94.0f};
+    const Rect confirm{976.0f, 590.0f, 352.0f, 94.0f};
+    plate_rest(c, row_plate(), cancel);
+    plate_rest(c, row_plate(), confirm);
+    if (delete_cursor_ == 0)
+        plate_focus(c, row_plate(), cancel, 1.0f);
+    if (delete_cursor_ == 1)
+        plate_focus(c, row_plate(), confirm, 1.0f);
+    text(c, tr("Cancel"), cancel.x + cancel.w / 2.0f, baseline(cancel.y, cancel.h, th().size_text), th().size_text,
+         th().value, Align::center);
+    text(c, tr("Confirm"), confirm.x + confirm.w / 2.0f, baseline(confirm.y, confirm.h, th().size_text),
+         th().size_text, th().value, Align::center);
+
+    static constexpr Hint kHintsRow[] = {{Pad::updown, TR("Select")}, {Pad::cross, TR("Choose")},
+                                         {Pad::circle, TR("Back")}};
+    draw_hints(c, kHintsRow, 3, 592.0f, kPlaceHints, th().copy, 736.0f);
+    list.pop_transform();
+    list.pop_opacity();
 }
 
 void Launcher::draw_place(Canvas &c, float open)

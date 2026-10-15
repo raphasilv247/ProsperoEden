@@ -84,10 +84,6 @@ msgstr "Προστέθηκε στις λήψεις. Η ουρά φαίνεται
 msgid "Added. Cross plays as this profile; left and right change its name."
 msgstr "Προστέθηκε. Σταυρός για παιχνίδι με αυτό το προφίλ· αριστερά και δεξιά αλλάζουν το όνομα."
 
-#: pe/ui/locations.cpp
-msgid "ADVANCED"
-msgstr "ΕΠΙΣΤΗΜΟΝΙΚΑ"
-
 #: pe/ui/browse.cpp
 msgid "All credit for the Eden emulator goes to its developers and contributors."
 msgstr "Όλα τα εύσημα για τον εξομοιωτή Eden ανήκουν στους προγραμματιστές και τους συνεισφέροντές του."
@@ -402,14 +398,6 @@ msgstr "Συντελεστές και ρύθμιση"
 #: pe/ui/game_options.cpp
 msgid "Cross"
 msgstr "Σταυρός"
-
-#: pe/ui/locations.cpp
-msgid "CUSTOM"
-msgstr "ΠΡΟΣΑΡΜΟΣΜΕΝΟ"
-
-#: pe/ui/locations.cpp
-msgid "DEFAULT"
-msgstr "ΠΡΟΕΠΙΛΟΓΗ"
 
 #. A per-game setting that follows the general setting; {0} is its value.
 #: pe/ui/game_options.cpp
@@ -1434,14 +1422,6 @@ msgstr "Ανάγνωση λιστών παιχνιδιών..."
 msgid "Reading..."
 msgstr "Ανάγνωση..."
 
-#: pe/ui/locations.cpp
-msgid "HIDE"
-msgstr "ΑΠΟΚΡΥΨΗ"
-
-#: pe/ui/locations.cpp
-msgid "Hide"
-msgstr "Απόκρυψη"
-
 #: pe/ui/settings.cpp
 msgid "Ready"
 msgstr "Έτοιμο"
@@ -1765,10 +1745,6 @@ msgstr "Σύστημα"
 #: pe/ui/browse.cpp
 msgid "Keys folder"
 msgstr "Φάκελος keys"
-
-#: pe/ui/locations.cpp
-msgid "Keys, firmware and saves"
-msgstr "Keys, firmware και αποθηκεύσεις"
 
 #: eden_services.cpp
 msgid "Taiwan"
@@ -2217,14 +2193,6 @@ msgstr "Ενεργά mods: {0} από {1}"
 msgid "{0} of {1} on"
 msgstr "{0} από {1} ενεργά"
 
-#: pe/ui/locations.cpp
-msgid "SHOW"
-msgstr "ΕΜΦΑΝΙΣΗ"
-
-#: pe/ui/locations.cpp
-msgid "Show"
-msgstr "Εμφάνιση"
-
 #: pe/ui/settings.cpp
 msgid "{0} of {1} profiles"
 msgstr "{0} από {1} προφίλ"
@@ -2284,10 +2252,6 @@ msgstr "Επιλέξτε τον φάκελο που περιέχει τα αρχ
 msgid "Choose the folder with one folder per game ID"
 msgstr "Επιλέξτε τον φάκελο με έναν φάκελο ανά ID παιχνιδιού"
 
-#: pe/ui/locations.cpp
-msgid "Choose the keys, firmware, save import and save export folders on their own. Until you do, they are inside the game files folder."
-msgstr "Επιλέξτε χωριστά τους φακέλους για keys, firmware, εισαγωγή αποθηκεύσεων και εξαγωγή αποθηκεύσεων. Μέχρι τότε βρίσκονται μέσα στον φάκελο αρχείων παιχνιδιών."
-
 #: pe/ui/browse.cpp
 msgid "Choose where exported saves are written"
 msgstr "Επιλέξτε πού γράφονται οι εξαγόμενες αποθηκεύσεις"
@@ -2304,14 +2268,6 @@ msgstr "ΕΠΟΜΕΝΗ ΕΚΚΙΝΗΣΗ"
 #: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "No updates folder"
 msgstr "Χωρίς φάκελο updates"
-
-#: pe/ui/locations.cpp
-msgid "SAVE EXPORT"
-msgstr "ΕΞΑΓΩΓΗ ΑΠΟΘΗΚΕΥΣΕΩΝ"
-
-#: pe/ui/locations.cpp
-msgid "SAVE IMPORT"
-msgstr "ΕΙΣΑΓΩΓΗ ΑΠΟΘΗΚΕΥΣΕΩΝ"
 
 #: pe/ui/browse.cpp
 msgid "Save export folder"
@@ -2330,10 +2286,6 @@ msgid "Saves to import go here, one folder per game ID. TRIANGLE uses the folder
 msgstr "Οι αποθηκεύσεις προς εισαγωγή μπαίνουν εδώ, ένας φάκελος ανά ID παιχνιδιού. Το ΤΡΙΓΩΝΟ χρησιμοποιεί τον φάκελο που εμφανίζεται· το ΤΕΤΡΑΓΩΝΟ επιστρέφει στην προεπιλογή."
 
 #: pe/ui/locations.cpp
-msgid "Saves to import, one folder per game ID. Until you choose one, it is save-import in the game files folder."
-msgstr "Αποθηκεύσεις προς εισαγωγή, ένας φάκελος ανά ID παιχνιδιού. Μέχρι να επιλέξετε, είναι το save-import στον φάκελο αρχείων παιχνιδιών."
-
-#: pe/ui/locations.cpp
 msgid "Square again takes {0} off the list. Its games stay where they are."
 msgstr "Άλλο ένα Τετράγωνο αφαιρεί το {0} από τη λίστα. Τα παιχνίδια του μένουν εκεί που είναι."
 
@@ -2348,14 +2300,6 @@ msgstr "Ο φάκελος που εμφανίζεται πρέπει να περ
 #: pe/ui/browse.cpp
 msgid "The folder shown must hold the firmware NCA files. TRIANGLE uses it; SQUARE goes back to the default."
 msgstr "Ο φάκελος που εμφανίζεται πρέπει να περιέχει τα αρχεία NCA του firmware. Το ΤΡΙΓΩΝΟ τον χρησιμοποιεί· το ΤΕΤΡΑΓΩΝΟ επιστρέφει στην προεπιλογή."
-
-#: pe/ui/locations.cpp
-msgid "The folder that holds prod.keys. Until you choose one, it is keys in the game files folder."
-msgstr "Ο φάκελος που περιέχει το prod.keys. Μέχρι να επιλέξετε, είναι το keys στον φάκελο αρχείων παιχνιδιών."
-
-#: pe/ui/locations.cpp
-msgid "The folder that holds the firmware NCA files. Until you choose one, it is firmware in the game files folder."
-msgstr "Ο φάκελος που περιέχει τα αρχεία NCA του firmware. Μέχρι να επιλέξετε, είναι το firmware στον φάκελο αρχείων παιχνιδιών."
 
 #: pe/ui/browse.cpp
 msgid "The list is full. Remove a folder first."
@@ -2376,10 +2320,6 @@ msgstr "Αυτός ο φάκελος είναι ήδη στη λίστα."
 #: pe/ui/browse.cpp
 msgid "This folder needs a roms folder."
 msgstr "Αυτός ο φάκελος χρειάζεται έναν φάκελο roms."
-
-#: pe/ui/locations.cpp
-msgid "This is the default folder already."
-msgstr "Αυτός είναι ήδη ο προεπιλεγμένος φάκελος."
 
 #: pe/ui/browse.cpp
 msgid "This is the game files folder already."
@@ -2413,10 +2353,6 @@ msgstr "Το {0} βρίσκεται σε περισσότερα από ένα μ
 msgid "The folder that holds your keys, firmware and games, and more places for games."
 msgstr "Ο φάκελος με τα keys, το firmware και τα παιχνίδια σας, και περισσότερα μέρη για παιχνίδια."
 
-#: pe/ui/locations.cpp
-msgid "Where exported saves are written. Until you choose one, it is save-export in the game files folder."
-msgstr "Πού γράφονται οι εξαγόμενες αποθηκεύσεις. Μέχρι να επιλέξετε, είναι το save-export στον φάκελο αρχείων παιχνιδιών."
-
 msgid "Available in more than one place. Choose which one to start."
 msgstr "Υπάρχει σε περισσότερα από ένα μέρη. Επιλέξτε ποιο να ξεκινήσει."
 
@@ -2432,14 +2368,20 @@ msgstr "Δεν ήταν δυνατή η διαγραφή του ROM από αυ�
 msgid "Deleted from this folder."
 msgstr "Διαγράφηκε από αυτόν τον φάκελο."
 
-msgid "Extended storage"
-msgstr "Εκτεταμένος αποθηκευτικός χώρος"
+msgid "PATH TIPS"
+msgstr "ΣΥΜΒΟΥΛΕΣ ΔΙΑΔΡΟΜΩΝ"
 
-msgid "External HD or SSD"
-msgstr "Εξωτερικός HDD ή SSD"
+msgid "EXTENDED STORAGE"
+msgstr "ΕΚΤΕΤΑΜΕΝΟΣ ΑΠΟΘΗΚΕΥΤΙΚΟΣ ΧΩΡΟΣ"
 
-msgid "Path tips"
-msgstr "Συμβουλές για διαδρομές"
+msgid "EXTERNAL HD OR SSD"
+msgstr "ΕΞΩΤΕΡΙΚΟΣ HDD Ή SSD"
 
-msgid "Press Square again to delete this copy from {0}. Its updates and mods stay."
-msgstr "Πατήστε ξανά Τετράγωνο για να διαγράψετε αυτό το αντίγραφο από το {0}. Οι ενημερώσεις και τα mods μένουν."
+msgid "Delete {0}?"
+msgstr "Διαγραφή του {0};"
+
+msgid "Also delete the duplicated updates and DLC in this folder."
+msgstr "Διαγραφή και των διπλότυπων ενημερώσεων και DLC σε αυτόν τον φάκελο."
+
+msgid "Confirm"
+msgstr "Επιβεβαίωση"

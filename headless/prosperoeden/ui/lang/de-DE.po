@@ -84,10 +84,6 @@ msgstr "Zu den Downloads hinzugefügt. Einstellungen, Downloads zeigt die Wartes
 msgid "Added. Cross plays as this profile; left and right change its name."
 msgstr "Hinzugefügt. Kreuz spielt mit diesem Profil; links und rechts ändern den Namen."
 
-#: pe/ui/locations.cpp
-msgid "ADVANCED"
-msgstr "ERWEITERT"
-
 #: pe/ui/browse.cpp
 msgid "All credit for the Eden emulator goes to its developers and contributors."
 msgstr "Alle Anerkennung für den Eden-Emulator gebührt seinen Entwicklern und Mitwirkenden."
@@ -402,14 +398,6 @@ msgstr "Credits und Einrichtung"
 #: pe/ui/game_options.cpp
 msgid "Cross"
 msgstr "Kreuz"
-
-#: pe/ui/locations.cpp
-msgid "CUSTOM"
-msgstr "BENUTZERDEFINIERT"
-
-#: pe/ui/locations.cpp
-msgid "DEFAULT"
-msgstr "STANDARD"
 
 #. A per-game setting that follows the general setting; {0} is its value.
 #: pe/ui/game_options.cpp
@@ -1434,14 +1422,6 @@ msgstr "Spielelisten werden gelesen..."
 msgid "Reading..."
 msgstr "Wird gelesen..."
 
-#: pe/ui/locations.cpp
-msgid "HIDE"
-msgstr "AUSBLENDEN"
-
-#: pe/ui/locations.cpp
-msgid "Hide"
-msgstr "Ausblenden"
-
 #: pe/ui/settings.cpp
 msgid "Ready"
 msgstr "Bereit"
@@ -1765,10 +1745,6 @@ msgstr "System"
 #: pe/ui/browse.cpp
 msgid "Keys folder"
 msgstr "keys-Ordner"
-
-#: pe/ui/locations.cpp
-msgid "Keys, firmware and saves"
-msgstr "Keys, Firmware und Spielstände"
 
 #: eden_services.cpp
 msgid "Taiwan"
@@ -2217,14 +2193,6 @@ msgstr "{0} von {1} Mods aktiv"
 msgid "{0} of {1} on"
 msgstr "{0} von {1} aktiv"
 
-#: pe/ui/locations.cpp
-msgid "SHOW"
-msgstr "EINBLENDEN"
-
-#: pe/ui/locations.cpp
-msgid "Show"
-msgstr "Einblenden"
-
 #: pe/ui/settings.cpp
 msgid "{0} of {1} profiles"
 msgstr "{0} von {1} Profilen"
@@ -2284,10 +2252,6 @@ msgstr "Wählen Sie den Ordner mit den NCA-Dateien der Firmware"
 msgid "Choose the folder with one folder per game ID"
 msgstr "Wählen Sie den Ordner mit einem Ordner pro Spiel-ID"
 
-#: pe/ui/locations.cpp
-msgid "Choose the keys, firmware, save import and save export folders on their own. Until you do, they are inside the game files folder."
-msgstr "Wählen Sie die Ordner für keys, Firmware sowie Spielstand-Import und -Export einzeln. Solange Sie das nicht tun, liegen sie im Ordner für Spieldateien."
-
 #: pe/ui/browse.cpp
 msgid "Choose where exported saves are written"
 msgstr "Wählen Sie, wohin exportierte Spielstände geschrieben werden"
@@ -2304,14 +2268,6 @@ msgstr "NÄCHSTER START"
 #: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "No updates folder"
 msgstr "Kein updates-Ordner"
-
-#: pe/ui/locations.cpp
-msgid "SAVE EXPORT"
-msgstr "SPIELSTAND-EXPORT"
-
-#: pe/ui/locations.cpp
-msgid "SAVE IMPORT"
-msgstr "SPIELSTAND-IMPORT"
 
 #: pe/ui/browse.cpp
 msgid "Save export folder"
@@ -2330,10 +2286,6 @@ msgid "Saves to import go here, one folder per game ID. TRIANGLE uses the folder
 msgstr "Zu importierende Spielstände kommen hierher, ein Ordner pro Spiel-ID. DREIECK verwendet den angezeigten Ordner; QUADRAT setzt auf den Standard zurück."
 
 #: pe/ui/locations.cpp
-msgid "Saves to import, one folder per game ID. Until you choose one, it is save-import in the game files folder."
-msgstr "Zu importierende Spielstände, ein Ordner pro Spiel-ID. Solange Sie keinen wählen, ist es save-import im Ordner für Spieldateien."
-
-#: pe/ui/locations.cpp
 msgid "Square again takes {0} off the list. Its games stay where they are."
 msgstr "Noch einmal Quadrat entfernt {0} aus der Liste. Die Spiele bleiben, wo sie sind."
 
@@ -2348,14 +2300,6 @@ msgstr "Der angezeigte Ordner muss prod.keys enthalten. DREIECK verwendet ihn; Q
 #: pe/ui/browse.cpp
 msgid "The folder shown must hold the firmware NCA files. TRIANGLE uses it; SQUARE goes back to the default."
 msgstr "Der angezeigte Ordner muss die NCA-Dateien der Firmware enthalten. DREIECK verwendet ihn; QUADRAT setzt auf den Standard zurück."
-
-#: pe/ui/locations.cpp
-msgid "The folder that holds prod.keys. Until you choose one, it is keys in the game files folder."
-msgstr "Der Ordner mit prod.keys. Solange Sie keinen wählen, ist es keys im Ordner für Spieldateien."
-
-#: pe/ui/locations.cpp
-msgid "The folder that holds the firmware NCA files. Until you choose one, it is firmware in the game files folder."
-msgstr "Der Ordner mit den NCA-Dateien der Firmware. Solange Sie keinen wählen, ist es firmware im Ordner für Spieldateien."
 
 #: pe/ui/browse.cpp
 msgid "The list is full. Remove a folder first."
@@ -2376,10 +2320,6 @@ msgstr "Dieser Ordner ist bereits in der Liste."
 #: pe/ui/browse.cpp
 msgid "This folder needs a roms folder."
 msgstr "Dieser Ordner braucht einen roms-Ordner."
-
-#: pe/ui/locations.cpp
-msgid "This is the default folder already."
-msgstr "Das ist bereits der Standardordner."
 
 #: pe/ui/browse.cpp
 msgid "This is the game files folder already."
@@ -2413,10 +2353,6 @@ msgstr "{0} liegt an mehr als einem Ort. Wählen Sie, welches startet."
 msgid "The folder that holds your keys, firmware and games, and more places for games."
 msgstr "Der Ordner mit Ihren keys, Ihrer Firmware und Ihren Spielen sowie weitere Orte für Spiele."
 
-#: pe/ui/locations.cpp
-msgid "Where exported saves are written. Until you choose one, it is save-export in the game files folder."
-msgstr "Wohin exportierte Spielstände geschrieben werden. Solange Sie keinen wählen, ist es save-export im Ordner für Spieldateien."
-
 msgid "Available in more than one place. Choose which one to start."
 msgstr "Auf mehr als einem Speicherort verfügbar. Wähle aus, welcher gestartet wird."
 
@@ -2432,14 +2368,20 @@ msgstr "Die ROM konnte aus diesem Ordner nicht gelöscht werden."
 msgid "Deleted from this folder."
 msgstr "Aus diesem Ordner gelöscht."
 
-msgid "Extended storage"
-msgstr "Erweiterter Speicher"
+msgid "PATH TIPS"
+msgstr "PFADTIPPS"
 
-msgid "External HD or SSD"
-msgstr "Externe HDD oder SSD"
+msgid "EXTENDED STORAGE"
+msgstr "ERWEITERTER SPEICHER"
 
-msgid "Path tips"
-msgstr "Pfadtipps"
+msgid "EXTERNAL HD OR SSD"
+msgstr "EXTERNE HDD ODER SSD"
 
-msgid "Press Square again to delete this copy from {0}. Its updates and mods stay."
-msgstr "Drücke Viereck erneut, um diese Kopie aus {0} zu löschen. Updates und Mods bleiben erhalten."
+msgid "Delete {0}?"
+msgstr "{0} löschen?"
+
+msgid "Also delete the duplicated updates and DLC in this folder."
+msgstr "Auch die doppelten Updates und DLCs in diesem Ordner löschen."
+
+msgid "Confirm"
+msgstr "Bestätigen"

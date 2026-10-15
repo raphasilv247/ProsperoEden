@@ -84,10 +84,6 @@ msgstr "Adăugat la descărcări. Setări, Descărcări afișează coada."
 msgid "Added. Cross plays as this profile; left and right change its name."
 msgstr "Adăugat. Cruce joacă cu acest profil; stânga și dreapta îi schimbă numele."
 
-#: pe/ui/locations.cpp
-msgid "ADVANCED"
-msgstr "AVANSAT"
-
 #: pe/ui/browse.cpp
 msgid "All credit for the Eden emulator goes to its developers and contributors."
 msgstr "Tot meritul pentru emulatorul Eden le revine dezvoltatorilor și contribuitorilor săi."
@@ -402,14 +398,6 @@ msgstr "Credite și configurare"
 #: pe/ui/game_options.cpp
 msgid "Cross"
 msgstr "Cruce"
-
-#: pe/ui/locations.cpp
-msgid "CUSTOM"
-msgstr "PERSONALIZAT"
-
-#: pe/ui/locations.cpp
-msgid "DEFAULT"
-msgstr "IMPLICIT"
 
 #. A per-game setting that follows the general setting; {0} is its value.
 #: pe/ui/game_options.cpp
@@ -1434,14 +1422,6 @@ msgstr "Se citesc listele de jocuri..."
 msgid "Reading..."
 msgstr "Se citește..."
 
-#: pe/ui/locations.cpp
-msgid "HIDE"
-msgstr "ASCUNDE"
-
-#: pe/ui/locations.cpp
-msgid "Hide"
-msgstr "Ascunde"
-
 #: pe/ui/settings.cpp
 msgid "Ready"
 msgstr "Gata"
@@ -1765,10 +1745,6 @@ msgstr "Sistem"
 #: pe/ui/browse.cpp
 msgid "Keys folder"
 msgstr "Dosarul keys"
-
-#: pe/ui/locations.cpp
-msgid "Keys, firmware and saves"
-msgstr "Keys, firmware și salvări"
 
 #: eden_services.cpp
 msgid "Taiwan"
@@ -2217,14 +2193,6 @@ msgstr "Moduri activate: {0} din {1}"
 msgid "{0} of {1} on"
 msgstr "{0} din {1} activate"
 
-#: pe/ui/locations.cpp
-msgid "SHOW"
-msgstr "AFIȘEAZĂ"
-
-#: pe/ui/locations.cpp
-msgid "Show"
-msgstr "Afișează"
-
 #: pe/ui/settings.cpp
 msgid "{0} of {1} profiles"
 msgstr "{0} din {1} profiluri"
@@ -2284,10 +2252,6 @@ msgstr "Alege dosarul care conține fișierele NCA ale firmware-ului"
 msgid "Choose the folder with one folder per game ID"
 msgstr "Alege dosarul cu câte un dosar pentru fiecare ID de joc"
 
-#: pe/ui/locations.cpp
-msgid "Choose the keys, firmware, save import and save export folders on their own. Until you do, they are inside the game files folder."
-msgstr "Alege separat dosarele pentru keys, firmware, importul salvărilor și exportul salvărilor. Până atunci, sunt în dosarul cu fișierele de joc."
-
 #: pe/ui/browse.cpp
 msgid "Choose where exported saves are written"
 msgstr "Alege unde se scriu salvările exportate"
@@ -2304,14 +2268,6 @@ msgstr "DUPĂ REPORNIRE"
 #: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "No updates folder"
 msgstr "Niciun dosar updates"
-
-#: pe/ui/locations.cpp
-msgid "SAVE EXPORT"
-msgstr "EXPORT SALVĂRI"
-
-#: pe/ui/locations.cpp
-msgid "SAVE IMPORT"
-msgstr "IMPORT SALVĂRI"
 
 #: pe/ui/browse.cpp
 msgid "Save export folder"
@@ -2330,10 +2286,6 @@ msgid "Saves to import go here, one folder per game ID. TRIANGLE uses the folder
 msgstr "Salvările de importat se pun aici, câte un dosar pentru fiecare ID de joc. TRIUNGHI folosește dosarul afișat; PĂTRAT revine la cel implicit."
 
 #: pe/ui/locations.cpp
-msgid "Saves to import, one folder per game ID. Until you choose one, it is save-import in the game files folder."
-msgstr "Salvările de importat, câte un dosar pentru fiecare ID de joc. Până alegi unul, este save-import în dosarul cu fișierele de joc."
-
-#: pe/ui/locations.cpp
 msgid "Square again takes {0} off the list. Its games stay where they are."
 msgstr "Pătrat din nou scoate {0} din listă. Jocurile lui rămân unde sunt."
 
@@ -2348,14 +2300,6 @@ msgstr "Dosarul afișat trebuie să conțină prod.keys. TRIUNGHI îl folosește
 #: pe/ui/browse.cpp
 msgid "The folder shown must hold the firmware NCA files. TRIANGLE uses it; SQUARE goes back to the default."
 msgstr "Dosarul afișat trebuie să conțină fișierele NCA ale firmware-ului. TRIUNGHI îl folosește; PĂTRAT revine la cel implicit."
-
-#: pe/ui/locations.cpp
-msgid "The folder that holds prod.keys. Until you choose one, it is keys in the game files folder."
-msgstr "Dosarul care conține prod.keys. Până alegi unul, este keys în dosarul cu fișierele de joc."
-
-#: pe/ui/locations.cpp
-msgid "The folder that holds the firmware NCA files. Until you choose one, it is firmware in the game files folder."
-msgstr "Dosarul care conține fișierele NCA ale firmware-ului. Până alegi unul, este firmware în dosarul cu fișierele de joc."
 
 #: pe/ui/browse.cpp
 msgid "The list is full. Remove a folder first."
@@ -2376,10 +2320,6 @@ msgstr "Acest dosar este deja în listă."
 #: pe/ui/browse.cpp
 msgid "This folder needs a roms folder."
 msgstr "Acest dosar are nevoie de un dosar roms."
-
-#: pe/ui/locations.cpp
-msgid "This is the default folder already."
-msgstr "Acesta este deja dosarul implicit."
 
 #: pe/ui/browse.cpp
 msgid "This is the game files folder already."
@@ -2413,10 +2353,6 @@ msgstr "{0} se află în mai multe locuri. Alege care pornește."
 msgid "The folder that holds your keys, firmware and games, and more places for games."
 msgstr "Dosarul cu keys, firmware și jocurile tale, plus alte locuri pentru jocuri."
 
-#: pe/ui/locations.cpp
-msgid "Where exported saves are written. Until you choose one, it is save-export in the game files folder."
-msgstr "Unde se scriu salvările exportate. Până alegi unul, este save-export în dosarul cu fișierele de joc."
-
 msgid "Available in more than one place. Choose which one to start."
 msgstr "Disponibil în mai mult de un loc. Alege care să pornească."
 
@@ -2432,14 +2368,20 @@ msgstr "ROM-ul nu a putut fi șters din acest dosar."
 msgid "Deleted from this folder."
 msgstr "Șters din acest dosar."
 
-msgid "Extended storage"
-msgstr "Stocare extinsă"
+msgid "PATH TIPS"
+msgstr "SFATURI PENTRU CĂI"
 
-msgid "External HD or SSD"
-msgstr "HDD sau SSD extern"
+msgid "EXTENDED STORAGE"
+msgstr "STOCARE EXTINSĂ"
 
-msgid "Path tips"
-msgstr "Sfaturi pentru căi"
+msgid "EXTERNAL HD OR SSD"
+msgstr "HDD SAU SSD EXTERN"
 
-msgid "Press Square again to delete this copy from {0}. Its updates and mods stay."
-msgstr "Apasă din nou Pătrat ca să ștergi această copie din {0}. Actualizările și mod-urile rămân."
+msgid "Delete {0}?"
+msgstr "Ștergi {0}?"
+
+msgid "Also delete the duplicated updates and DLC in this folder."
+msgstr "Șterge și actualizările și DLC-urile duplicate din acest dosar."
+
+msgid "Confirm"
+msgstr "Confirmă"

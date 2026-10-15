@@ -84,10 +84,6 @@ msgstr "다운로드에 추가했습니다. 설정, 다운로드에서 대기열
 msgid "Added. Cross plays as this profile; left and right change its name."
 msgstr "추가했습니다. 엑스로 이 프로필로 플레이하고, 좌우로 이름을 바꿉니다."
 
-#: pe/ui/locations.cpp
-msgid "ADVANCED"
-msgstr "고급"
-
 #: pe/ui/browse.cpp
 msgid "All credit for the Eden emulator goes to its developers and contributors."
 msgstr "Eden 에뮬레이터의 모든 공로는 개발자와 기여자에게 있습니다."
@@ -402,14 +398,6 @@ msgstr "크레딧 및 설정 안내"
 #: pe/ui/game_options.cpp
 msgid "Cross"
 msgstr "엑스"
-
-#: pe/ui/locations.cpp
-msgid "CUSTOM"
-msgstr "사용자 지정"
-
-#: pe/ui/locations.cpp
-msgid "DEFAULT"
-msgstr "기본값"
 
 #. A per-game setting that follows the general setting; {0} is its value.
 #: pe/ui/game_options.cpp
@@ -1434,14 +1422,6 @@ msgstr "게임 목록을 읽는 중..."
 msgid "Reading..."
 msgstr "읽는 중..."
 
-#: pe/ui/locations.cpp
-msgid "HIDE"
-msgstr "숨기기"
-
-#: pe/ui/locations.cpp
-msgid "Hide"
-msgstr "숨기기"
-
 #: pe/ui/settings.cpp
 msgid "Ready"
 msgstr "준비됨"
@@ -1765,10 +1745,6 @@ msgstr "시스템"
 #: pe/ui/browse.cpp
 msgid "Keys folder"
 msgstr "keys 폴더"
-
-#: pe/ui/locations.cpp
-msgid "Keys, firmware and saves"
-msgstr "keys, firmware, 세이브 데이터"
 
 #: eden_services.cpp
 msgid "Taiwan"
@@ -2217,14 +2193,6 @@ msgstr "모드 {1}개 중 {0}개 켜짐"
 msgid "{0} of {1} on"
 msgstr "{1}개 중 {0}개 켜짐"
 
-#: pe/ui/locations.cpp
-msgid "SHOW"
-msgstr "표시"
-
-#: pe/ui/locations.cpp
-msgid "Show"
-msgstr "표시"
-
 #: pe/ui/settings.cpp
 msgid "{0} of {1} profiles"
 msgstr "프로필 {1}개 중 {0}개"
@@ -2284,10 +2252,6 @@ msgstr "펌웨어 NCA 파일이 들어 있는 폴더를 선택하세요"
 msgid "Choose the folder with one folder per game ID"
 msgstr "게임 ID마다 폴더가 하나씩 있는 폴더를 선택하세요"
 
-#: pe/ui/locations.cpp
-msgid "Choose the keys, firmware, save import and save export folders on their own. Until you do, they are inside the game files folder."
-msgstr "keys, firmware, 세이브 데이터 가져오기, 세이브 데이터 내보내기 폴더를 따로 선택하세요. 선택하기 전까지는 게임 파일 폴더 안에 있습니다."
-
 #: pe/ui/browse.cpp
 msgid "Choose where exported saves are written"
 msgstr "내보낸 세이브 데이터를 저장할 위치를 선택하세요"
@@ -2304,14 +2268,6 @@ msgstr "다음 실행"
 #: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "No updates folder"
 msgstr "updates 폴더 없음"
-
-#: pe/ui/locations.cpp
-msgid "SAVE EXPORT"
-msgstr "세이브 데이터 내보내기"
-
-#: pe/ui/locations.cpp
-msgid "SAVE IMPORT"
-msgstr "세이브 데이터 가져오기"
 
 #: pe/ui/browse.cpp
 msgid "Save export folder"
@@ -2330,10 +2286,6 @@ msgid "Saves to import go here, one folder per game ID. TRIANGLE uses the folder
 msgstr "가져올 세이브 데이터는 여기에 넣습니다. 게임 ID마다 폴더 하나씩입니다. 세모는 표시된 폴더를 사용하고, 네모는 기본값으로 되돌립니다."
 
 #: pe/ui/locations.cpp
-msgid "Saves to import, one folder per game ID. Until you choose one, it is save-import in the game files folder."
-msgstr "가져올 세이브 데이터, 게임 ID마다 폴더 하나씩. 선택하기 전까지는 게임 파일 폴더의 save-import입니다."
-
-#: pe/ui/locations.cpp
 msgid "Square again takes {0} off the list. Its games stay where they are."
 msgstr "네모를 한 번 더 누르면 {0}을(를) 목록에서 제거합니다. 게임은 그대로 남습니다."
 
@@ -2348,14 +2300,6 @@ msgstr "표시된 폴더에 prod.keys가 있어야 합니다. 세모로 사용�
 #: pe/ui/browse.cpp
 msgid "The folder shown must hold the firmware NCA files. TRIANGLE uses it; SQUARE goes back to the default."
 msgstr "표시된 폴더에 펌웨어 NCA 파일이 있어야 합니다. 세모로 사용하고, 네모로 기본값으로 되돌립니다."
-
-#: pe/ui/locations.cpp
-msgid "The folder that holds prod.keys. Until you choose one, it is keys in the game files folder."
-msgstr "prod.keys가 들어 있는 폴더. 선택하기 전까지는 게임 파일 폴더의 keys입니다."
-
-#: pe/ui/locations.cpp
-msgid "The folder that holds the firmware NCA files. Until you choose one, it is firmware in the game files folder."
-msgstr "펌웨어 NCA 파일이 들어 있는 폴더. 선택하기 전까지는 게임 파일 폴더의 firmware입니다."
 
 #: pe/ui/browse.cpp
 msgid "The list is full. Remove a folder first."
@@ -2376,10 +2320,6 @@ msgstr "이 폴더는 이미 목록에 있습니다."
 #: pe/ui/browse.cpp
 msgid "This folder needs a roms folder."
 msgstr "이 폴더에는 roms 폴더가 필요합니다."
-
-#: pe/ui/locations.cpp
-msgid "This is the default folder already."
-msgstr "이미 기본 폴더입니다."
 
 #: pe/ui/browse.cpp
 msgid "This is the game files folder already."
@@ -2413,10 +2353,6 @@ msgstr "{0}이(가) 여러 곳에 있습니다. 어느 쪽을 실행할지 선�
 msgid "The folder that holds your keys, firmware and games, and more places for games."
 msgstr "keys, firmware, 게임이 들어 있는 폴더와 게임을 둘 다른 위치입니다."
 
-#: pe/ui/locations.cpp
-msgid "Where exported saves are written. Until you choose one, it is save-export in the game files folder."
-msgstr "내보낸 세이브 데이터가 저장되는 위치. 선택하기 전까지는 게임 파일 폴더의 save-export입니다."
-
 msgid "Available in more than one place. Choose which one to start."
 msgstr "여러 위치에 있습니다. 시작할 위치를 고르세요."
 
@@ -2432,14 +2368,20 @@ msgstr "이 폴더에서 ROM을 삭제할 수 없습니다."
 msgid "Deleted from this folder."
 msgstr "이 폴더에서 삭제했습니다."
 
-msgid "Extended storage"
-msgstr "확장 저장공간"
-
-msgid "External HD or SSD"
-msgstr "외장 HDD 또는 SSD"
-
-msgid "Path tips"
+msgid "PATH TIPS"
 msgstr "경로 팁"
 
-msgid "Press Square again to delete this copy from {0}. Its updates and mods stay."
-msgstr "사각형 버튼을 한 번 더 누르면 {0}에서 이 사본을 삭제합니다. 업데이트와 모드는 남습니다."
+msgid "EXTENDED STORAGE"
+msgstr "확장 저장공간"
+
+msgid "EXTERNAL HD OR SSD"
+msgstr "외장 HDD 또는 SSD"
+
+msgid "Delete {0}?"
+msgstr "{0}을(를) 삭제할까요?"
+
+msgid "Also delete the duplicated updates and DLC in this folder."
+msgstr "이 폴더의 중복 업데이트와 DLC도 삭제"
+
+msgid "Confirm"
+msgstr "확인"

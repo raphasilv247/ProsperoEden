@@ -90,8 +90,6 @@ class Launcher
             main,     // the game files folder
             folder,   // an extra game folder (index into library_folders_)
             add,      // "Add game folder"
-            advanced, // shows or hides the rows below
-            storage,  // keys, firmware, save import or save export (index is the StorageRole)
         };
         Kind kind = Kind::main;
         int index = 0;
@@ -120,6 +118,7 @@ class Launcher
         pairing,      // a profile paired with a server by a QR code (pairing.cpp)
         theme,        // Settings > Theme: the launcher's look
         place,        // a game found in more than one place: which one starts (library.cpp)
+        place_delete, // the confirmation for deleting one copy of such a game
     };
     // The update dialog's steps: the offer, installing, stopping it, closing for the helper to
     // finish, and a failure.
@@ -241,6 +240,10 @@ class Launcher
                     std::vector<GamePlace> places);
     void press_place(Key key);
     void draw_place(Canvas &c, float open);
+    // Deleting one copy from the duplicate question: asks first, Cancel is the cursor's start.
+    void open_place_delete(int row);
+    void press_place_delete(Key key);
+    void draw_place_delete(Canvas &c, float open);
     // The game's format as the list shows it: "NSP | EXT0"; "NSP | EXT0 & SSD" for a duplicate.
     static std::string format_text(const Game &game);
 
@@ -549,9 +552,10 @@ class Launcher
     ListView place_rows_;
     // The place picked for the game being started: its full path, empty while none is picked.
     std::string place_path_;
-    // Square once asks, again deletes: the row it was pressed on.
-    bool place_delete_armed_ = false;
-    int place_delete_row_ = -1;
+    // The copy the confirmation is about, and its options (cursor: 0 Cancel, 1 Confirm, 2 the box).
+    std::string delete_file_, delete_title_, delete_folder_, delete_label_, delete_size_;
+    bool delete_addons_shown_ = false, delete_addons_checked_ = false;
+    int delete_cursor_ = 0;
     // The Mods list's rows: each mod, then its cheats when it lists several.
     struct ModRow
     {

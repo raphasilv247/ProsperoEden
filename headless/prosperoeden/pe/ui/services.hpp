@@ -670,11 +670,16 @@ class Services
     {
         return false;
     }
-    // Deletes the ROM of one copy of a game, the one in the game folder given. Its updates and mods
-    // stay. Only for a game that is in more than one place (library.cpp).
-    virtual bool delete_place(const std::string &, const std::string &)
+    // Deletes the ROM of one copy of a game, the one in the game folder given, and with `addons` its
+    // updates and DLC in that folder's updates/ too (library.cpp, the duplicate question).
+    virtual bool delete_place(const std::string &, const std::string &, bool)
     {
         return false;
+    }
+    // How many updates and DLC of a game the game folder given has in its updates/.
+    virtual int place_addon_count(const std::string &, const std::string &)
+    {
+        return 0;
     }
 
     // ---- save sync: a game's save data in step with the profile's save store ----

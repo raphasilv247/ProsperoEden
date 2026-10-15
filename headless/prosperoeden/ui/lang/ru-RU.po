@@ -84,10 +84,6 @@ msgstr "Добавлено в загрузки. Очередь — в разде
 msgid "Added. Cross plays as this profile; left and right change its name."
 msgstr "Добавлено. Крест — играть этим профилем; влево и вправо меняют имя."
 
-#: pe/ui/locations.cpp
-msgid "ADVANCED"
-msgstr "РАСШИРЕННЫЕ"
-
 #: pe/ui/browse.cpp
 msgid "All credit for the Eden emulator goes to its developers and contributors."
 msgstr "Эмулятор Eden — целиком заслуга его разработчиков и участников проекта."
@@ -402,14 +398,6 @@ msgstr "Авторы и начало работы"
 #: pe/ui/game_options.cpp
 msgid "Cross"
 msgstr "Крест"
-
-#: pe/ui/locations.cpp
-msgid "CUSTOM"
-msgstr "СВОЯ"
-
-#: pe/ui/locations.cpp
-msgid "DEFAULT"
-msgstr "ПО УМОЛЧАНИЮ"
 
 #. A per-game setting that follows the general setting; {0} is its value.
 #: pe/ui/game_options.cpp
@@ -1434,14 +1422,6 @@ msgstr "Чтение списков игр..."
 msgid "Reading..."
 msgstr "Чтение..."
 
-#: pe/ui/locations.cpp
-msgid "HIDE"
-msgstr "СКРЫТЬ"
-
-#: pe/ui/locations.cpp
-msgid "Hide"
-msgstr "Скрыть"
-
 #: pe/ui/settings.cpp
 msgid "Ready"
 msgstr "Готово"
@@ -1765,10 +1745,6 @@ msgstr "Система"
 #: pe/ui/browse.cpp
 msgid "Keys folder"
 msgstr "Папка keys"
-
-#: pe/ui/locations.cpp
-msgid "Keys, firmware and saves"
-msgstr "Keys, firmware и сохранения"
 
 #: eden_services.cpp
 msgid "Taiwan"
@@ -2217,14 +2193,6 @@ msgstr "Включено модов: {0} из {1}"
 msgid "{0} of {1} on"
 msgstr "Включено: {0} из {1}"
 
-#: pe/ui/locations.cpp
-msgid "SHOW"
-msgstr "ПОКАЗАТЬ"
-
-#: pe/ui/locations.cpp
-msgid "Show"
-msgstr "Показать"
-
 #: pe/ui/settings.cpp
 msgid "{0} of {1} profiles"
 msgstr "Профилей: {0} из {1}"
@@ -2284,10 +2252,6 @@ msgstr "Выберите папку с NCA-файлами прошивки"
 msgid "Choose the folder with one folder per game ID"
 msgstr "Выберите папку с отдельной папкой для каждого ID игры"
 
-#: pe/ui/locations.cpp
-msgid "Choose the keys, firmware, save import and save export folders on their own. Until you do, they are inside the game files folder."
-msgstr "Выберите папки для keys, firmware, импорта сохранений и экспорта сохранений отдельно. Пока вы этого не сделали, они находятся в папке с файлами игр."
-
 #: pe/ui/browse.cpp
 msgid "Choose where exported saves are written"
 msgstr "Выберите, куда записывать экспортированные сохранения"
@@ -2304,14 +2268,6 @@ msgstr "ПОСЛЕ ПЕРЕЗАПУСКА"
 #: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "No updates folder"
 msgstr "Нет папки updates"
-
-#: pe/ui/locations.cpp
-msgid "SAVE EXPORT"
-msgstr "ЭКСПОРТ СОХРАНЕНИЙ"
-
-#: pe/ui/locations.cpp
-msgid "SAVE IMPORT"
-msgstr "ИМПОРТ СОХРАНЕНИЙ"
 
 #: pe/ui/browse.cpp
 msgid "Save export folder"
@@ -2330,10 +2286,6 @@ msgid "Saves to import go here, one folder per game ID. TRIANGLE uses the folder
 msgstr "Сохранения для импорта кладут сюда, по одной папке на ID игры. ТРЕУГОЛЬНИК использует показанную папку; КВАДРАТ возвращает папку по умолчанию."
 
 #: pe/ui/locations.cpp
-msgid "Saves to import, one folder per game ID. Until you choose one, it is save-import in the game files folder."
-msgstr "Сохранения для импорта, по одной папке на ID игры. Пока вы не выберете папку, это save-import в папке с файлами игр."
-
-#: pe/ui/locations.cpp
 msgid "Square again takes {0} off the list. Its games stay where they are."
 msgstr "Ещё одно нажатие квадрата уберёт {0} из списка. Её игры останутся на месте."
 
@@ -2348,14 +2300,6 @@ msgstr "Показанная папка должна содержать prod.key
 #: pe/ui/browse.cpp
 msgid "The folder shown must hold the firmware NCA files. TRIANGLE uses it; SQUARE goes back to the default."
 msgstr "Показанная папка должна содержать NCA-файлы прошивки. ТРЕУГОЛЬНИК использует её; КВАДРАТ возвращает папку по умолчанию."
-
-#: pe/ui/locations.cpp
-msgid "The folder that holds prod.keys. Until you choose one, it is keys in the game files folder."
-msgstr "Папка, в которой лежит prod.keys. Пока вы не выберете папку, это keys в папке с файлами игр."
-
-#: pe/ui/locations.cpp
-msgid "The folder that holds the firmware NCA files. Until you choose one, it is firmware in the game files folder."
-msgstr "Папка с NCA-файлами прошивки. Пока вы не выберете папку, это firmware в папке с файлами игр."
 
 #: pe/ui/browse.cpp
 msgid "The list is full. Remove a folder first."
@@ -2376,10 +2320,6 @@ msgstr "Эта папка уже в списке."
 #: pe/ui/browse.cpp
 msgid "This folder needs a roms folder."
 msgstr "В этой папке должна быть папка roms."
-
-#: pe/ui/locations.cpp
-msgid "This is the default folder already."
-msgstr "Это уже папка по умолчанию."
 
 #: pe/ui/browse.cpp
 msgid "This is the game files folder already."
@@ -2413,10 +2353,6 @@ msgstr "{0} есть в нескольких местах. Выберите, к�
 msgid "The folder that holds your keys, firmware and games, and more places for games."
 msgstr "Папка с вашими keys, firmware и играми, а также другие места для игр."
 
-#: pe/ui/locations.cpp
-msgid "Where exported saves are written. Until you choose one, it is save-export in the game files folder."
-msgstr "Куда записываются экспортированные сохранения. Пока вы не выберете папку, это save-export в папке с файлами игр."
-
 msgid "Available in more than one place. Choose which one to start."
 msgstr "Есть в нескольких местах. Выберите, откуда запустить."
 
@@ -2432,14 +2368,20 @@ msgstr "Не удалось удалить ROM из этой папки."
 msgid "Deleted from this folder."
 msgstr "Удалено из этой папки."
 
-msgid "Extended storage"
-msgstr "Расширенное хранилище"
+msgid "PATH TIPS"
+msgstr "ПОДСКАЗКИ ПО ПУТЯМ"
 
-msgid "External HD or SSD"
-msgstr "Внешний HDD или SSD"
+msgid "EXTENDED STORAGE"
+msgstr "РАСШИРЕННОЕ ХРАНИЛИЩЕ"
 
-msgid "Path tips"
-msgstr "Подсказки по путям"
+msgid "EXTERNAL HD OR SSD"
+msgstr "ВНЕШНИЙ HDD ИЛИ SSD"
 
-msgid "Press Square again to delete this copy from {0}. Its updates and mods stay."
-msgstr "Нажмите Квадрат ещё раз, чтобы удалить эту копию из {0}. Обновления и моды останутся."
+msgid "Delete {0}?"
+msgstr "Удалить {0}?"
+
+msgid "Also delete the duplicated updates and DLC in this folder."
+msgstr "Также удалить дублирующиеся обновления и DLC в этой папке."
+
+msgid "Confirm"
+msgstr "Подтвердить"

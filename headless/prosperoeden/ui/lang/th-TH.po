@@ -84,10 +84,6 @@ msgstr "เพิ่ม​ใน​การ​ดาวน์โหลด​แ
 msgid "Added. Cross plays as this profile; left and right change its name."
 msgstr "เพิ่ม​แล้ว กากบาท​เล่น​ด้วย​โปรไฟล์​นี้ ซ้าย​และ​ขวา​เปลี่ยน​ชื่อ"
 
-#: pe/ui/locations.cpp
-msgid "ADVANCED"
-msgstr "ขั้นสูง"
-
 #: pe/ui/browse.cpp
 msgid "All credit for the Eden emulator goes to its developers and contributors."
 msgstr "เครดิต​ทั้งหมด​ของ​อีมูเลเตอร์ Eden ​เป็นของ​นักพัฒนา​และ​ผู้ร่วมพัฒนา"
@@ -402,14 +398,6 @@ msgstr "เครดิตและการเตรียมระบบ"
 #: pe/ui/game_options.cpp
 msgid "Cross"
 msgstr "กากบาท"
-
-#: pe/ui/locations.cpp
-msgid "CUSTOM"
-msgstr "กำหนดเอง"
-
-#: pe/ui/locations.cpp
-msgid "DEFAULT"
-msgstr "ค่าเริ่มต้น"
 
 #. A per-game setting that follows the general setting; {0} is its value.
 #: pe/ui/game_options.cpp
@@ -1434,14 +1422,6 @@ msgstr "กำลัง​อ่าน​รายการ​เกม..."
 msgid "Reading..."
 msgstr "กำลังอ่าน..."
 
-#: pe/ui/locations.cpp
-msgid "HIDE"
-msgstr "ซ่อน"
-
-#: pe/ui/locations.cpp
-msgid "Hide"
-msgstr "ซ่อน"
-
 #: pe/ui/settings.cpp
 msgid "Ready"
 msgstr "พร้อม"
@@ -1765,10 +1745,6 @@ msgstr "ระบบ"
 #: pe/ui/browse.cpp
 msgid "Keys folder"
 msgstr "โฟลเดอร์ keys"
-
-#: pe/ui/locations.cpp
-msgid "Keys, firmware and saves"
-msgstr "keys, firmware และเซฟ"
 
 #: eden_services.cpp
 msgid "Taiwan"
@@ -2217,14 +2193,6 @@ msgstr "เปิด​ม็อด {0} จาก {1}"
 msgid "{0} of {1} on"
 msgstr "เปิด {0} จาก {1}"
 
-#: pe/ui/locations.cpp
-msgid "SHOW"
-msgstr "แสดง"
-
-#: pe/ui/locations.cpp
-msgid "Show"
-msgstr "แสดง"
-
 #: pe/ui/settings.cpp
 msgid "{0} of {1} profiles"
 msgstr "{0} จาก {1} โปรไฟล์"
@@ -2284,10 +2252,6 @@ msgstr "เลือกโฟลเดอร์ที่มีไฟล์ NCA �
 msgid "Choose the folder with one folder per game ID"
 msgstr "เลือกโฟลเดอร์ที่มีโฟลเดอร์แยกตามไอดีเกม"
 
-#: pe/ui/locations.cpp
-msgid "Choose the keys, firmware, save import and save export folders on their own. Until you do, they are inside the game files folder."
-msgstr "เลือกโฟลเดอร์ keys, firmware, นำเข้าเซฟ และส่งออกเซฟแยกกันได้ จนกว่าจะเลือก โฟลเดอร์เหล่านี้อยู่ในโฟลเดอร์ไฟล์เกม"
-
 #: pe/ui/browse.cpp
 msgid "Choose where exported saves are written"
 msgstr "เลือกที่เขียนเซฟที่ส่งออก"
@@ -2304,14 +2268,6 @@ msgstr "เปิดครั้งถัดไป"
 #: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "No updates folder"
 msgstr "ไม่มีโฟลเดอร์ updates"
-
-#: pe/ui/locations.cpp
-msgid "SAVE EXPORT"
-msgstr "ส่งออกเซฟ"
-
-#: pe/ui/locations.cpp
-msgid "SAVE IMPORT"
-msgstr "นำเข้าเซฟ"
 
 #: pe/ui/browse.cpp
 msgid "Save export folder"
@@ -2330,10 +2286,6 @@ msgid "Saves to import go here, one folder per game ID. TRIANGLE uses the folder
 msgstr "เซฟที่จะนำเข้าวางที่นี่ โฟลเดอร์ละหนึ่งไอดีเกม สามเหลี่ยมใช้โฟลเดอร์ที่แสดง สี่เหลี่ยมกลับไปใช้ค่าเริ่มต้น"
 
 #: pe/ui/locations.cpp
-msgid "Saves to import, one folder per game ID. Until you choose one, it is save-import in the game files folder."
-msgstr "เซฟที่จะนำเข้า โฟลเดอร์ละหนึ่งไอดีเกม จนกว่าจะเลือก จะใช้ save-import ในโฟลเดอร์ไฟล์เกม"
-
-#: pe/ui/locations.cpp
 msgid "Square again takes {0} off the list. Its games stay where they are."
 msgstr "กดสี่เหลี่ยมอีกครั้งเพื่อนำ {0} ออกจากรายการ เกมในนั้นยังอยู่ที่เดิม"
 
@@ -2348,14 +2300,6 @@ msgstr "โฟลเดอร์ที่แสดงต้องมี prod.key
 #: pe/ui/browse.cpp
 msgid "The folder shown must hold the firmware NCA files. TRIANGLE uses it; SQUARE goes back to the default."
 msgstr "โฟลเดอร์ที่แสดงต้องมีไฟล์ NCA ของเฟิร์มแวร์ สามเหลี่ยมใช้โฟลเดอร์นี้ สี่เหลี่ยมกลับไปใช้ค่าเริ่มต้น"
-
-#: pe/ui/locations.cpp
-msgid "The folder that holds prod.keys. Until you choose one, it is keys in the game files folder."
-msgstr "โฟลเดอร์ที่มี prod.keys จนกว่าจะเลือก จะใช้ keys ในโฟลเดอร์ไฟล์เกม"
-
-#: pe/ui/locations.cpp
-msgid "The folder that holds the firmware NCA files. Until you choose one, it is firmware in the game files folder."
-msgstr "โฟลเดอร์ที่มีไฟล์ NCA ของเฟิร์มแวร์ จนกว่าจะเลือก จะใช้ firmware ในโฟลเดอร์ไฟล์เกม"
 
 #: pe/ui/browse.cpp
 msgid "The list is full. Remove a folder first."
@@ -2376,10 +2320,6 @@ msgstr "โฟลเดอร์นี้อยู่ในรายการแ
 #: pe/ui/browse.cpp
 msgid "This folder needs a roms folder."
 msgstr "โฟลเดอร์นี้ต้องมีโฟลเดอร์ roms"
-
-#: pe/ui/locations.cpp
-msgid "This is the default folder already."
-msgstr "นี่คือโฟลเดอร์เริ่มต้นอยู่แล้ว"
 
 #: pe/ui/browse.cpp
 msgid "This is the game files folder already."
@@ -2413,10 +2353,6 @@ msgstr "{0} อยู่ในหลายที่ เลือกว่าจ�
 msgid "The folder that holds your keys, firmware and games, and more places for games."
 msgstr "โฟลเดอร์ที่มี keys, firmware และเกมของคุณ รวมถึงที่เก็บเกมเพิ่มเติม"
 
-#: pe/ui/locations.cpp
-msgid "Where exported saves are written. Until you choose one, it is save-export in the game files folder."
-msgstr "ที่ที่เขียนเซฟที่ส่งออก จนกว่าจะเลือก จะใช้ save-export ในโฟลเดอร์ไฟล์เกม"
-
 msgid "Available in more than one place. Choose which one to start."
 msgstr "มีในมากกว่าหนึ่งที่ เลือกว่าจะเริ่มจากที่ไหน"
 
@@ -2432,14 +2368,20 @@ msgstr "ไม่สามารถลบ ROM จากโฟลเดอร์�
 msgid "Deleted from this folder."
 msgstr "ลบจากโฟลเดอร์นี้แล้ว"
 
-msgid "Extended storage"
-msgstr "พื้นที่จัดเก็บขยาย"
-
-msgid "External HD or SSD"
-msgstr "ฮาร์ดดิสก์หรือ SSD ภายนอก"
-
-msgid "Path tips"
+msgid "PATH TIPS"
 msgstr "เคล็ดลับเกี่ยวกับเส้นทาง"
 
-msgid "Press Square again to delete this copy from {0}. Its updates and mods stay."
-msgstr "กดสี่เหลี่ยมอีกครั้งเพื่อลบสำเนานี้จาก {0} การอัปเดตและม็อดจะยังคงอยู่"
+msgid "EXTENDED STORAGE"
+msgstr "พื้นที่จัดเก็บขยาย"
+
+msgid "EXTERNAL HD OR SSD"
+msgstr "ฮาร์ดดิสก์หรือ SSD ภายนอก"
+
+msgid "Delete {0}?"
+msgstr "ลบ {0} หรือไม่?"
+
+msgid "Also delete the duplicated updates and DLC in this folder."
+msgstr "ลบการอัปเดตและ DLC ที่ซ้ำกันในโฟลเดอร์นี้ด้วย"
+
+msgid "Confirm"
+msgstr "ยืนยัน"

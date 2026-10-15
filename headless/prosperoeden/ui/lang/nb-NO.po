@@ -84,10 +84,6 @@ msgstr "Lagt til i nedlastinger. Innstillinger, Nedlastinger viser køen."
 msgid "Added. Cross plays as this profile; left and right change its name."
 msgstr "Lagt til. Kryss spiller som denne profilen; venstre og høyre endrer navnet."
 
-#: pe/ui/locations.cpp
-msgid "ADVANCED"
-msgstr "AVANSERT"
-
 #: pe/ui/browse.cpp
 msgid "All credit for the Eden emulator goes to its developers and contributors."
 msgstr "All ære for Eden-emulatoren går til utviklerne og bidragsyterne bak den."
@@ -402,14 +398,6 @@ msgstr "Medvirkende og oppsett"
 #: pe/ui/game_options.cpp
 msgid "Cross"
 msgstr "Kryss"
-
-#: pe/ui/locations.cpp
-msgid "CUSTOM"
-msgstr "EGENDEFINERT"
-
-#: pe/ui/locations.cpp
-msgid "DEFAULT"
-msgstr "STANDARD"
 
 #. A per-game setting that follows the general setting; {0} is its value.
 #: pe/ui/game_options.cpp
@@ -1434,14 +1422,6 @@ msgstr "Leser spillistene..."
 msgid "Reading..."
 msgstr "Leser..."
 
-#: pe/ui/locations.cpp
-msgid "HIDE"
-msgstr "SKJUL"
-
-#: pe/ui/locations.cpp
-msgid "Hide"
-msgstr "Skjul"
-
 #: pe/ui/settings.cpp
 msgid "Ready"
 msgstr "Klar"
@@ -1765,10 +1745,6 @@ msgstr "System"
 #: pe/ui/browse.cpp
 msgid "Keys folder"
 msgstr "Mappe for keys"
-
-#: pe/ui/locations.cpp
-msgid "Keys, firmware and saves"
-msgstr "Keys, firmware og lagrede data"
 
 #: eden_services.cpp
 msgid "Taiwan"
@@ -2217,14 +2193,6 @@ msgstr "{0} av {1} modder på"
 msgid "{0} of {1} on"
 msgstr "{0} av {1} på"
 
-#: pe/ui/locations.cpp
-msgid "SHOW"
-msgstr "VIS"
-
-#: pe/ui/locations.cpp
-msgid "Show"
-msgstr "Vis"
-
 #: pe/ui/settings.cpp
 msgid "{0} of {1} profiles"
 msgstr "{0} av {1} profiler"
@@ -2284,10 +2252,6 @@ msgstr "Velg mappen som inneholder NCA-filene til firmwaren"
 msgid "Choose the folder with one folder per game ID"
 msgstr "Velg mappen med én mappe per spill-ID"
 
-#: pe/ui/locations.cpp
-msgid "Choose the keys, firmware, save import and save export folders on their own. Until you do, they are inside the game files folder."
-msgstr "Velg mappene for keys, firmware, import av lagrede data og eksport av lagrede data hver for seg. Inntil du gjør det, ligger de i mappen med spillfiler."
-
 #: pe/ui/browse.cpp
 msgid "Choose where exported saves are written"
 msgstr "Velg hvor eksporterte lagrede data skrives"
@@ -2304,14 +2268,6 @@ msgstr "NESTE START"
 #: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "No updates folder"
 msgstr "Ingen updates-mappe"
-
-#: pe/ui/locations.cpp
-msgid "SAVE EXPORT"
-msgstr "EKSPORT AV LAGREDE DATA"
-
-#: pe/ui/locations.cpp
-msgid "SAVE IMPORT"
-msgstr "IMPORT AV LAGREDE DATA"
 
 #: pe/ui/browse.cpp
 msgid "Save export folder"
@@ -2330,10 +2286,6 @@ msgid "Saves to import go here, one folder per game ID. TRIANGLE uses the folder
 msgstr "Lagrede data som skal importeres, legges her, én mappe per spill-ID. TREKANT bruker mappen som vises; FIRKANT går tilbake til standard."
 
 #: pe/ui/locations.cpp
-msgid "Saves to import, one folder per game ID. Until you choose one, it is save-import in the game files folder."
-msgstr "Lagrede data som skal importeres, én mappe per spill-ID. Inntil du velger en, er det save-import i mappen med spillfiler."
-
-#: pe/ui/locations.cpp
 msgid "Square again takes {0} off the list. Its games stay where they are."
 msgstr "Firkant igjen fjerner {0} fra listen. Spillene blir liggende der de er."
 
@@ -2348,14 +2300,6 @@ msgstr "Mappen som vises, må inneholde prod.keys. TREKANT bruker den; FIRKANT g
 #: pe/ui/browse.cpp
 msgid "The folder shown must hold the firmware NCA files. TRIANGLE uses it; SQUARE goes back to the default."
 msgstr "Mappen som vises, må inneholde NCA-filene til firmwaren. TREKANT bruker den; FIRKANT går tilbake til standard."
-
-#: pe/ui/locations.cpp
-msgid "The folder that holds prod.keys. Until you choose one, it is keys in the game files folder."
-msgstr "Mappen med prod.keys. Inntil du velger en, er det keys i mappen med spillfiler."
-
-#: pe/ui/locations.cpp
-msgid "The folder that holds the firmware NCA files. Until you choose one, it is firmware in the game files folder."
-msgstr "Mappen med NCA-filene til firmwaren. Inntil du velger en, er det firmware i mappen med spillfiler."
 
 #: pe/ui/browse.cpp
 msgid "The list is full. Remove a folder first."
@@ -2376,10 +2320,6 @@ msgstr "Denne mappen er allerede i listen."
 #: pe/ui/browse.cpp
 msgid "This folder needs a roms folder."
 msgstr "Denne mappen trenger en roms-mappe."
-
-#: pe/ui/locations.cpp
-msgid "This is the default folder already."
-msgstr "Dette er allerede standardmappen."
 
 #: pe/ui/browse.cpp
 msgid "This is the game files folder already."
@@ -2413,10 +2353,6 @@ msgstr "{0} finnes flere steder. Velg hvilket som starter."
 msgid "The folder that holds your keys, firmware and games, and more places for games."
 msgstr "Mappen med keys, firmware og spill, og flere steder for spill."
 
-#: pe/ui/locations.cpp
-msgid "Where exported saves are written. Until you choose one, it is save-export in the game files folder."
-msgstr "Hvor eksporterte lagrede data skrives. Inntil du velger en, er det save-export i mappen med spillfiler."
-
 msgid "Available in more than one place. Choose which one to start."
 msgstr "Finnes på mer enn ett sted. Velg hvilket som skal starte."
 
@@ -2432,14 +2368,20 @@ msgstr "Kunne ikke slette ROM-filen fra denne mappen."
 msgid "Deleted from this folder."
 msgstr "Slettet fra denne mappen."
 
-msgid "Extended storage"
-msgstr "Utvidet lagring"
+msgid "PATH TIPS"
+msgstr "TIPS OM STIER"
 
-msgid "External HD or SSD"
-msgstr "Ekstern HD eller SSD"
+msgid "EXTENDED STORAGE"
+msgstr "UTVIDET LAGRING"
 
-msgid "Path tips"
-msgstr "Tips om stier"
+msgid "EXTERNAL HD OR SSD"
+msgstr "EKSTERN HD ELLER SSD"
 
-msgid "Press Square again to delete this copy from {0}. Its updates and mods stay."
-msgstr "Trykk Firkant igjen for å slette denne kopien fra {0}. Oppdateringer og mods blir liggende."
+msgid "Delete {0}?"
+msgstr "Slette {0}?"
+
+msgid "Also delete the duplicated updates and DLC in this folder."
+msgstr "Slett også de dupliserte oppdateringene og DLC-ene i denne mappen."
+
+msgid "Confirm"
+msgstr "Bekreft"

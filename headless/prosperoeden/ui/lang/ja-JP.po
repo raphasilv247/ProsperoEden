@@ -84,10 +84,6 @@ msgstr "ダウンロードに追加しました。待機列は設定の「ダウ
 msgid "Added. Cross plays as this profile; left and right change its name."
 msgstr "追加しました。バツでこのプロフィールでプレイ、左右で名前を変更。"
 
-#: pe/ui/locations.cpp
-msgid "ADVANCED"
-msgstr "詳細設定"
-
 #: pe/ui/browse.cpp
 msgid "All credit for the Eden emulator goes to its developers and contributors."
 msgstr "Edenエミュレーターの功績は、すべてその開発者と貢献者のものです。"
@@ -402,14 +398,6 @@ msgstr "クレジットとセットアップ"
 #: pe/ui/game_options.cpp
 msgid "Cross"
 msgstr "バツ"
-
-#: pe/ui/locations.cpp
-msgid "CUSTOM"
-msgstr "カスタム"
-
-#: pe/ui/locations.cpp
-msgid "DEFAULT"
-msgstr "既定"
 
 #. A per-game setting that follows the general setting; {0} is its value.
 #: pe/ui/game_options.cpp
@@ -1434,14 +1422,6 @@ msgstr "ゲームリストを読み込んでいます..."
 msgid "Reading..."
 msgstr "読み込み中..."
 
-#: pe/ui/locations.cpp
-msgid "HIDE"
-msgstr "隠す"
-
-#: pe/ui/locations.cpp
-msgid "Hide"
-msgstr "隠す"
-
 #: pe/ui/settings.cpp
 msgid "Ready"
 msgstr "準備完了"
@@ -1765,10 +1745,6 @@ msgstr "システム"
 #: pe/ui/browse.cpp
 msgid "Keys folder"
 msgstr "keysフォルダ"
-
-#: pe/ui/locations.cpp
-msgid "Keys, firmware and saves"
-msgstr "keys、firmware、セーブデータ"
 
 #: eden_services.cpp
 msgid "Taiwan"
@@ -2217,14 +2193,6 @@ msgstr "MOD {1}個中{0}個オン"
 msgid "{0} of {1} on"
 msgstr "{1}個中{0}個オン"
 
-#: pe/ui/locations.cpp
-msgid "SHOW"
-msgstr "表示"
-
-#: pe/ui/locations.cpp
-msgid "Show"
-msgstr "表示"
-
 #: pe/ui/settings.cpp
 msgid "{0} of {1} profiles"
 msgstr "{1}件中{0}件のプロフィール"
@@ -2284,10 +2252,6 @@ msgstr "ファームウェアのNCAファイルが入っているフォルダを
 msgid "Choose the folder with one folder per game ID"
 msgstr "ゲームIDごとにフォルダがあるフォルダを選んでください"
 
-#: pe/ui/locations.cpp
-msgid "Choose the keys, firmware, save import and save export folders on their own. Until you do, they are inside the game files folder."
-msgstr "keys、firmware、セーブデータの取り込み、セーブデータの書き出しのフォルダを個別に選べます。選ぶまではゲームファイルのフォルダの中にあります。"
-
 #: pe/ui/browse.cpp
 msgid "Choose where exported saves are written"
 msgstr "書き出したセーブデータの保存先を選んでください"
@@ -2304,14 +2268,6 @@ msgstr "次回の起動"
 #: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "No updates folder"
 msgstr "updatesフォルダがありません"
-
-#: pe/ui/locations.cpp
-msgid "SAVE EXPORT"
-msgstr "セーブデータの書き出し"
-
-#: pe/ui/locations.cpp
-msgid "SAVE IMPORT"
-msgstr "セーブデータの取り込み"
 
 #: pe/ui/browse.cpp
 msgid "Save export folder"
@@ -2330,10 +2286,6 @@ msgid "Saves to import go here, one folder per game ID. TRIANGLE uses the folder
 msgstr "取り込むセーブデータはここに置きます(ゲームIDごとに1フォルダ)。サンカクで表示中のフォルダを使い、シカクで既定に戻します。"
 
 #: pe/ui/locations.cpp
-msgid "Saves to import, one folder per game ID. Until you choose one, it is save-import in the game files folder."
-msgstr "取り込むセーブデータ(ゲームIDごとに1フォルダ)。選ぶまではゲームファイルのフォルダのsave-importです。"
-
-#: pe/ui/locations.cpp
 msgid "Square again takes {0} off the list. Its games stay where they are."
 msgstr "もう一度シカクを押すと{0}を一覧から外します。ゲームはそのまま残ります。"
 
@@ -2348,14 +2300,6 @@ msgstr "表示中のフォルダにprod.keysが必要です。サンカクで使
 #: pe/ui/browse.cpp
 msgid "The folder shown must hold the firmware NCA files. TRIANGLE uses it; SQUARE goes back to the default."
 msgstr "表示中のフォルダにファームウェアのNCAファイルが必要です。サンカクで使い、シカクで既定に戻します。"
-
-#: pe/ui/locations.cpp
-msgid "The folder that holds prod.keys. Until you choose one, it is keys in the game files folder."
-msgstr "prod.keysが入っているフォルダ。選ぶまではゲームファイルのフォルダのkeysです。"
-
-#: pe/ui/locations.cpp
-msgid "The folder that holds the firmware NCA files. Until you choose one, it is firmware in the game files folder."
-msgstr "ファームウェアのNCAファイルが入っているフォルダ。選ぶまではゲームファイルのフォルダのfirmwareです。"
 
 #: pe/ui/browse.cpp
 msgid "The list is full. Remove a folder first."
@@ -2376,10 +2320,6 @@ msgstr "このフォルダはすでに一覧にあります。"
 #: pe/ui/browse.cpp
 msgid "This folder needs a roms folder."
 msgstr "このフォルダにはromsフォルダが必要です。"
-
-#: pe/ui/locations.cpp
-msgid "This is the default folder already."
-msgstr "すでに既定のフォルダです。"
 
 #: pe/ui/browse.cpp
 msgid "This is the game files folder already."
@@ -2413,10 +2353,6 @@ msgstr "{0}は複数の場所にあります。どちらを起動するか選ん
 msgid "The folder that holds your keys, firmware and games, and more places for games."
 msgstr "keys、firmware、ゲームが入っているフォルダと、ゲームの置き場所を追加できます。"
 
-#: pe/ui/locations.cpp
-msgid "Where exported saves are written. Until you choose one, it is save-export in the game files folder."
-msgstr "書き出したセーブデータの保存先。選ぶまではゲームファイルのフォルダのsave-exportです。"
-
 msgid "Available in more than one place. Choose which one to start."
 msgstr "複数の場所にあります。起動する場所を選んでください。"
 
@@ -2432,14 +2368,20 @@ msgstr "このフォルダーからROMを削除できませんでした。"
 msgid "Deleted from this folder."
 msgstr "このフォルダーから削除しました。"
 
-msgid "Extended storage"
-msgstr "拡張ストレージ"
-
-msgid "External HD or SSD"
-msgstr "外付けHDD / SSD"
-
-msgid "Path tips"
+msgid "PATH TIPS"
 msgstr "パスのヒント"
 
-msgid "Press Square again to delete this copy from {0}. Its updates and mods stay."
-msgstr "□をもう一度押すと、{0} のこのコピーを削除します。アップデートとMODは残ります。"
+msgid "EXTENDED STORAGE"
+msgstr "拡張ストレージ"
+
+msgid "EXTERNAL HD OR SSD"
+msgstr "外付けHDD / SSD"
+
+msgid "Delete {0}?"
+msgstr "{0} を削除しますか？"
+
+msgid "Also delete the duplicated updates and DLC in this folder."
+msgstr "このフォルダーの重複したアップデートとDLCも削除する。"
+
+msgid "Confirm"
+msgstr "確認"

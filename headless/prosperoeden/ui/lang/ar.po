@@ -84,10 +84,6 @@ msgstr "أُضيفت إلى التنزيلات. قائمة الانتظار في
 msgid "Added. Cross plays as this profile; left and right change its name."
 msgstr "تمت الإضافة. زر إكس للّعب بهذا الملف؛ يسار ويمين لتغيير اسمه."
 
-#: pe/ui/locations.cpp
-msgid "ADVANCED"
-msgstr "متقدم"
-
 #: pe/ui/browse.cpp
 msgid "All credit for the Eden emulator goes to its developers and contributors."
 msgstr "كل الفضل في محاكي Eden يعود إلى مطوّريه والمساهمين فيه."
@@ -402,14 +398,6 @@ msgstr "الشكر والإعداد"
 #: pe/ui/game_options.cpp
 msgid "Cross"
 msgstr "إكس"
-
-#: pe/ui/locations.cpp
-msgid "CUSTOM"
-msgstr "مخصص"
-
-#: pe/ui/locations.cpp
-msgid "DEFAULT"
-msgstr "افتراضي"
 
 #. A per-game setting that follows the general setting; {0} is its value.
 #: pe/ui/game_options.cpp
@@ -1434,14 +1422,6 @@ msgstr "جارٍ قراءة قوائم الألعاب..."
 msgid "Reading..."
 msgstr "جارٍ القراءة..."
 
-#: pe/ui/locations.cpp
-msgid "HIDE"
-msgstr "إخفاء"
-
-#: pe/ui/locations.cpp
-msgid "Hide"
-msgstr "إخفاء"
-
 #: pe/ui/settings.cpp
 msgid "Ready"
 msgstr "جاهز"
@@ -1765,10 +1745,6 @@ msgstr "النظام"
 #: pe/ui/browse.cpp
 msgid "Keys folder"
 msgstr "مجلد keys"
-
-#: pe/ui/locations.cpp
-msgid "Keys, firmware and saves"
-msgstr "Keys وfirmware والبيانات المحفوظة"
 
 #: eden_services.cpp
 msgid "Taiwan"
@@ -2217,14 +2193,6 @@ msgstr "التعديلات المفعّلة: {0} من {1}"
 msgid "{0} of {1} on"
 msgstr "{0} من {1} مفعّلة"
 
-#: pe/ui/locations.cpp
-msgid "SHOW"
-msgstr "إظهار"
-
-#: pe/ui/locations.cpp
-msgid "Show"
-msgstr "إظهار"
-
 #: pe/ui/settings.cpp
 msgid "{0} of {1} profiles"
 msgstr "{0} من {1} ملفات شخصية"
@@ -2284,10 +2252,6 @@ msgstr "اختر المجلد الذي يحتوي على ملفات NCA الخا
 msgid "Choose the folder with one folder per game ID"
 msgstr "اختر المجلد الذي يضم مجلدًا واحدًا لكل معرّف لعبة"
 
-#: pe/ui/locations.cpp
-msgid "Choose the keys, firmware, save import and save export folders on their own. Until you do, they are inside the game files folder."
-msgstr "اختر مجلدات keys وfirmware واستيراد البيانات المحفوظة وتصديرها كلًّا على حدة. إلى أن تفعل، تكون داخل مجلد ملفات الألعاب."
-
 #: pe/ui/browse.cpp
 msgid "Choose where exported saves are written"
 msgstr "اختر مكان كتابة البيانات المحفوظة المصدّرة"
@@ -2304,14 +2268,6 @@ msgstr "التشغيل التالي"
 #: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "No updates folder"
 msgstr "لا يوجد مجلد updates"
-
-#: pe/ui/locations.cpp
-msgid "SAVE EXPORT"
-msgstr "تصدير البيانات المحفوظة"
-
-#: pe/ui/locations.cpp
-msgid "SAVE IMPORT"
-msgstr "استيراد البيانات المحفوظة"
 
 #: pe/ui/browse.cpp
 msgid "Save export folder"
@@ -2330,10 +2286,6 @@ msgid "Saves to import go here, one folder per game ID. TRIANGLE uses the folder
 msgstr "توضع البيانات المحفوظة المراد استيرادها هنا، مجلد واحد لكل معرّف لعبة. مثلث يستخدم المجلد المعروض؛ مربع يعيد المجلد الافتراضي."
 
 #: pe/ui/locations.cpp
-msgid "Saves to import, one folder per game ID. Until you choose one, it is save-import in the game files folder."
-msgstr "البيانات المحفوظة المراد استيرادها، مجلد واحد لكل معرّف لعبة. إلى أن تختار مجلدًا، يكون save-import في مجلد ملفات الألعاب."
-
-#: pe/ui/locations.cpp
 msgid "Square again takes {0} off the list. Its games stay where they are."
 msgstr "الضغط على مربع مرة أخرى يزيل {0} من القائمة. تبقى ألعابه في مكانها."
 
@@ -2348,14 +2300,6 @@ msgstr "يجب أن يحتوي المجلد المعروض على prod.keys. م�
 #: pe/ui/browse.cpp
 msgid "The folder shown must hold the firmware NCA files. TRIANGLE uses it; SQUARE goes back to the default."
 msgstr "يجب أن يحتوي المجلد المعروض على ملفات NCA الخاصة بـ firmware. مثلث يستخدمه؛ مربع يعيد المجلد الافتراضي."
-
-#: pe/ui/locations.cpp
-msgid "The folder that holds prod.keys. Until you choose one, it is keys in the game files folder."
-msgstr "المجلد الذي يحتوي على prod.keys. إلى أن تختار مجلدًا، يكون keys في مجلد ملفات الألعاب."
-
-#: pe/ui/locations.cpp
-msgid "The folder that holds the firmware NCA files. Until you choose one, it is firmware in the game files folder."
-msgstr "المجلد الذي يحتوي على ملفات NCA الخاصة بـ firmware. إلى أن تختار مجلدًا، يكون firmware في مجلد ملفات الألعاب."
 
 #: pe/ui/browse.cpp
 msgid "The list is full. Remove a folder first."
@@ -2376,10 +2320,6 @@ msgstr "هذا المجلد موجود في القائمة بالفعل."
 #: pe/ui/browse.cpp
 msgid "This folder needs a roms folder."
 msgstr "يحتاج هذا المجلد إلى مجلد roms."
-
-#: pe/ui/locations.cpp
-msgid "This is the default folder already."
-msgstr "هذا هو المجلد الافتراضي بالفعل."
 
 #: pe/ui/browse.cpp
 msgid "This is the game files folder already."
@@ -2413,10 +2353,6 @@ msgstr "{0} موجودة في أكثر من مكان. اختر أيها يبدأ
 msgid "The folder that holds your keys, firmware and games, and more places for games."
 msgstr "المجلد الذي يضم keys وfirmware وألعابك، وأماكن أخرى للألعاب."
 
-#: pe/ui/locations.cpp
-msgid "Where exported saves are written. Until you choose one, it is save-export in the game files folder."
-msgstr "المكان الذي تُكتب فيه البيانات المحفوظة المصدّرة. إلى أن تختار مجلدًا، يكون save-export في مجلد ملفات الألعاب."
-
 msgid "Available in more than one place. Choose which one to start."
 msgstr "متوفر في أكثر من مكان. اختر أيها تبدأ."
 
@@ -2432,14 +2368,20 @@ msgstr "تعذّر حذف ملف ROM من هذا المجلد."
 msgid "Deleted from this folder."
 msgstr "تم الحذف من هذا المجلد."
 
-msgid "Extended storage"
+msgid "PATH TIPS"
+msgstr "نصائح المسارات"
+
+msgid "EXTENDED STORAGE"
 msgstr "التخزين الموسّع"
 
-msgid "External HD or SSD"
+msgid "EXTERNAL HD OR SSD"
 msgstr "قرص HD أو SSD خارجي"
 
-msgid "Path tips"
-msgstr "نصائح للمسارات"
+msgid "Delete {0}?"
+msgstr "حذف {0}؟"
 
-msgid "Press Square again to delete this copy from {0}. Its updates and mods stay."
-msgstr "اضغط Square مرة أخرى لحذف هذه النسخة من {0}. التحديثات والمودات تبقى."
+msgid "Also delete the duplicated updates and DLC in this folder."
+msgstr "احذف أيضًا التحديثات والمحتوى الإضافي المكررة في هذا المجلد."
+
+msgid "Confirm"
+msgstr "تأكيد"

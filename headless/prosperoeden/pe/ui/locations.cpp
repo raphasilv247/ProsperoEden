@@ -72,9 +72,6 @@ void draw_chevron(Canvas &c, float x, float cy, bool open, Color ink)
     }
 }
 
-constexpr const char *kStorageLabels[kStorageRoles] = {TR("KEYS"), TR("FIRMWARE"), TR("SAVE IMPORT"),
-                                                       TR("SAVE EXPORT")};
-
 } // namespace
 
 void Launcher::read_library_folders()
@@ -100,18 +97,8 @@ void Launcher::build_locations()
         location_list_.push_back({LocationRow::Kind::folder, i});
     if (static_cast<int>(library_folders_.size()) < services_.library_folders_max())
         location_list_.push_back({LocationRow::Kind::add, 0});
-    location_list_.push_back({LocationRow::Kind::advanced, 0});
-    if (advanced_open_)
-        for (int role = 0; role < kStorageRoles; ++role)
-            location_list_.push_back({LocationRow::Kind::storage, role});
     main_used_ = services_.files_folder();
     main_saved_ = services_.saved_files_folder();
-    for (int role = 0; role < kStorageRoles; ++role)
-    {
-        storage_used_[static_cast<std::size_t>(role)] = services_.storage_folder(static_cast<StorageRole>(role));
-        storage_saved_[static_cast<std::size_t>(role)] =
-            services_.saved_storage_folder(static_cast<StorageRole>(role));
-    }
 }
 
 void Launcher::enter_locations(int select)
@@ -144,12 +131,6 @@ void Launcher::refresh_location()
         if (entry.index < static_cast<int>(library_folders_.size()))
             folder = library_folders_[static_cast<std::size_t>(entry.index)];
         break;
-    case LocationRow::Kind::storage:
-    {
-        const auto role = static_cast<std::size_t>(entry.index);
-        folder = storage_saved_[role].empty() ? storage_used_[role] : storage_saved_[role];
-        break;
-    }
     default:
         break;
     }
@@ -206,19 +187,6 @@ void Launcher::press_locations(Key key)
             open(Screen::files, true);
             enter_files(Pick::add_folder);
             return;
-        case LocationRow::Kind::storage:
-            open(Screen::files, true);
-            enter_files(storage_pick(static_cast<StorageRole>(entry.index)));
-            return;
-        case LocationRow::Kind::advanced:
-            // Shows or hides keys, firmware and the save folders under it.
-            advanced_open_ = !advanced_open_;
-            build_locations();
-            location_rows_.reset(static_cast<int>(location_list_.size()), row);
-            message_.clear();
-            refresh_location();
-            cue(Cue::toggle);
-            return;
         }
         return;
     case Key::square:
@@ -236,27 +204,6 @@ void Launcher::press_locations(Key key)
                 build_locations();
                 refresh_location();
             }
-            return;
-        }
-        if (entry.kind == LocationRow::Kind::storage)
-        {
-            const auto role = static_cast<StorageRole>(entry.index);
-            if (storage_saved_[static_cast<std::size_t>(entry.index)].empty())
-            {
-                say(tr("This is the default folder already."));
-                cue(Cue::focus);
-                return;
-            }
-            if (!services_.set_storage_folder(role, std::string{}))
-            {
-                say(tr("Could not save the folder. Please try again."), true);
-                cue(Cue::error);
-                return;
-            }
-            build_locations();
-            refresh_location();
-            say(tr("Back to the default folder. Reopen ProsperoEden to use it."));
-            cue(Cue::saved);
             return;
         }
         if (entry.kind == LocationRow::Kind::folder &&
@@ -357,28 +304,6 @@ void Launcher::draw_locations(Canvas &c)
             text_fit(c, tr("Add game folder"), r.x + 84.0f, baseline(r.y, kRowHeight, th().size_text),
                      th().size_text, th().value, 646.0f);
             break;
-        case LocationRow::Kind::advanced:
-            draw_chevron(c, r.x + 24.0f, middle, advanced_open_, th().accent_pale);
-            {
-                const float tag = text(c, advanced_open_ ? tr("HIDE") : tr("SHOW"), right,
-                                       baseline(r.y, kRowHeight, th().size_small), th().size_small, th().meta,
-                                       Align::right);
-                text_fit(c, tr("ADVANCED"), r.x + 84.0f, baseline(r.y + 6.0f, 30.0f, th().size_small),
-                         th().size_small, th().label, 646.0f - tag);
-                text_fit(c, tr("Keys, firmware and saves"), r.x + 84.0f,
-                         baseline(r.y + 38.0f, 34.0f, th().size_text), th().size_text, th().value,
-                         646.0f - tag);
-            }
-            break;
-        case LocationRow::Kind::storage:
-        {
-            const auto role = static_cast<std::size_t>(entry.index);
-            const std::string &saved = storage_saved_[role];
-            draw_folder(c, r.x + 24.0f + kIndent, middle, th().copy);
-            two_lines(kIndent, tr(kStorageLabels[role]), saved.empty() ? storage_used_[role] : saved,
-                      saved.empty() ? tr("DEFAULT") : tr("CUSTOM"), saved.empty() ? th().meta : th().accent);
-            break;
-        }
         }
         list.pop_opacity();
     }
@@ -392,7 +317,6 @@ void Launcher::draw_locations(Canvas &c)
     const LocationRow focus = count > 0 ? location_list_[static_cast<std::size_t>(
                                               std::clamp(location_rows_.selected, 0, count - 1))]
                                         : LocationRow{};
-    const auto role = static_cast<std::size_t>(std::clamp(focus.index, 0, kStorageRoles - 1));
     const char *label = tr("THIS FOLDER");
     std::string heading;
     const char *about = "";
@@ -414,33 +338,6 @@ void Launcher::draw_locations(Canvas &c)
         heading = tr("Add game folder");
         about = tr("Add other game folders, with roms, updates and mods on an external HD or SSD over USB, "
                    "or in the console's extended storage.");
-        break;
-    case LocationRow::Kind::advanced:
-        label = tr("ADVANCED");
-        heading = tr("Keys, firmware and saves");
-        about = tr("Choose the keys, firmware, save import and save export folders on their own. Until you do, "
-                   "they are inside the game files folder.");
-        break;
-    case LocationRow::Kind::storage:
-        heading = storage_saved_[role].empty() ? storage_used_[role] : storage_saved_[role];
-        switch (static_cast<StorageRole>(focus.index))
-        {
-        case StorageRole::keys:
-            about = tr("The folder that holds prod.keys. Until you choose one, it is keys in the game files folder.");
-            break;
-        case StorageRole::firmware:
-            about = tr("The folder that holds the firmware NCA files. Until you choose one, it is firmware in the "
-                       "game files folder.");
-            break;
-        case StorageRole::save_import:
-            about = tr("Saves to import, one folder per game ID. Until you choose one, it is save-import in the "
-                       "game files folder.");
-            break;
-        default:
-            about = tr("Where exported saves are written. Until you choose one, it is save-export in the game "
-                       "files folder.");
-            break;
-        }
         break;
     }
     text(c, label, 1016.0f, baseline(210.0f, 28.0f, th().size_small), th().size_small, th().accent_pale, Align::left,
@@ -482,20 +379,11 @@ void Launcher::draw_locations(Canvas &c)
     switch (focus.kind)
     {
     case LocationRow::Kind::add:
-    {
-        // Tips for the paths a folder can take, all in the text colour (not a theme's warning).
-        text(c, tr("Path tips"), 1016.0f, baseline(378.0f, 36.0f, th().size_text), th().size_text, th().value,
-             Align::left);
-        text(c, tr("Extended storage"), 1016.0f, baseline(430.0f, 30.0f, th().size_small), th().size_small, th().value,
-             Align::left);
-        text(c, "/extX/prosperoeden/", 1764.0f, baseline(430.0f, 30.0f, th().size_small), th().size_small, th().value,
-             Align::right);
-        text(c, tr("External HD or SSD"), 1016.0f, baseline(482.0f, 30.0f, th().size_small), th().size_small,
-             th().value, Align::left);
-        text(c, "/usbX/prosperoeden/", 1764.0f, baseline(482.0f, 30.0f, th().size_small), th().size_small, th().value,
-             Align::right);
+        text(c, tr("PATH TIPS"), 1016.0f, baseline(378.0f, 30.0f, th().size_small), th().size_small, th().label,
+             Align::left, 2.0f);
+        line(430.0f, tr("EXTENDED STORAGE"), "/extX/prosperoeden/", th().accent_pale);
+        line(482.0f, tr("EXTERNAL HD OR SSD"), "/usbX/prosperoeden/", th().accent_pale);
         break;
-    }
     case LocationRow::Kind::main:
         line(378.0f, tr("KEYS"), info.keys ? tr("prod.keys found") : tr("prod.keys missing"), state(info.keys));
         line(430.0f, tr("FIRMWARE"),
@@ -509,17 +397,6 @@ void Launcher::draw_locations(Canvas &c)
     case LocationRow::Kind::folder:
         games_line(378.0f);
         updates_line(430.0f);
-        break;
-    case LocationRow::Kind::storage:
-        if (static_cast<StorageRole>(focus.index) == StorageRole::keys)
-            line(378.0f, tr("KEYS"), info.own_keys ? tr("prod.keys found") : tr("prod.keys missing"),
-                 state(info.own_keys));
-        else if (static_cast<StorageRole>(focus.index) == StorageRole::firmware)
-            line(378.0f, tr("FIRMWARE"),
-                 info.own_firmware < 0 ? tr("This folder cannot be read") :
-                                         counted(info.own_firmware, tr("{0} NCA file"), tr("{0} NCA files")),
-                 state(info.own_firmware > 0));
-        in_use_line(430.0f, storage_used_[role], storage_saved_[role]);
         break;
     default:
         break;
@@ -560,29 +437,6 @@ void Launcher::draw_locations(Canvas &c)
                                           {Pad::updown, TR("Browse")},
                                           {Pad::l1, TR("Page"), Pad::r1}};
         draw_footer(c, kHints, 4);
-        break;
-    }
-    case LocationRow::Kind::advanced:
-    {
-        static constexpr Hint kShow[] = {{Pad::cross, TR("Show")},
-                                         {Pad::circle, TR("Back")},
-                                         {Pad::updown, TR("Browse")},
-                                         {Pad::l1, TR("Page"), Pad::r1}};
-        static constexpr Hint kHide[] = {{Pad::cross, TR("Hide")},
-                                         {Pad::circle, TR("Back")},
-                                         {Pad::updown, TR("Browse")},
-                                         {Pad::l1, TR("Page"), Pad::r1}};
-        draw_footer(c, advanced_open_ ? kHide : kShow, 4);
-        break;
-    }
-    case LocationRow::Kind::storage:
-    {
-        static constexpr Hint kHints[] = {{Pad::cross, TR("Choose")},
-                                          {Pad::circle, TR("Back")},
-                                          {Pad::square, TR("Default folder")},
-                                          {Pad::updown, TR("Browse")},
-                                          {Pad::l1, TR("Page"), Pad::r1}};
-        draw_footer(c, kHints, 5);
         break;
     }
     }

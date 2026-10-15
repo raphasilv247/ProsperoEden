@@ -84,10 +84,6 @@ msgstr "Přidáno ke stahování. Frontu ukazuje Nastavení, Stahování."
 msgid "Added. Cross plays as this profile; left and right change its name."
 msgstr "Přidáno. Křížek hraje za tento profil; vlevo a vpravo mění jeho jméno."
 
-#: pe/ui/locations.cpp
-msgid "ADVANCED"
-msgstr "POKROČILÉ"
-
 #: pe/ui/browse.cpp
 msgid "All credit for the Eden emulator goes to its developers and contributors."
 msgstr "Veškeré uznání za emulátor Eden patří jeho vývojářům a přispěvatelům."
@@ -402,14 +398,6 @@ msgstr "Autoři a konfigurace"
 #: pe/ui/game_options.cpp
 msgid "Cross"
 msgstr "Křížek"
-
-#: pe/ui/locations.cpp
-msgid "CUSTOM"
-msgstr "VLASTNÍ"
-
-#: pe/ui/locations.cpp
-msgid "DEFAULT"
-msgstr "VÝCHOZÍ"
 
 #. A per-game setting that follows the general setting; {0} is its value.
 #: pe/ui/game_options.cpp
@@ -1434,14 +1422,6 @@ msgstr "Načítání seznamů her..."
 msgid "Reading..."
 msgstr "Načítání..."
 
-#: pe/ui/locations.cpp
-msgid "HIDE"
-msgstr "SKRÝT"
-
-#: pe/ui/locations.cpp
-msgid "Hide"
-msgstr "Skrýt"
-
 #: pe/ui/settings.cpp
 msgid "Ready"
 msgstr "Připraveno"
@@ -1765,10 +1745,6 @@ msgstr "Systém"
 #: pe/ui/browse.cpp
 msgid "Keys folder"
 msgstr "Složka keys"
-
-#: pe/ui/locations.cpp
-msgid "Keys, firmware and saves"
-msgstr "Keys, firmware a uložená data"
 
 #: eden_services.cpp
 msgid "Taiwan"
@@ -2217,14 +2193,6 @@ msgstr "Zapnuté mody: {0} z {1}"
 msgid "{0} of {1} on"
 msgstr "Zapnuto: {0} z {1}"
 
-#: pe/ui/locations.cpp
-msgid "SHOW"
-msgstr "ZOBRAZIT"
-
-#: pe/ui/locations.cpp
-msgid "Show"
-msgstr "Zobrazit"
-
 #: pe/ui/settings.cpp
 msgid "{0} of {1} profiles"
 msgstr "{0} z {1} profilů"
@@ -2284,10 +2252,6 @@ msgstr "Vyberte složku, která obsahuje soubory NCA firmwaru"
 msgid "Choose the folder with one folder per game ID"
 msgstr "Vyberte složku s jednou složkou na každé ID hry"
 
-#: pe/ui/locations.cpp
-msgid "Choose the keys, firmware, save import and save export folders on their own. Until you do, they are inside the game files folder."
-msgstr "Složky pro keys, firmware, import uložených dat a export uložených dat zvolte zvlášť. Dokud to neuděláte, jsou ve složce s herními soubory."
-
 #: pe/ui/browse.cpp
 msgid "Choose where exported saves are written"
 msgstr "Vyberte, kam se zapisují exportovaná uložená data"
@@ -2304,14 +2268,6 @@ msgstr "PO RESTARTU"
 #: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "No updates folder"
 msgstr "Žádná složka updates"
-
-#: pe/ui/locations.cpp
-msgid "SAVE EXPORT"
-msgstr "EXPORT ULOŽENÝCH DAT"
-
-#: pe/ui/locations.cpp
-msgid "SAVE IMPORT"
-msgstr "IMPORT ULOŽENÝCH DAT"
 
 #: pe/ui/browse.cpp
 msgid "Save export folder"
@@ -2330,10 +2286,6 @@ msgid "Saves to import go here, one folder per game ID. TRIANGLE uses the folder
 msgstr "Uložená data k importu patří sem, jedna složka na každé ID hry. TROJÚHELNÍK použije zobrazenou složku; ČTVEREC se vrátí na výchozí."
 
 #: pe/ui/locations.cpp
-msgid "Saves to import, one folder per game ID. Until you choose one, it is save-import in the game files folder."
-msgstr "Uložená data k importu, jedna složka na každé ID hry. Dokud žádnou nezvolíte, je to save-import ve složce s herními soubory."
-
-#: pe/ui/locations.cpp
 msgid "Square again takes {0} off the list. Its games stay where they are."
 msgstr "Další stisk čtverce odebere {0} ze seznamu. Její hry zůstanou, kde jsou."
 
@@ -2348,14 +2300,6 @@ msgstr "Zobrazená složka musí obsahovat prod.keys. TROJÚHELNÍK ji použije;
 #: pe/ui/browse.cpp
 msgid "The folder shown must hold the firmware NCA files. TRIANGLE uses it; SQUARE goes back to the default."
 msgstr "Zobrazená složka musí obsahovat soubory NCA firmwaru. TROJÚHELNÍK ji použije; ČTVEREC se vrátí na výchozí."
-
-#: pe/ui/locations.cpp
-msgid "The folder that holds prod.keys. Until you choose one, it is keys in the game files folder."
-msgstr "Složka, která obsahuje prod.keys. Dokud žádnou nezvolíte, je to keys ve složce s herními soubory."
-
-#: pe/ui/locations.cpp
-msgid "The folder that holds the firmware NCA files. Until you choose one, it is firmware in the game files folder."
-msgstr "Složka, která obsahuje soubory NCA firmwaru. Dokud žádnou nezvolíte, je to firmware ve složce s herními soubory."
 
 #: pe/ui/browse.cpp
 msgid "The list is full. Remove a folder first."
@@ -2376,10 +2320,6 @@ msgstr "Tato složka už v seznamu je."
 #: pe/ui/browse.cpp
 msgid "This folder needs a roms folder."
 msgstr "Tato složka potřebuje složku roms."
-
-#: pe/ui/locations.cpp
-msgid "This is the default folder already."
-msgstr "To už je výchozí složka."
 
 #: pe/ui/browse.cpp
 msgid "This is the game files folder already."
@@ -2413,10 +2353,6 @@ msgstr "Hra {0} je na více místech. Vyberte, která se spustí."
 msgid "The folder that holds your keys, firmware and games, and more places for games."
 msgstr "Složka s vašimi keys, firmwarem a hrami a další místa pro hry."
 
-#: pe/ui/locations.cpp
-msgid "Where exported saves are written. Until you choose one, it is save-export in the game files folder."
-msgstr "Kam se zapisují exportovaná uložená data. Dokud žádnou nezvolíte, je to save-export ve složce s herními soubory."
-
 msgid "Available in more than one place. Choose which one to start."
 msgstr "Je na více místech. Vyberte, které spustit."
 
@@ -2432,14 +2368,20 @@ msgstr "ROM z této složky nelze smazat."
 msgid "Deleted from this folder."
 msgstr "Smazáno z této složky."
 
-msgid "Extended storage"
-msgstr "Rozšířené úložiště"
+msgid "PATH TIPS"
+msgstr "TIPY K CESTÁM"
 
-msgid "External HD or SSD"
-msgstr "Externí HDD nebo SSD"
+msgid "EXTENDED STORAGE"
+msgstr "ROZŠÍŘENÉ ÚLOŽIŠTĚ"
 
-msgid "Path tips"
-msgstr "Tipy k cestám"
+msgid "EXTERNAL HD OR SSD"
+msgstr "EXTERNÍ HDD NEBO SSD"
 
-msgid "Press Square again to delete this copy from {0}. Its updates and mods stay."
-msgstr "Stisknutím Čtverce znovu smažete tuto kopii z {0}. Aktualizace a mody zůstanou."
+msgid "Delete {0}?"
+msgstr "Smazat {0}?"
+
+msgid "Also delete the duplicated updates and DLC in this folder."
+msgstr "Smazat také duplicitní aktualizace a DLC v této složce."
+
+msgid "Confirm"
+msgstr "Potvrdit"

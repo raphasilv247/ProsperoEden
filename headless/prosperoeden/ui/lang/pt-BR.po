@@ -84,10 +84,6 @@ msgstr "Adicionado aos downloads. Configurações, Downloads mostra a fila."
 msgid "Added. Cross plays as this profile; left and right change its name."
 msgstr "Adicionado. Xis joga com este perfil; esquerda e direita mudam o nome."
 
-#: pe/ui/locations.cpp
-msgid "ADVANCED"
-msgstr "AVANÇADO"
-
 #: pe/ui/browse.cpp
 msgid "All credit for the Eden emulator goes to its developers and contributors."
 msgstr "Todo o crédito pelo emulador Eden é dos seus desenvolvedores e colaboradores."
@@ -402,14 +398,6 @@ msgstr "Créditos e configuração inicial"
 #: pe/ui/game_options.cpp
 msgid "Cross"
 msgstr "Xis"
-
-#: pe/ui/locations.cpp
-msgid "CUSTOM"
-msgstr "PERSONALIZADA"
-
-#: pe/ui/locations.cpp
-msgid "DEFAULT"
-msgstr "PADRÃO"
 
 #. A per-game setting that follows the general setting; {0} is its value.
 #: pe/ui/game_options.cpp
@@ -1434,14 +1422,6 @@ msgstr "Lendo as listas de jogos..."
 msgid "Reading..."
 msgstr "Lendo..."
 
-#: pe/ui/locations.cpp
-msgid "HIDE"
-msgstr "OCULTAR"
-
-#: pe/ui/locations.cpp
-msgid "Hide"
-msgstr "Ocultar"
-
 #: pe/ui/settings.cpp
 msgid "Ready"
 msgstr "Pronto"
@@ -1765,10 +1745,6 @@ msgstr "Sistema"
 #: pe/ui/browse.cpp
 msgid "Keys folder"
 msgstr "Pasta das keys"
-
-#: pe/ui/locations.cpp
-msgid "Keys, firmware and saves"
-msgstr "Keys, firmware e saves"
 
 #: eden_services.cpp
 msgid "Taiwan"
@@ -2217,14 +2193,6 @@ msgstr "{0} de {1} mods ativados"
 msgid "{0} of {1} on"
 msgstr "{0} de {1} ativados"
 
-#: pe/ui/locations.cpp
-msgid "SHOW"
-msgstr "MOSTRAR"
-
-#: pe/ui/locations.cpp
-msgid "Show"
-msgstr "Mostrar"
-
 #: pe/ui/settings.cpp
 msgid "{0} of {1} profiles"
 msgstr "{0} de {1} perfis"
@@ -2284,10 +2252,6 @@ msgstr "Escolha a pasta com os arquivos NCA do firmware"
 msgid "Choose the folder with one folder per game ID"
 msgstr "Escolha a pasta com uma pasta por ID de título"
 
-#: pe/ui/locations.cpp
-msgid "Choose the keys, firmware, save import and save export folders on their own. Until you do, they are inside the game files folder."
-msgstr "Escolha à parte as pastas de keys, firmware, importação e exportação de saves. Enquanto não escolher, ficam dentro da pasta de arquivos do jogo."
-
 #: pe/ui/browse.cpp
 msgid "Choose where exported saves are written"
 msgstr "Escolha onde os saves exportados são gravados"
@@ -2304,14 +2268,6 @@ msgstr "PRÓXIMA ABERTURA"
 #: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "No updates folder"
 msgstr "Sem pasta updates"
-
-#: pe/ui/locations.cpp
-msgid "SAVE EXPORT"
-msgstr "EXPORTAR SAVES"
-
-#: pe/ui/locations.cpp
-msgid "SAVE IMPORT"
-msgstr "IMPORTAR SAVES"
 
 #: pe/ui/browse.cpp
 msgid "Save export folder"
@@ -2330,10 +2286,6 @@ msgid "Saves to import go here, one folder per game ID. TRIANGLE uses the folder
 msgstr "Os saves a importar ficam aqui, uma pasta por ID de título. TRIÂNGULO usa a pasta mostrada; Quadrado volta ao padrão."
 
 #: pe/ui/locations.cpp
-msgid "Saves to import, one folder per game ID. Until you choose one, it is save-import in the game files folder."
-msgstr "Saves a importar, uma pasta por ID de título. Enquanto não escolher, é a pasta save-import dentro da pasta de arquivos do jogo."
-
-#: pe/ui/locations.cpp
 msgid "Square again takes {0} off the list. Its games stay where they are."
 msgstr "Quadrado de novo tira {0} da lista. Os jogos dela continuam onde estão."
 
@@ -2348,14 +2300,6 @@ msgstr "A pasta mostrada deve conter o prod.keys. TRIÂNGULO a usa; Quadrado vol
 #: pe/ui/browse.cpp
 msgid "The folder shown must hold the firmware NCA files. TRIANGLE uses it; SQUARE goes back to the default."
 msgstr "A pasta mostrada deve conter os arquivos NCA do firmware. TRIÂNGULO a usa; Quadrado volta ao padrão."
-
-#: pe/ui/locations.cpp
-msgid "The folder that holds prod.keys. Until you choose one, it is keys in the game files folder."
-msgstr "A pasta que contém o prod.keys. Enquanto não escolher, é a pasta keys dentro da pasta de arquivos do jogo."
-
-#: pe/ui/locations.cpp
-msgid "The folder that holds the firmware NCA files. Until you choose one, it is firmware in the game files folder."
-msgstr "A pasta com os arquivos NCA do firmware. Enquanto não escolher, é a pasta firmware dentro da pasta de arquivos do jogo."
 
 #: pe/ui/browse.cpp
 msgid "The list is full. Remove a folder first."
@@ -2376,10 +2320,6 @@ msgstr "Esta pasta já está na lista."
 #: pe/ui/browse.cpp
 msgid "This folder needs a roms folder."
 msgstr "Esta pasta precisa de uma pasta roms."
-
-#: pe/ui/locations.cpp
-msgid "This is the default folder already."
-msgstr "Esta já é a pasta padrão."
 
 #: pe/ui/browse.cpp
 msgid "This is the game files folder already."
@@ -2413,10 +2353,6 @@ msgstr "{0} está em mais de um lugar. Escolha qual inicia."
 msgid "The folder that holds your keys, firmware and games, and more places for games."
 msgstr "A pasta com suas keys, firmware e jogos, e mais lugares para jogos."
 
-#: pe/ui/locations.cpp
-msgid "Where exported saves are written. Until you choose one, it is save-export in the game files folder."
-msgstr "Onde os saves exportados são gravados. Enquanto não escolher, é a pasta save-export dentro da pasta de arquivos do jogo."
-
 msgid "Available in more than one place. Choose which one to start."
 msgstr "Disponível em mais de um local. Escolha qual iniciar."
 
@@ -2432,14 +2368,20 @@ msgstr "Não foi possível apagar a ROM desta pasta."
 msgid "Deleted from this folder."
 msgstr "Apagado desta pasta."
 
-msgid "Extended storage"
-msgstr "Armazenamento estendido"
+msgid "PATH TIPS"
+msgstr "DICAS DE CAMINHOS"
 
-msgid "External HD or SSD"
-msgstr "HD ou SSD externo"
+msgid "EXTENDED STORAGE"
+msgstr "ARMAZENAMENTO ESTENDIDO"
 
-msgid "Path tips"
-msgstr "Dicas de caminhos"
+msgid "EXTERNAL HD OR SSD"
+msgstr "HD OU SSD EXTERNO"
 
-msgid "Press Square again to delete this copy from {0}. Its updates and mods stay."
-msgstr "Aperte Quadrado de novo para apagar esta cópia de {0}. As atualizações e mods continuam."
+msgid "Delete {0}?"
+msgstr "Apagar {0}?"
+
+msgid "Also delete the duplicated updates and DLC in this folder."
+msgstr "Também apagar as atualizações e DLCs duplicadas desta pasta."
+
+msgid "Confirm"
+msgstr "Confirmar"

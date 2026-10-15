@@ -84,10 +84,6 @@ msgstr "Đã thêm vào mục tải xuống. Cài đặt, Tải xuống hiển t
 msgid "Added. Cross plays as this profile; left and right change its name."
 msgstr "Đã thêm. Chéo để chơi bằng hồ sơ này; trái và phải đổi tên."
 
-#: pe/ui/locations.cpp
-msgid "ADVANCED"
-msgstr "NÂNG CAO"
-
 #: pe/ui/browse.cpp
 msgid "All credit for the Eden emulator goes to its developers and contributors."
 msgstr "Mọi công lao về trình giả lập Eden thuộc về các nhà phát triển và người đóng góp của dự án."
@@ -402,14 +398,6 @@ msgstr "Ghi công và thiết lập"
 #: pe/ui/game_options.cpp
 msgid "Cross"
 msgstr "Chéo"
-
-#: pe/ui/locations.cpp
-msgid "CUSTOM"
-msgstr "TÙY CHỈNH"
-
-#: pe/ui/locations.cpp
-msgid "DEFAULT"
-msgstr "MẶC ĐỊNH"
 
 #. A per-game setting that follows the general setting; {0} is its value.
 #: pe/ui/game_options.cpp
@@ -1434,14 +1422,6 @@ msgstr "Đang đọc danh sách trò chơi..."
 msgid "Reading..."
 msgstr "Đang đọc..."
 
-#: pe/ui/locations.cpp
-msgid "HIDE"
-msgstr "ẨN"
-
-#: pe/ui/locations.cpp
-msgid "Hide"
-msgstr "Ẩn"
-
 #: pe/ui/settings.cpp
 msgid "Ready"
 msgstr "Sẵn sàng"
@@ -1765,10 +1745,6 @@ msgstr "Hệ thống"
 #: pe/ui/browse.cpp
 msgid "Keys folder"
 msgstr "Thư mục keys"
-
-#: pe/ui/locations.cpp
-msgid "Keys, firmware and saves"
-msgstr "Keys, firmware và bản lưu"
 
 #: eden_services.cpp
 msgid "Taiwan"
@@ -2217,14 +2193,6 @@ msgstr "Bật {0}/{1} mod"
 msgid "{0} of {1} on"
 msgstr "Bật {0}/{1}"
 
-#: pe/ui/locations.cpp
-msgid "SHOW"
-msgstr "HIỆN"
-
-#: pe/ui/locations.cpp
-msgid "Show"
-msgstr "Hiện"
-
 #: pe/ui/settings.cpp
 msgid "{0} of {1} profiles"
 msgstr "{0} trên {1} hồ sơ"
@@ -2284,10 +2252,6 @@ msgstr "Chọn thư mục chứa các tệp NCA của firmware"
 msgid "Choose the folder with one folder per game ID"
 msgstr "Chọn thư mục có một thư mục cho mỗi ID trò chơi"
 
-#: pe/ui/locations.cpp
-msgid "Choose the keys, firmware, save import and save export folders on their own. Until you do, they are inside the game files folder."
-msgstr "Chọn riêng các thư mục keys, firmware, nhập bản lưu và xuất bản lưu. Cho đến khi đó, chúng nằm trong thư mục tệp trò chơi."
-
 #: pe/ui/browse.cpp
 msgid "Choose where exported saves are written"
 msgstr "Chọn nơi ghi các bản lưu đã xuất"
@@ -2304,14 +2268,6 @@ msgstr "LẦN MỞ TỚI"
 #: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "No updates folder"
 msgstr "Không có thư mục updates"
-
-#: pe/ui/locations.cpp
-msgid "SAVE EXPORT"
-msgstr "XUẤT BẢN LƯU"
-
-#: pe/ui/locations.cpp
-msgid "SAVE IMPORT"
-msgstr "NHẬP BẢN LƯU"
 
 #: pe/ui/browse.cpp
 msgid "Save export folder"
@@ -2330,10 +2286,6 @@ msgid "Saves to import go here, one folder per game ID. TRIANGLE uses the folder
 msgstr "Các bản lưu cần nhập để ở đây, mỗi ID trò chơi một thư mục. TAM GIÁC dùng thư mục đang hiển thị; VUÔNG quay về mặc định."
 
 #: pe/ui/locations.cpp
-msgid "Saves to import, one folder per game ID. Until you choose one, it is save-import in the game files folder."
-msgstr "Các bản lưu cần nhập, mỗi ID trò chơi một thư mục. Cho đến khi bạn chọn, đó là save-import trong thư mục tệp trò chơi."
-
-#: pe/ui/locations.cpp
 msgid "Square again takes {0} off the list. Its games stay where they are."
 msgstr "Nhấn Vuông lần nữa để gỡ {0} khỏi danh sách. Trò chơi của nó vẫn ở nguyên chỗ."
 
@@ -2348,14 +2300,6 @@ msgstr "Thư mục đang hiển thị phải chứa prod.keys. TAM GIÁC dùng n
 #: pe/ui/browse.cpp
 msgid "The folder shown must hold the firmware NCA files. TRIANGLE uses it; SQUARE goes back to the default."
 msgstr "Thư mục đang hiển thị phải chứa các tệp NCA của firmware. TAM GIÁC dùng nó; VUÔNG quay về mặc định."
-
-#: pe/ui/locations.cpp
-msgid "The folder that holds prod.keys. Until you choose one, it is keys in the game files folder."
-msgstr "Thư mục chứa prod.keys. Cho đến khi bạn chọn, đó là keys trong thư mục tệp trò chơi."
-
-#: pe/ui/locations.cpp
-msgid "The folder that holds the firmware NCA files. Until you choose one, it is firmware in the game files folder."
-msgstr "Thư mục chứa các tệp NCA của firmware. Cho đến khi bạn chọn, đó là firmware trong thư mục tệp trò chơi."
 
 #: pe/ui/browse.cpp
 msgid "The list is full. Remove a folder first."
@@ -2376,10 +2320,6 @@ msgstr "Thư mục này đã có trong danh sách."
 #: pe/ui/browse.cpp
 msgid "This folder needs a roms folder."
 msgstr "Thư mục này cần có thư mục roms."
-
-#: pe/ui/locations.cpp
-msgid "This is the default folder already."
-msgstr "Đây đã là thư mục mặc định."
 
 #: pe/ui/browse.cpp
 msgid "This is the game files folder already."
@@ -2413,10 +2353,6 @@ msgstr "{0} có ở nhiều nơi. Hãy chọn bản nào sẽ chạy."
 msgid "The folder that holds your keys, firmware and games, and more places for games."
 msgstr "Thư mục chứa keys, firmware và trò chơi của bạn, cùng các nơi khác để chứa trò chơi."
 
-#: pe/ui/locations.cpp
-msgid "Where exported saves are written. Until you choose one, it is save-export in the game files folder."
-msgstr "Nơi ghi các bản lưu đã xuất. Cho đến khi bạn chọn, đó là save-export trong thư mục tệp trò chơi."
-
 msgid "Available in more than one place. Choose which one to start."
 msgstr "Có ở nhiều nơi. Chọn nơi để chạy."
 
@@ -2432,14 +2368,20 @@ msgstr "Không thể xóa ROM khỏi thư mục này."
 msgid "Deleted from this folder."
 msgstr "Đã xóa khỏi thư mục này."
 
-msgid "Extended storage"
-msgstr "Bộ nhớ mở rộng"
+msgid "PATH TIPS"
+msgstr "MẸO VỀ ĐƯỜNG DẪN"
 
-msgid "External HD or SSD"
-msgstr "HDD hoặc SSD ngoài"
+msgid "EXTENDED STORAGE"
+msgstr "BỘ NHỚ MỞ RỘNG"
 
-msgid "Path tips"
-msgstr "Mẹo về đường dẫn"
+msgid "EXTERNAL HD OR SSD"
+msgstr "HDD HOẶC SSD NGOÀI"
 
-msgid "Press Square again to delete this copy from {0}. Its updates and mods stay."
-msgstr "Nhấn Ô vuông lần nữa để xóa bản sao này khỏi {0}. Bản cập nhật và mod sẽ được giữ lại."
+msgid "Delete {0}?"
+msgstr "Xóa {0}?"
+
+msgid "Also delete the duplicated updates and DLC in this folder."
+msgstr "Xóa cả bản cập nhật và DLC trùng lặp trong thư mục này."
+
+msgid "Confirm"
+msgstr "Xác nhận"

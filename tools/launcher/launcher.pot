@@ -92,12 +92,12 @@ msgstr ""
 msgid "Added. Cross plays as this profile; left and right change its name."
 msgstr ""
 
-#: pe/ui/locations.cpp
-msgid "ADVANCED"
-msgstr ""
-
 #: pe/ui/browse.cpp
 msgid "All credit for the Eden emulator goes to its developers and contributors."
+msgstr ""
+
+#: pe/ui/library.cpp
+msgid "Also delete the duplicated updates and DLC in this folder."
 msgstr ""
 
 #: settings_store.h
@@ -152,7 +152,7 @@ msgstr ""
 msgid "Back"
 msgstr ""
 
-#: pe/ui/browse.cpp, pe/ui/locations.cpp
+#: pe/ui/browse.cpp
 msgid "Back to the default folder. Reopen ProsperoEden to use it."
 msgstr ""
 
@@ -196,7 +196,7 @@ msgstr ""
 msgid "Button mapping"
 msgstr ""
 
-#: pe/ui/pairing.cpp, pe/ui/update.cpp
+#: pe/ui/library.cpp, pe/ui/pairing.cpp, pe/ui/update.cpp
 msgid "Cancel"
 msgstr ""
 
@@ -264,7 +264,7 @@ msgid "Chinese (Traditional)"
 msgstr ""
 
 #. Button hint: choose the highlighted language.
-#: pe/ui/browse.cpp, pe/ui/locations.cpp, pe/ui/save_sync.cpp
+#: pe/ui/browse.cpp, pe/ui/library.cpp, pe/ui/save_sync.cpp
 msgid "Choose"
 msgstr ""
 
@@ -290,10 +290,6 @@ msgstr ""
 
 #: pe/ui/browse.cpp
 msgid "Choose the folder with one folder per game ID"
-msgstr ""
-
-#: pe/ui/locations.cpp
-msgid "Choose the keys, firmware, save import and save export folders on their own. Until you do, they are inside the game files folder."
 msgstr ""
 
 #: pe/ui/browse.cpp
@@ -329,6 +325,10 @@ msgstr ""
 #. A choice of 'ASTC textures': the textures are kept compressed (less memory). Keep it short.
 #: settings_store.h
 msgid "Compressed"
+msgstr ""
+
+#: pe/ui/library.cpp
+msgid "Confirm"
 msgstr ""
 
 #: pe/ui/multiplayer.cpp
@@ -451,14 +451,6 @@ msgstr ""
 msgid "Cross"
 msgstr ""
 
-#: pe/ui/locations.cpp
-msgid "CUSTOM"
-msgstr ""
-
-#: pe/ui/locations.cpp
-msgid "DEFAULT"
-msgstr ""
-
 #. A per-game setting that follows the general setting; {0} is its value.
 #: pe/ui/game_options.cpp
 msgid "Default ({0})"
@@ -478,6 +470,10 @@ msgstr ""
 
 #: pe/ui/library.cpp
 msgid "Delete from console"
+msgstr ""
+
+#: pe/ui/library.cpp
+msgid "Delete {0}?"
 msgstr ""
 
 #: eden_services.cpp
@@ -655,11 +651,11 @@ msgid "Exported to {0}."
 msgstr ""
 
 #: pe/ui/locations.cpp
-msgid "Extended storage"
+msgid "EXTENDED STORAGE"
 msgstr ""
 
 #: pe/ui/locations.cpp
-msgid "External HD or SSD"
+msgid "EXTERNAL HD OR SSD"
 msgstr ""
 
 #. A switch: the emulated processor's floating-point math is less exact and faster. CPU stays.
@@ -867,14 +863,6 @@ msgstr ""
 msgid "Handheld"
 msgstr ""
 
-#: pe/ui/locations.cpp
-msgid "HIDE"
-msgstr ""
-
-#: pe/ui/locations.cpp
-msgid "Hide"
-msgstr ""
-
 #. A switch: solid dark panels, brighter text.
 #: pe/ui/settings.cpp
 msgid "High contrast"
@@ -987,10 +975,6 @@ msgstr ""
 
 #: pe/ui/browse.cpp
 msgid "Keys folder"
-msgstr ""
-
-#: pe/ui/locations.cpp
-msgid "Keys, firmware and saves"
 msgstr ""
 
 #: eden_services.cpp
@@ -1355,7 +1339,7 @@ msgid "Patch"
 msgstr ""
 
 #: pe/ui/locations.cpp
-msgid "Path tips"
+msgid "PATH TIPS"
 msgstr ""
 
 #. A settings category: options that make games run faster, at some cost in accuracy.
@@ -1429,10 +1413,6 @@ msgstr ""
 #. Asked before a save is imported over the one in use.
 #: pe/ui/library.cpp
 msgid "Press again to replace this game's save. The current one is backed up."
-msgstr ""
-
-#: pe/ui/library.cpp
-msgid "Press Square again to delete this copy from {0}. Its updates and mods stay."
 msgstr ""
 
 #: pe/ui/multiplayer.cpp
@@ -1657,10 +1637,6 @@ msgstr ""
 msgid "Save data not synced"
 msgstr ""
 
-#: pe/ui/locations.cpp
-msgid "SAVE EXPORT"
-msgstr ""
-
 #: pe/ui/browse.cpp
 msgid "Save export folder"
 msgstr ""
@@ -1668,10 +1644,6 @@ msgstr ""
 #. Short status at the right of the Save data row: a folder with a save to import.
 #: pe/ui/library.cpp
 msgid "Save folder found"
-msgstr ""
-
-#: pe/ui/locations.cpp
-msgid "SAVE IMPORT"
 msgstr ""
 
 #: pe/ui/browse.cpp
@@ -1726,10 +1698,6 @@ msgstr ""
 
 #: pe/ui/browse.cpp
 msgid "Saves to import go here, one folder per game ID. TRIANGLE uses the folder shown; SQUARE goes back to the default."
-msgstr ""
-
-#: pe/ui/locations.cpp
-msgid "Saves to import, one folder per game ID. Until you choose one, it is save-import in the game files folder."
 msgstr ""
 
 #: pe/ui/pairing.cpp
@@ -1791,14 +1759,6 @@ msgstr ""
 
 #: pe/ui/remote.cpp
 msgid "Several sources have this game. Which one should it come from?"
-msgstr ""
-
-#: pe/ui/locations.cpp
-msgid "SHOW"
-msgstr ""
-
-#: pe/ui/locations.cpp
-msgid "Show"
 msgstr ""
 
 #: pe/ui/settings.cpp
@@ -1936,14 +1896,6 @@ msgstr ""
 msgid "The folder shown must hold the firmware NCA files. TRIANGLE uses it; SQUARE goes back to the default."
 msgstr ""
 
-#: pe/ui/locations.cpp
-msgid "The folder that holds prod.keys. Until you choose one, it is keys in the game files folder."
-msgstr ""
-
-#: pe/ui/locations.cpp
-msgid "The folder that holds the firmware NCA files. Until you choose one, it is firmware in the game files folder."
-msgstr ""
-
 #: pe/ui/settings.cpp
 msgid "The folder that holds your keys, firmware and games, and more places for games."
 msgstr ""
@@ -2048,7 +2000,7 @@ msgstr ""
 msgid "This folder cannot be opened."
 msgstr ""
 
-#: pe/ui/browse.cpp, pe/ui/locations.cpp
+#: pe/ui/browse.cpp
 msgid "This folder cannot be read"
 msgstr ""
 
@@ -2075,10 +2027,6 @@ msgstr ""
 
 #: pe/ui/library.cpp
 msgid "This game's settings cannot be saved (no title ID)."
-msgstr ""
-
-#: pe/ui/locations.cpp
-msgid "This is the default folder already."
 msgstr ""
 
 #: pe/ui/browse.cpp
@@ -2271,10 +2219,6 @@ msgstr ""
 #. Title of the release notes view; {0} is the new version, for example 1.000.080.
 #: pe/ui/update.cpp
 msgid "What's new in version {0}"
-msgstr ""
-
-#: pe/ui/locations.cpp
-msgid "Where exported saves are written. Until you choose one, it is save-export in the game files folder."
 msgstr ""
 
 #: pe/ui/settings.cpp

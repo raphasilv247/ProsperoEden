@@ -84,10 +84,6 @@ msgstr "İndirmelere eklendi. Ayarlar, İndirmeler sırayı gösterir."
 msgid "Added. Cross plays as this profile; left and right change its name."
 msgstr "Eklendi. Çarpı bu profille oynar; sol ve sağ adını değiştirir."
 
-#: pe/ui/locations.cpp
-msgid "ADVANCED"
-msgstr "GELİŞMİŞ"
-
 #: pe/ui/browse.cpp
 msgid "All credit for the Eden emulator goes to its developers and contributors."
 msgstr "Eden emülatöründeki tüm emek, geliştiricilerine ve katkıda bulunanlara aittir."
@@ -402,14 +398,6 @@ msgstr "Emeği geçenler ve kurulum"
 #: pe/ui/game_options.cpp
 msgid "Cross"
 msgstr "Çarpı"
-
-#: pe/ui/locations.cpp
-msgid "CUSTOM"
-msgstr "ÖZEL"
-
-#: pe/ui/locations.cpp
-msgid "DEFAULT"
-msgstr "VARSAYILAN"
 
 #. A per-game setting that follows the general setting; {0} is its value.
 #: pe/ui/game_options.cpp
@@ -1434,14 +1422,6 @@ msgstr "Oyun listeleri okunuyor..."
 msgid "Reading..."
 msgstr "Okunuyor..."
 
-#: pe/ui/locations.cpp
-msgid "HIDE"
-msgstr "GİZLE"
-
-#: pe/ui/locations.cpp
-msgid "Hide"
-msgstr "Gizle"
-
 #: pe/ui/settings.cpp
 msgid "Ready"
 msgstr "Hazır"
@@ -1765,10 +1745,6 @@ msgstr "Sistem"
 #: pe/ui/browse.cpp
 msgid "Keys folder"
 msgstr "Keys klasörü"
-
-#: pe/ui/locations.cpp
-msgid "Keys, firmware and saves"
-msgstr "Keys, firmware ve kayıtlar"
 
 #: eden_services.cpp
 msgid "Taiwan"
@@ -2217,14 +2193,6 @@ msgstr "{0}/{1} mod açık"
 msgid "{0} of {1} on"
 msgstr "{0}/{1} açık"
 
-#: pe/ui/locations.cpp
-msgid "SHOW"
-msgstr "GÖSTER"
-
-#: pe/ui/locations.cpp
-msgid "Show"
-msgstr "Göster"
-
 #: pe/ui/settings.cpp
 msgid "{0} of {1} profiles"
 msgstr "{0}/{1} profil"
@@ -2284,10 +2252,6 @@ msgstr "Firmware NCA dosyalarını içeren klasörü seçin"
 msgid "Choose the folder with one folder per game ID"
 msgstr "Her oyun kimliği için bir klasör içeren klasörü seçin"
 
-#: pe/ui/locations.cpp
-msgid "Choose the keys, firmware, save import and save export folders on their own. Until you do, they are inside the game files folder."
-msgstr "keys, firmware, kayıt içe aktarma ve kayıt dışa aktarma klasörlerini ayrı ayrı seçin. Seçene kadar oyun dosyaları klasörünün içindedirler."
-
 #: pe/ui/browse.cpp
 msgid "Choose where exported saves are written"
 msgstr "Dışa aktarılan kayıtların nereye yazılacağını seçin"
@@ -2304,14 +2268,6 @@ msgstr "SONRAKİ AÇILIŞ"
 #: pe/ui/browse.cpp, pe/ui/locations.cpp
 msgid "No updates folder"
 msgstr "updates klasörü yok"
-
-#: pe/ui/locations.cpp
-msgid "SAVE EXPORT"
-msgstr "KAYIT DIŞA AKTARMA"
-
-#: pe/ui/locations.cpp
-msgid "SAVE IMPORT"
-msgstr "KAYIT İÇE AKTARMA"
 
 #: pe/ui/browse.cpp
 msgid "Save export folder"
@@ -2330,10 +2286,6 @@ msgid "Saves to import go here, one folder per game ID. TRIANGLE uses the folder
 msgstr "İçe aktarılacak kayıtlar buraya konur, her oyun kimliği için bir klasör. ÜÇGEN gösterilen klasörü kullanır; KARE varsayılana döner."
 
 #: pe/ui/locations.cpp
-msgid "Saves to import, one folder per game ID. Until you choose one, it is save-import in the game files folder."
-msgstr "İçe aktarılacak kayıtlar, her oyun kimliği için bir klasör. Siz seçene kadar bu, oyun dosyaları klasöründeki save-import'tur."
-
-#: pe/ui/locations.cpp
 msgid "Square again takes {0} off the list. Its games stay where they are."
 msgstr "Kare'ye tekrar basmak {0} klasörünü listeden çıkarır. Oyunları yerinde kalır."
 
@@ -2348,14 +2300,6 @@ msgstr "Gösterilen klasör prod.keys içermelidir. ÜÇGEN onu kullanır; KARE 
 #: pe/ui/browse.cpp
 msgid "The folder shown must hold the firmware NCA files. TRIANGLE uses it; SQUARE goes back to the default."
 msgstr "Gösterilen klasör firmware NCA dosyalarını içermelidir. ÜÇGEN onu kullanır; KARE varsayılana döner."
-
-#: pe/ui/locations.cpp
-msgid "The folder that holds prod.keys. Until you choose one, it is keys in the game files folder."
-msgstr "prod.keys dosyasını içeren klasör. Siz seçene kadar bu, oyun dosyaları klasöründeki keys'tir."
-
-#: pe/ui/locations.cpp
-msgid "The folder that holds the firmware NCA files. Until you choose one, it is firmware in the game files folder."
-msgstr "Firmware NCA dosyalarını içeren klasör. Siz seçene kadar bu, oyun dosyaları klasöründeki firmware'dir."
 
 #: pe/ui/browse.cpp
 msgid "The list is full. Remove a folder first."
@@ -2376,10 +2320,6 @@ msgstr "Bu klasör zaten listede."
 #: pe/ui/browse.cpp
 msgid "This folder needs a roms folder."
 msgstr "Bu klasörün bir roms klasörüne ihtiyacı var."
-
-#: pe/ui/locations.cpp
-msgid "This is the default folder already."
-msgstr "Bu zaten varsayılan klasör."
 
 #: pe/ui/browse.cpp
 msgid "This is the game files folder already."
@@ -2413,10 +2353,6 @@ msgstr "{0} birden fazla yerde. Hangisinin başlayacağını seçin."
 msgid "The folder that holds your keys, firmware and games, and more places for games."
 msgstr "Keys, firmware ve oyunlarınızın klasörü ve oyunlar için başka yerler."
 
-#: pe/ui/locations.cpp
-msgid "Where exported saves are written. Until you choose one, it is save-export in the game files folder."
-msgstr "Dışa aktarılan kayıtların yazıldığı yer. Siz seçene kadar bu, oyun dosyaları klasöründeki save-export'tur."
-
 msgid "Available in more than one place. Choose which one to start."
 msgstr "Birden fazla yerde var. Hangisinin başlatılacağını seçin."
 
@@ -2432,14 +2368,20 @@ msgstr "ROM bu klasörden silinemedi."
 msgid "Deleted from this folder."
 msgstr "Bu klasörden silindi."
 
-msgid "Extended storage"
-msgstr "Genişletilmiş depolama"
+msgid "PATH TIPS"
+msgstr "YOL İPUÇLARI"
 
-msgid "External HD or SSD"
-msgstr "Harici HDD veya SSD"
+msgid "EXTENDED STORAGE"
+msgstr "GENİŞLETİLMİŞ DEPOLAMA"
 
-msgid "Path tips"
-msgstr "Yol ipuçları"
+msgid "EXTERNAL HD OR SSD"
+msgstr "HARİCİ HDD VEYA SSD"
 
-msgid "Press Square again to delete this copy from {0}. Its updates and mods stay."
-msgstr "Bu kopyayı {0} konumundan silmek için Kare'ye tekrar basın. Güncellemeler ve modlar kalır."
+msgid "Delete {0}?"
+msgstr "{0} silinsin mi?"
+
+msgid "Also delete the duplicated updates and DLC in this folder."
+msgstr "Bu klasördeki yinelenen güncellemeleri ve DLC'leri de sil."
+
+msgid "Confirm"
+msgstr "Onayla"
