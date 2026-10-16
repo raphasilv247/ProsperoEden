@@ -2371,12 +2371,6 @@ msgstr "Видалено з цієї папки."
 msgid "PATH TIPS"
 msgstr "ПІДКАЗКИ ЩОДО ШЛЯХІВ"
 
-msgid "EXTENDED STORAGE"
-msgstr "РОЗШИРЕНЕ СХОВИЩЕ"
-
-msgid "EXTERNAL HD OR SSD"
-msgstr "ЗОВНІШНІЙ HDD АБО SSD"
-
 msgid "Delete {0}?"
 msgstr "Видалити {0}?"
 
@@ -2385,3 +2379,27 @@ msgstr "Також видалити дубльовані оновлення та
 
 msgid "Confirm"
 msgstr "Підтвердити"
+
+msgid "EXTENDED"
+msgstr "РОЗШИРЕНЕ"
+
+msgid "EXTERNAL"
+msgstr "ЗОВНІШНЄ"
+
+msgid "App language"
+msgstr "Мова застосунку"
+
+msgid "Game language"
+msgstr "Мова ігор"
+
+msgid "Automatic (console)"
+msgstr "Авто (консоль)"
+
+msgid "Choose the language ProsperoEden speaks"
+msgstr "Виберіть мову ProsperoEden"
+
+msgid "ProsperoEden speaks this language after it starts again. Automatic follows the console."
+msgstr "ProsperoEden використовуватиме цю мову після перезапуску. Авто слідує за консоллю."
+
+msgid "Saved. ProsperoEden speaks it after it starts again."
+msgstr "Збережено. ProsperoEden використає її після перезапуску."

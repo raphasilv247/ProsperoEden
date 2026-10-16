@@ -2371,12 +2371,6 @@ msgstr "تم الحذف من هذا المجلد."
 msgid "PATH TIPS"
 msgstr "نصائح المسارات"
 
-msgid "EXTENDED STORAGE"
-msgstr "التخزين الموسّع"
-
-msgid "EXTERNAL HD OR SSD"
-msgstr "قرص HD أو SSD خارجي"
-
 msgid "Delete {0}?"
 msgstr "حذف {0}؟"
 
@@ -2385,3 +2379,27 @@ msgstr "احذف أيضًا التحديثات والمحتوى الإضافي �
 
 msgid "Confirm"
 msgstr "تأكيد"
+
+msgid "EXTENDED"
+msgstr "موسّع"
+
+msgid "EXTERNAL"
+msgstr "خارجي"
+
+msgid "App language"
+msgstr "لغة التطبيق"
+
+msgid "Game language"
+msgstr "لغة الألعاب"
+
+msgid "Automatic (console)"
+msgstr "تلقائي (الجهاز)"
+
+msgid "Choose the language ProsperoEden speaks"
+msgstr "اختر اللغة التي يتحدثها ProsperoEden"
+
+msgid "ProsperoEden speaks this language after it starts again. Automatic follows the console."
+msgstr "سيستخدم ProsperoEden هذه اللغة بعد إعادة التشغيل. التلقائي يتبع الجهاز."
+
+msgid "Saved. ProsperoEden speaks it after it starts again."
+msgstr "تم الحفظ. سيستخدمها ProsperoEden بعد إعادة التشغيل."

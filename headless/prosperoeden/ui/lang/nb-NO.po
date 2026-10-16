@@ -2371,12 +2371,6 @@ msgstr "Slettet fra denne mappen."
 msgid "PATH TIPS"
 msgstr "TIPS OM STIER"
 
-msgid "EXTENDED STORAGE"
-msgstr "UTVIDET LAGRING"
-
-msgid "EXTERNAL HD OR SSD"
-msgstr "EKSTERN HD ELLER SSD"
-
 msgid "Delete {0}?"
 msgstr "Slette {0}?"
 
@@ -2385,3 +2379,27 @@ msgstr "Slett også de dupliserte oppdateringene og DLC-ene i denne mappen."
 
 msgid "Confirm"
 msgstr "Bekreft"
+
+msgid "EXTENDED"
+msgstr "UTVIDET"
+
+msgid "EXTERNAL"
+msgstr "EKSTERN"
+
+msgid "App language"
+msgstr "Appens språk"
+
+msgid "Game language"
+msgstr "Spillspråk"
+
+msgid "Automatic (console)"
+msgstr "Automatisk (konsoll)"
+
+msgid "Choose the language ProsperoEden speaks"
+msgstr "Velg språket ProsperoEden bruker"
+
+msgid "ProsperoEden speaks this language after it starts again. Automatic follows the console."
+msgstr "ProsperoEden bruker dette språket etter at det startes på nytt. Automatisk følger konsollen."
+
+msgid "Saved. ProsperoEden speaks it after it starts again."
+msgstr "Lagret. ProsperoEden bruker det etter at det startes på nytt."

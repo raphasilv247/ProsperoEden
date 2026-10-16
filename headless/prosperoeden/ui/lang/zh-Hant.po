@@ -2371,12 +2371,6 @@ msgstr "已從此資料夾刪除。"
 msgid "PATH TIPS"
 msgstr "路徑提示"
 
-msgid "EXTENDED STORAGE"
-msgstr "擴充儲存空間"
-
-msgid "EXTERNAL HD OR SSD"
-msgstr "外接硬碟或固態硬碟"
-
 msgid "Delete {0}?"
 msgstr "刪除 {0}？"
 
@@ -2385,3 +2379,27 @@ msgstr "同時刪除此資料夾中重複的更新與 DLC。"
 
 msgid "Confirm"
 msgstr "確認"
+
+msgid "EXTENDED"
+msgstr "擴充"
+
+msgid "EXTERNAL"
+msgstr "外接"
+
+msgid "App language"
+msgstr "應用程式語言"
+
+msgid "Game language"
+msgstr "遊戲語言"
+
+msgid "Automatic (console)"
+msgstr "自動（主機）"
+
+msgid "Choose the language ProsperoEden speaks"
+msgstr "選擇 ProsperoEden 使用的語言"
+
+msgid "ProsperoEden speaks this language after it starts again. Automatic follows the console."
+msgstr "ProsperoEden 將在重新啟動後使用此語言。自動則跟隨主機。"
+
+msgid "Saved. ProsperoEden speaks it after it starts again."
+msgstr "已儲存。ProsperoEden 將在重新啟動後使用。"

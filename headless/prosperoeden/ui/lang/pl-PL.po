@@ -2371,12 +2371,6 @@ msgstr "Usunięto z tego folderu."
 msgid "PATH TIPS"
 msgstr "WSKAZÓWKI DOTYCZĄCE ŚCIEŻEK"
 
-msgid "EXTENDED STORAGE"
-msgstr "ROZSZERZONA PAMIĘĆ"
-
-msgid "EXTERNAL HD OR SSD"
-msgstr "ZEWNĘTRZNY DYSK HDD LUB SSD"
-
 msgid "Delete {0}?"
 msgstr "Usunąć {0}?"
 
@@ -2385,3 +2379,27 @@ msgstr "Usuń także zduplikowane aktualizacje i DLC w tym folderze."
 
 msgid "Confirm"
 msgstr "Potwierdź"
+
+msgid "EXTENDED"
+msgstr "ROZSZERZONY"
+
+msgid "EXTERNAL"
+msgstr "ZEWNĘTRZNY"
+
+msgid "App language"
+msgstr "Język aplikacji"
+
+msgid "Game language"
+msgstr "Język gier"
+
+msgid "Automatic (console)"
+msgstr "Automatycznie (konsola)"
+
+msgid "Choose the language ProsperoEden speaks"
+msgstr "Wybierz język ProsperoEden"
+
+msgid "ProsperoEden speaks this language after it starts again. Automatic follows the console."
+msgstr "ProsperoEden używa tego języka po ponownym uruchomieniu. Automatycznie jest zgodnie z konsolą."
+
+msgid "Saved. ProsperoEden speaks it after it starts again."
+msgstr "Zapisano. ProsperoEden użyje go po ponownym uruchomieniu."

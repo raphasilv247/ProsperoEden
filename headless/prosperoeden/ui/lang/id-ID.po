@@ -2371,12 +2371,6 @@ msgstr "Dihapus dari folder ini."
 msgid "PATH TIPS"
 msgstr "TIPS JALUR"
 
-msgid "EXTENDED STORAGE"
-msgstr "PENYIMPANAN TAMBAHAN"
-
-msgid "EXTERNAL HD OR SSD"
-msgstr "HD ATAU SSD EKSTERNAL"
-
 msgid "Delete {0}?"
 msgstr "Hapus {0}?"
 
@@ -2385,3 +2379,27 @@ msgstr "Hapus juga update dan DLC duplikat di folder ini."
 
 msgid "Confirm"
 msgstr "Konfirmasi"
+
+msgid "EXTENDED"
+msgstr "TAMBAHAN"
+
+msgid "EXTERNAL"
+msgstr "EKSTERNAL"
+
+msgid "App language"
+msgstr "Bahasa aplikasi"
+
+msgid "Game language"
+msgstr "Bahasa game"
+
+msgid "Automatic (console)"
+msgstr "Otomatis (konsol)"
+
+msgid "Choose the language ProsperoEden speaks"
+msgstr "Pilih bahasa ProsperoEden"
+
+msgid "ProsperoEden speaks this language after it starts again. Automatic follows the console."
+msgstr "ProsperoEden memakai bahasa ini setelah dimulai ulang. Otomatis mengikuti konsol."
+
+msgid "Saved. ProsperoEden speaks it after it starts again."
+msgstr "Disimpan. ProsperoEden memakainya setelah dimulai ulang."

@@ -2371,12 +2371,6 @@ msgstr "Törölve ebből a mappából."
 msgid "PATH TIPS"
 msgstr "ÚTVONAL-TIPPEK"
 
-msgid "EXTENDED STORAGE"
-msgstr "BŐVÍTETT TÁRHELY"
-
-msgid "EXTERNAL HD OR SSD"
-msgstr "KÜLSŐ HDD VAGY SSD"
-
 msgid "Delete {0}?"
 msgstr "Törlöd ezt: {0}?"
 
@@ -2385,3 +2379,27 @@ msgstr "A duplikált frissítések és DLC-k törlése is ebben a mappában."
 
 msgid "Confirm"
 msgstr "Megerősítés"
+
+msgid "EXTENDED"
+msgstr "BŐVÍTETT"
+
+msgid "EXTERNAL"
+msgstr "KÜLSŐ"
+
+msgid "App language"
+msgstr "Alkalmazás nyelve"
+
+msgid "Game language"
+msgstr "Játékok nyelve"
+
+msgid "Automatic (console)"
+msgstr "Automatikus (konzol)"
+
+msgid "Choose the language ProsperoEden speaks"
+msgstr "Válaszd ki a ProsperoEden nyelvét"
+
+msgid "ProsperoEden speaks this language after it starts again. Automatic follows the console."
+msgstr "A ProsperoEden újraindítás után ezt a nyelvet használja. Az automatikus a konzolt követi."
+
+msgid "Saved. ProsperoEden speaks it after it starts again."
+msgstr "Mentve. A ProsperoEden újraindítás után használja."

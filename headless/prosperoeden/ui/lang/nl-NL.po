@@ -2371,12 +2371,6 @@ msgstr "Verwijderd uit deze map."
 msgid "PATH TIPS"
 msgstr "TIPS VOOR PADEN"
 
-msgid "EXTENDED STORAGE"
-msgstr "UITGEBREIDE OPSLAG"
-
-msgid "EXTERNAL HD OR SSD"
-msgstr "EXTERNE HDD OF SSD"
-
 msgid "Delete {0}?"
 msgstr "{0} verwijderen?"
 
@@ -2385,3 +2379,27 @@ msgstr "Verwijder ook de dubbele updates en DLC in deze map."
 
 msgid "Confirm"
 msgstr "Bevestigen"
+
+msgid "EXTENDED"
+msgstr "UITGEBREID"
+
+msgid "EXTERNAL"
+msgstr "EXTERN"
+
+msgid "App language"
+msgstr "App-taal"
+
+msgid "Game language"
+msgstr "Spel-taal"
+
+msgid "Automatic (console)"
+msgstr "Automatisch (console)"
+
+msgid "Choose the language ProsperoEden speaks"
+msgstr "Kies de taal van ProsperoEden"
+
+msgid "ProsperoEden speaks this language after it starts again. Automatic follows the console."
+msgstr "ProsperoEden spreekt deze taal na een herstart. Automatisch volgt de console."
+
+msgid "Saved. ProsperoEden speaks it after it starts again."
+msgstr "Opgeslagen. ProsperoEden gebruikt het na een herstart."

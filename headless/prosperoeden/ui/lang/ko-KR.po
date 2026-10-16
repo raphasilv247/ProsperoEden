@@ -2371,12 +2371,6 @@ msgstr "이 폴더에서 삭제했습니다."
 msgid "PATH TIPS"
 msgstr "경로 팁"
 
-msgid "EXTENDED STORAGE"
-msgstr "확장 저장공간"
-
-msgid "EXTERNAL HD OR SSD"
-msgstr "외장 HDD 또는 SSD"
-
 msgid "Delete {0}?"
 msgstr "{0}을(를) 삭제할까요?"
 
@@ -2385,3 +2379,27 @@ msgstr "이 폴더의 중복 업데이트와 DLC도 삭제"
 
 msgid "Confirm"
 msgstr "확인"
+
+msgid "EXTENDED"
+msgstr "확장"
+
+msgid "EXTERNAL"
+msgstr "외부"
+
+msgid "App language"
+msgstr "앱 언어"
+
+msgid "Game language"
+msgstr "게임 언어"
+
+msgid "Automatic (console)"
+msgstr "자동(본체)"
+
+msgid "Choose the language ProsperoEden speaks"
+msgstr "ProsperoEden 언어 선택"
+
+msgid "ProsperoEden speaks this language after it starts again. Automatic follows the console."
+msgstr "이 언어는 다시 시작한 후 ProsperoEden에 적용됩니다. 자동은 본체를 따릅니다."
+
+msgid "Saved. ProsperoEden speaks it after it starts again."
+msgstr "저장했습니다. 다시 시작한 후 ProsperoEden에 적용됩니다."

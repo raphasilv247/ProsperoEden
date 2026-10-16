@@ -2371,12 +2371,6 @@ msgstr "Șters din acest dosar."
 msgid "PATH TIPS"
 msgstr "SFATURI PENTRU CĂI"
 
-msgid "EXTENDED STORAGE"
-msgstr "STOCARE EXTINSĂ"
-
-msgid "EXTERNAL HD OR SSD"
-msgstr "HDD SAU SSD EXTERN"
-
 msgid "Delete {0}?"
 msgstr "Ștergi {0}?"
 
@@ -2385,3 +2379,27 @@ msgstr "Șterge și actualizările și DLC-urile duplicate din acest dosar."
 
 msgid "Confirm"
 msgstr "Confirmă"
+
+msgid "EXTENDED"
+msgstr "EXTINS"
+
+msgid "EXTERNAL"
+msgstr "EXTERN"
+
+msgid "App language"
+msgstr "Limba aplicației"
+
+msgid "Game language"
+msgstr "Limba jocurilor"
+
+msgid "Automatic (console)"
+msgstr "Automat (consolă)"
+
+msgid "Choose the language ProsperoEden speaks"
+msgstr "Alege limba ProsperoEden"
+
+msgid "ProsperoEden speaks this language after it starts again. Automatic follows the console."
+msgstr "ProsperoEden vorbește această limbă după o nouă pornire. Automat urmează consola."
+
+msgid "Saved. ProsperoEden speaks it after it starts again."
+msgstr "Salvat. ProsperoEden o va folosi după o nouă pornire."

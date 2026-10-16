@@ -2371,12 +2371,6 @@ msgstr "Đã xóa khỏi thư mục này."
 msgid "PATH TIPS"
 msgstr "MẸO VỀ ĐƯỜNG DẪN"
 
-msgid "EXTENDED STORAGE"
-msgstr "BỘ NHỚ MỞ RỘNG"
-
-msgid "EXTERNAL HD OR SSD"
-msgstr "HDD HOẶC SSD NGOÀI"
-
 msgid "Delete {0}?"
 msgstr "Xóa {0}?"
 
@@ -2385,3 +2379,27 @@ msgstr "Xóa cả bản cập nhật và DLC trùng lặp trong thư mục này.
 
 msgid "Confirm"
 msgstr "Xác nhận"
+
+msgid "EXTENDED"
+msgstr "MỞ RỘNG"
+
+msgid "EXTERNAL"
+msgstr "NGOÀI"
+
+msgid "App language"
+msgstr "Ngôn ngữ ứng dụng"
+
+msgid "Game language"
+msgstr "Ngôn ngữ trò chơi"
+
+msgid "Automatic (console)"
+msgstr "Tự động (máy)"
+
+msgid "Choose the language ProsperoEden speaks"
+msgstr "Chọn ngôn ngữ ProsperoEden dùng"
+
+msgid "ProsperoEden speaks this language after it starts again. Automatic follows the console."
+msgstr "ProsperoEden dùng ngôn ngữ này sau khi khởi động lại. Tự động theo máy."
+
+msgid "Saved. ProsperoEden speaks it after it starts again."
+msgstr "Đã lưu. ProsperoEden sẽ dùng sau khi khởi động lại."

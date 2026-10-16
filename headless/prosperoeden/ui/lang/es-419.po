@@ -2371,12 +2371,6 @@ msgstr "Borrado de esta carpeta."
 msgid "PATH TIPS"
 msgstr "CONSEJOS DE RUTAS"
 
-msgid "EXTENDED STORAGE"
-msgstr "ALMACENAMIENTO EXTENDIDO"
-
-msgid "EXTERNAL HD OR SSD"
-msgstr "HD O SSD EXTERNO"
-
 msgid "Delete {0}?"
 msgstr "¿Borrar {0}?"
 
@@ -2385,3 +2379,27 @@ msgstr "Borrar también los updates y DLC duplicados en esta carpeta."
 
 msgid "Confirm"
 msgstr "Confirmar"
+
+msgid "EXTENDED"
+msgstr "EXTENDIDO"
+
+msgid "EXTERNAL"
+msgstr "EXTERNO"
+
+msgid "App language"
+msgstr "Idioma de la app"
+
+msgid "Game language"
+msgstr "Idioma de los juegos"
+
+msgid "Automatic (console)"
+msgstr "Automático (consola)"
+
+msgid "Choose the language ProsperoEden speaks"
+msgstr "Elige el idioma en que habla ProsperoEden"
+
+msgid "ProsperoEden speaks this language after it starts again. Automatic follows the console."
+msgstr "ProsperoEden habla este idioma tras reiniciarse. Automático sigue a la consola."
+
+msgid "Saved. ProsperoEden speaks it after it starts again."
+msgstr "Guardado. ProsperoEden lo usará al reiniciarse."

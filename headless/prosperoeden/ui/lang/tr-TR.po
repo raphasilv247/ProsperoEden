@@ -2371,12 +2371,6 @@ msgstr "Bu klasörden silindi."
 msgid "PATH TIPS"
 msgstr "YOL İPUÇLARI"
 
-msgid "EXTENDED STORAGE"
-msgstr "GENİŞLETİLMİŞ DEPOLAMA"
-
-msgid "EXTERNAL HD OR SSD"
-msgstr "HARİCİ HDD VEYA SSD"
-
 msgid "Delete {0}?"
 msgstr "{0} silinsin mi?"
 
@@ -2385,3 +2379,27 @@ msgstr "Bu klasördeki yinelenen güncellemeleri ve DLC'leri de sil."
 
 msgid "Confirm"
 msgstr "Onayla"
+
+msgid "EXTENDED"
+msgstr "GENİŞLETİLMİŞ"
+
+msgid "EXTERNAL"
+msgstr "HARİCİ"
+
+msgid "App language"
+msgstr "Uygulama dili"
+
+msgid "Game language"
+msgstr "Oyun dili"
+
+msgid "Automatic (console)"
+msgstr "Otomatik (konsol)"
+
+msgid "Choose the language ProsperoEden speaks"
+msgstr "ProsperoEden'in kullanacağı dili seçin"
+
+msgid "ProsperoEden speaks this language after it starts again. Automatic follows the console."
+msgstr "ProsperoEden bu dili yeniden başlattıktan sonra konuşur. Otomatik konsolu izler."
+
+msgid "Saved. ProsperoEden speaks it after it starts again."
+msgstr "Kaydedildi. ProsperoEden bunu yeniden başlatmadan sonra kullanır."

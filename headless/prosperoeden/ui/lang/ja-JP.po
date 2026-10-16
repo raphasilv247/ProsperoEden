@@ -2371,12 +2371,6 @@ msgstr "このフォルダーから削除しました。"
 msgid "PATH TIPS"
 msgstr "パスのヒント"
 
-msgid "EXTENDED STORAGE"
-msgstr "拡張ストレージ"
-
-msgid "EXTERNAL HD OR SSD"
-msgstr "外付けHDD / SSD"
-
 msgid "Delete {0}?"
 msgstr "{0} を削除しますか？"
 
@@ -2385,3 +2379,27 @@ msgstr "このフォルダーの重複したアップデートとDLCも削除す
 
 msgid "Confirm"
 msgstr "確認"
+
+msgid "EXTENDED"
+msgstr "拡張"
+
+msgid "EXTERNAL"
+msgstr "外部"
+
+msgid "App language"
+msgstr "アプリの言語"
+
+msgid "Game language"
+msgstr "ゲームの言語"
+
+msgid "Automatic (console)"
+msgstr "自動（本体）"
+
+msgid "Choose the language ProsperoEden speaks"
+msgstr "ProsperoEdenの言語を選択"
+
+msgid "ProsperoEden speaks this language after it starts again. Automatic follows the console."
+msgstr "この言語は再起動後に ProsperoEden に適用されます。自動は本体の設定に従います。"
+
+msgid "Saved. ProsperoEden speaks it after it starts again."
+msgstr "保存しました。再起動後に ProsperoEden に適用されます。"

@@ -108,6 +108,10 @@ msgstr ""
 msgid "Another language"
 msgstr ""
 
+#: pe/ui/browse.cpp
+msgid "App language"
+msgstr ""
+
 #. The button mapping has not been changed.
 #: pe/ui/game_options.cpp, pe/ui/settings.cpp
 msgid "As usual"
@@ -141,6 +145,10 @@ msgstr ""
 
 #: pe/ui/game_options.cpp
 msgid "Automatic"
+msgstr ""
+
+#: pe/ui/browse.cpp
+msgid "Automatic (console)"
 msgstr ""
 
 #: pe/ui/library.cpp
@@ -294,6 +302,10 @@ msgstr ""
 
 #: pe/ui/browse.cpp
 msgid "Choose the language games use"
+msgstr ""
+
+#: pe/ui/browse.cpp
+msgid "Choose the language ProsperoEden speaks"
 msgstr ""
 
 #: pe/ui/browse.cpp
@@ -651,11 +663,11 @@ msgid "Exported to {0}."
 msgstr ""
 
 #: pe/ui/locations.cpp
-msgid "EXTENDED STORAGE"
+msgid "EXTENDED"
 msgstr ""
 
 #: pe/ui/locations.cpp
-msgid "EXTERNAL HD OR SSD"
+msgid "EXTERNAL"
 msgstr ""
 
 #. A switch: the emulated processor's floating-point math is less exact and faster. CPU stays.
@@ -796,6 +808,10 @@ msgstr ""
 
 #: pe/ui/locations.cpp
 msgid "GAME FOLDERS"
+msgstr ""
+
+#: pe/ui/browse.cpp
+msgid "Game language"
 msgstr ""
 
 #: pe/ui/home.cpp, pe/ui/library.cpp
@@ -1467,6 +1483,10 @@ msgstr ""
 msgid "ProsperoEden is an unofficial PS5 port brought to you by BlackBearReloaded."
 msgstr ""
 
+#: pe/ui/browse.cpp
+msgid "ProsperoEden speaks this language after it starts again. Automatic follows the console."
+msgstr ""
+
 #. Shown on the home screen after the app crashed and started again; {0} is a file.
 #: eden_services.cpp, host/fake_services.cpp
 msgid "ProsperoEden stopped because of an error. A report was saved to {0}."
@@ -1690,6 +1710,10 @@ msgstr ""
 
 #: pe/ui/browse.cpp
 msgid "Saved. Its games are in the Library now."
+msgstr ""
+
+#: pe/ui/browse.cpp
+msgid "Saved. ProsperoEden speaks it after it starts again."
 msgstr ""
 
 #: pe/ui/browse.cpp

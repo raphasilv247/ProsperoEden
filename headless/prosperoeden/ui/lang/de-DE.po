@@ -2371,12 +2371,6 @@ msgstr "Aus diesem Ordner gelöscht."
 msgid "PATH TIPS"
 msgstr "PFADTIPPS"
 
-msgid "EXTENDED STORAGE"
-msgstr "ERWEITERTER SPEICHER"
-
-msgid "EXTERNAL HD OR SSD"
-msgstr "EXTERNE HDD ODER SSD"
-
 msgid "Delete {0}?"
 msgstr "{0} löschen?"
 
@@ -2385,3 +2379,27 @@ msgstr "Auch die doppelten Updates und DLCs in diesem Ordner löschen."
 
 msgid "Confirm"
 msgstr "Bestätigen"
+
+msgid "EXTENDED"
+msgstr "ERWEITERT"
+
+msgid "EXTERNAL"
+msgstr "EXTERN"
+
+msgid "App language"
+msgstr "App-Sprache"
+
+msgid "Game language"
+msgstr "Spielsprache"
+
+msgid "Automatic (console)"
+msgstr "Automatisch (Konsole)"
+
+msgid "Choose the language ProsperoEden speaks"
+msgstr "Wähle die Sprache, in der ProsperoEden spricht"
+
+msgid "ProsperoEden speaks this language after it starts again. Automatic follows the console."
+msgstr "ProsperoEden spricht diese Sprache nach dem nächsten Start. Automatisch folgt der Konsole."
+
+msgid "Saved. ProsperoEden speaks it after it starts again."
+msgstr "Gespeichert. ProsperoEden spricht es nach dem nächsten Start."

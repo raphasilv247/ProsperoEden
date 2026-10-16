@@ -363,8 +363,8 @@ void Launcher::draw_locations(Canvas &c)
     case LocationRow::Kind::add:
         text(c, tr("PATH TIPS"), 1016.0f, baseline(378.0f, 30.0f, th().size_small), th().size_small, th().label,
              Align::left, 2.0f);
-        line(430.0f, tr("EXTENDED STORAGE"), "/extX/prosperoeden/", th().accent_pale);
-        line(482.0f, tr("EXTERNAL HD OR SSD"), "/usbX/prosperoeden/", th().accent_pale);
+        line(430.0f, tr("EXTENDED"), "/extX/prosperoeden/", th().accent_pale);
+        line(482.0f, tr("EXTERNAL"), "/usbX/prosperoeden/", th().accent_pale);
         break;
     case LocationRow::Kind::main:
         line(378.0f, tr("KEYS"), info.keys ? tr("prod.keys found") : tr("prod.keys missing"), state(info.keys));

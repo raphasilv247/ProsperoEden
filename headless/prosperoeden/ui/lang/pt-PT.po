@@ -2371,12 +2371,6 @@ msgstr "Apagado desta pasta."
 msgid "PATH TIPS"
 msgstr "DICAS DE CAMINHOS"
 
-msgid "EXTENDED STORAGE"
-msgstr "ARMAZENAMENTO ALARGADO"
-
-msgid "EXTERNAL HD OR SSD"
-msgstr "HD OU SSD EXTERNO"
-
 msgid "Delete {0}?"
 msgstr "Apagar {0}?"
 
@@ -2385,3 +2379,27 @@ msgstr "Apagar também as atualizações e DLC duplicados desta pasta."
 
 msgid "Confirm"
 msgstr "Confirmar"
+
+msgid "EXTENDED"
+msgstr "ALARGADO"
+
+msgid "EXTERNAL"
+msgstr "EXTERNO"
+
+msgid "App language"
+msgstr "Idioma da aplicação"
+
+msgid "Game language"
+msgstr "Idioma dos jogos"
+
+msgid "Automatic (console)"
+msgstr "Automático (consola)"
+
+msgid "Choose the language ProsperoEden speaks"
+msgstr "Escolha o idioma do ProsperoEden"
+
+msgid "ProsperoEden speaks this language after it starts again. Automatic follows the console."
+msgstr "O ProsperoEden fala este idioma depois de reiniciar. Automático segue a consola."
+
+msgid "Saved. ProsperoEden speaks it after it starts again."
+msgstr "Guardado. O ProsperoEden usará este idioma após reiniciar."

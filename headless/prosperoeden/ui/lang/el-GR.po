@@ -2371,12 +2371,6 @@ msgstr "Διαγράφηκε από αυτόν τον φάκελο."
 msgid "PATH TIPS"
 msgstr "ΣΥΜΒΟΥΛΕΣ ΔΙΑΔΡΟΜΩΝ"
 
-msgid "EXTENDED STORAGE"
-msgstr "ΕΚΤΕΤΑΜΕΝΟΣ ΑΠΟΘΗΚΕΥΤΙΚΟΣ ΧΩΡΟΣ"
-
-msgid "EXTERNAL HD OR SSD"
-msgstr "ΕΞΩΤΕΡΙΚΟΣ HDD Ή SSD"
-
 msgid "Delete {0}?"
 msgstr "Διαγραφή του {0};"
 
@@ -2385,3 +2379,27 @@ msgstr "Διαγραφή και των διπλότυπων ενημερώσεω
 
 msgid "Confirm"
 msgstr "Επιβεβαίωση"
+
+msgid "EXTENDED"
+msgstr "ΕΚΤΕΤΑΜΕΝΟ"
+
+msgid "EXTERNAL"
+msgstr "ΕΞΩΤΕΡΙΚΟ"
+
+msgid "App language"
+msgstr "Γλώσσα εφαρμογής"
+
+msgid "Game language"
+msgstr "Γλώσσα παιχνιδιών"
+
+msgid "Automatic (console)"
+msgstr "Αυτόματα (κονσόλα)"
+
+msgid "Choose the language ProsperoEden speaks"
+msgstr "Επιλέξτε τη γλώσσα του ProsperoEden"
+
+msgid "ProsperoEden speaks this language after it starts again. Automatic follows the console."
+msgstr "Το ProsperoEden θα μιλά αυτή τη γλώσσα μετά την επανεκκίνηση. Το αυτόματο ακολουθεί την κονσόλα."
+
+msgid "Saved. ProsperoEden speaks it after it starts again."
+msgstr "Αποθηκεύτηκε. Το ProsperoEden θα το χρησιμοποιήσει μετά την επανεκκίνηση."

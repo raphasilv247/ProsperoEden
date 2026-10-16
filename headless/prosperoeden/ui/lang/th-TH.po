@@ -2371,12 +2371,6 @@ msgstr "ลบจากโฟลเดอร์นี้แล้ว"
 msgid "PATH TIPS"
 msgstr "เคล็ดลับเกี่ยวกับเส้นทาง"
 
-msgid "EXTENDED STORAGE"
-msgstr "พื้นที่จัดเก็บขยาย"
-
-msgid "EXTERNAL HD OR SSD"
-msgstr "ฮาร์ดดิสก์หรือ SSD ภายนอก"
-
 msgid "Delete {0}?"
 msgstr "ลบ {0} หรือไม่?"
 
@@ -2385,3 +2379,27 @@ msgstr "ลบการอัปเดตและ DLC ที่ซ้ำกั�
 
 msgid "Confirm"
 msgstr "ยืนยัน"
+
+msgid "EXTENDED"
+msgstr "ขยาย"
+
+msgid "EXTERNAL"
+msgstr "ภายนอก"
+
+msgid "App language"
+msgstr "ภาษาของแอป"
+
+msgid "Game language"
+msgstr "ภาษาของเกม"
+
+msgid "Automatic (console)"
+msgstr "อัตโนมัติ (คอนโซล)"
+
+msgid "Choose the language ProsperoEden speaks"
+msgstr "เลือกภาษาที่ ProsperoEden ใช้"
+
+msgid "ProsperoEden speaks this language after it starts again. Automatic follows the console."
+msgstr "ProsperoEden จะใช้ภาษานี้หลังเริ่มใหม่ อัตโนมัติจะทำตามคอนโซล"
+
+msgid "Saved. ProsperoEden speaks it after it starts again."
+msgstr "บันทึกแล้ว ProsperoEden จะใช้หลังเริ่มใหม่"

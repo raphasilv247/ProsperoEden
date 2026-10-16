@@ -2371,12 +2371,6 @@ msgstr "Smazáno z této složky."
 msgid "PATH TIPS"
 msgstr "TIPY K CESTÁM"
 
-msgid "EXTENDED STORAGE"
-msgstr "ROZŠÍŘENÉ ÚLOŽIŠTĚ"
-
-msgid "EXTERNAL HD OR SSD"
-msgstr "EXTERNÍ HDD NEBO SSD"
-
 msgid "Delete {0}?"
 msgstr "Smazat {0}?"
 
@@ -2385,3 +2379,27 @@ msgstr "Smazat také duplicitní aktualizace a DLC v této složce."
 
 msgid "Confirm"
 msgstr "Potvrdit"
+
+msgid "EXTENDED"
+msgstr "ROZŠÍŘENÉ"
+
+msgid "EXTERNAL"
+msgstr "EXTERNÍ"
+
+msgid "App language"
+msgstr "Jazyk aplikace"
+
+msgid "Game language"
+msgstr "Jazyk her"
+
+msgid "Automatic (console)"
+msgstr "Automaticky (konzole)"
+
+msgid "Choose the language ProsperoEden speaks"
+msgstr "Vyberte jazyk, kterým ProsperoEden mluví"
+
+msgid "ProsperoEden speaks this language after it starts again. Automatic follows the console."
+msgstr "ProsperoEden použije tento jazyk po novém spuštění. Automaticky se řídí konzolí."
+
+msgid "Saved. ProsperoEden speaks it after it starts again."
+msgstr "Uloženo. ProsperoEden ho použije po novém spuštění."

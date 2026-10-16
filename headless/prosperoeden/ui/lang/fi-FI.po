@@ -2371,12 +2371,6 @@ msgstr "Poistettu tästä kansiosta."
 msgid "PATH TIPS"
 msgstr "POLKUVINKIT"
 
-msgid "EXTENDED STORAGE"
-msgstr "LAAJENNETTU TALLENNUS"
-
-msgid "EXTERNAL HD OR SSD"
-msgstr "ULKOINEN HD TAI SSD"
-
 msgid "Delete {0}?"
 msgstr "Poistetaanko {0}?"
 
@@ -2385,3 +2379,27 @@ msgstr "Poista myös tämän kansion kaksoiskappaleet päivitykset ja DLC:t."
 
 msgid "Confirm"
 msgstr "Vahvista"
+
+msgid "EXTENDED"
+msgstr "LAAJENNETTU"
+
+msgid "EXTERNAL"
+msgstr "ULKOINEN"
+
+msgid "App language"
+msgstr "Sovelluksen kieli"
+
+msgid "Game language"
+msgstr "Pelien kieli"
+
+msgid "Automatic (console)"
+msgstr "Automaattinen (konsoli)"
+
+msgid "Choose the language ProsperoEden speaks"
+msgstr "Valitse ProsperoEdenin kieli"
+
+msgid "ProsperoEden speaks this language after it starts again. Automatic follows the console."
+msgstr "ProsperoEden käyttää tätä kieltä uudelleenkäynnistyksen jälkeen. Automaattinen seuraa konsolia."
+
+msgid "Saved. ProsperoEden speaks it after it starts again."
+msgstr "Tallennettu. ProsperoEden käyttää sitä uudelleenkäynnistyksen jälkeen."
