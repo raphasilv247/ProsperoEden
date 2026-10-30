@@ -98,8 +98,8 @@
       "name": "boilerplate",
       "about": "PS5 Native App Boilerplate: Payload SDK v0.42, runtime libc.prx and the native packaging tool",
       "kind": "git",
-      "url": "https://github.com/blackbearreloaded/ps5-native-app-boilerplate.git",
-      "commit": "dd44bbdc75437332ed22e3ba95126733419ef25a",
+      "url": "https://github.com/LedyBacer/ps5-native-app-boilerplate.git",
+      "commit": "44ae1dab529654eac795d2a7c4f5a0425102b8d7",
       "path": "../ps5-native-app-boilerplate",
       "setup": ["bash", "tools/setup-native-dependencies.sh"],
       "setup_creates": ".deps/native/ps5-payload-sdk/bin/prospero-clang"
