@@ -43,6 +43,10 @@ msgstr "Některý ze souborů NCA firmwaru nelze přečíst. Nainstaluj dump fir
 msgid "A pairing is running already."
 msgstr "Párování už probíhá."
 
+#: pe/ui/browse.cpp
+msgid "ABOUT"
+msgstr "O APLIKACI"
+
 #. The menu's last section: about this app (its credits, where its files go). One short word.
 #: pe/ui/shell.cpp
 msgid "About"
@@ -61,6 +65,10 @@ msgstr "Zbývá asi {0} min"
 #: pe/ui/remote.cpp, pe/ui/update.cpp
 msgid "About {0} s left"
 msgstr "Zbývá asi {0} s"
+
+#: pe/ui/settings.cpp
+msgid "Above 100%, a game locked to 30 FPS can reach 60, and a game that counts its frames plays faster too."
+msgstr "Nad 100 % může hra omezená na 30 FPS dosáhnout 60 a hra, která počítá své snímky, poběží také rychleji."
 
 #. Label: which folders the app can read.
 #: pe/ui/browse.cpp
@@ -84,6 +92,10 @@ msgstr "Přidáno ke stahování. Frontu ukazuje Nastavení, Stahování."
 msgid "Added. Cross plays as this profile; left and right change its name."
 msgstr "Přidáno. Křížek hraje za tento profil; vlevo a vpravo mění jeho jméno."
 
+#: pe/ui/library.cpp
+msgid "All cheats"
+msgstr "Všechny cheaty"
+
 #: pe/ui/browse.cpp
 msgid "All credit for the Eden emulator goes to its developers and contributors."
 msgstr "Veškeré uznání za emulátor Eden patří jeho vývojářům a přispěvatelům."
@@ -92,9 +104,21 @@ msgstr "Veškeré uznání za emulátor Eden patří jeho vývojářům a přisp
 msgid "AMD FSR"
 msgstr "AMD FSR"
 
+#: pe/ui/settings.cpp
+msgid "An image of your own behind this menu."
+msgstr "Vlastní obrázek za touto nabídkou."
+
 #: eden_services.cpp
 msgid "Another language"
 msgstr "Jiný jazyk"
+
+#: pe/ui/settings.cpp
+msgid "Appearance"
+msgstr "Vzhled"
+
+#: pe/ui/settings.cpp
+msgid "Apply"
+msgstr "Použít"
 
 #. The button mapping has not been changed.
 #: pe/ui/game_options.cpp, pe/ui/settings.cpp
@@ -211,9 +235,14 @@ msgid "Changed"
 msgstr "Změněno"
 
 #. What a mod is made of: cheat codes.
-#: eden_services.cpp, host/fake_services.cpp
+#: eden_services.cpp, host/fake_services.cpp, pe/ui/library.cpp
 msgid "Cheats"
 msgstr "Cheaty"
+
+#. Shown under a cheat that came from the game's cheats folder (not from a mod).
+#: pe/ui/library.cpp
+msgid "Cheats folder"
+msgstr "Složka cheatů"
 
 #: pe/ui/pairing.cpp
 msgid "Check that the code there is this one, and approve."
@@ -248,6 +277,14 @@ msgstr "Zvolit"
 msgid "Choose a game from your library."
 msgstr "Vyber si hru z knihovny."
 
+#: pe/ui/settings.cpp
+msgid "Choose a theme or change the launcher layout."
+msgstr "Vyberte motiv nebo změňte rozvržení spouštěče."
+
+#: pe/ui/settings.cpp
+msgid "Choose the colours and appearance of this menu."
+msgstr "Vyberte barvy a vzhled této nabídky."
+
 #: pe/ui/browse.cpp
 msgid "Choose the folder that holds your keys, firmware and games"
 msgstr "Vyber složku, ve které jsou klíče, firmware a hry"
@@ -264,6 +301,14 @@ msgstr "Kolečko"
 #: pe/ui/remote.cpp, pe/ui/update.cpp
 msgid "Close"
 msgstr "Zavřít"
+
+#: pe/ui/settings.cpp
+msgid "Colour"
+msgstr "Barva"
+
+#: pe/ui/game_options.cpp, pe/ui/settings.cpp
+msgid "Compact memory"
+msgstr "Úsporná paměť"
 
 #. A switch: the program code a game used in earlier sessions is prepared (compiled) while the game starts. Keep it short.
 #: pe/ui/game_options.cpp, pe/ui/settings.cpp
@@ -394,6 +439,10 @@ msgstr "Autoři a konfigurace"
 #: pe/ui/game_options.cpp
 msgid "Cross"
 msgstr "Křížek"
+
+#: pe/ui/settings.cpp
+msgid "Default"
+msgstr "Výchozí"
 
 #. A per-game setting that follows the general setting; {0} is its value.
 #: pe/ui/game_options.cpp
@@ -689,6 +738,10 @@ msgstr "Plná kvalita"
 msgid "Game audio; PS5 system-menu music is unchanged."
 msgstr "Zvuk her; hudba v systémové nabídce PS5 se nemění."
 
+#: pe/ui/launcher.cpp
+msgid "Game cannot start now."
+msgstr "Hru teď nelze spustit."
+
 #. {0} is the reason, a sentence in English; {1} is a file.
 #: eden_services.cpp, host/fake_services.cpp
 msgid "Game could not start: {0} Details: {1}"
@@ -738,6 +791,10 @@ msgstr "Němčina"
 msgid "GETTING STARTED"
 msgstr "ZAČÍNÁME"
 
+#: pe/ui/settings.cpp
+msgid "Gives back memory a game left empty, 16 KiB at a time. More free memory; a game that writes there again can stutter for a moment."
+msgstr "Vrací paměť, kterou hra nechala prázdnou, po 16 KiB. Více volné paměti; hra, která tam znovu zapíše, se může na okamžik zaseknout."
+
 #: pe/ui/multiplayer.cpp
 msgid "Go offline"
 msgstr "Přejít offline"
@@ -772,6 +829,10 @@ msgstr "Domů"
 #: pe/ui/library.cpp, pe/ui/settings.cpp
 msgid "How games are drawn and scaled to your TV."
 msgstr "Jak se hry vykreslují a škálují na televizi."
+
+#: pe/ui/settings.cpp
+msgid "Images in this folder: {0}"
+msgstr "Obrázky v této složce: {0}"
 
 #. Button hint: copy a save in.
 #: pe/ui/library.cpp
@@ -895,6 +956,10 @@ msgstr "Větší písmo"
 msgid "Last game opened"
 msgstr "Naposledy spuštěná hra"
 
+#: pe/ui/settings.cpp
+msgid "Launcher"
+msgstr "Spouštěč"
+
 #: pe/ui/multiplayer.cpp
 msgid "Leave / cancel"
 msgstr "Opustit / zrušit"
@@ -931,6 +996,10 @@ msgstr "Méně přesné výpočty s plovoucí čárkou: rychlejší, několik he
 #: pe/ui/settings.cpp
 msgid "Less exact memory transfers to the GPU: faster, and a few games show wrong graphics."
 msgstr "Méně přesné přenosy paměti do GPU: rychlejší, několik her ale zobrazuje chybnou grafiku."
+
+#: pe/ui/library.cpp
+msgid "LIBRARY"
+msgstr "KNIHOVNA"
 
 #: pe/ui/library.cpp, pe/ui/shell.cpp
 msgid "Library"
@@ -1016,6 +1085,10 @@ msgstr "Nejbližší soused"
 msgid "Needs attention"
 msgstr "Vyžaduje pozornost"
 
+#: pe/ui/theme.cpp
+msgid "Neutral glass, clean and still."
+msgstr "Neutrální sklo, čisté a klidné."
+
 #: pe/ui/profiles.cpp
 msgid "New profile"
 msgstr "Nový profil"
@@ -1032,6 +1105,15 @@ msgstr "Přezdívka"
 #: pe/ui/multiplayer.cpp
 msgid "Nickname: {0}"
 msgstr "Přezdívka: {0}"
+
+#: pe/ui/library.cpp
+msgid "No cheats"
+msgstr "Žádné cheaty"
+
+#. <build ID>.txt stays as it is: a cheat file is named after the game version's build ID. {0} is a folder such as roms/Game/cheats/.
+#: pe/ui/library.cpp
+msgid "No cheats for this game yet. Copy its cheat files (<build ID>.txt) to {0}."
+msgstr "Tato hra zatím nemá žádné cheaty. Zkopíruj její soubory cheatů (<build ID>.txt) do {0}."
 
 #: pe/ui/remote.cpp
 msgid "No download source is set up. Save a file named {0} that lists your sources, as this one does with a RomM server, then open this menu again. Downloads need an FTP server running on the console, on port {1}."
@@ -1058,10 +1140,9 @@ msgstr "Nejsou tu žádné složky."
 msgid "No mods"
 msgstr "Žádné mody"
 
-#. {0} is a folder; roms/ is a folder name (unchanged).
 #: pe/ui/library.cpp
-msgid "No mods for this game yet. Copy each mod's folder to {0}, next to roms/."
-msgstr "Tato hra zatím nemá žádné mody. Zkopíruj složku každého modu do {0}, vedle roms/."
+msgid "No mods for this game yet. Copy each mod's folder to {0}."
+msgstr "Tato hra zatím nemá žádné mody. Zkopíruj složku každého modu do {0}."
 
 #: pe/ui/multiplayer.cpp
 msgid "No public rooms are available."
@@ -1275,6 +1356,10 @@ msgstr "Portugalština"
 msgid "Portuguese (Brazil)"
 msgstr "Portugalština (Brazílie)"
 
+#: pe/ui/game_options.cpp, pe/ui/settings.cpp
+msgid "Post-processing"
+msgstr "Následné zpracování"
+
 #. Eden is the emulator's name (unchanged).
 #: pe/ui/browse.cpp
 msgid "Powered by Eden"
@@ -1297,6 +1382,10 @@ msgstr "Dalším stisknutím nahradíš uložená data této hry. Stávající s
 #: pe/ui/multiplayer.cpp
 msgid "Private room"
 msgstr "Soukromá místnost"
+
+#: pe/ui/multiplayer.cpp
+msgid "PRIVATE ROOM"
+msgstr "SOUKROMÁ MÍSTNOST"
 
 #: pe/ui/game_options.cpp
 msgid "Pro Controller"
@@ -1363,6 +1452,14 @@ msgstr "EDICE PS5"
 #: pe/ui/multiplayer.cpp
 msgid "Public rooms"
 msgstr "Veřejné místnosti"
+
+#: pe/ui/multiplayer.cpp
+msgid "PUBLIC ROOMS"
+msgstr "VEŘEJNÉ MÍSTNOSTI"
+
+#: pe/ui/settings.cpp
+msgid "Put images in the wallpapers folder to show them here."
+msgstr "Vložte obrázky do složky wallpapers a zobrazí se zde."
 
 #: pe/ui/remote.cpp
 msgid "Queued"
@@ -1546,6 +1643,10 @@ msgstr "Uloženo {0}. Nahradí data na konzoli."
 msgid "Saved. A display that cannot show 120 Hz stays at 60 Hz."
 msgstr "Uloženo. Displej, který 120 Hz nezvládne, zůstane na 60 Hz."
 
+#: pe/ui/settings.cpp
+msgid "Saved. Applies the next time ProsperoEden opens."
+msgstr "Uloženo. Platí od příštího spuštění ProsperoEden."
+
 #: pe/ui/browse.cpp, pe/ui/launcher.cpp
 msgid "Saved. Applies when a game starts."
 msgstr "Uloženo. Projeví se při spuštění hry."
@@ -1555,9 +1656,18 @@ msgstr "Uloženo. Projeví se při spuštění hry."
 msgid "Saved. Full quality uses four times the graphics memory for these textures and can run out above 1x."
 msgstr "Uloženo. Plná kvalita zabere pro tyto textury čtyřikrát víc grafické paměti a nad 1x může paměť dojít."
 
+#: pe/ui/settings.cpp
+msgid "Saved. Post-processing needs the Vulkan renderer."
+msgstr "Uloženo. Následné zpracování vyžaduje vykreslovač Vulkan."
+
 #: pe/ui/browse.cpp
 msgid "Saved. Reopen ProsperoEden to use this folder."
 msgstr "Uloženo. Pro použití této složky spusť ProsperoEden znovu."
+
+#. About the Update notices switch; homebrew.page is a site's name and stays as it is; About is the menu's last section (use its translation).
+#: pe/ui/settings.cpp
+msgid "Says when homebrew.page has a newer version. Off, only About names it."
+msgstr "Oznámí, když je na homebrew.page novější verze. Vypnuté ji uvede jen O aplikaci."
 
 #: pe/ui/pairing.cpp
 msgid "Scan the code with your phone, or open the address below."
@@ -1600,6 +1710,10 @@ msgstr "Server je pro synchronizaci příliš starý"
 msgid "Settings"
 msgstr "Nastavení"
 
+#: pe/ui/settings.cpp
+msgid "SETTINGS"
+msgstr "NASTAVENÍ"
+
 #: eden_services.cpp, host/fake_services.cpp
 msgid "Setup required"
 msgstr "Nutná konfigurace"
@@ -1623,6 +1737,10 @@ msgstr "Uložená data může uchovávat několik serverů. Který má tento pro
 #: pe/ui/remote.cpp
 msgid "Several sources have this game. Which one should it come from?"
 msgstr "Tuto hru má několik zdrojů. Ze kterého ji stáhnout?"
+
+#: pe/ui/settings.cpp
+msgid "Show an image of your own behind the menu."
+msgstr "Zobrazit za nabídkou vlastní obrázek."
 
 #: pe/ui/settings.cpp
 msgid "Show or hide the FPS overlay"
@@ -1669,6 +1787,11 @@ msgstr "Španělština (Latinská Amerika)"
 #: pe/ui/settings.cpp
 msgid "Speed"
 msgstr "Rychlost"
+
+#. Settings > Performance: how fast a game may run, as a percentage of the console it was made for.
+#: pe/ui/game_options.cpp, pe/ui/settings.cpp
+msgid "Speed limit"
+msgstr "Omezení rychlosti"
 
 #. A DualSense button.
 #: pe/ui/game_options.cpp
@@ -1739,13 +1862,13 @@ msgstr "PODĚKOVÁNÍ"
 msgid "Thanks to the whole PS5 homebrew community and to every developer whose drivers, tools and libraries make ProsperoEden possible."
 msgstr "Děkujeme celé homebrew komunitě PS5 a všem vývojářům, díky jejichž ovladačům, nástrojům a knihovnám mohl ProsperoEden vzniknout."
 
+#: pe/ui/settings.cpp
+msgid "The accent colour of the current theme."
+msgstr "Barva zvýraznění aktuálního motivu."
+
 #: pe/ui/remote.cpp
 msgid "The download stopped"
 msgstr "Stahování se zastavilo"
-
-#: pe/ui/settings.cpp
-msgid "The folder that holds your keys, firmware and games."
-msgstr "Složka, ve které jsou klíče, firmware a hry."
 
 #: pe/ui/save_sync.cpp
 msgid "The game does not start."
@@ -1831,6 +1954,10 @@ msgstr "Aktualizaci nelze dokončit"
 msgid "Theme"
 msgstr "Motiv"
 
+#: pe/ui/settings.cpp
+msgid "Theme and launcher settings."
+msgstr "Nastavení motivu a spouštěče."
+
 #: pe/ui/save_sync.cpp
 msgid "This console and the server both have save data the other does not know. Which one should stay? The other is kept as a backup."
 msgstr "Konzole i server mají uložená data, která druhá strana nezná. Která mají zůstat? Ta druhá se uchovají jako záloha."
@@ -1913,6 +2040,11 @@ msgstr "Není k dispozici"
 msgid "Understood"
 msgstr "Rozumím"
 
+#. A Speed limit choice: no limit at all (as fast as the console can).
+#: pe/ui/game_options.cpp, pe/ui/settings.cpp
+msgid "Unlimited"
+msgstr "Bez omezení"
+
 #: pe/ui/pairing.cpp
 msgid "Unlink"
 msgstr "Odpojit"
@@ -1935,6 +2067,11 @@ msgstr "NAHORU"
 #: pe/ui/launcher.cpp, pe/ui/update.cpp
 msgid "Update available"
 msgstr "Je dostupná aktualizace"
+
+#. Settings switch: whether the app says at its start that a newer release of this app is listed (not game updates).
+#: pe/ui/settings.cpp
+msgid "Update notices"
+msgstr "Upozornění na aktualizace"
 
 #. Button: download and install the newer release of this app now.
 #: pe/ui/update.cpp
@@ -1962,6 +2099,10 @@ msgstr "Filtr škálování"
 msgid "USA"
 msgstr "USA"
 
+#: pe/ui/settings.cpp
+msgid "Use another home screen, library and menu layout."
+msgstr "Použít jiné rozvržení domovské obrazovky, knihovny a nabídky."
+
 #: pe/ui/browse.cpp
 msgid "Use extracted firmware NCA files. Choose the folder in Settings, Game files; restart the app after changing it."
 msgstr "Použij rozbalené soubory NCA firmwaru. Složku vyber v Nastavení, Herní soubory; po změně aplikaci restartuj."
@@ -1976,7 +2117,7 @@ msgid "Version {0}"
 msgstr "Verze {0}"
 
 #. {0}: the newer release's number, for example 1.000.050; homebrew.page is a site's name and stays as it is.
-#: pe/ui/launcher.cpp
+#: pe/ui/browse.cpp, pe/ui/launcher.cpp
 msgid "Version {0} is on homebrew.page"
 msgstr "Verze {0} je na homebrew.page"
 
@@ -2029,6 +2170,10 @@ msgstr "Čeká na {0}"
 #: pe/ui/remote.cpp
 msgid "Waiting to download"
 msgstr "Čeká na stažení"
+
+#: pe/ui/settings.cpp
+msgid "Wallpaper"
+msgstr "Tapeta"
 
 #: pe/ui/settings.cpp
 msgid "What the FPS overlay's line says, and how the chip is drawn."
@@ -2203,3 +2348,204 @@ msgstr "{0}/ (NSP nebo XCI)"
 #: pe/ui/browse.cpp
 msgid "{0}/ (one folder per game ID)"
 msgstr "{0}/ (složka pro každé ID titulu)"
+
+#: pe/ui/settings.cpp
+msgid "Crash reports (FTP): {0}\nAttach crash-*.txt and its matching logs to your issue."
+msgstr "Zprávy o pádu (FTP): {0}\nK hlášení přiložte crash-*.txt a odpovídající protokoly."
+
+#: pe/ui/browse.cpp
+msgid "Change game folder"
+msgstr "Změnit složku her"
+
+#: pe/ui/library.cpp
+msgid "Duplicate game"
+msgstr "Duplicitní hra"
+
+#: pe/ui/browse.cpp
+msgid "Exported saves are written here. TRIANGLE uses the folder shown; SQUARE goes back to the default."
+msgstr "Exportovaná uložená data se zapisují sem. TROJÚHELNÍK použije zobrazenou složku; ČTVEREC se vrátí na výchozí."
+
+#: pe/ui/browse.cpp
+msgid "Firmware folder"
+msgstr "Složka firmwaru"
+
+#: pe/ui/locations.cpp
+msgid "GAME FILES FOLDER"
+msgstr "SLOŽKA S HERNÍMI SOUBORY"
+
+#: pe/ui/locations.cpp
+msgid "GAME FOLDER"
+msgstr "SLOŽKA HER"
+
+#: pe/ui/locations.cpp, pe/ui/settings.cpp
+msgid "GAME FOLDERS"
+msgstr "SLOŽKY HER"
+
+#: pe/ui/browse.cpp
+msgid "Games, updates and mods are read from here. TRIANGLE adds the folder shown."
+msgstr "Hry, updates a mods se čtou odsud. TROJÚHELNÍK přidá zobrazenou složku."
+
+#: pe/ui/browse.cpp
+msgid "Keys folder"
+msgstr "Složka keys"
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "Add game folder"
+msgstr "Přidat složku her"
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "Back to the default folder. Reopen ProsperoEden to use it."
+msgstr "Zpět na výchozí složku. Pro její použití znovu otevřete ProsperoEden."
+
+#: pe/ui/browse.cpp
+msgid "Choose a folder with roms and updates inside"
+msgstr "Vyberte složku obsahující roms a updates"
+
+#: pe/ui/browse.cpp
+msgid "Choose the folder that holds prod.keys"
+msgstr "Vyberte složku, která obsahuje prod.keys"
+
+#: pe/ui/browse.cpp
+msgid "Choose the folder that holds the firmware NCA files"
+msgstr "Vyberte složku, která obsahuje soubory NCA firmwaru"
+
+#: pe/ui/browse.cpp
+msgid "Choose the folder with one folder per game ID"
+msgstr "Vyberte složku s jednou složkou na každé ID hry"
+
+#: pe/ui/browse.cpp
+msgid "Choose where exported saves are written"
+msgstr "Vyberte, kam se zapisují exportovaná uložená data"
+
+#: pe/ui/locations.cpp
+msgid "Choose where your games, keys, firmware and saves are"
+msgstr "Vyberte, kde jsou vaše hry, keys, firmware a uložená data"
+
+#. Label: the folder used the next time the app starts.
+#: pe/ui/locations.cpp, pe/ui/settings.cpp
+msgid "NEXT START"
+msgstr "PO RESTARTU"
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "No updates folder"
+msgstr "Žádná složka updates"
+
+#: pe/ui/browse.cpp
+msgid "Save export folder"
+msgstr "Složka pro export uložených dat"
+
+#: pe/ui/browse.cpp
+msgid "Save import folder"
+msgstr "Složka pro import uložených dat"
+
+#: pe/ui/browse.cpp
+msgid "Saved. Its games are in the Library now."
+msgstr "Uloženo. Její hry jsou nyní v knihovně."
+
+#: pe/ui/browse.cpp
+msgid "Saves to import go here, one folder per game ID. TRIANGLE uses the folder shown; SQUARE goes back to the default."
+msgstr "Uložená data k importu patří sem, jedna složka na každé ID hry. TROJÚHELNÍK použije zobrazenou složku; ČTVEREC se vrátí na výchozí."
+
+#: pe/ui/locations.cpp
+msgid "Square again takes {0} off the list. Its games stay where they are."
+msgstr "Další stisk čtverce odebere {0} ze seznamu. Její hry zůstanou, kde jsou."
+
+#: pe/ui/locations.cpp
+msgid "Taken off the list. Its games stay where they are."
+msgstr "Odebráno ze seznamu. Její hry zůstanou, kde jsou."
+
+#: pe/ui/browse.cpp
+msgid "The folder shown must hold prod.keys. TRIANGLE uses it; SQUARE goes back to the default."
+msgstr "Zobrazená složka musí obsahovat prod.keys. TROJÚHELNÍK ji použije; ČTVEREC se vrátí na výchozí."
+
+#: pe/ui/browse.cpp
+msgid "The folder shown must hold the firmware NCA files. TRIANGLE uses it; SQUARE goes back to the default."
+msgstr "Zobrazená složka musí obsahovat soubory NCA firmwaru. TROJÚHELNÍK ji použije; ČTVEREC se vrátí na výchozí."
+
+#: pe/ui/browse.cpp
+msgid "The list is full. Remove a folder first."
+msgstr "Seznam je plný. Nejdřív odeberte jednu složku."
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "This folder cannot be read"
+msgstr "Tuto složku nelze přečíst"
+
+#: pe/ui/browse.cpp
+msgid "This folder has no firmware NCA files."
+msgstr "Tato složka neobsahuje žádné soubory NCA firmwaru."
+
+#: pe/ui/browse.cpp
+msgid "This folder is in the list already."
+msgstr "Tato složka už v seznamu je."
+
+#: pe/ui/browse.cpp
+msgid "This folder needs a roms folder."
+msgstr "Tato složka potřebuje složku roms."
+
+#: pe/ui/browse.cpp
+msgid "This is the game files folder already."
+msgstr "To už je složka s herními soubory."
+
+#: pe/ui/browse.cpp
+msgid "prod.keys is not in this folder."
+msgstr "prod.keys není v této složce."
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "{0} file"
+msgstr "Souborů: {0}"
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "{0} files"
+msgstr "Souborů: {0}"
+
+#: pe/ui/locations.cpp
+msgid "{0} game folder"
+msgstr "Složek her: {0}"
+
+#: pe/ui/locations.cpp
+msgid "{0} game folders"
+msgstr "Složek her: {0}"
+
+#: pe/ui/library.cpp
+msgid "{0} is in more than one place. Choose which one starts."
+msgstr "Hra {0} je na více místech. Vyberte, která se spustí."
+
+#: pe/ui/settings.cpp
+msgid "The folder that holds your keys, firmware and games, and more places for games."
+msgstr "Složka s vašimi keys, firmwarem a hrami a další místa pro hry."
+
+msgid "Available in more than one place. Choose which one to start."
+msgstr "Je na více místech. Vyberte, které spustit."
+
+msgid "Add other game folders, with roms, updates and mods on an external HD or SSD over USB, or in the console's extended storage."
+msgstr "Přidejte další složky her s roms, updates a mody na externím HD nebo SSD přes USB, nebo v rozšířeném úložišti konzole."
+
+msgid "Games, updates and mods are read from this folder. Press Square twice to take it off the list."
+msgstr "Hry, updaty a mody se čtou z této složky. Pro odebrání ze seznamu stiskněte Čtverec dvakrát."
+
+msgid "Could not delete the ROM from this folder."
+msgstr "ROM z této složky nelze smazat."
+
+msgid "Deleted from this folder."
+msgstr "Smazáno z této složky."
+
+msgid "PATH TIPS"
+msgstr "TIPY K CESTÁM"
+
+msgid "Delete {0}?"
+msgstr "Smazat {0}?"
+
+msgid "Also delete the duplicated updates and DLC in this folder."
+msgstr "Smazat také duplicitní aktualizace a DLC v této složce."
+
+msgid "Confirm"
+msgstr "Potvrdit"
+
+msgid "EXTENDED"
+msgstr "ROZŠÍŘENÉ"
+
+msgid "EXTERNAL"
+msgstr "EXTERNÍ"
+
+msgid "Holds keys, firmware, roms, updates, mods and saves."
+msgstr "Obsahuje klíče, firmware, roms, aktualizace, mody a uložené hry."

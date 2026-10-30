@@ -43,6 +43,10 @@ msgstr "تعذّرت قراءة أحد ملفات NCA للبرنامج الثا�
 msgid "A pairing is running already."
 msgstr "هناك اقتران جارٍ بالفعل."
 
+#: pe/ui/browse.cpp
+msgid "ABOUT"
+msgstr "حول"
+
 #. The menu's last section: about this app (its credits, where its files go). One short word.
 #: pe/ui/shell.cpp
 msgid "About"
@@ -61,6 +65,10 @@ msgstr "يتبقى نحو {0} د"
 #: pe/ui/remote.cpp, pe/ui/update.cpp
 msgid "About {0} s left"
 msgstr "يتبقى نحو {0} ث"
+
+#: pe/ui/settings.cpp
+msgid "Above 100%, a game locked to 30 FPS can reach 60, and a game that counts its frames plays faster too."
+msgstr "فوق 100%، يمكن للعبة المقيّدة بـ 30 FPS أن تصل إلى 60، واللعبة التي تحسب إطاراتها تُلعب أسرع أيضًا."
 
 #. Label: which folders the app can read.
 #: pe/ui/browse.cpp
@@ -84,6 +92,10 @@ msgstr "أُضيفت إلى التنزيلات. قائمة الانتظار في
 msgid "Added. Cross plays as this profile; left and right change its name."
 msgstr "تمت الإضافة. زر إكس للّعب بهذا الملف؛ يسار ويمين لتغيير اسمه."
 
+#: pe/ui/library.cpp
+msgid "All cheats"
+msgstr "كل شفرات الغش"
+
 #: pe/ui/browse.cpp
 msgid "All credit for the Eden emulator goes to its developers and contributors."
 msgstr "كل الفضل في محاكي Eden يعود إلى مطوّريه والمساهمين فيه."
@@ -92,9 +104,21 @@ msgstr "كل الفضل في محاكي Eden يعود إلى مطوّريه وا
 msgid "AMD FSR"
 msgstr "AMD FSR"
 
+#: pe/ui/settings.cpp
+msgid "An image of your own behind this menu."
+msgstr "صورة من اختيارك خلف هذه القائمة."
+
 #: eden_services.cpp
 msgid "Another language"
 msgstr "لغة أخرى"
+
+#: pe/ui/settings.cpp
+msgid "Appearance"
+msgstr "المظهر"
+
+#: pe/ui/settings.cpp
+msgid "Apply"
+msgstr "تطبيق"
 
 #. The button mapping has not been changed.
 #: pe/ui/game_options.cpp, pe/ui/settings.cpp
@@ -211,9 +235,14 @@ msgid "Changed"
 msgstr "مُعدَّل"
 
 #. What a mod is made of: cheat codes.
-#: eden_services.cpp, host/fake_services.cpp
+#: eden_services.cpp, host/fake_services.cpp, pe/ui/library.cpp
 msgid "Cheats"
 msgstr "شفرات غش"
+
+#. Shown under a cheat that came from the game's cheats folder (not from a mod).
+#: pe/ui/library.cpp
+msgid "Cheats folder"
+msgstr "مجلد شفرات الغش"
 
 #: pe/ui/pairing.cpp
 msgid "Check that the code there is this one, and approve."
@@ -248,6 +277,14 @@ msgstr "اختيار"
 msgid "Choose a game from your library."
 msgstr "اختر لعبة من مكتبتك."
 
+#: pe/ui/settings.cpp
+msgid "Choose a theme or change the launcher layout."
+msgstr "اختر مظهرًا أو غيّر تخطيط المشغّل."
+
+#: pe/ui/settings.cpp
+msgid "Choose the colours and appearance of this menu."
+msgstr "اختر ألوان هذه القائمة ومظهرها."
+
 #: pe/ui/browse.cpp
 msgid "Choose the folder that holds your keys, firmware and games"
 msgstr "اختر المجلد الذي يحتوي على المفاتيح والبرنامج الثابت والألعاب"
@@ -264,6 +301,14 @@ msgstr "دائرة"
 #: pe/ui/remote.cpp, pe/ui/update.cpp
 msgid "Close"
 msgstr "إغلاق"
+
+#: pe/ui/settings.cpp
+msgid "Colour"
+msgstr "اللون"
+
+#: pe/ui/game_options.cpp, pe/ui/settings.cpp
+msgid "Compact memory"
+msgstr "ضغط الذاكرة"
 
 #. A switch: the program code a game used in earlier sessions is prepared (compiled) while the game starts. Keep it short.
 #: pe/ui/game_options.cpp, pe/ui/settings.cpp
@@ -394,6 +439,10 @@ msgstr "الشكر والإعداد"
 #: pe/ui/game_options.cpp
 msgid "Cross"
 msgstr "إكس"
+
+#: pe/ui/settings.cpp
+msgid "Default"
+msgstr "الافتراضي"
 
 #. A per-game setting that follows the general setting; {0} is its value.
 #: pe/ui/game_options.cpp
@@ -689,6 +738,10 @@ msgstr "جودة كاملة"
 msgid "Game audio; PS5 system-menu music is unchanged."
 msgstr "صوت اللعبة؛ موسيقى قائمة نظام PS5 لا تتغير."
 
+#: pe/ui/launcher.cpp
+msgid "Game cannot start now."
+msgstr "لا يمكن بدء اللعبة الآن."
+
 #. {0} is the reason, a sentence in English; {1} is a file.
 #: eden_services.cpp, host/fake_services.cpp
 msgid "Game could not start: {0} Details: {1}"
@@ -738,6 +791,10 @@ msgstr "الألمانية"
 msgid "GETTING STARTED"
 msgstr "البدء"
 
+#: pe/ui/settings.cpp
+msgid "Gives back memory a game left empty, 16 KiB at a time. More free memory; a game that writes there again can stutter for a moment."
+msgstr "يعيد الذاكرة التي تركتها اللعبة فارغة، 16 كيلوبايت في كل مرة. ذاكرة حرة أكثر؛ وقد تتقطع اللعبة لحظة إذا كتبت هناك مجددًا."
+
 #: pe/ui/multiplayer.cpp
 msgid "Go offline"
 msgstr "قطع الاتصال"
@@ -772,6 +829,10 @@ msgstr "الرئيسية"
 #: pe/ui/library.cpp, pe/ui/settings.cpp
 msgid "How games are drawn and scaled to your TV."
 msgstr "كيف تُرسم الألعاب وتُكبَّر لتناسب تلفازك."
+
+#: pe/ui/settings.cpp
+msgid "Images in this folder: {0}"
+msgstr "الصور في هذا المجلد: {0}"
 
 #. Button hint: copy a save in.
 #: pe/ui/library.cpp
@@ -895,6 +956,10 @@ msgstr "نص أكبر"
 msgid "Last game opened"
 msgstr "آخر لعبة فُتحت"
 
+#: pe/ui/settings.cpp
+msgid "Launcher"
+msgstr "المشغّل"
+
 #: pe/ui/multiplayer.cpp
 msgid "Leave / cancel"
 msgstr "مغادرة / إلغاء"
@@ -931,6 +996,10 @@ msgstr "حسابات الفاصلة العائمة أقل دقة: أسرع، ل�
 #: pe/ui/settings.cpp
 msgid "Less exact memory transfers to the GPU: faster, and a few games show wrong graphics."
 msgstr "نقل الذاكرة إلى GPU أقل دقة: أسرع، لكن بعض الألعاب تعرض رسومًا خاطئة."
+
+#: pe/ui/library.cpp
+msgid "LIBRARY"
+msgstr "المكتبة"
 
 #: pe/ui/library.cpp, pe/ui/shell.cpp
 msgid "Library"
@@ -1016,6 +1085,10 @@ msgstr "الأقرب"
 msgid "Needs attention"
 msgstr "يحتاج إلى انتباه"
 
+#: pe/ui/theme.cpp
+msgid "Neutral glass, clean and still."
+msgstr "زجاج محايد، نظيف وهادئ."
+
 #: pe/ui/profiles.cpp
 msgid "New profile"
 msgstr "ملف شخصي جديد"
@@ -1032,6 +1105,15 @@ msgstr "الاسم المستعار"
 #: pe/ui/multiplayer.cpp
 msgid "Nickname: {0}"
 msgstr "الاسم المستعار: {0}"
+
+#: pe/ui/library.cpp
+msgid "No cheats"
+msgstr "لا توجد شفرات غش"
+
+#. <build ID>.txt stays as it is: a cheat file is named after the game version's build ID. {0} is a folder such as roms/Game/cheats/.
+#: pe/ui/library.cpp
+msgid "No cheats for this game yet. Copy its cheat files (<build ID>.txt) to {0}."
+msgstr "لا توجد شفرات غش لهذه اللعبة بعد. انسخ ملفات شفرات الغش الخاصة بها (<build ID>.txt) إلى {0}."
 
 #: pe/ui/remote.cpp
 msgid "No download source is set up. Save a file named {0} that lists your sources, as this one does with a RomM server, then open this menu again. Downloads need an FTP server running on the console, on port {1}."
@@ -1058,10 +1140,9 @@ msgstr "لا توجد مجلدات هنا."
 msgid "No mods"
 msgstr "لا توجد تعديلات"
 
-#. {0} is a folder; roms/ is a folder name (unchanged).
 #: pe/ui/library.cpp
-msgid "No mods for this game yet. Copy each mod's folder to {0}, next to roms/."
-msgstr "لا توجد تعديلات لهذه اللعبة بعد. انسخ مجلد كل تعديل إلى {0} بجوار roms/"
+msgid "No mods for this game yet. Copy each mod's folder to {0}."
+msgstr "لا توجد تعديلات لهذه اللعبة بعد. انسخ مجلد كل تعديل إلى {0}."
 
 #: pe/ui/multiplayer.cpp
 msgid "No public rooms are available."
@@ -1275,6 +1356,10 @@ msgstr "البرتغالية"
 msgid "Portuguese (Brazil)"
 msgstr "البرتغالية (البرازيل)"
 
+#: pe/ui/game_options.cpp, pe/ui/settings.cpp
+msgid "Post-processing"
+msgstr "المعالجة اللاحقة"
+
 #. Eden is the emulator's name (unchanged).
 #: pe/ui/browse.cpp
 msgid "Powered by Eden"
@@ -1296,6 +1381,10 @@ msgstr "اضغط مرة أخرى لاستبدال بيانات حفظ هذه ا�
 
 #: pe/ui/multiplayer.cpp
 msgid "Private room"
+msgstr "غرفة خاصة"
+
+#: pe/ui/multiplayer.cpp
+msgid "PRIVATE ROOM"
 msgstr "غرفة خاصة"
 
 #: pe/ui/game_options.cpp
@@ -1363,6 +1452,14 @@ msgstr "إصدار PS5"
 #: pe/ui/multiplayer.cpp
 msgid "Public rooms"
 msgstr "الغرف العامة"
+
+#: pe/ui/multiplayer.cpp
+msgid "PUBLIC ROOMS"
+msgstr "الغرف العامة"
+
+#: pe/ui/settings.cpp
+msgid "Put images in the wallpapers folder to show them here."
+msgstr "ضع صورًا في مجلد الخلفيات لتظهر هنا."
 
 #: pe/ui/remote.cpp
 msgid "Queued"
@@ -1546,6 +1643,10 @@ msgstr "حُفظت في {0}. تحلّ محل بيانات هذا الجهاز."
 msgid "Saved. A display that cannot show 120 Hz stays at 60 Hz."
 msgstr "تم الحفظ. الشاشة التي لا تدعم 120 هرتز تبقى على 60 هرتز."
 
+#: pe/ui/settings.cpp
+msgid "Saved. Applies the next time ProsperoEden opens."
+msgstr "تم الحفظ. يُطبَّق في المرة القادمة التي يُفتح فيها ProsperoEden."
+
 #: pe/ui/browse.cpp, pe/ui/launcher.cpp
 msgid "Saved. Applies when a game starts."
 msgstr "تم الحفظ. يُطبَّق عند بدء اللعبة."
@@ -1555,9 +1656,18 @@ msgstr "تم الحفظ. يُطبَّق عند بدء اللعبة."
 msgid "Saved. Full quality uses four times the graphics memory for these textures and can run out above 1x."
 msgstr "تم الحفظ. الجودة الكاملة تستهلك أربعة أضعاف ذاكرة الرسومات لهذه الخامات وقد تنفد فوق 1x."
 
+#: pe/ui/settings.cpp
+msgid "Saved. Post-processing needs the Vulkan renderer."
+msgstr "تم الحفظ. تحتاج المعالجة اللاحقة إلى مُصيِّر Vulkan."
+
 #: pe/ui/browse.cpp
 msgid "Saved. Reopen ProsperoEden to use this folder."
 msgstr "تم الحفظ. أعد فتح ProsperoEden لاستخدام هذا المجلد."
+
+#. About the Update notices switch; homebrew.page is a site's name and stays as it is; About is the menu's last section (use its translation).
+#: pe/ui/settings.cpp
+msgid "Says when homebrew.page has a newer version. Off, only About names it."
+msgstr "يُعلمك عندما يتوفر إصدار أحدث على homebrew.page. عند إيقافه، يذكره قسم حول فقط."
 
 #: pe/ui/pairing.cpp
 msgid "Scan the code with your phone, or open the address below."
@@ -1600,6 +1710,10 @@ msgstr "الخادم أقدم من أن يدعم مزامنة الحفظ"
 msgid "Settings"
 msgstr "الإعدادات"
 
+#: pe/ui/settings.cpp
+msgid "SETTINGS"
+msgstr "الإعدادات"
+
 #: eden_services.cpp, host/fake_services.cpp
 msgid "Setup required"
 msgstr "الإعداد مطلوب"
@@ -1623,6 +1737,10 @@ msgstr "يمكن لعدة خوادم الاحتفاظ ببيانات الحفظ.
 #: pe/ui/remote.cpp
 msgid "Several sources have this game. Which one should it come from?"
 msgstr "هذه اللعبة متوفرة في عدة مصادر. من أيّها تُنزَّل؟"
+
+#: pe/ui/settings.cpp
+msgid "Show an image of your own behind the menu."
+msgstr "اعرض صورة من اختيارك خلف القائمة."
 
 #: pe/ui/settings.cpp
 msgid "Show or hide the FPS overlay"
@@ -1669,6 +1787,11 @@ msgstr "الإسبانية (أمريكا اللاتينية)"
 #: pe/ui/settings.cpp
 msgid "Speed"
 msgstr "السرعة"
+
+#. Settings > Performance: how fast a game may run, as a percentage of the console it was made for.
+#: pe/ui/game_options.cpp, pe/ui/settings.cpp
+msgid "Speed limit"
+msgstr "حد السرعة"
 
 #. A DualSense button.
 #: pe/ui/game_options.cpp
@@ -1739,13 +1862,13 @@ msgstr "شكر"
 msgid "Thanks to the whole PS5 homebrew community and to every developer whose drivers, tools and libraries make ProsperoEden possible."
 msgstr "شكرًا لمجتمع برامج PS5 المنزلية كله ولكل مطوّر جعلت برامج تشغيله وأدواته ومكتباته ProsperoEden ممكنًا."
 
+#: pe/ui/settings.cpp
+msgid "The accent colour of the current theme."
+msgstr "لون التمييز في المظهر الحالي."
+
 #: pe/ui/remote.cpp
 msgid "The download stopped"
 msgstr "توقف التنزيل"
-
-#: pe/ui/settings.cpp
-msgid "The folder that holds your keys, firmware and games."
-msgstr "المجلد الذي يحتوي على المفاتيح والبرنامج الثابت والألعاب."
 
 #: pe/ui/save_sync.cpp
 msgid "The game does not start."
@@ -1831,6 +1954,10 @@ msgstr "تعذر إكمال التحديث"
 msgid "Theme"
 msgstr "السمة"
 
+#: pe/ui/settings.cpp
+msgid "Theme and launcher settings."
+msgstr "إعدادات المظهر والمشغّل."
+
 #: pe/ui/save_sync.cpp
 msgid "This console and the server both have save data the other does not know. Which one should stay? The other is kept as a backup."
 msgstr "لدى هذا الجهاز والخادم بيانات حفظ لا يعرفها الطرف الآخر. أيّها يبقى؟ تُحفَظ الأخرى كنسخة احتياطية."
@@ -1913,6 +2040,11 @@ msgstr "غير متوفر"
 msgid "Understood"
 msgstr "مفهوم"
 
+#. A Speed limit choice: no limit at all (as fast as the console can).
+#: pe/ui/game_options.cpp, pe/ui/settings.cpp
+msgid "Unlimited"
+msgstr "بلا حد"
+
 #: pe/ui/pairing.cpp
 msgid "Unlink"
 msgstr "إلغاء الربط"
@@ -1935,6 +2067,11 @@ msgstr "أعلى"
 #: pe/ui/launcher.cpp, pe/ui/update.cpp
 msgid "Update available"
 msgstr "يتوفر تحديث"
+
+#. Settings switch: whether the app says at its start that a newer release of this app is listed (not game updates).
+#: pe/ui/settings.cpp
+msgid "Update notices"
+msgstr "إشعارات التحديث"
 
 #. Button: download and install the newer release of this app now.
 #: pe/ui/update.cpp
@@ -1962,6 +2099,10 @@ msgstr "فلتر التكبير"
 msgid "USA"
 msgstr "أمريكا"
 
+#: pe/ui/settings.cpp
+msgid "Use another home screen, library and menu layout."
+msgstr "استخدم تخطيطًا آخر للشاشة الرئيسية والمكتبة والقائمة."
+
 #: pe/ui/browse.cpp
 msgid "Use extracted firmware NCA files. Choose the folder in Settings, Game files; restart the app after changing it."
 msgstr "استخدم ملفات NCA المستخرجة للبرنامج الثابت. اختر المجلد من الإعدادات ثم ملفات الألعاب؛ أعد تشغيل التطبيق بعد تغييره."
@@ -1976,7 +2117,7 @@ msgid "Version {0}"
 msgstr "الإصدار {0}"
 
 #. {0}: the newer release's number, for example 1.000.050; homebrew.page is a site's name and stays as it is.
-#: pe/ui/launcher.cpp
+#: pe/ui/browse.cpp, pe/ui/launcher.cpp
 msgid "Version {0} is on homebrew.page"
 msgstr "الإصدار {0} متوفر على homebrew.page"
 
@@ -2029,6 +2170,10 @@ msgstr "في انتظار {0}"
 #: pe/ui/remote.cpp
 msgid "Waiting to download"
 msgstr "في انتظار التنزيل"
+
+#: pe/ui/settings.cpp
+msgid "Wallpaper"
+msgstr "الخلفية"
 
 #: pe/ui/settings.cpp
 msgid "What the FPS overlay's line says, and how the chip is drawn."
@@ -2203,3 +2348,204 @@ msgstr "{0}/‎ (NSP أو XCI)"
 #: pe/ui/browse.cpp
 msgid "{0}/ (one folder per game ID)"
 msgstr "{0}/‎ (مجلد لكل معرّف لعبة)"
+
+#: pe/ui/settings.cpp
+msgid "Crash reports (FTP): {0}\nAttach crash-*.txt and its matching logs to your issue."
+msgstr "تقارير الأعطال (FTP): {0}\nأرفق crash-*.txt والسجلات المطابقة مع بلاغك."
+
+#: pe/ui/browse.cpp
+msgid "Change game folder"
+msgstr "تغيير مجلد الألعاب"
+
+#: pe/ui/library.cpp
+msgid "Duplicate game"
+msgstr "لعبة مكررة"
+
+#: pe/ui/browse.cpp
+msgid "Exported saves are written here. TRIANGLE uses the folder shown; SQUARE goes back to the default."
+msgstr "تُكتب البيانات المحفوظة المصدّرة هنا. مثلث يستخدم المجلد المعروض؛ مربع يعيد المجلد الافتراضي."
+
+#: pe/ui/browse.cpp
+msgid "Firmware folder"
+msgstr "مجلد firmware"
+
+#: pe/ui/locations.cpp
+msgid "GAME FILES FOLDER"
+msgstr "مجلد ملفات الألعاب"
+
+#: pe/ui/locations.cpp
+msgid "GAME FOLDER"
+msgstr "مجلد الألعاب"
+
+#: pe/ui/locations.cpp, pe/ui/settings.cpp
+msgid "GAME FOLDERS"
+msgstr "مجلدات الألعاب"
+
+#: pe/ui/browse.cpp
+msgid "Games, updates and mods are read from here. TRIANGLE adds the folder shown."
+msgstr "تُقرأ الألعاب وupdates وmods من هنا. مثلث يضيف المجلد المعروض."
+
+#: pe/ui/browse.cpp
+msgid "Keys folder"
+msgstr "مجلد keys"
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "Add game folder"
+msgstr "إضافة مجلد ألعاب"
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "Back to the default folder. Reopen ProsperoEden to use it."
+msgstr "العودة إلى المجلد الافتراضي. أعد فتح ProsperoEden لاستخدامه."
+
+#: pe/ui/browse.cpp
+msgid "Choose a folder with roms and updates inside"
+msgstr "اختر مجلدًا يحتوي على roms وupdates"
+
+#: pe/ui/browse.cpp
+msgid "Choose the folder that holds prod.keys"
+msgstr "اختر المجلد الذي يحتوي على prod.keys"
+
+#: pe/ui/browse.cpp
+msgid "Choose the folder that holds the firmware NCA files"
+msgstr "اختر المجلد الذي يحتوي على ملفات NCA الخاصة بالنظام firmware"
+
+#: pe/ui/browse.cpp
+msgid "Choose the folder with one folder per game ID"
+msgstr "اختر المجلد الذي يضم مجلدًا واحدًا لكل معرّف لعبة"
+
+#: pe/ui/browse.cpp
+msgid "Choose where exported saves are written"
+msgstr "اختر مكان كتابة البيانات المحفوظة المصدّرة"
+
+#: pe/ui/locations.cpp
+msgid "Choose where your games, keys, firmware and saves are"
+msgstr "اختر مكان ألعابك وkeys وfirmware والبيانات المحفوظة"
+
+#. Label: the folder used the next time the app starts.
+#: pe/ui/locations.cpp, pe/ui/settings.cpp
+msgid "NEXT START"
+msgstr "التشغيل التالي"
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "No updates folder"
+msgstr "لا يوجد مجلد updates"
+
+#: pe/ui/browse.cpp
+msgid "Save export folder"
+msgstr "مجلد تصدير البيانات المحفوظة"
+
+#: pe/ui/browse.cpp
+msgid "Save import folder"
+msgstr "مجلد استيراد البيانات المحفوظة"
+
+#: pe/ui/browse.cpp
+msgid "Saved. Its games are in the Library now."
+msgstr "تم الحفظ. ألعابه الآن في المكتبة."
+
+#: pe/ui/browse.cpp
+msgid "Saves to import go here, one folder per game ID. TRIANGLE uses the folder shown; SQUARE goes back to the default."
+msgstr "توضع البيانات المحفوظة المراد استيرادها هنا، مجلد واحد لكل معرّف لعبة. مثلث يستخدم المجلد المعروض؛ مربع يعيد المجلد الافتراضي."
+
+#: pe/ui/locations.cpp
+msgid "Square again takes {0} off the list. Its games stay where they are."
+msgstr "الضغط على مربع مرة أخرى يزيل {0} من القائمة. تبقى ألعابه في مكانها."
+
+#: pe/ui/locations.cpp
+msgid "Taken off the list. Its games stay where they are."
+msgstr "تمت الإزالة من القائمة. تبقى ألعابه في مكانها."
+
+#: pe/ui/browse.cpp
+msgid "The folder shown must hold prod.keys. TRIANGLE uses it; SQUARE goes back to the default."
+msgstr "يجب أن يحتوي المجلد المعروض على prod.keys. مثلث يستخدمه؛ مربع يعيد المجلد الافتراضي."
+
+#: pe/ui/browse.cpp
+msgid "The folder shown must hold the firmware NCA files. TRIANGLE uses it; SQUARE goes back to the default."
+msgstr "يجب أن يحتوي المجلد المعروض على ملفات NCA الخاصة بـ firmware. مثلث يستخدمه؛ مربع يعيد المجلد الافتراضي."
+
+#: pe/ui/browse.cpp
+msgid "The list is full. Remove a folder first."
+msgstr "القائمة ممتلئة. أزل مجلدًا أولًا."
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "This folder cannot be read"
+msgstr "تعذّرت قراءة هذا المجلد"
+
+#: pe/ui/browse.cpp
+msgid "This folder has no firmware NCA files."
+msgstr "لا يحتوي هذا المجلد على ملفات NCA الخاصة بـ firmware."
+
+#: pe/ui/browse.cpp
+msgid "This folder is in the list already."
+msgstr "هذا المجلد موجود في القائمة بالفعل."
+
+#: pe/ui/browse.cpp
+msgid "This folder needs a roms folder."
+msgstr "يحتاج هذا المجلد إلى مجلد roms."
+
+#: pe/ui/browse.cpp
+msgid "This is the game files folder already."
+msgstr "هذا هو مجلد ملفات الألعاب بالفعل."
+
+#: pe/ui/browse.cpp
+msgid "prod.keys is not in this folder."
+msgstr "prod.keys ليس في هذا المجلد."
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "{0} file"
+msgstr "الملفات: {0}"
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "{0} files"
+msgstr "الملفات: {0}"
+
+#: pe/ui/locations.cpp
+msgid "{0} game folder"
+msgstr "مجلدات الألعاب: {0}"
+
+#: pe/ui/locations.cpp
+msgid "{0} game folders"
+msgstr "مجلدات الألعاب: {0}"
+
+#: pe/ui/library.cpp
+msgid "{0} is in more than one place. Choose which one starts."
+msgstr "{0} موجودة في أكثر من مكان. اختر أيها يبدأ."
+
+#: pe/ui/settings.cpp
+msgid "The folder that holds your keys, firmware and games, and more places for games."
+msgstr "المجلد الذي يضم keys وfirmware وألعابك، وأماكن أخرى للألعاب."
+
+msgid "Available in more than one place. Choose which one to start."
+msgstr "متوفر في أكثر من مكان. اختر أيها تبدأ."
+
+msgid "Add other game folders, with roms, updates and mods on an external HD or SSD over USB, or in the console's extended storage."
+msgstr "أضف مجلدات ألعاب أخرى، فيها roms وupdates وmods على قرص HD أو SSD خارجي عبر USB، أو في التخزين الموسّع للجهاز."
+
+msgid "Games, updates and mods are read from this folder. Press Square twice to take it off the list."
+msgstr "تُقرأ الألعاب والتحديثات والمودات من هذا المجلد. اضغط Square مرتين لإزالته من القائمة."
+
+msgid "Could not delete the ROM from this folder."
+msgstr "تعذّر حذف ملف ROM من هذا المجلد."
+
+msgid "Deleted from this folder."
+msgstr "تم الحذف من هذا المجلد."
+
+msgid "PATH TIPS"
+msgstr "نصائح المسارات"
+
+msgid "Delete {0}?"
+msgstr "حذف {0}؟"
+
+msgid "Also delete the duplicated updates and DLC in this folder."
+msgstr "احذف أيضًا التحديثات والمحتوى الإضافي المكررة في هذا المجلد."
+
+msgid "Confirm"
+msgstr "تأكيد"
+
+msgid "EXTENDED"
+msgstr "موسّع"
+
+msgid "EXTERNAL"
+msgstr "خارجي"
+
+msgid "Holds keys, firmware, roms, updates, mods and saves."
+msgstr "يحتوي على المفاتيح والبرنامج الثابت وملفات roms والتحديثات والمودات وملفات الحفظ."

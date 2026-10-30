@@ -15,7 +15,7 @@ APP = Path(os.environ.get('EDEN_PACKAGE_DIR', ROOT / 'dist/headless/PPSA99008'))
 if 'EDEN_PACKAGE_DIR' in os.environ:
     assert APP.is_relative_to(ROOT/'build') and APP.name == 'PPSA99008'
 OUT = ROOT / 'build/headless-native'
-BASE_REQUIRED = {'eboot.bin', 'core-homebrew.nro', 'sce_module/libc.prx',
+BASE_REQUIRED = {'launcher-runtime.json', 'eboot.bin', 'core-homebrew.nro', 'sce_module/libc.prx',
             'sce_sys/param.json', 'sce_sys/icon0.png', 'sce_sys/pic0.dds', 'sce_sys/pic1.dds',
             'sce_sys/snd0.at9', 'lapy.elf', 'lapy-manifest.json', 'licenses/Lapy-MIT.txt',
             'self-updater.elf'}
@@ -25,6 +25,8 @@ REQUIRED.update(p.relative_to(APP).as_posix() for p in (APP / 'ui').rglob('*') i
 # are required exactly when the build put them there (tools/package-headless-native.sh).
 if (APP / 'dev-settings.txt').is_file():
     REQUIRED.add('dev-settings.txt')
+if (APP / 'mihawkgen/network.fgw').is_file():
+    REQUIRED.add('mihawkgen/network.fgw')
 RECEIPT = ROOT / 'HEADLESS_CANDIDATE.json'
 # The pinned OpenGL SDK release (tools/deps.json): digest of its manifest.sha256.
 GL_SDK_MANIFEST_SHA256 = '0d432edc9d648d6e0cccb4d5eb3db8484f10ba4b075b5ccf23edda3251b66360'

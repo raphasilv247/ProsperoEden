@@ -43,6 +43,10 @@ msgstr "อ่าน​ไฟล์ NCA ​ของ​เฟิร์มแว�
 msgid "A pairing is running already."
 msgstr "กำลัง​จับคู่​อยู่​แล้ว"
 
+#: pe/ui/browse.cpp
+msgid "ABOUT"
+msgstr "เกี่ยวกับ"
+
 #. The menu's last section: about this app (its credits, where its files go). One short word.
 #: pe/ui/shell.cpp
 msgid "About"
@@ -61,6 +65,10 @@ msgstr "เหลืออีกประมาณ {0} นาที"
 #: pe/ui/remote.cpp, pe/ui/update.cpp
 msgid "About {0} s left"
 msgstr "เหลืออีกประมาณ {0} วินาที"
+
+#: pe/ui/settings.cpp
+msgid "Above 100%, a game locked to 30 FPS can reach 60, and a game that counts its frames plays faster too."
+msgstr "เกิน 100% ​เกม​ที่​ล็อก​ไว้​ที่ 30 FPS ​อาจ​ขึ้น​ถึง 60 ​และ​เกม​ที่​นับ​เฟรม​ของ​ตัวเอง​จะ​เล่น​เร็ว​ขึ้น​ด้วย"
 
 #. Label: which folders the app can read.
 #: pe/ui/browse.cpp
@@ -84,6 +92,10 @@ msgstr "เพิ่ม​ใน​การ​ดาวน์โหลด​แ
 msgid "Added. Cross plays as this profile; left and right change its name."
 msgstr "เพิ่ม​แล้ว กากบาท​เล่น​ด้วย​โปรไฟล์​นี้ ซ้าย​และ​ขวา​เปลี่ยน​ชื่อ"
 
+#: pe/ui/library.cpp
+msgid "All cheats"
+msgstr "สูตรโกง​ทั้งหมด"
+
 #: pe/ui/browse.cpp
 msgid "All credit for the Eden emulator goes to its developers and contributors."
 msgstr "เครดิต​ทั้งหมด​ของ​อีมูเลเตอร์ Eden ​เป็นของ​นักพัฒนา​และ​ผู้ร่วมพัฒนา"
@@ -92,9 +104,21 @@ msgstr "เครดิต​ทั้งหมด​ของ​อีมูเ
 msgid "AMD FSR"
 msgstr "AMD FSR"
 
+#: pe/ui/settings.cpp
+msgid "An image of your own behind this menu."
+msgstr "รูปภาพของคุณเองด้านหลังเมนูนี้"
+
 #: eden_services.cpp
 msgid "Another language"
 msgstr "ภาษาอื่น"
+
+#: pe/ui/settings.cpp
+msgid "Appearance"
+msgstr "รูปลักษณ์"
+
+#: pe/ui/settings.cpp
+msgid "Apply"
+msgstr "ใช้"
 
 #. The button mapping has not been changed.
 #: pe/ui/game_options.cpp, pe/ui/settings.cpp
@@ -211,9 +235,14 @@ msgid "Changed"
 msgstr "เปลี่ยนแล้ว"
 
 #. What a mod is made of: cheat codes.
-#: eden_services.cpp, host/fake_services.cpp
+#: eden_services.cpp, host/fake_services.cpp, pe/ui/library.cpp
 msgid "Cheats"
 msgstr "สูตรโกง"
+
+#. Shown under a cheat that came from the game's cheats folder (not from a mod).
+#: pe/ui/library.cpp
+msgid "Cheats folder"
+msgstr "โฟลเดอร์​สูตรโกง"
 
 #: pe/ui/pairing.cpp
 msgid "Check that the code there is this one, and approve."
@@ -248,6 +277,14 @@ msgstr "เลือก"
 msgid "Choose a game from your library."
 msgstr "เลือกเกม​จาก​คลังเกม​ของคุณ"
 
+#: pe/ui/settings.cpp
+msgid "Choose a theme or change the launcher layout."
+msgstr "เลือกธีมหรือเปลี่ยนเลย์เอาต์ของตัวเปิดเกม"
+
+#: pe/ui/settings.cpp
+msgid "Choose the colours and appearance of this menu."
+msgstr "เลือกสีและรูปลักษณ์ของเมนูนี้"
+
 #: pe/ui/browse.cpp
 msgid "Choose the folder that holds your keys, firmware and games"
 msgstr "เลือก​โฟลเดอร์​ที่​เก็บ​คีย์ เฟิร์มแวร์ ​และ​เกม​ของคุณ"
@@ -264,6 +301,14 @@ msgstr "วงกลม"
 #: pe/ui/remote.cpp, pe/ui/update.cpp
 msgid "Close"
 msgstr "ปิด"
+
+#: pe/ui/settings.cpp
+msgid "Colour"
+msgstr "สี"
+
+#: pe/ui/game_options.cpp, pe/ui/settings.cpp
+msgid "Compact memory"
+msgstr "หน่วยความจำแบบกระชับ"
 
 #. A switch: the program code a game used in earlier sessions is prepared (compiled) while the game starts. Keep it short.
 #: pe/ui/game_options.cpp, pe/ui/settings.cpp
@@ -394,6 +439,10 @@ msgstr "เครดิตและการเตรียมระบบ"
 #: pe/ui/game_options.cpp
 msgid "Cross"
 msgstr "กากบาท"
+
+#: pe/ui/settings.cpp
+msgid "Default"
+msgstr "ค่าเริ่มต้น"
 
 #. A per-game setting that follows the general setting; {0} is its value.
 #: pe/ui/game_options.cpp
@@ -689,6 +738,10 @@ msgstr "คุณภาพเต็ม"
 msgid "Game audio; PS5 system-menu music is unchanged."
 msgstr "เสียง​ของ​เกม เพลง​ใน​เมนู​ระบบ​ของ PS5 ​ไม่​เปลี่ยน"
 
+#: pe/ui/launcher.cpp
+msgid "Game cannot start now."
+msgstr "ไม่สามารถเริ่มเกมได้ในขณะนี้"
+
 #. {0} is the reason, a sentence in English; {1} is a file.
 #: eden_services.cpp, host/fake_services.cpp
 msgid "Game could not start: {0} Details: {1}"
@@ -738,6 +791,10 @@ msgstr "เยอรมัน"
 msgid "GETTING STARTED"
 msgstr "เริ่มต้นใช้งาน"
 
+#: pe/ui/settings.cpp
+msgid "Gives back memory a game left empty, 16 KiB at a time. More free memory; a game that writes there again can stutter for a moment."
+msgstr "คืนหน่วยความจำที่เกมปล่อยว่างไว้ทีละ 16 KiB มีหน่วยความจำว่างมากขึ้น เกมที่เขียนกลับไปที่นั่นอาจกระตุกชั่วครู่"
+
 #: pe/ui/multiplayer.cpp
 msgid "Go offline"
 msgstr "ออฟไลน์"
@@ -772,6 +829,10 @@ msgstr "หน้าหลัก"
 #: pe/ui/library.cpp, pe/ui/settings.cpp
 msgid "How games are drawn and scaled to your TV."
 msgstr "วิธี​วาด​ภาพ​เกม​และ​ปรับ​ขนาด​ให้​เข้ากับ​ทีวี"
+
+#: pe/ui/settings.cpp
+msgid "Images in this folder: {0}"
+msgstr "รูปภาพในโฟลเดอร์นี้: {0}"
 
 #. Button hint: copy a save in.
 #: pe/ui/library.cpp
@@ -895,6 +956,10 @@ msgstr "ตัวอักษรใหญ่ขึ้น"
 msgid "Last game opened"
 msgstr "เกมที่เปิดล่าสุด"
 
+#: pe/ui/settings.cpp
+msgid "Launcher"
+msgstr "ตัวเปิดเกม"
+
 #: pe/ui/multiplayer.cpp
 msgid "Leave / cancel"
 msgstr "ออก / ยกเลิก"
@@ -931,6 +996,10 @@ msgstr "คำนวณทศนิยมแม่นยำน้อยลง: �
 #: pe/ui/settings.cpp
 msgid "Less exact memory transfers to the GPU: faster, and a few games show wrong graphics."
 msgstr "การถ่ายโอนหน่วยความจำไปยัง GPU แม่นยำน้อยลง: เร็วขึ้น แต่บางเกมแสดงกราฟิกผิด"
+
+#: pe/ui/library.cpp
+msgid "LIBRARY"
+msgstr "คลังเกม"
 
 #: pe/ui/library.cpp, pe/ui/shell.cpp
 msgid "Library"
@@ -1016,6 +1085,10 @@ msgstr "ใกล้ที่สุด"
 msgid "Needs attention"
 msgstr "ต้องตรวจสอบ"
 
+#: pe/ui/theme.cpp
+msgid "Neutral glass, clean and still."
+msgstr "กระจกโทนกลาง สะอาดและสงบ"
+
 #: pe/ui/profiles.cpp
 msgid "New profile"
 msgstr "โปรไฟล์ใหม่"
@@ -1032,6 +1105,15 @@ msgstr "ชื่อเล่น"
 #: pe/ui/multiplayer.cpp
 msgid "Nickname: {0}"
 msgstr "ชื่อเล่น: {0}"
+
+#: pe/ui/library.cpp
+msgid "No cheats"
+msgstr "ไม่มี​สูตรโกง"
+
+#. <build ID>.txt stays as it is: a cheat file is named after the game version's build ID. {0} is a folder such as roms/Game/cheats/.
+#: pe/ui/library.cpp
+msgid "No cheats for this game yet. Copy its cheat files (<build ID>.txt) to {0}."
+msgstr "เกม​นี้​ยัง​ไม่มี​สูตรโกง คัดลอก​ไฟล์​สูตรโกง​ของ​เกม (<build ID>.txt) ไป​ที่ {0}"
 
 #: pe/ui/remote.cpp
 msgid "No download source is set up. Save a file named {0} that lists your sources, as this one does with a RomM server, then open this menu again. Downloads need an FTP server running on the console, on port {1}."
@@ -1058,10 +1140,9 @@ msgstr "ไม่มีโฟลเดอร์ที่นี่"
 msgid "No mods"
 msgstr "ไม่มี​ม็อด"
 
-#. {0} is a folder; roms/ is a folder name (unchanged).
 #: pe/ui/library.cpp
-msgid "No mods for this game yet. Copy each mod's folder to {0}, next to roms/."
-msgstr "เกม​นี้​ยัง​ไม่มี​ม็อด คัดลอก​โฟลเดอร์​ของ​แต่ละ​ม็อด​ไป​ที่ {0} ข้าง roms/"
+msgid "No mods for this game yet. Copy each mod's folder to {0}."
+msgstr "เกม​นี้​ยัง​ไม่มี​ม็อด คัดลอก​โฟลเดอร์​ของ​แต่ละ​ม็อด​ไป​ที่ {0}"
 
 #: pe/ui/multiplayer.cpp
 msgid "No public rooms are available."
@@ -1275,6 +1356,10 @@ msgstr "โปรตุเกส"
 msgid "Portuguese (Brazil)"
 msgstr "โปรตุเกส (บราซิล)"
 
+#: pe/ui/game_options.cpp, pe/ui/settings.cpp
+msgid "Post-processing"
+msgstr "การประมวลผลภายหลัง"
+
 #. Eden is the emulator's name (unchanged).
 #: pe/ui/browse.cpp
 msgid "Powered by Eden"
@@ -1296,6 +1381,10 @@ msgstr "กด​อีกครั้ง​เพื่อ​แทนที่
 
 #: pe/ui/multiplayer.cpp
 msgid "Private room"
+msgstr "ห้อง​ส่วนตัว"
+
+#: pe/ui/multiplayer.cpp
+msgid "PRIVATE ROOM"
 msgstr "ห้อง​ส่วนตัว"
 
 #: pe/ui/game_options.cpp
@@ -1363,6 +1452,14 @@ msgstr "รุ่น PS5"
 #: pe/ui/multiplayer.cpp
 msgid "Public rooms"
 msgstr "ห้อง​สาธารณะ"
+
+#: pe/ui/multiplayer.cpp
+msgid "PUBLIC ROOMS"
+msgstr "ห้อง​สาธารณะ"
+
+#: pe/ui/settings.cpp
+msgid "Put images in the wallpapers folder to show them here."
+msgstr "ใส่รูปภาพในโฟลเดอร์ wallpapers เพื่อแสดงที่นี่"
 
 #: pe/ui/remote.cpp
 msgid "Queued"
@@ -1546,6 +1643,10 @@ msgstr "เซฟ​เมื่อ {0} จะ​แทนที่​ของ�
 msgid "Saved. A display that cannot show 120 Hz stays at 60 Hz."
 msgstr "บันทึก​แล้ว จอ​ที่​ไม่​รองรับ 120 Hz จะ​อยู่​ที่ 60 Hz"
 
+#: pe/ui/settings.cpp
+msgid "Saved. Applies the next time ProsperoEden opens."
+msgstr "บันทึก​แล้ว มี​ผล​เมื่อ​เปิด ProsperoEden ​ครั้ง​ถัดไป"
+
 #: pe/ui/browse.cpp, pe/ui/launcher.cpp
 msgid "Saved. Applies when a game starts."
 msgstr "บันทึก​แล้ว มีผล​เมื่อ​เริ่มเกม"
@@ -1555,9 +1656,18 @@ msgstr "บันทึก​แล้ว มีผล​เมื่อ​เ�
 msgid "Saved. Full quality uses four times the graphics memory for these textures and can run out above 1x."
 msgstr "บันทึก​แล้ว คุณภาพ​เต็ม​ใช้​หน่วยความจำ​กราฟิก​สำหรับ​เท็กซ์เจอร์​เหล่านี้​มากขึ้น 4 เท่า และ​อาจ​หมด​เมื่อ​สูงกว่า 1x"
 
+#: pe/ui/settings.cpp
+msgid "Saved. Post-processing needs the Vulkan renderer."
+msgstr "บันทึกแล้ว การประมวลผลภายหลังต้องใช้ตัวเรนเดอร์ Vulkan"
+
 #: pe/ui/browse.cpp
 msgid "Saved. Reopen ProsperoEden to use this folder."
 msgstr "บันทึก​แล้ว เปิด ProsperoEden ​ใหม่​เพื่อ​ใช้​โฟลเดอร์​นี้"
+
+#. About the Update notices switch; homebrew.page is a site's name and stays as it is; About is the menu's last section (use its translation).
+#: pe/ui/settings.cpp
+msgid "Says when homebrew.page has a newer version. Off, only About names it."
+msgstr "แจ้ง​เมื่อ homebrew.page ​มี​เวอร์ชัน​ใหม่​กว่า ถ้า​ปิด​ไว้ ​จะ​แสดง​เฉพาะ​ใน​หน้า​เกี่ยวกับ"
 
 #: pe/ui/pairing.cpp
 msgid "Scan the code with your phone, or open the address below."
@@ -1600,6 +1710,10 @@ msgstr "เซิร์ฟเวอร์เก่าเกินไปสำห
 msgid "Settings"
 msgstr "การตั้งค่า"
 
+#: pe/ui/settings.cpp
+msgid "SETTINGS"
+msgstr "การตั้งค่า"
+
 #: eden_services.cpp, host/fake_services.cpp
 msgid "Setup required"
 msgstr "ต้องเตรียมระบบก่อน"
@@ -1623,6 +1737,10 @@ msgstr "มี​หลาย​เซิร์ฟเวอร์​ที่​
 #: pe/ui/remote.cpp
 msgid "Several sources have this game. Which one should it come from?"
 msgstr "มี​หลาย​แหล่ง​ที่​มี​เกม​นี้ ต้องการ​ดาวน์โหลด​จาก​แหล่ง​ใด"
+
+#: pe/ui/settings.cpp
+msgid "Show an image of your own behind the menu."
+msgstr "แสดงรูปภาพของคุณเองด้านหลังเมนู"
 
 #: pe/ui/settings.cpp
 msgid "Show or hide the FPS overlay"
@@ -1669,6 +1787,11 @@ msgstr "สเปน (ลาตินอเมริกา)"
 #: pe/ui/settings.cpp
 msgid "Speed"
 msgstr "ความเร็ว"
+
+#. Settings > Performance: how fast a game may run, as a percentage of the console it was made for.
+#: pe/ui/game_options.cpp, pe/ui/settings.cpp
+msgid "Speed limit"
+msgstr "จำกัด​ความเร็ว"
 
 #. A DualSense button.
 #: pe/ui/game_options.cpp
@@ -1739,13 +1862,13 @@ msgstr "ขอบคุณ"
 msgid "Thanks to the whole PS5 homebrew community and to every developer whose drivers, tools and libraries make ProsperoEden possible."
 msgstr "ขอบคุณ​ชุมชน​โฮมบรูว์ PS5 ​ทั้งหมด ​และ​นักพัฒนา​ทุกคน​ที่​ไดรเวอร์ เครื่องมือ ​และ​ไลบรารี​ของ​พวกเขา​ทำให้ ProsperoEden ​เกิดขึ้น​ได้"
 
+#: pe/ui/settings.cpp
+msgid "The accent colour of the current theme."
+msgstr "สีเน้นของธีมปัจจุบัน"
+
 #: pe/ui/remote.cpp
 msgid "The download stopped"
 msgstr "การดาวน์โหลดหยุดลง"
-
-#: pe/ui/settings.cpp
-msgid "The folder that holds your keys, firmware and games."
-msgstr "โฟลเดอร์​ที่​เก็บ​คีย์ เฟิร์มแวร์ ​และ​เกม​ของคุณ"
 
 #: pe/ui/save_sync.cpp
 msgid "The game does not start."
@@ -1831,6 +1954,10 @@ msgstr "ไม่สามารถอัปเดตให้เสร็จไ
 msgid "Theme"
 msgstr "ธีม"
 
+#: pe/ui/settings.cpp
+msgid "Theme and launcher settings."
+msgstr "การตั้งค่าธีมและตัวเปิดเกม"
+
 #: pe/ui/save_sync.cpp
 msgid "This console and the server both have save data the other does not know. Which one should stay? The other is kept as a backup."
 msgstr "เครื่อง​นี้​และ​เซิร์ฟเวอร์​ต่าง​มี​ข้อมูล​เซฟ​ที่​อีก​ฝั่ง​ไม่​รู้จัก ต้องการ​เก็บ​ของ​ฝั่ง​ใด อีก​ฝั่ง​จะ​เก็บ​ไว้​เป็น​ข้อมูล​สำรอง"
@@ -1913,6 +2040,11 @@ msgstr "ใช้ไม่ได้"
 msgid "Understood"
 msgstr "เข้าใจแล้ว"
 
+#. A Speed limit choice: no limit at all (as fast as the console can).
+#: pe/ui/game_options.cpp, pe/ui/settings.cpp
+msgid "Unlimited"
+msgstr "ไม่​จำกัด"
+
 #: pe/ui/pairing.cpp
 msgid "Unlink"
 msgstr "ยกเลิกการเชื่อมโยง"
@@ -1935,6 +2067,11 @@ msgstr "ขึ้น"
 #: pe/ui/launcher.cpp, pe/ui/update.cpp
 msgid "Update available"
 msgstr "มีอัปเดตใหม่"
+
+#. Settings switch: whether the app says at its start that a newer release of this app is listed (not game updates).
+#: pe/ui/settings.cpp
+msgid "Update notices"
+msgstr "การ​แจ้ง​เตือน​อัปเดต"
 
 #. Button: download and install the newer release of this app now.
 #: pe/ui/update.cpp
@@ -1962,6 +2099,10 @@ msgstr "ฟิลเตอร์ขยายภาพ"
 msgid "USA"
 msgstr "สหรัฐฯ"
 
+#: pe/ui/settings.cpp
+msgid "Use another home screen, library and menu layout."
+msgstr "ใช้เลย์เอาต์อื่นสำหรับหน้าหลัก คลัง และเมนู"
+
 #: pe/ui/browse.cpp
 msgid "Use extracted firmware NCA files. Choose the folder in Settings, Game files; restart the app after changing it."
 msgstr "ใช้​ไฟล์ NCA ​ของ​เฟิร์มแวร์​ที่​แตกไฟล์​แล้ว เลือก​โฟลเดอร์​ใน​การตั้งค่า > ไฟล์เกม ​แล้ว​เปิด​แอป​ใหม่​หลัง​เปลี่ยน"
@@ -1976,7 +2117,7 @@ msgid "Version {0}"
 msgstr "เวอร์ชัน {0}"
 
 #. {0}: the newer release's number, for example 1.000.050; homebrew.page is a site's name and stays as it is.
-#: pe/ui/launcher.cpp
+#: pe/ui/browse.cpp, pe/ui/launcher.cpp
 msgid "Version {0} is on homebrew.page"
 msgstr "เวอร์ชัน {0} อยู่ที่ homebrew.page"
 
@@ -2029,6 +2170,10 @@ msgstr "กำลังรอ {0}"
 #: pe/ui/remote.cpp
 msgid "Waiting to download"
 msgstr "กำลังรอดาวน์โหลด"
+
+#: pe/ui/settings.cpp
+msgid "Wallpaper"
+msgstr "วอลเปเปอร์"
 
 #: pe/ui/settings.cpp
 msgid "What the FPS overlay's line says, and how the chip is drawn."
@@ -2203,3 +2348,204 @@ msgstr "{0}/ (NSP หรือ XCI)"
 #: pe/ui/browse.cpp
 msgid "{0}/ (one folder per game ID)"
 msgstr "{0}/ (หนึ่ง​โฟลเดอร์​ต่อ ID ​ของ​เกม)"
+
+#: pe/ui/settings.cpp
+msgid "Crash reports (FTP): {0}\nAttach crash-*.txt and its matching logs to your issue."
+msgstr "รายงานข้อขัดข้อง (FTP): {0}\nแนบ crash-*.txt และบันทึกที่เกี่ยวข้องในรายงานปัญหาของคุณ"
+
+#: pe/ui/browse.cpp
+msgid "Change game folder"
+msgstr "เปลี่ยนโฟลเดอร์เกม"
+
+#: pe/ui/library.cpp
+msgid "Duplicate game"
+msgstr "เกมซ้ำ"
+
+#: pe/ui/browse.cpp
+msgid "Exported saves are written here. TRIANGLE uses the folder shown; SQUARE goes back to the default."
+msgstr "เซฟที่ส่งออกจะถูกเขียนที่นี่ สามเหลี่ยมใช้โฟลเดอร์ที่แสดง สี่เหลี่ยมกลับไปใช้ค่าเริ่มต้น"
+
+#: pe/ui/browse.cpp
+msgid "Firmware folder"
+msgstr "โฟลเดอร์ firmware"
+
+#: pe/ui/locations.cpp
+msgid "GAME FILES FOLDER"
+msgstr "โฟลเดอร์ไฟล์เกม"
+
+#: pe/ui/locations.cpp
+msgid "GAME FOLDER"
+msgstr "โฟลเดอร์เกม"
+
+#: pe/ui/locations.cpp, pe/ui/settings.cpp
+msgid "GAME FOLDERS"
+msgstr "โฟลเดอร์เกม"
+
+#: pe/ui/browse.cpp
+msgid "Games, updates and mods are read from here. TRIANGLE adds the folder shown."
+msgstr "เกม updates และ mods จะถูกอ่านจากที่นี่ สามเหลี่ยมเพิ่มโฟลเดอร์ที่แสดง"
+
+#: pe/ui/browse.cpp
+msgid "Keys folder"
+msgstr "โฟลเดอร์ keys"
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "Add game folder"
+msgstr "เพิ่มโฟลเดอร์เกม"
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "Back to the default folder. Reopen ProsperoEden to use it."
+msgstr "กลับไปใช้โฟลเดอร์เริ่มต้น เปิด ProsperoEden ใหม่เพื่อใช้งาน"
+
+#: pe/ui/browse.cpp
+msgid "Choose a folder with roms and updates inside"
+msgstr "เลือกโฟลเดอร์ที่มี roms และ updates"
+
+#: pe/ui/browse.cpp
+msgid "Choose the folder that holds prod.keys"
+msgstr "เลือกโฟลเดอร์ที่มี prod.keys"
+
+#: pe/ui/browse.cpp
+msgid "Choose the folder that holds the firmware NCA files"
+msgstr "เลือกโฟลเดอร์ที่มีไฟล์ NCA ของเฟิร์มแวร์"
+
+#: pe/ui/browse.cpp
+msgid "Choose the folder with one folder per game ID"
+msgstr "เลือกโฟลเดอร์ที่มีโฟลเดอร์แยกตามไอดีเกม"
+
+#: pe/ui/browse.cpp
+msgid "Choose where exported saves are written"
+msgstr "เลือกที่เขียนเซฟที่ส่งออก"
+
+#: pe/ui/locations.cpp
+msgid "Choose where your games, keys, firmware and saves are"
+msgstr "เลือกที่เก็บเกม keys, firmware และเซฟของคุณ"
+
+#. Label: the folder used the next time the app starts.
+#: pe/ui/locations.cpp, pe/ui/settings.cpp
+msgid "NEXT START"
+msgstr "เปิดครั้งถัดไป"
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "No updates folder"
+msgstr "ไม่มีโฟลเดอร์ updates"
+
+#: pe/ui/browse.cpp
+msgid "Save export folder"
+msgstr "โฟลเดอร์ส่งออกเซฟ"
+
+#: pe/ui/browse.cpp
+msgid "Save import folder"
+msgstr "โฟลเดอร์นำเข้าเซฟ"
+
+#: pe/ui/browse.cpp
+msgid "Saved. Its games are in the Library now."
+msgstr "บันทึกแล้ว เกมในโฟลเดอร์นี้อยู่ในคลังเกมแล้ว"
+
+#: pe/ui/browse.cpp
+msgid "Saves to import go here, one folder per game ID. TRIANGLE uses the folder shown; SQUARE goes back to the default."
+msgstr "เซฟที่จะนำเข้าวางที่นี่ โฟลเดอร์ละหนึ่งไอดีเกม สามเหลี่ยมใช้โฟลเดอร์ที่แสดง สี่เหลี่ยมกลับไปใช้ค่าเริ่มต้น"
+
+#: pe/ui/locations.cpp
+msgid "Square again takes {0} off the list. Its games stay where they are."
+msgstr "กดสี่เหลี่ยมอีกครั้งเพื่อนำ {0} ออกจากรายการ เกมในนั้นยังอยู่ที่เดิม"
+
+#: pe/ui/locations.cpp
+msgid "Taken off the list. Its games stay where they are."
+msgstr "นำออกจากรายการแล้ว เกมในนั้นยังอยู่ที่เดิม"
+
+#: pe/ui/browse.cpp
+msgid "The folder shown must hold prod.keys. TRIANGLE uses it; SQUARE goes back to the default."
+msgstr "โฟลเดอร์ที่แสดงต้องมี prod.keys สามเหลี่ยมใช้โฟลเดอร์นี้ สี่เหลี่ยมกลับไปใช้ค่าเริ่มต้น"
+
+#: pe/ui/browse.cpp
+msgid "The folder shown must hold the firmware NCA files. TRIANGLE uses it; SQUARE goes back to the default."
+msgstr "โฟลเดอร์ที่แสดงต้องมีไฟล์ NCA ของเฟิร์มแวร์ สามเหลี่ยมใช้โฟลเดอร์นี้ สี่เหลี่ยมกลับไปใช้ค่าเริ่มต้น"
+
+#: pe/ui/browse.cpp
+msgid "The list is full. Remove a folder first."
+msgstr "รายการเต็มแล้ว นำโฟลเดอร์ออกก่อน"
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "This folder cannot be read"
+msgstr "อ่านโฟลเดอร์นี้ไม่ได้"
+
+#: pe/ui/browse.cpp
+msgid "This folder has no firmware NCA files."
+msgstr "โฟลเดอร์นี้ไม่มีไฟล์ NCA ของเฟิร์มแวร์"
+
+#: pe/ui/browse.cpp
+msgid "This folder is in the list already."
+msgstr "โฟลเดอร์นี้อยู่ในรายการแล้ว"
+
+#: pe/ui/browse.cpp
+msgid "This folder needs a roms folder."
+msgstr "โฟลเดอร์นี้ต้องมีโฟลเดอร์ roms"
+
+#: pe/ui/browse.cpp
+msgid "This is the game files folder already."
+msgstr "นี่คือโฟลเดอร์ไฟล์เกมอยู่แล้ว"
+
+#: pe/ui/browse.cpp
+msgid "prod.keys is not in this folder."
+msgstr "ไม่มี prod.keys ในโฟลเดอร์นี้"
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "{0} file"
+msgstr "{0} ไฟล์"
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "{0} files"
+msgstr "{0} ไฟล์"
+
+#: pe/ui/locations.cpp
+msgid "{0} game folder"
+msgstr "{0} โฟลเดอร์เกม"
+
+#: pe/ui/locations.cpp
+msgid "{0} game folders"
+msgstr "{0} โฟลเดอร์เกม"
+
+#: pe/ui/library.cpp
+msgid "{0} is in more than one place. Choose which one starts."
+msgstr "{0} อยู่ในหลายที่ เลือกว่าจะเริ่มอันไหน"
+
+#: pe/ui/settings.cpp
+msgid "The folder that holds your keys, firmware and games, and more places for games."
+msgstr "โฟลเดอร์ที่มี keys, firmware และเกมของคุณ รวมถึงที่เก็บเกมเพิ่มเติม"
+
+msgid "Available in more than one place. Choose which one to start."
+msgstr "มีในมากกว่าหนึ่งที่ เลือกว่าจะเริ่มจากที่ไหน"
+
+msgid "Add other game folders, with roms, updates and mods on an external HD or SSD over USB, or in the console's extended storage."
+msgstr "เพิ่มโฟลเดอร์เกมอื่น ที่มี roms การอัปเดต และม็อด ในฮาร์ดดิสก์หรือ SSD ภายนอกผ่าน USB หรือในพื้นที่จัดเก็บขยายของคอนโซล"
+
+msgid "Games, updates and mods are read from this folder. Press Square twice to take it off the list."
+msgstr "เกม การอัปเดต และม็อดจะถูกอ่านจากโฟลเดอร์นี้ กดสี่เหลี่ยมสองครั้งเพื่อเอาออกจากรายการ"
+
+msgid "Could not delete the ROM from this folder."
+msgstr "ไม่สามารถลบ ROM จากโฟลเดอร์นี้ได้"
+
+msgid "Deleted from this folder."
+msgstr "ลบจากโฟลเดอร์นี้แล้ว"
+
+msgid "PATH TIPS"
+msgstr "เคล็ดลับเกี่ยวกับเส้นทาง"
+
+msgid "Delete {0}?"
+msgstr "ลบ {0} หรือไม่?"
+
+msgid "Also delete the duplicated updates and DLC in this folder."
+msgstr "ลบการอัปเดตและ DLC ที่ซ้ำกันในโฟลเดอร์นี้ด้วย"
+
+msgid "Confirm"
+msgstr "ยืนยัน"
+
+msgid "EXTENDED"
+msgstr "ขยาย"
+
+msgid "EXTERNAL"
+msgstr "ภายนอก"
+
+msgid "Holds keys, firmware, roms, updates, mods and saves."
+msgstr "เก็บคีย์ เฟิร์มแวร์ roms การอัปเดต ม็อด และเซฟ"

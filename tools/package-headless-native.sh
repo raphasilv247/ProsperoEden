@@ -13,7 +13,7 @@ app="${EDEN_PACKAGE_DIR:-$root/dist/headless/PPSA99008}"
 # A separate clean staging directory lets driver candidates omit private game
 # assets without deleting or copying the existing development installation.
 if [[ -n ${EDEN_PACKAGE_DIR:-} ]]; then
-    [[ $(realpath -m "$app") == "$root"/build/*/PPSA99008 ]] || exit 2
+    [[ $(realpath -m "$app") == "$(realpath -m "$root")"/build/*/PPSA99008 ]] || exit 2
     [[ ${1:-} != --game ]] || exit 2
 fi
 test -x "$builder"
@@ -60,6 +60,12 @@ cp "$root/build/self-update/self-updater.elf" "$app/self-updater.elf"
 cp "$root/sce_sys/"{param.json,icon0.png,pic0.dds,pic1.dds,snd0.at9} "$app/sce_sys/"
 rm -rf "$app/ui"
 cp -a "$root/headless/prosperoeden/ui" "$app/ui"
+# MihawkGen neural frame generation weights (headless/prosperoeden/eden_services.cpp: mihawkgen_state).
+mihawkgen_weights="$root/../mihawk-framegen-review/framegen/models/network.fgw"
+if grep -qx 'EDEN_PS5_MIHAWKGEN:BOOL=ON' "$out/CMakeCache.txt" && [[ -f "$mihawkgen_weights" ]]; then
+    mkdir -p "$app/mihawkgen"
+    cp "$mihawkgen_weights" "$app/mihawkgen/network.fgw"
+fi
 # The switches the runner reads from the app folder (headless/main.cpp). Only a development
 # package gets them: the profile title otherwise takes its timed input replay instead of the
 # controller, and a release build never parses the file.
@@ -117,6 +123,7 @@ shutil.copy2(root / 'build/fixture' / fixture_name, app / 'core-homebrew.nro')
     'hardware_qualified': False,
 }, indent=2) + '\n')
 PY
+cp "$root/launcher-runtime.json" "$app/launcher-runtime.json"
 llvm-readobj-18 --dyn-symbols --needed-libs "$out/llvm-pie.elf" > "$out/imports.txt"
 "$builder" self --inspect --file "$app/eboot.bin" > "$out/fself-inspection.txt"
 sha256sum "$app/eboot.bin" "$app/core-homebrew.nro" "$app/sce_module/libc.prx" \

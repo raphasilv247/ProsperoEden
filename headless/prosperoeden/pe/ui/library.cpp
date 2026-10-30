@@ -13,6 +13,7 @@
 #include <cstdio>
 #include <exception>
 #include <string>
+#include <utility>
 
 namespace pe::ui
 {
@@ -21,6 +22,15 @@ using audio::Cue;
 
 namespace
 {
+
+// The duplicate question: placed as the source choice is (remote.cpp), four rows show.
+constexpr Rect kPlaceDialog{550.0f, 180.0f, 820.0f, 720.0f};
+constexpr float kPlaceRowsTop = 334.0f;
+constexpr float kPlaceRowPitch = 96.0f;
+constexpr float kPlaceRowHeight = 94.0f;
+constexpr int kPlaceRowsShown = 4;
+constexpr Rect kPlaceWindow{592.0f, kPlaceRowsTop, 736.0f, kPlaceRowPitch * (kPlaceRowsShown - 1) + kPlaceRowHeight};
+constexpr float kPlaceHints = 848.0f;
 
 // The Library: covers four to a row at the left, the selected game's details at the right.
 constexpr int kColumns = 4;
@@ -51,23 +61,28 @@ enum GameRow : int
     row_system,
     row_language,
     row_mods,
+    row_cheats,
     row_save,   // in builds that move saves
     row_delete, // a game a download source has: deleted from the console
 };
 constexpr const char *kKindNames[] = {TR("Console mode"), TR("Video"),    TR("Performance"),
                                       TR("Audio"),        TR("Controls"), TR("System"),
-                                      TR("Language"),     TR("Mods"),     TR("Save data"),
-                                      TR("Delete from console")};
+                                      TR("Language"),     TR("Mods"),     TR("Cheats"),
+                                      TR("Save data"),    TR("Delete from console")};
+
+// The mod Eden makes of a game's cheats folder (headless/mods.h), named in the player's language.
+constexpr const char *kCheatsFolder = TR("Cheats folder");
 
 // How many settings a game has of its own.
 int changes_of(const GameSettings &game)
 {
     return (game.renderer >= 0) + (game.resolution >= 0) + (game.filter >= 0) + (game.astc >= 0) +
            (game.refresh >= 0) + (game.hud >= 0) + (game.hud_size >= 0) + (game.hud_corner >= 0) +
-           (game.frame_gen >= 0) + (game.frame_gen_target >= 0) + (game.frame_gen_multiplier >= 0) +
+           (game.post_processing >= 0) + (game.frame_gen >= 0) + (game.frame_gen_target >= 0) +
+           (game.frame_gen_multiplier >= 0) +
            static_cast<int>(std::count_if(game.performance.begin(), game.performance.end(),
                                           [](int value) { return value >= 0; })) +
-           (game.volume >= 0) + (game.mute >= 0) + (game.vibration >= 0) + (game.own_mapping ? 1 : 0) +
+           (game.speed_limit >= 0) + (game.volume >= 0) + (game.mute >= 0) + (game.vibration >= 0) + (game.own_mapping ? 1 : 0) +
            (game.controller >= 0) + (game.rng_seed >= 0) + (game.language >= 0);
 }
 
@@ -141,7 +156,7 @@ void Launcher::apply_games(std::vector<Game> games)
     games_loaded_ = true;
     for (Game &game : games_)
         if (game.title_id != 0)
-            count_mods(game, services_.mods(game.title_id));
+            count_mods(game, game_mods(game.title_id));
     if (!same)
     {
         int index = 0;
@@ -176,7 +191,7 @@ void Launcher::read_home()
         recent.title = shown_name(fonts_.font, recent.title, recent.file);
     if (home_.last_title_id == 0)
         return;
-    const std::vector<Mod> mods = services_.mods(home_.last_title_id);
+    const std::vector<Mod> mods = game_mods(home_.last_title_id);
     home_.last_mods = static_cast<int>(mods.size());
     // With the game's Mods switch off none of them is on.
     const bool enabled = mods.empty() || services_.mods_enabled(home_.last_title_id);
@@ -196,9 +211,9 @@ void Launcher::check_games_present()
         {
             read_home();
             const int recents = static_cast<int>(home_.recents.size());
-            // (2 to 5 are the recent games, 6 is "view all", 1 the game's settings: home.cpp.)
-            if (home_focus_ >= 2 && home_focus_ < 6 && home_focus_ - 2 >= recents)
-                home_focus_ = recents > 0 ? 1 + recents : 6;
+            // (2..9 are recent games, 10 is "view all", 1 is game settings: home.cpp.)
+            if (home_focus_ >= 2 && home_focus_ < 10 && home_focus_ - 2 >= recents)
+                home_focus_ = recents > 0 ? 1 + recents : 10;
             if (home_focus_ == 1 && !home_.last_exists)
                 home_focus_ = 0;
         }
@@ -247,18 +262,24 @@ void Launcher::count_mods(Game &game, const std::vector<Mod> &mods)
     }
 }
 
+std::vector<Mod> Launcher::game_mods(std::uint64_t title_id)
+{
+    std::vector<Mod> mods = services_.mods(title_id);
+    mods.erase(std::remove_if(mods.begin(), mods.end(), [](const Mod &mod) { return mod.cheats_only; }), mods.end());
+    return mods;
+}
+
 void Launcher::read_mods(Game &game)
 {
-    mods_ = services_.mods(game.title_id);
+    mods_ = game_mods(game.title_id);
     count_mods(game, mods_);
-    mod_list_.clear();
-    for (int mod = 0; mod < static_cast<int>(mods_.size()); ++mod)
-    {
-        mod_list_.push_back({mod, -1});
-        for (int cheat = 0; cheat < static_cast<int>(mods_[static_cast<std::size_t>(mod)].cheats.size());
-             ++cheat)
-            mod_list_.push_back({mod, cheat});
-    }
+    read_cheats(game);
+}
+
+void Launcher::read_cheats(const Game &game)
+{
+    cheats_ = services_.cheats(game.title_id);
+    cheats_enabled_ = services_.cheats_enabled(game.title_id);
 }
 
 std::string Launcher::addons_line(const std::string &addons, int mods, int mods_on, bool brief)
@@ -328,8 +349,9 @@ void Launcher::sync_grid(bool snap)
     const int count = static_cast<int>(games_.size());
     const int rows = (count + kColumns - 1) / kColumns;
     const int row = count > 0 ? library_.selected / kColumns : 0;
-    grid_rows_.visible = 2;
-    grid_rows_.pitch = kCellPitchY;
+    const bool panel = th().top_nav;
+    grid_rows_.visible = panel ? 3 : 2;
+    grid_rows_.pitch = panel ? 248.0f : kCellPitchY;
     grid_rows_.wrap = false;
     if (snap || grid_rows_.count != rows)
         grid_rows_.reset(rows, row);
@@ -419,7 +441,7 @@ void Launcher::press_library(Key key)
         Game &chosen = games_[static_cast<std::size_t>(library_.selected)];
         const bool saved = services_.set_mods_enabled(chosen.title_id, !chosen.mods_enabled);
         if (saved)
-            count_mods(chosen, services_.mods(chosen.title_id));
+            count_mods(chosen, game_mods(chosen.title_id));
         say(saved ? tr("Saved for this game. Applies on next launch.") :
                     tr("Could not save. Please try again."),
             !saved);
@@ -451,8 +473,8 @@ void Launcher::press_library(Key key)
         read_mods(games_[static_cast<std::size_t>(library_.selected)]);
         open_modal(Modal::game);
         pane_.snap(0.0f);
-        game_rows_.visible = 10;
-        game_rows_.pitch = kKindPitch;
+        game_rows_.visible = 11;
+        game_rows_.pitch = game_kind_pitch();
         game_rows_.reset(dialog_rows(Modal::game), 0);
         return;
     case Key::cross:
@@ -481,6 +503,79 @@ void Launcher::draw_library(Canvas &c)
     gfx::DrawList &list = c.list;
     const Theme &t = th();
     const int count = static_cast<int>(games_.size());
+
+    if (t.top_nav)
+    {
+        constexpr float kPanelLeft = layout::kPanelLeft;
+        constexpr float kPanelWidth = layout::kPanelWidth;
+        constexpr float kPanelCover = 176.0f;
+        constexpr float kPanelCellX = (kPanelWidth - kPanelCover) / 3.0f;
+        constexpr float kPanelRowPitch = 248.0f;
+        constexpr float kPanelTop = layout::kPanelTop;
+        constexpr float kPanelBottom = layout::kPanelBottom;
+        kicker(c, tr("LIBRARY"), kPanelLeft, baseline(80.0f, 30.0f, t.size_small), t.accent_pale, kPanelWidth);
+        if (count == 0)
+        {
+            text(c, games_loaded_ || !home_.setup_ready ? tr("No ROM files found.") : tr("Reading..."),
+                 kPanelLeft + kPanelWidth * 0.5f, baseline(400.0f, 38.0f, t.size_text), t.size_text,
+                 t.copy, Align::center);
+        }
+        else
+        {
+            list.push_clip({kPanelLeft - 16.0f, kPanelTop - 8.0f, kPanelWidth + 32.0f,
+                            kPanelBottom - kPanelTop + 8.0f});
+            const float scroll = grid_rows_.scroll();
+            const float scale_x = kPanelCellX / kCellPitchX;
+            const float scale_y = kPanelRowPitch / kCellPitchY;
+            const Rect ring{kPanelLeft + grid_x_.value * scale_x,
+                            kPanelTop + grid_y_.value * scale_y - scroll,
+                            kPanelCover, kPanelCover};
+            const int first = grid_rows_.first_row() * kColumns;
+            const int last = std::min(count - 1, (grid_rows_.last_row() + 1) * kColumns - 1);
+            for (int i = first; i <= last; ++i)
+            {
+                const Game &game = games_[static_cast<std::size_t>(i)];
+                const Rect r{kPanelLeft + static_cast<float>(i % kColumns) * kPanelCellX,
+                             kPanelTop + static_cast<float>(i / kColumns) * kPanelRowPitch - scroll,
+                             kPanelCover, kPanelCover};
+                const float near = tween::clamp01(
+                    1.0f - (std::fabs(r.x - ring.x) + std::fabs(r.y - ring.y)) / 150.0f);
+                const bool grid_active = screen_ == Screen::home ? home_on_grid_ : !rail_focus_;
+                const float f = grid_active ? near : 0.0f;
+                const float here = arrive(i - first, 0.018f);
+                list.push_opacity(here);
+                list.push_transform(1.0f, 0.0f, 0.0f, 0.0f, (1.0f - here) * 14.0f);
+                const float sc = 1.0f + (0.04f * f - 0.035f * press_ * f) * motion();
+                list.push_transform(sc, r.x + r.w * 0.5f, r.y + r.h, 0.0f, 0.0f);
+                focus_ring(c, r, t.radius_card, f);
+                if (game.remote)
+                    remote_cover(c, game.cover, r, t.radius_card, 0.3f + 0.5f * f);
+                else
+                    cover(c, game.cover, r, t.radius_card, 0.3f + 0.5f * f);
+                list.pop_transform();
+                text_shrink(c, game.name, r.x, baseline(r.y + kPanelCover + 6.0f, 24.0f, 18.0f),
+                            18.0f, gfx::mix(t.body, t.title, f), kPanelCover);
+                list.pop_transform();
+                list.pop_opacity();
+            }
+            list.pop_clip();
+            if (grid_rows_.count > grid_rows_.visible && !look().high_contrast)
+                list.gradient_rect({kPanelLeft - 16.0f, kPanelBottom - 100.0f, kPanelWidth + 32.0f, 100.0f},
+                                   0.0f, t.base.with_alpha(0.0f), t.base.with_alpha(0.72f));
+            scrollbar(c, grid_rows_, kPanelLeft + kPanelWidth + 12.0f, kPanelTop,
+                      kPanelBottom - kPanelTop - 80.0f);
+        }
+        if (screen_ != Screen::home)
+        {
+            static constexpr Hint kHints[] = {{Pad::cross, TR("Play")},
+                                              {Pad::triangle, TR("Game settings")},
+                                              {Pad::circle, TR("Home")},
+                                              {Pad::l1, TR("Sections"), Pad::r1}};
+            draw_footer(c, kHints, 4, count > 0 ? list_position(library_.selected + 1, count) : std::string{});
+        }
+        return;
+    }
+
     const float left = layout::kLeft;
     draw_frame(c, tr("Library"), count > 0 ? fill(tr("{0} games"), {std::to_string(count)}).c_str() : "");
 
@@ -547,8 +642,9 @@ void Launcher::draw_library(Canvas &c)
             }
             else
             {
-                text_shrink(c, game.format + "  /  " + game.size, r.x, baseline(under, 24.0f, 18.0f), 18.0f,
-                            gfx::mix(t.faint, t.accent_pale, f), kCover);
+                // Where it is after the format; a duplicate shows in the warning colour.
+                text_shrink(c, format_text(game) + " | " + game.size, r.x, baseline(under, 24.0f, 18.0f), 18.0f,
+                            game.places.size() > 1 ? t.warning : gfx::mix(t.faint, t.accent_pale, f), kCover);
             }
             list.pop_transform();
             list.pop_opacity();
@@ -598,7 +694,8 @@ void Launcher::draw_library(Canvas &c)
     }
     if (game != nullptr)
     {
-        text_shrink(c, game->format + "  /  " + game->size, x, baseline(y, 30.0f, 22.0f), 22.0f, t.copy, width);
+        text_shrink(c, format_text(*game) + " | " + game->size, x, baseline(y, 30.0f, 22.0f), 22.0f,
+                    game->places.size() > 1 ? t.warning : t.copy, width);
         y += 30.0f;
         text_fit(c, game->file, x, baseline(y, 26.0f, 18.0f), 18.0f, t.faint, width);
         y += 38.0f;
@@ -635,6 +732,12 @@ void Launcher::draw_library(Canvas &c)
         if (!remote && !game->language_note.empty())
         {
             notice(c, game->language_note, x, baseline(y, 26.0f, 18.0f), 18.0f, t.warning, width, false);
+            y += 30.0f;
+        }
+        if (!remote && game->places.size() > 1)
+        {
+            notice(c, tr("Available in more than one place. Choose which one to start."), x, baseline(y, 26.0f, 18.0f), 18.0f,
+                   t.warning, width, true);
             y += 30.0f;
         }
     }
@@ -734,6 +837,12 @@ int Launcher::game_row(int row) const
     return services_.save_transfer_available() ? row : row + 1;
 }
 
+float Launcher::game_kind_pitch() const
+{
+    // Eleven rows at the usual pitch would run into the hints.
+    return dialog_rows(Modal::game) > 10 ? kKindPitch - 8.0f : kKindPitch;
+}
+
 void Launcher::press_game(Key key)
 {
     Game &game = games_[static_cast<std::size_t>(library_.selected)];
@@ -791,8 +900,22 @@ void Launcher::press_game(Key key)
         read_mods(game);
         mod_rows_.visible = layout::kPaneRows;
         mod_rows_.pitch = layout::kPanePitch;
-        mod_rows_.reset(static_cast<int>(mod_list_.size()), 0);
+        mod_rows_.reset(static_cast<int>(mods_.size()), 0);
         modal_ = modal_shown_ = Modal::mods;
+        message_.clear();
+        cue(Cue::open);
+        return;
+    }
+    if (kind == row_cheats)
+    {
+        // So do its cheats, the game's Cheats switch first.
+        if (key != Key::cross && key != Key::right)
+            return;
+        read_mods(game);
+        cheat_rows_.visible = layout::kPaneRows;
+        cheat_rows_.pitch = layout::kPanePitch;
+        cheat_rows_.reset(cheats_.empty() ? 0 : 1 + static_cast<int>(cheats_.size()), 0);
+        modal_ = modal_shown_ = Modal::cheats;
         message_.clear();
         cue(Cue::open);
         return;
@@ -879,6 +1002,259 @@ int Launcher::game_changes() const
     return changes_of(game_settings_);
 }
 
+std::string Launcher::format_text(const Game &game)
+{
+    if (game.place.empty())
+        return game.format;
+    if (game.places.size() < 2)
+        return game.format + " | " + game.place;
+    // A duplicate: every place that has it.
+    std::string joined;
+    for (const GamePlace &place : game.places)
+    {
+        if (!joined.empty())
+            joined += " & ";
+        joined += place.label;
+    }
+    return game.format + " | " + joined;
+}
+
+void Launcher::open_place(const std::string &file, const std::string &title, const std::string &cover,
+                          std::vector<GamePlace> places)
+{
+    place_file_ = file;
+    place_title_ = title;
+    place_cover_ = cover;
+    place_choices_ = std::move(places);
+    place_rows_.visible = kPlaceRowsShown;
+    place_rows_.pitch = kPlaceRowPitch;
+    place_rows_.reset(static_cast<int>(place_choices_.size()), 0);
+    modal_ = modal_shown_ = Modal::place;
+    message_.clear();
+    cue(Cue::modal_open);
+}
+
+void Launcher::press_place(Key key)
+{
+    const int count = static_cast<int>(place_choices_.size());
+    switch (key)
+    {
+    case Key::circle:
+        modal_ = Modal::none;
+        message_.clear();
+        cue(Cue::back);
+        return;
+    case Key::up:
+    case Key::down:
+        if (place_rows_.move(key == Key::down ? 1 : -1))
+            cue(Cue::focus);
+        return;
+    case Key::square:
+    {
+        // The copy under the cursor is asked about first; the confirmation does the deleting.
+        const int row = std::clamp(place_rows_.selected, 0, std::max(count - 1, 0));
+        if (count > 0)
+            open_place_delete(row);
+        return;
+    }
+    case Key::cross:
+    {
+        const int row = std::clamp(place_rows_.selected, 0, std::max(count - 1, 0));
+        // A drive may have been taken out since the question opened.
+        const std::vector<GamePlace> now = services_.game_places(place_file_);
+        modal_ = Modal::none;
+        if (row >= static_cast<int>(now.size()))
+        {
+            read_home();
+            drop_missing_games();
+            say(tr("ROM missing from the game files folder"), true);
+            cue(Cue::error);
+            return;
+        }
+        // The chosen copy starts through launch, so its save data is synced as usual.
+        place_path_ = services_.game_path_in(place_file_, row);
+        launch(place_file_, place_title_, place_cover_);
+        return;
+    }
+    default:
+        return;
+    }
+}
+
+void Launcher::open_place_delete(int row)
+{
+    const GamePlace &place = place_choices_[static_cast<std::size_t>(row)];
+    delete_file_ = place.file;
+    delete_title_ = place_title_;
+    delete_folder_ = place.path;
+    delete_label_ = place.label;
+    delete_size_ = place.size;
+    // The updates and DLC are offered only when this copy and another one in a different game folder both
+    // have some (two copies in one folder share its updates/).
+    const int here = services_.place_addon_count(place.file, place.path);
+    int elsewhere = 0;
+    for (const GamePlace &other : place_choices_)
+        if (other.path != place.path)
+            elsewhere += services_.place_addon_count(other.file, other.path);
+    delete_addons_shown_ = here > 0 && elsewhere > 0;
+    delete_addons_checked_ = false;
+    delete_cursor_ = 0;
+    modal_ = modal_shown_ = Modal::place_delete;
+    message_.clear();
+    cue(Cue::modal_open);
+}
+
+void Launcher::press_place_delete(Key key)
+{
+    // Rows: 2 is the box (only when shown), 0 Cancel and 1 Confirm side by side under it.
+    switch (key)
+    {
+    case Key::circle:
+        modal_ = Modal::none;
+        cue(Cue::back);
+        return;
+    case Key::left:
+        if (delete_cursor_ == 1)
+            delete_cursor_ = 0;
+        return;
+    case Key::right:
+        if (delete_cursor_ == 0)
+            delete_cursor_ = 1;
+        return;
+    case Key::up:
+        if (delete_cursor_ != 2 && delete_addons_shown_)
+            delete_cursor_ = 2;
+        return;
+    case Key::down:
+        if (delete_cursor_ == 2)
+            delete_cursor_ = 0;
+        return;
+    case Key::cross:
+        if (delete_cursor_ == 2)
+        {
+            delete_addons_checked_ = !delete_addons_checked_;
+            cue(Cue::toggle);
+            return;
+        }
+        if (delete_cursor_ == 0)
+        {
+            modal_ = Modal::none;
+            cue(Cue::back);
+            return;
+        }
+        // Confirm: only this copy's ROM, and its updates and DLC when the box is ticked.
+        modal_ = Modal::none;
+        if (!services_.delete_place(delete_file_, delete_folder_, delete_addons_shown_ && delete_addons_checked_))
+        {
+            say(tr("Could not delete the ROM from this folder."), true);
+            cue(Cue::error);
+            return;
+        }
+        read_home();
+        drop_missing_games();
+        say(tr("Deleted from this folder."));
+        cue(Cue::saved);
+        return;
+    default:
+        return;
+    }
+}
+
+void Launcher::draw_place_delete(Canvas &c, float open)
+{
+    gfx::DrawList &list = c.list;
+    list.push_opacity(open);
+    list.push_transform(1.0f - 0.03f * (1.0f - open) * motion(), 960.0f, 540.0f, 0.0f,
+                        (1.0f - open) * 26.0f * motion());
+    glass(c, kPlaceDialog, th().radius_panel, th().panel.with_alpha(0.97f), th().panel_edge.with_alpha(0.66f), 1.6f);
+    text_shrink(c, fill(tr("Delete {0}?"), {delete_title_}), 592.0f, baseline(218.0f, 62.0f, th().size_display),
+                th().size_display, th().title, 736.0f);
+    // The copy: its drive and size, then the folder it is in.
+    text_fit(c, delete_label_ + " | " + delete_size_, 592.0f, baseline(322.0f, 40.0f, th().size_text),
+             th().size_text, th().value, 736.0f);
+    text_fit(c, delete_folder_, 592.0f, baseline(372.0f, 28.0f, th().size_small), th().size_small, th().meta, 736.0f);
+
+    if (delete_addons_shown_)
+    {
+        const Rect row{592.0f, 462.0f, 736.0f, 94.0f};
+        plate_rest(c, row_plate(), row);
+        if (delete_cursor_ == 2)
+            plate_focus(c, row_plate(), row, 1.0f);
+        const Rect box{628.0f, row.y + 30.0f, 34.0f, 34.0f};
+        c.list.rounded_rect(box, 6.0f, th().panel_edge.with_alpha(0.9f));
+        if (delete_addons_checked_)
+            c.list.rounded_rect({box.x + 7.0f, box.y + 7.0f, box.w - 14.0f, box.h - 14.0f}, 3.0f, th().accent_pale);
+        text_fit(c, tr("Also delete the duplicated updates and DLC in this folder."), 690.0f,
+                 baseline(row.y + 47.0f, 30.0f, th().size_small), th().size_small, th().value, 620.0f);
+    }
+
+    // Cancel and Confirm: the cursor starts on Cancel.
+    const Rect cancel{592.0f, 590.0f, 352.0f, 94.0f};
+    const Rect confirm{976.0f, 590.0f, 352.0f, 94.0f};
+    plate_rest(c, row_plate(), cancel);
+    plate_rest(c, row_plate(), confirm);
+    if (delete_cursor_ == 0)
+        plate_focus(c, row_plate(), cancel, 1.0f);
+    if (delete_cursor_ == 1)
+        plate_focus(c, row_plate(), confirm, 1.0f);
+    text(c, tr("Cancel"), cancel.x + cancel.w / 2.0f, baseline(cancel.y, cancel.h, th().size_text), th().size_text,
+         th().value, Align::center);
+    text(c, tr("Confirm"), confirm.x + confirm.w / 2.0f, baseline(confirm.y, confirm.h, th().size_text),
+         th().size_text, th().value, Align::center);
+
+    static constexpr Hint kHintsRow[] = {{Pad::updown, TR("Select")}, {Pad::cross, TR("Choose")},
+                                         {Pad::circle, TR("Back")}};
+    draw_hints(c, kHintsRow, 3, 592.0f, kPlaceHints, th().copy, 736.0f);
+    list.pop_transform();
+    list.pop_opacity();
+}
+
+void Launcher::draw_place(Canvas &c, float open)
+{
+    gfx::DrawList &list = c.list;
+    list.push_opacity(open);
+    list.push_transform(1.0f - 0.03f * (1.0f - open) * motion(), 960.0f, 540.0f, 0.0f,
+                        (1.0f - open) * 26.0f * motion());
+    glass(c, kPlaceDialog, th().radius_panel, th().panel.with_alpha(0.97f), th().panel_edge.with_alpha(0.66f), 1.6f);
+    text_shrink(c, tr("Duplicate game"), 592.0f, baseline(218.0f, 62.0f, th().size_display), th().size_display,
+                th().title, 736.0f);
+    text_shrink(c, fill(tr("{0} is in more than one place. Choose which one starts."), {place_title_}), 592.0f,
+                baseline(291.0f, 32.0f, th().size_small), th().size_small, th().copy, 736.0f);
+
+    list.push_clip({kPlaceWindow.x - 24.0f, kPlaceWindow.y - 6.0f, kPlaceWindow.w + 48.0f, kPlaceWindow.h + 12.0f});
+    const auto row_top = [&](int row)
+    { return kPlaceRowsTop + static_cast<float>(row) * kPlaceRowPitch - place_rows_.scroll(); };
+    for (int row = place_rows_.first_row(); row <= place_rows_.last_row(); ++row)
+    {
+        list.push_opacity(place_rows_.row_alpha(row, kPlaceRowHeight));
+        plate_rest(c, row_plate(), {592.0f, row_top(row), 736.0f, kPlaceRowHeight});
+        list.pop_opacity();
+    }
+    plate_focus(c, row_plate(), {592.0f, kPlaceRowsTop + place_rows_.cursor() - place_rows_.scroll(), 736.0f, kPlaceRowHeight},
+                1.0f);
+    for (int row = place_rows_.first_row(); row <= place_rows_.last_row(); ++row)
+    {
+        const GamePlace &place = place_choices_[static_cast<std::size_t>(row)];
+        const float top = row_top(row);
+        list.push_opacity(place_rows_.row_alpha(row, kPlaceRowHeight));
+        // The drive's label and the file of this copy, and the folder it is in under them: two copies in one
+        // folder differ by their files.
+        text_fit(c, place.label + " | " + place.file, 628.0f, baseline(top + 14.0f, 38.0f, th().size_text),
+                 th().size_text, th().value, 664.0f);
+        text_fit(c, place.path + "/roms", 628.0f, baseline(top + 52.0f, 28.0f, th().size_small), th().size_small,
+                 th().meta, 664.0f);
+        list.pop_opacity();
+    }
+    list.pop_clip();
+    scrollbar(c, place_rows_, 1340.0f, kPlaceWindow.y, kPlaceWindow.h);
+
+    static constexpr Hint kHintsRow[] = {{Pad::updown, TR("Select")}, {Pad::cross, TR("Play")},
+                                                 {Pad::square, TR("Delete")}, {Pad::circle, TR("Back")}};
+    draw_hints(c, kHintsRow, 4, 592.0f, kPlaceHints, th().copy, 736.0f);
+    list.pop_transform();
+    list.pop_opacity();
+}
+
 // The page a game's settings are: its kinds at the left, the one chosen in the middle, what it
 // means at the right. It lies over the Library, beside the rail.
 void Launcher::draw_game_page(Canvas &c, float open)
@@ -893,25 +1269,30 @@ void Launcher::draw_game_page(Canvas &c, float open)
     // Its own ground over the Library: the artwork again, further back.
     list.rounded_rect({0.0f, 0.0f, 1920.0f, 1080.0f}, 0.0f, t.base);
     if (!look().high_contrast && textures_.backdrop() != 0)
-        list.image(textures_.backdrop(), c.backdrop.art(), {0.0f, 0.0f, 1.0f, 1.0f}, Color{1.0f, 1.0f, 1.0f, 0.22f});
+        list.image(textures_.backdrop(), c.backdrop.picture(textures_), {0.0f, 0.0f, 1.0f, 1.0f}, Color{1.0f, 1.0f, 1.0f, 0.22f});
     list.hgradient_rect({0.0f, 0.0f, 1920.0f, 1080.0f}, 0.0f, t.base.with_alpha(0.55f), t.base.with_alpha(0.25f));
     list.push_transform(1.0f, 0.0f, 0.0f, (1.0f - open) * 48.0f * motion(), 0.0f);
 
     // ---- which game, and how much it has of its own ----
-    cover(c, game.cover, {layout::kLeft, 36.0f, 84.0f, 84.0f}, 20.0f, 0.6f);
-    kicker(c, tr("Game settings"), layout::kLeft + 108.0f, baseline(38.0f, 28.0f, t.size_small), t.accent, 900.0f);
+    const float hdr = t.top_nav ? 96.0f : 36.0f;
+    cover(c, game.cover, {layout::kLeft, hdr, 84.0f, 84.0f}, 20.0f, 0.6f);
+    kicker(c, tr("Game settings"), layout::kLeft + 108.0f, baseline(hdr + 2.0f, 28.0f, t.size_small), t.accent, 900.0f);
     const float clock = text_width(c, clock_, t.size_heading) + 28.0f;
     const std::string changed = changes_text(game_changes());
     const Tone tone = game_changes() > 0 ? Tone::accent : Tone::plain;
     const float chip_w = chip_width(c, changed, tone, 420.0f);
-    chip(c, changed, layout::kRight - clock - chip_w, layout::kTop + 32.0f, tone, 420.0f);
+    chip(c, changed, layout::kRight - clock - chip_w, hdr + 32.0f, tone, 420.0f);
     {
         const Heavy heavy(c);
-        text_fit(c, game.name, layout::kLeft + 108.0f, baseline(66.0f, 54.0f, 44.0f), 44.0f, t.title,
+        text_fit(c, game.name, layout::kLeft + 108.0f, baseline(hdr + 30.0f, 54.0f, 44.0f), 44.0f, t.title,
                  layout::kRight - clock - chip_w - 32.0f - (layout::kLeft + 108.0f));
     }
 
     // ---- its kinds of setting ----
+    const float shift = t.game_page_offset;
+    const Rect kinds{kKinds.x, kKinds.y + shift, kKinds.w, kKinds.h - shift};
+    const Rect middle{kMiddle.x, kMiddle.y + shift, kMiddle.w, kMiddle.h - shift};
+    const Rect explain{kExplain.x, kExplain.y + shift, kExplain.w, kExplain.h - shift};
     const int rows = game_rows_.count;
     const int chosen = std::clamp(game_rows_.selected, 0, std::max(0, rows - 1));
     const int kind = game_row(chosen);
@@ -930,6 +1311,14 @@ void Launcher::draw_game_page(Canvas &c, float open)
                             {std::to_string(std::count_if(mods_.begin(), mods_.end(),
                                                           [](const Mod &mod) { return mod.enabled; })),
                              std::to_string(mods_.size())});
+        case row_cheats:
+            // With the game's Cheats switch off, none of them is on.
+            return cheats_.empty() ? std::string{tr("No cheats")} :
+                   !cheats_enabled_ ? std::string{tr("Off")} :
+                       fill(tr("{0} of {1} on"),
+                            {std::to_string(std::count_if(cheats_.begin(), cheats_.end(),
+                                                          [](const GameCheat &cheat) { return cheat.enabled; })),
+                             std::to_string(cheats_.size())});
         case row_save:
             return import_source_ == SaveSource::ryujinx ? tr("Ryujinx save found") :
                    import_source_ == SaveSource::folder ? tr("Save folder found") : tr("Nothing to import");
@@ -943,38 +1332,42 @@ void Launcher::draw_game_page(Canvas &c, float open)
     {
         return which == row_mode ? true :
                which == row_mods ? !mods_.empty() && game.mods_enabled :
+               which == row_cheats ? !cheats_.empty() && cheats_enabled_ :
                which == row_save ? import_source_ != SaveSource::none :
                which == row_delete ? false : game_overrides(which - row_video) > 0;
     };
     // The highlight: whole while the focus is on the kinds, quieter once it is on the rows.
-    const Rect lit{kKinds.x, kKinds.y + game_rows_.cursor(), kKinds.w, kKindHeight};
+    const float pitch = game_rows_.pitch;
+    const float height = kKindHeight - (kKindPitch - pitch);
+    const float inset = (kKindPitch - pitch) * 0.5f;
+    const Rect lit{kinds.x, kinds.y + game_rows_.cursor(), kinds.w, height};
     plate_focus(c, row_plate(), lit, 1.0f - 0.62f * pane);
     if (!look().high_contrast)
-        list.rounded_rect({lit.x + 14.0f, lit.y + 20.0f, 4.0f, kKindHeight - 40.0f}, 2.0f, t.accent);
+        list.rounded_rect({lit.x + 14.0f, lit.y + 20.0f, 4.0f, height - 40.0f}, 2.0f, t.accent);
     for (int row = 0; row < rows; ++row)
     {
         const int which = game_row(row);
-        const float top = kKinds.y + kKindPitch * static_cast<float>(row);
+        const float top = kinds.y + pitch * static_cast<float>(row) - inset;
         const bool on = row == chosen;
-        // Its name, and under it what the game has there: each has the row's whole width, for the
-        // languages whose words are long.
-        text_shrink(c, tr(kKindNames[which]), kKinds.x + 34.0f, baseline(top + 8.0f, 32.0f, t.size_text), t.size_text,
-                    which == row_delete ? t.warning : on ? t.title : t.copy, kKinds.w - 58.0f);
-        text_shrink(c, state(which), kKinds.x + 34.0f, baseline(top + 40.0f, 24.0f, 18.0f), 18.0f,
-                    there(which) && which != row_mode ? t.accent : t.faint, kKinds.w - 58.0f);
+        text_shrink(c, tr(kKindNames[which]), kinds.x + 34.0f, baseline(top + 8.0f, 32.0f, t.size_text), t.size_text,
+                    which == row_delete ? t.warning : on ? t.title : t.copy, kinds.w - 58.0f);
+        text_shrink(c, state(which), kinds.x + 34.0f, baseline(top + 40.0f, 24.0f, 18.0f), 18.0f,
+                    there(which) && which != row_mode ? t.accent : t.faint, kinds.w - 58.0f);
     }
 
     // ---- the kind chosen ----
     const bool active = modal_shown_ != Modal::game;
     if (kind == row_mode)
-        draw_mode_pane(c, kMiddle);
+        draw_mode_pane(c, middle);
     else if (kind == row_mods)
-        draw_mods_pane(c, kMiddle, active);
+        draw_mods_pane(c, middle, active);
+    else if (kind == row_cheats)
+        draw_cheats_pane(c, middle, active);
     else if (kind == row_save || kind == row_delete)
-        draw_save_pane(c, kMiddle, kind == row_delete);
+        draw_save_pane(c, middle, kind == row_delete);
     else
-        draw_option_pane(c, kMiddle, kind - row_video, active);
-    draw_explain_pane(c, kExplain, kind);
+        draw_option_pane(c, middle, kind - row_video, active);
+    draw_explain_pane(c, explain, kind);
 
     // ---- hints ----
     const float cy = layout::kFooter;
@@ -993,6 +1386,21 @@ void Launcher::draw_game_page(Canvas &c, float open)
                                              {Pad::cross, TR("Turn on or off")},
                                              {Pad::circle, TR("Back")}};
             hints(kMods, 3);
+        }
+    }
+    else if (modal_shown_ == Modal::cheats)
+    {
+        if (cheats_.empty())
+        {
+            static constexpr Hint kEmpty[] = {{Pad::circle, TR("Back")}};
+            hints(kEmpty, 1);
+        }
+        else
+        {
+            static constexpr Hint kCheats[] = {{Pad::updown, TR("Select")},
+                                               {Pad::cross, TR("Turn on or off")},
+                                               {Pad::circle, TR("Back")}};
+            hints(kCheats, 3);
         }
     }
     else if (modal_shown_ == Modal::game_options || modal_shown_ == Modal::mapping)
@@ -1076,7 +1484,7 @@ void Launcher::draw_mode_pane(Canvas &c, const Rect &pane)
     }
 }
 
-// The game's mods, each with its switch (and its cheats under it when it lists several).
+// The game's mods, each with its switch. Their cheats are in the Cheats list.
 void Launcher::draw_mods_pane(Canvas &c, const Rect &pane, bool active)
 {
     gfx::DrawList &list = c.list;
@@ -1085,7 +1493,7 @@ void Launcher::draw_mods_pane(Canvas &c, const Rect &pane, bool active)
     if (mods_.empty())
     {
         text_block(c,
-                   fill(tr("No mods for this game yet. Copy each mod's folder to {0}, next to roms/."),
+                   fill(tr("No mods for this game yet. Copy each mod's folder to {0}."),
                         {services_.mods_folder(game.title_id)}),
                    pane.x + 8.0f, baseline(pane.y + 8.0f, 40.0f, t.size_text), t.size_text, 40.0f, t.body,
                    pane.w - 16.0f, 6, kShrink);
@@ -1094,7 +1502,7 @@ void Launcher::draw_mods_pane(Canvas &c, const Rect &pane, bool active)
     const float pitch = layout::kPanePitch;
     const float height = layout::kPaneRow;
     const float scroll = active ? mod_rows_.scroll() : 0.0f;
-    const int count = static_cast<int>(mod_list_.size());
+    const int count = static_cast<int>(mods_.size());
     const int first = active ? mod_rows_.first_row() : 0;
     const int last = active ? mod_rows_.last_row() : std::min(count, layout::kPaneRows) - 1;
     list.push_opacity(active ? 1.0f : 0.72f);
@@ -1114,35 +1522,13 @@ void Launcher::draw_mods_pane(Canvas &c, const Rect &pane, bool active)
     const float right = pane.x + pane.w - 28.0f;
     for (int row = first; row <= last && row < count; ++row)
     {
-        const ModRow at = mod_list_[static_cast<std::size_t>(row)];
-        const Mod &mod = mods_[static_cast<std::size_t>(at.mod)];
+        const Mod &mod = mods_[static_cast<std::size_t>(row)];
         const float top = row_top(row);
         list.push_opacity(active ? mod_rows_.row_alpha(row, height) : 1.0f);
-        if (at.cheat >= 0)
-        {
-            // One of the mod's cheats, set in under it, with its own switch: faint while its mod
-            // is off.
-            const Cheat &cheat = mod.cheats[static_cast<std::size_t>(at.cheat)];
-            const bool used = live && mod.enabled;
-            text_fit(c, cheat.name, pane.x + 68.0f, baseline(top, height, t.size_text), t.size_text,
-                     cheat.enabled && used ? t.value : t.meta, pane.w - 68.0f - 120.0f);
-            list.push_opacity(used ? 1.0f : 0.4f);
-            toggle(c, right, top + height * 0.5f, cheat.enabled ? 1.0f : 0.0f);
-            list.pop_opacity();
-            list.pop_opacity();
-            continue;
-        }
-        // Its name as the player's folder has it, what it changes under it (with how many of
-        // its cheats are chosen when it lists several), its switch.
-        std::string made = mod.kind;
-        if (!mod.cheats.empty())
-            made += ", " + fill(tr("{0} of {1} on"),
-                                {std::to_string(std::count_if(mod.cheats.begin(), mod.cheats.end(),
-                                                              [](const Cheat &cheat) { return cheat.enabled; })),
-                                 std::to_string(mod.cheats.size())});
+        // Its name as the player's folder has it, what it changes under it, its switch.
         text_fit(c, mod.name, pane.x + 28.0f, baseline(top + 10.0f, 36.0f, t.size_text), t.size_text,
                  mod.enabled && live ? t.value : t.meta, pane.w - 28.0f - 120.0f);
-        text_shrink(c, made, pane.x + 28.0f, baseline(top + 46.0f, 26.0f, 18.0f), 18.0f, t.meta,
+        text_shrink(c, mod.kind, pane.x + 28.0f, baseline(top + 46.0f, 26.0f, 18.0f), 18.0f, t.meta,
                     pane.w - 28.0f - 120.0f);
         list.push_opacity(live ? 1.0f : 0.4f);
         toggle(c, right, top + height * 0.5f, mod.enabled ? 1.0f : 0.0f);
@@ -1152,6 +1538,73 @@ void Launcher::draw_mods_pane(Canvas &c, const Rect &pane, bool active)
     list.pop_clip();
     if (active)
         scrollbar(c, mod_rows_, pane.x + pane.w + 14.0f, pane.y, pitch * (layout::kPaneRows - 1) + height);
+    list.pop_opacity();
+}
+
+// The game's cheats: the switch for all of them, then each with its switch and the file it came
+// from under its name.
+void Launcher::draw_cheats_pane(Canvas &c, const Rect &pane, bool active)
+{
+    gfx::DrawList &list = c.list;
+    const Theme &t = th();
+    const Game &game = games_[static_cast<std::size_t>(library_.selected)];
+    if (cheats_.empty())
+    {
+        text_block(c,
+                   fill(tr("No cheats for this game yet. Copy its cheat files (<build ID>.txt) to {0}."),
+                        {services_.cheats_folder(game.title_id)}),
+                   pane.x + 8.0f, baseline(pane.y + 8.0f, 40.0f, t.size_text), t.size_text, 40.0f, t.body,
+                   pane.w - 16.0f, 6, kShrink);
+        return;
+    }
+    const float pitch = layout::kPanePitch;
+    const float height = layout::kPaneRow;
+    const float scroll = active ? cheat_rows_.scroll() : 0.0f;
+    const int count = 1 + static_cast<int>(cheats_.size());
+    const int first = active ? cheat_rows_.first_row() : 0;
+    const int last = active ? cheat_rows_.last_row() : std::min(count, layout::kPaneRows) - 1;
+    list.push_opacity(active ? 1.0f : 0.72f);
+    list.push_clip({pane.x - 24.0f, pane.y - 8.0f, pane.w + 48.0f, pitch * (layout::kPaneRows - 1) + height + 16.0f});
+    const auto row_top = [&](int row) { return pane.y + static_cast<float>(row) * pitch - scroll; };
+    for (int row = first; row <= last; ++row)
+    {
+        list.push_opacity(active ? cheat_rows_.row_alpha(row, height) : 1.0f);
+        plate_rest(c, row_plate(), {pane.x, row_top(row), pane.w, height});
+        list.pop_opacity();
+    }
+    if (active)
+        plate_focus(c, row_plate(), {pane.x, pane.y + cheat_rows_.cursor() - scroll, pane.w, height}, 1.0f);
+    // With the game's Cheats switch off no cheat runs: their own switches keep their state, drawn
+    // faint.
+    const float right = pane.x + pane.w - 28.0f;
+    for (int row = first; row <= last && row < count; ++row)
+    {
+        const float top = row_top(row);
+        list.push_opacity(active ? cheat_rows_.row_alpha(row, height) : 1.0f);
+        if (row == 0)
+        {
+            const Heavy heavy(c);
+            text_fit(c, tr("All cheats"), pane.x + 28.0f, baseline(top, height, t.size_text), t.size_text,
+                     cheats_enabled_ ? t.title : t.meta, pane.w - 28.0f - 120.0f);
+            toggle(c, right, top + height * 0.5f, cheats_enabled_ ? 1.0f : 0.0f);
+            list.pop_opacity();
+            continue;
+        }
+        const GameCheat &cheat = cheats_[static_cast<std::size_t>(row - 1)];
+        text_fit(c, cheat.name, pane.x + 28.0f, baseline(top + 10.0f, 36.0f, t.size_text), t.size_text,
+                 cheat.enabled && cheats_enabled_ ? t.value : t.meta, pane.w - 28.0f - 120.0f);
+        // The game's cheats folder is a mod of Eden's making: it is named in the player's language.
+        const std::string from = cheat.mod == "Cheats folder" ? std::string{tr(kCheatsFolder)} : cheat.mod;
+        text_shrink(c, from, pane.x + 28.0f, baseline(top + 46.0f, 26.0f, 18.0f), 18.0f, t.meta,
+                    pane.w - 28.0f - 120.0f);
+        list.push_opacity(cheats_enabled_ ? 1.0f : 0.4f);
+        toggle(c, right, top + height * 0.5f, cheat.enabled ? 1.0f : 0.0f);
+        list.pop_opacity();
+        list.pop_opacity();
+    }
+    list.pop_clip();
+    if (active)
+        scrollbar(c, cheat_rows_, pane.x + pane.w + 14.0f, pane.y, pitch * (layout::kPaneRows - 1) + height);
     list.pop_opacity();
 }
 
@@ -1169,8 +1622,8 @@ void Launcher::draw_save_pane(Canvas &c, const Rect &pane, bool removing)
     if (removing)
     {
         text_shrink(c, tr("Delete from console"), x, baseline(r.y + 70.0f, 40.0f, 28.0f), 28.0f, t.warning, width);
-        text_shrink(c, game.format + "  /  " + game.size, x, baseline(r.y + 118.0f, 32.0f, 22.0f), 22.0f, t.copy,
-                    width);
+        text_shrink(c, format_text(game) + " | " + game.size, x, baseline(r.y + 118.0f, 32.0f, 22.0f), 22.0f,
+                    game.places.size() > 1 ? t.warning : t.copy, width);
         return;
     }
     text_shrink(c,
@@ -1281,37 +1734,74 @@ void Launcher::press_mods(Key key)
     {
         if (mods_.empty())
             return;
-        const ModRow at = mod_list_[static_cast<std::size_t>(mod_rows_.selected)];
-        Mod &mod = mods_[static_cast<std::size_t>(at.mod)];
+        Mod &mod = mods_[static_cast<std::size_t>(mod_rows_.selected)];
         // With the game's Mods switch off (the Library's), choosing a mod turns the switch on and
         // that mod with it: nobody switches a mod in a list that is switched off.
         const bool revive = !game.mods_enabled;
-        if (at.cheat >= 0)
-        {
-            // One of the mod's cheats. Choosing it turns on what it runs behind: its mod, and the
-            // game's Mods switch. One of a group (two frame rates) takes the other's place, so
-            // the list is read again.
-            const Cheat &cheat = mod.cheats[static_cast<std::size_t>(at.cheat)];
-            const bool enabled = revive || !mod.enabled || !cheat.enabled;
-            const bool saved =
-                (!revive || services_.set_mods_enabled(game.title_id, true)) &&
-                (mod.enabled || services_.set_mod_enabled(game.title_id, mod.name, true)) &&
-                services_.set_cheat_enabled(game.title_id, mod.name, cheat.name, enabled);
-            read_mods(game);
-            if (mod_rows_.count != static_cast<int>(mod_list_.size()))
-                mod_rows_.reset(static_cast<int>(mod_list_.size()), 0);
-            say(saved ? tr("Saved for this game. Applies on next launch.") :
-                        tr("Could not save. Please try again."),
-                !saved);
-            cue(saved ? Cue::toggle : Cue::error);
-            return;
-        }
         const bool enabled = revive || !mod.enabled;
         const bool saved = (!revive || services_.set_mods_enabled(game.title_id, true)) &&
                            services_.set_mod_enabled(game.title_id, mod.name, enabled);
         if (saved)
             mod.enabled = enabled;
         count_mods(game, mods_);
+        say(saved ? tr("Saved for this game. Applies on next launch.") :
+                    tr("Could not save. Please try again."),
+            !saved);
+        cue(saved ? Cue::toggle : Cue::error);
+        return;
+    }
+    default:
+        return;
+    }
+}
+
+// ---------------------------------------------------------------- a game's cheats
+
+void Launcher::press_cheats(Key key)
+{
+    const Game &game = games_[static_cast<std::size_t>(library_.selected)];
+    switch (key)
+    {
+    case Key::circle:
+        // Back to the game's settings, on its Cheats row.
+        modal_ = modal_shown_ = Modal::game;
+        message_.clear();
+        cue(Cue::back);
+        return;
+    case Key::up:
+    case Key::down:
+        if (cheat_rows_.move(key == Key::down ? 1 : -1))
+        {
+            message_.clear();
+            cue(Cue::focus);
+        }
+        return;
+    case Key::cross:
+    case Key::left:
+    case Key::right:
+    {
+        if (cheats_.empty())
+            return;
+        bool saved = false;
+        if (cheat_rows_.selected == 0)
+        {
+            // The game's Cheats switch: all of its cheats on or off at once.
+            saved = services_.set_cheats_enabled(game.title_id, !cheats_enabled_);
+        }
+        else
+        {
+            // One cheat. With the game's Cheats switch off, choosing one turns the switch on and
+            // that cheat with it, as in the Mods list. One of a group (two frame rates) takes the
+            // other's place, so the list is read again.
+            const GameCheat &cheat = cheats_[static_cast<std::size_t>(cheat_rows_.selected - 1)];
+            const bool revive = !cheats_enabled_;
+            saved = (!revive || services_.set_cheats_enabled(game.title_id, true)) &&
+                    services_.set_cheat_enabled(game.title_id, cheat.mod, cheat.name, revive || !cheat.enabled);
+        }
+        read_cheats(game);
+        const int rows = cheats_.empty() ? 0 : 1 + static_cast<int>(cheats_.size());
+        if (cheat_rows_.count != rows)
+            cheat_rows_.reset(rows, 0);
         say(saved ? tr("Saved for this game. Applies on next launch.") :
                     tr("Could not save. Please try again."),
             !saved);

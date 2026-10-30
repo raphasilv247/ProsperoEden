@@ -8,6 +8,7 @@
 #include "pe/ui/services.hpp"
 
 #include <algorithm>
+#include <array>
 #include <string>
 #include <utility>
 #include <vector>
@@ -16,7 +17,7 @@ namespace pe::host
 {
 
 // A made-up library: invented titles with drawn covers, settings kept in memory.
-class FakeServices final : public ui::Services
+class FakeServices : public ui::Services
 {
   public:
     // covers_directory receives one drawn cover per sample game.
@@ -267,9 +268,16 @@ class FakeServices final : public ui::Services
     const std::vector<std::string> &resolution_keys() override;
     const std::vector<std::string> &filter_labels() override;
     const std::vector<std::string> &astc_labels() override;
+    const std::vector<std::string> &post_processing_labels() override;
     const std::vector<std::string> &language_labels() override;
     std::string language_region(int language) override;
     std::string setup_details() override;
+    std::string crash_reports_folder() override { return "/data/prosperoeden/logs"; }
+    std::vector<std::string> wallpapers() override;
+    std::string wallpapers_folder() override
+    {
+        return wallpapers_directory_;
+    }
     bool folders(const std::string &directory, std::vector<std::string> *names) override;
     ui::FolderInfo folder_info(const std::string &directory) override;
     std::string files_folder() override
@@ -293,6 +301,34 @@ class FakeServices final : public ui::Services
     {
         return 0;
     }
+    std::vector<std::string> library_folders() override
+    {
+        return library_folders_;
+    }
+    bool set_library_folders(const std::vector<std::string> &directories) override
+    {
+        library_folders_ = directories;
+        return true;
+    }
+    int library_folders_max() override
+    {
+        return 16;
+    }
+    std::string storage_folder(ui::StorageRole role) override
+    {
+        const std::string &saved = storage_[static_cast<std::size_t>(role)];
+        static const char *const kDefaults[] = {"/keys", "/firmware", "/save-import", "/save-export"};
+        return saved.empty() ? files_folder() + kDefaults[static_cast<std::size_t>(role)] : saved;
+    }
+    std::string saved_storage_folder(ui::StorageRole role) override
+    {
+        return storage_[static_cast<std::size_t>(role)];
+    }
+    bool set_storage_folder(ui::StorageRole role, const std::string &directory) override
+    {
+        storage_[static_cast<std::size_t>(role)] = directory;
+        return true;
+    }
     bool save_transfer_available() override
     {
         return import_available;
@@ -311,14 +347,17 @@ class FakeServices final : public ui::Services
         *message = fill(tr("Exported to {0}."), {"save-export/0100A00B00003000-20261001-213000"});
         return true;
     }
-    // Sample mods, for two of the games: three, the second switched off, the third with cheats
-    // chosen one by one (its two frame rates replace each other); none when has_mods is cleared.
+    // Sample mods, for three of the games and their copies: three, the second switched off, the third with one cheat
+    // beside its files; and two of cheats alone, the cheats folder with cheats chosen one by one
+    // (its two frame rates replace each other) and a loose file of one cheat. None when has_mods
+    // is cleared.
     bool has_mods = true;
     std::vector<ui::Mod> mods(std::uint64_t) override;
     bool set_mod_enabled(std::uint64_t, const std::string &name, bool enabled) override;
     bool set_cheat_enabled(std::uint64_t, const std::string &mod, const std::string &cheat,
                            bool enabled) override;
-    // One Mods switch for every sample game.
+    std::vector<ui::GameCheat> cheats(std::uint64_t title_id) override;
+    // One Mods switch and one Cheats switch for every sample game.
     bool mods_enabled(std::uint64_t) override
     {
         return mods_enabled_;
@@ -328,9 +367,23 @@ class FakeServices final : public ui::Services
         mods_enabled_ = enabled;
         return true;
     }
-    std::string mods_folder(std::uint64_t) override
+    bool cheats_enabled(std::uint64_t) override
     {
-        return "mods/0100A00B00003000/";
+        return cheats_enabled_;
+    }
+    bool set_cheats_enabled(std::uint64_t, bool enabled) override
+    {
+        cheats_enabled_ = enabled;
+        return true;
+    }
+    // Every sample game is in a folder of its own in roms/, named after it.
+    std::string mods_folder(std::uint64_t title_id) override
+    {
+        return "roms/" + game_folder(title_id) + "/mods/";
+    }
+    std::string cheats_folder(std::uint64_t title_id) override
+    {
+        return "roms/" + game_folder(title_id) + "/cheats/";
     }
     bool make_mods_folder(std::uint64_t) override
     {
@@ -420,10 +473,23 @@ class FakeServices final : public ui::Services
     ui::GameSettings game_settings_;
     ui::Preferences preferences_;
     std::string saved_folder_;
+    std::string wallpapers_directory_; // <covers_directory>/wallpapers, read like the console's
+    std::vector<std::string> library_folders_;
+    std::array<std::string, ui::kStorageRoles> storage_;
     std::vector<std::uint64_t> modded_; // the games that have the sample mods
     std::vector<std::string> mods_off_{"Sharper textures"};
     std::vector<std::string> cheats_on_{"60 FPS"};
+    bool bonus_cheat_ = true; // the one cheat beside the third mod's files
+    // The name of a sample game, as its folder in roms/ would have it.
+    std::string game_folder(std::uint64_t title_id) const
+    {
+        for (const ui::Game &game : games_)
+            if (game.title_id == title_id)
+                return game.name;
+        return "Game";
+    }
     bool mods_enabled_ = true;
+    bool cheats_enabled_ = true;
 };
 
 } // namespace pe::host

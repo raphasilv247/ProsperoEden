@@ -43,6 +43,10 @@ msgstr "펌웨어 NCA를 읽을 수 없습니다. 펌웨어를 다시 설치하�
 msgid "A pairing is running already."
 msgstr "이미 페어링이 진행 중입니다."
 
+#: pe/ui/browse.cpp
+msgid "ABOUT"
+msgstr "정보"
+
 #. The menu's last section: about this app (its credits, where its files go). One short word.
 #: pe/ui/shell.cpp
 msgid "About"
@@ -61,6 +65,10 @@ msgstr "약 {0}분 남음"
 #: pe/ui/remote.cpp, pe/ui/update.cpp
 msgid "About {0} s left"
 msgstr "약 {0}초 남음"
+
+#: pe/ui/settings.cpp
+msgid "Above 100%, a game locked to 30 FPS can reach 60, and a game that counts its frames plays faster too."
+msgstr "100%를 넘으면 30 FPS로 고정된 게임이 60에 이를 수 있고, 프레임 수로 시간을 세는 게임은 진행도 빨라집니다."
 
 #. Label: which folders the app can read.
 #: pe/ui/browse.cpp
@@ -84,6 +92,10 @@ msgstr "다운로드에 추가했습니다. 설정, 다운로드에서 대기열
 msgid "Added. Cross plays as this profile; left and right change its name."
 msgstr "추가했습니다. 엑스로 이 프로필로 플레이하고, 좌우로 이름을 바꿉니다."
 
+#: pe/ui/library.cpp
+msgid "All cheats"
+msgstr "모든 치트"
+
 #: pe/ui/browse.cpp
 msgid "All credit for the Eden emulator goes to its developers and contributors."
 msgstr "Eden 에뮬레이터의 모든 공로는 개발자와 기여자에게 있습니다."
@@ -92,9 +104,21 @@ msgstr "Eden 에뮬레이터의 모든 공로는 개발자와 기여자에게 �
 msgid "AMD FSR"
 msgstr "AMD FSR"
 
+#: pe/ui/settings.cpp
+msgid "An image of your own behind this menu."
+msgstr "이 메뉴 뒤에 원하는 이미지를 표시합니다."
+
 #: eden_services.cpp
 msgid "Another language"
 msgstr "다른 언어"
+
+#: pe/ui/settings.cpp
+msgid "Appearance"
+msgstr "모양"
+
+#: pe/ui/settings.cpp
+msgid "Apply"
+msgstr "적용"
 
 #. The button mapping has not been changed.
 #: pe/ui/game_options.cpp, pe/ui/settings.cpp
@@ -211,9 +235,14 @@ msgid "Changed"
 msgstr "변경됨"
 
 #. What a mod is made of: cheat codes.
-#: eden_services.cpp, host/fake_services.cpp
+#: eden_services.cpp, host/fake_services.cpp, pe/ui/library.cpp
 msgid "Cheats"
 msgstr "치트"
+
+#. Shown under a cheat that came from the game's cheats folder (not from a mod).
+#: pe/ui/library.cpp
+msgid "Cheats folder"
+msgstr "치트 폴더"
 
 #: pe/ui/pairing.cpp
 msgid "Check that the code there is this one, and approve."
@@ -248,6 +277,14 @@ msgstr "선택"
 msgid "Choose a game from your library."
 msgstr "라이브러리에서 게임을 선택하세요."
 
+#: pe/ui/settings.cpp
+msgid "Choose a theme or change the launcher layout."
+msgstr "테마를 고르거나 런처 레이아웃을 바꿉니다."
+
+#: pe/ui/settings.cpp
+msgid "Choose the colours and appearance of this menu."
+msgstr "이 메뉴의 색상과 모양을 고릅니다."
+
 #: pe/ui/browse.cpp
 msgid "Choose the folder that holds your keys, firmware and games"
 msgstr "키, 펌웨어, 게임이 들어 있는 폴더를 선택하세요"
@@ -264,6 +301,14 @@ msgstr "동그라미"
 #: pe/ui/remote.cpp, pe/ui/update.cpp
 msgid "Close"
 msgstr "닫기"
+
+#: pe/ui/settings.cpp
+msgid "Colour"
+msgstr "색상"
+
+#: pe/ui/game_options.cpp, pe/ui/settings.cpp
+msgid "Compact memory"
+msgstr "메모리 압축"
 
 #. A switch: the program code a game used in earlier sessions is prepared (compiled) while the game starts. Keep it short.
 #: pe/ui/game_options.cpp, pe/ui/settings.cpp
@@ -394,6 +439,10 @@ msgstr "크레딧 및 설정 안내"
 #: pe/ui/game_options.cpp
 msgid "Cross"
 msgstr "엑스"
+
+#: pe/ui/settings.cpp
+msgid "Default"
+msgstr "기본값"
 
 #. A per-game setting that follows the general setting; {0} is its value.
 #: pe/ui/game_options.cpp
@@ -689,6 +738,10 @@ msgstr "전체 품질"
 msgid "Game audio; PS5 system-menu music is unchanged."
 msgstr "게임 소리입니다. PS5 시스템 메뉴 음악은 바뀌지 않습니다."
 
+#: pe/ui/launcher.cpp
+msgid "Game cannot start now."
+msgstr "지금은 게임을 시작할 수 없습니다."
+
 #. {0} is the reason, a sentence in English; {1} is a file.
 #: eden_services.cpp, host/fake_services.cpp
 msgid "Game could not start: {0} Details: {1}"
@@ -738,6 +791,10 @@ msgstr "독일어"
 msgid "GETTING STARTED"
 msgstr "시작하기"
 
+#: pe/ui/settings.cpp
+msgid "Gives back memory a game left empty, 16 KiB at a time. More free memory; a game that writes there again can stutter for a moment."
+msgstr "게임이 비워 둔 메모리를 16KiB 단위로 반환합니다. 여유 메모리가 늘어나며, 그곳에 다시 쓰는 게임은 잠깐 끊길 수 있습니다."
+
 #: pe/ui/multiplayer.cpp
 msgid "Go offline"
 msgstr "오프라인으로 전환"
@@ -772,6 +829,10 @@ msgstr "홈"
 #: pe/ui/library.cpp, pe/ui/settings.cpp
 msgid "How games are drawn and scaled to your TV."
 msgstr "게임을 그리는 방식과 TV에 맞춘 확대 방식."
+
+#: pe/ui/settings.cpp
+msgid "Images in this folder: {0}"
+msgstr "이 폴더의 이미지: {0}"
 
 #. Button hint: copy a save in.
 #: pe/ui/library.cpp
@@ -895,6 +956,10 @@ msgstr "큰 글자"
 msgid "Last game opened"
 msgstr "마지막으로 연 게임"
 
+#: pe/ui/settings.cpp
+msgid "Launcher"
+msgstr "런처"
+
 #: pe/ui/multiplayer.cpp
 msgid "Leave / cancel"
 msgstr "나가기 / 취소"
@@ -931,6 +996,10 @@ msgstr "덜 정확한 부동 소수점 연산: 더 빠르지만 일부 게임이
 #: pe/ui/settings.cpp
 msgid "Less exact memory transfers to the GPU: faster, and a few games show wrong graphics."
 msgstr "GPU로의 메모리 전송이 덜 정확함: 더 빠르지만 일부 게임에서 그래픽이 잘못 보입니다."
+
+#: pe/ui/library.cpp
+msgid "LIBRARY"
+msgstr "라이브러리"
 
 #: pe/ui/library.cpp, pe/ui/shell.cpp
 msgid "Library"
@@ -1016,6 +1085,10 @@ msgstr "니어리스트"
 msgid "Needs attention"
 msgstr "확인 필요"
 
+#: pe/ui/theme.cpp
+msgid "Neutral glass, clean and still."
+msgstr "중립적인 유리, 깔끔하고 차분함."
+
 #: pe/ui/profiles.cpp
 msgid "New profile"
 msgstr "새 프로필"
@@ -1032,6 +1105,15 @@ msgstr "닉네임"
 #: pe/ui/multiplayer.cpp
 msgid "Nickname: {0}"
 msgstr "닉네임: {0}"
+
+#: pe/ui/library.cpp
+msgid "No cheats"
+msgstr "치트 없음"
+
+#. <build ID>.txt stays as it is: a cheat file is named after the game version's build ID. {0} is a folder such as roms/Game/cheats/.
+#: pe/ui/library.cpp
+msgid "No cheats for this game yet. Copy its cheat files (<build ID>.txt) to {0}."
+msgstr "이 게임에는 아직 치트가 없습니다. 치트 파일(<build ID>.txt)을 {0}에 복사하세요."
 
 #: pe/ui/remote.cpp
 msgid "No download source is set up. Save a file named {0} that lists your sources, as this one does with a RomM server, then open this menu again. Downloads need an FTP server running on the console, on port {1}."
@@ -1058,10 +1140,9 @@ msgstr "여기에는 폴더가 없습니다."
 msgid "No mods"
 msgstr "모드 없음"
 
-#. {0} is a folder; roms/ is a folder name (unchanged).
 #: pe/ui/library.cpp
-msgid "No mods for this game yet. Copy each mod's folder to {0}, next to roms/."
-msgstr "이 게임에는 아직 모드가 없습니다. 각 모드의 폴더를 roms/ 옆의 {0}에 복사하세요."
+msgid "No mods for this game yet. Copy each mod's folder to {0}."
+msgstr "이 게임에는 아직 모드가 없습니다. 각 모드의 폴더를 {0}에 복사하세요."
 
 #: pe/ui/multiplayer.cpp
 msgid "No public rooms are available."
@@ -1275,6 +1356,10 @@ msgstr "포르투갈어"
 msgid "Portuguese (Brazil)"
 msgstr "포르투갈어(브라질)"
 
+#: pe/ui/game_options.cpp, pe/ui/settings.cpp
+msgid "Post-processing"
+msgstr "후처리"
+
 #. Eden is the emulator's name (unchanged).
 #: pe/ui/browse.cpp
 msgid "Powered by Eden"
@@ -1296,6 +1381,10 @@ msgstr "다시 누르면 이 게임의 세이브 데이터를 교체합니다. �
 
 #: pe/ui/multiplayer.cpp
 msgid "Private room"
+msgstr "비공개 방"
+
+#: pe/ui/multiplayer.cpp
+msgid "PRIVATE ROOM"
 msgstr "비공개 방"
 
 #: pe/ui/game_options.cpp
@@ -1363,6 +1452,14 @@ msgstr "PS5 에디션"
 #: pe/ui/multiplayer.cpp
 msgid "Public rooms"
 msgstr "공개 방"
+
+#: pe/ui/multiplayer.cpp
+msgid "PUBLIC ROOMS"
+msgstr "공개 방"
+
+#: pe/ui/settings.cpp
+msgid "Put images in the wallpapers folder to show them here."
+msgstr "wallpapers 폴더에 이미지를 넣으면 여기에 표시됩니다."
 
 #: pe/ui/remote.cpp
 msgid "Queued"
@@ -1546,6 +1643,10 @@ msgstr "저장 시각: {0}. 이 본체의 데이터를 대체합니다."
 msgid "Saved. A display that cannot show 120 Hz stays at 60 Hz."
 msgstr "저장했습니다. 120Hz를 지원하지 않는 디스플레이는 60Hz로 유지됩니다."
 
+#: pe/ui/settings.cpp
+msgid "Saved. Applies the next time ProsperoEden opens."
+msgstr "저장했습니다. 다음에 ProsperoEden을 열 때 적용됩니다."
+
 #: pe/ui/browse.cpp, pe/ui/launcher.cpp
 msgid "Saved. Applies when a game starts."
 msgstr "저장했습니다. 게임을 시작할 때 적용됩니다."
@@ -1555,9 +1656,18 @@ msgstr "저장했습니다. 게임을 시작할 때 적용됩니다."
 msgid "Saved. Full quality uses four times the graphics memory for these textures and can run out above 1x."
 msgstr "저장했습니다. 전체 품질은 이 텍스처에 그래픽 메모리를 4배 사용하며 1x를 넘으면 부족할 수 있습니다."
 
+#: pe/ui/settings.cpp
+msgid "Saved. Post-processing needs the Vulkan renderer."
+msgstr "저장했습니다. 후처리에는 Vulkan 렌더러가 필요합니다."
+
 #: pe/ui/browse.cpp
 msgid "Saved. Reopen ProsperoEden to use this folder."
 msgstr "저장했습니다. ProsperoEden을 다시 열면 이 폴더를 사용합니다."
+
+#. About the Update notices switch; homebrew.page is a site's name and stays as it is; About is the menu's last section (use its translation).
+#: pe/ui/settings.cpp
+msgid "Says when homebrew.page has a newer version. Off, only About names it."
+msgstr "homebrew.page에 새 버전이 있으면 알려 줍니다. 끄면 정보에만 표시됩니다."
 
 #: pe/ui/pairing.cpp
 msgid "Scan the code with your phone, or open the address below."
@@ -1600,6 +1710,10 @@ msgstr "서버가 오래되어 동기화할 수 없음"
 msgid "Settings"
 msgstr "설정"
 
+#: pe/ui/settings.cpp
+msgid "SETTINGS"
+msgstr "설정"
+
 #: eden_services.cpp, host/fake_services.cpp
 msgid "Setup required"
 msgstr "설정 필요"
@@ -1623,6 +1737,10 @@ msgstr "세이브 데이터를 보관할 수 있는 서버가 여러 개입니�
 #: pe/ui/remote.cpp
 msgid "Several sources have this game. Which one should it come from?"
 msgstr "이 게임이 여러 소스에 있습니다. 어디에서 받을까요?"
+
+#: pe/ui/settings.cpp
+msgid "Show an image of your own behind the menu."
+msgstr "메뉴 뒤에 원하는 이미지를 표시합니다."
 
 #: pe/ui/settings.cpp
 msgid "Show or hide the FPS overlay"
@@ -1669,6 +1787,11 @@ msgstr "스페인어(중남미)"
 #: pe/ui/settings.cpp
 msgid "Speed"
 msgstr "속도"
+
+#. Settings > Performance: how fast a game may run, as a percentage of the console it was made for.
+#: pe/ui/game_options.cpp, pe/ui/settings.cpp
+msgid "Speed limit"
+msgstr "속도 제한"
 
 #. A DualSense button.
 #: pe/ui/game_options.cpp
@@ -1739,13 +1862,13 @@ msgstr "감사의 말"
 msgid "Thanks to the whole PS5 homebrew community and to every developer whose drivers, tools and libraries make ProsperoEden possible."
 msgstr "PS5 홈브루 커뮤니티 여러분과 ProsperoEden을 가능하게 한 드라이버, 도구, 라이브러리의 모든 개발자에게 감사드립니다."
 
+#: pe/ui/settings.cpp
+msgid "The accent colour of the current theme."
+msgstr "현재 테마의 강조 색상."
+
 #: pe/ui/remote.cpp
 msgid "The download stopped"
 msgstr "다운로드가 중단되었습니다"
-
-#: pe/ui/settings.cpp
-msgid "The folder that holds your keys, firmware and games."
-msgstr "키, 펌웨어, 게임이 들어 있는 폴더."
 
 #: pe/ui/save_sync.cpp
 msgid "The game does not start."
@@ -1831,6 +1954,10 @@ msgstr "업데이트를 완료할 수 없습니다"
 msgid "Theme"
 msgstr "테마"
 
+#: pe/ui/settings.cpp
+msgid "Theme and launcher settings."
+msgstr "테마 및 런처 설정."
+
 #: pe/ui/save_sync.cpp
 msgid "This console and the server both have save data the other does not know. Which one should stay? The other is kept as a backup."
 msgstr "이 본체와 서버에 서로 모르는 세이브 데이터가 각각 있습니다. 어느 쪽을 남길까요? 다른 쪽은 백업으로 보관됩니다."
@@ -1913,6 +2040,11 @@ msgstr "사용할 수 없음"
 msgid "Understood"
 msgstr "확인"
 
+#. A Speed limit choice: no limit at all (as fast as the console can).
+#: pe/ui/game_options.cpp, pe/ui/settings.cpp
+msgid "Unlimited"
+msgstr "제한 없음"
+
 #: pe/ui/pairing.cpp
 msgid "Unlink"
 msgstr "연결 해제"
@@ -1935,6 +2067,11 @@ msgstr "위로"
 #: pe/ui/launcher.cpp, pe/ui/update.cpp
 msgid "Update available"
 msgstr "업데이트가 있습니다"
+
+#. Settings switch: whether the app says at its start that a newer release of this app is listed (not game updates).
+#: pe/ui/settings.cpp
+msgid "Update notices"
+msgstr "업데이트 알림"
 
 #. Button: download and install the newer release of this app now.
 #: pe/ui/update.cpp
@@ -1962,6 +2099,10 @@ msgstr "확대 필터"
 msgid "USA"
 msgstr "미국"
 
+#: pe/ui/settings.cpp
+msgid "Use another home screen, library and menu layout."
+msgstr "다른 홈 화면, 라이브러리, 메뉴 레이아웃을 사용합니다."
+
 #: pe/ui/browse.cpp
 msgid "Use extracted firmware NCA files. Choose the folder in Settings, Game files; restart the app after changing it."
 msgstr "추출한 펌웨어 NCA 파일을 사용하세요. 폴더는 설정의 게임 파일에서 선택하고, 변경한 뒤에는 앱을 다시 시작하세요."
@@ -1976,7 +2117,7 @@ msgid "Version {0}"
 msgstr "버전 {0}"
 
 #. {0}: the newer release's number, for example 1.000.050; homebrew.page is a site's name and stays as it is.
-#: pe/ui/launcher.cpp
+#: pe/ui/browse.cpp, pe/ui/launcher.cpp
 msgid "Version {0} is on homebrew.page"
 msgstr "버전 {0}이(가) homebrew.page에 있습니다"
 
@@ -2029,6 +2170,10 @@ msgstr "{0} 대기 중"
 #: pe/ui/remote.cpp
 msgid "Waiting to download"
 msgstr "다운로드 대기 중"
+
+#: pe/ui/settings.cpp
+msgid "Wallpaper"
+msgstr "배경화면"
 
 #: pe/ui/settings.cpp
 msgid "What the FPS overlay's line says, and how the chip is drawn."
@@ -2203,3 +2348,204 @@ msgstr "{0}/(NSP 또는 XCI)"
 #: pe/ui/browse.cpp
 msgid "{0}/ (one folder per game ID)"
 msgstr "{0}/(타이틀 ID마다 폴더 하나)"
+
+#: pe/ui/settings.cpp
+msgid "Crash reports (FTP): {0}\nAttach crash-*.txt and its matching logs to your issue."
+msgstr "충돌 보고서 (FTP): {0}\n문제 보고에 crash-*.txt와 해당 로그를 첨부하세요."
+
+#: pe/ui/browse.cpp
+msgid "Change game folder"
+msgstr "게임 폴더 변경"
+
+#: pe/ui/library.cpp
+msgid "Duplicate game"
+msgstr "중복된 게임"
+
+#: pe/ui/browse.cpp
+msgid "Exported saves are written here. TRIANGLE uses the folder shown; SQUARE goes back to the default."
+msgstr "내보낸 세이브 데이터가 여기에 저장됩니다. 세모는 표시된 폴더를 사용하고, 네모는 기본값으로 되돌립니다."
+
+#: pe/ui/browse.cpp
+msgid "Firmware folder"
+msgstr "firmware 폴더"
+
+#: pe/ui/locations.cpp
+msgid "GAME FILES FOLDER"
+msgstr "게임 파일 폴더"
+
+#: pe/ui/locations.cpp
+msgid "GAME FOLDER"
+msgstr "게임 폴더"
+
+#: pe/ui/locations.cpp, pe/ui/settings.cpp
+msgid "GAME FOLDERS"
+msgstr "게임 폴더"
+
+#: pe/ui/browse.cpp
+msgid "Games, updates and mods are read from here. TRIANGLE adds the folder shown."
+msgstr "게임, updates, mods를 여기서 읽습니다. 세모로 표시된 폴더를 추가합니다."
+
+#: pe/ui/browse.cpp
+msgid "Keys folder"
+msgstr "keys 폴더"
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "Add game folder"
+msgstr "게임 폴더 추가"
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "Back to the default folder. Reopen ProsperoEden to use it."
+msgstr "기본 폴더로 돌아갑니다. 사용하려면 ProsperoEden을 다시 여세요."
+
+#: pe/ui/browse.cpp
+msgid "Choose a folder with roms and updates inside"
+msgstr "roms와 updates가 들어 있는 폴더를 선택하세요"
+
+#: pe/ui/browse.cpp
+msgid "Choose the folder that holds prod.keys"
+msgstr "prod.keys가 들어 있는 폴더를 선택하세요"
+
+#: pe/ui/browse.cpp
+msgid "Choose the folder that holds the firmware NCA files"
+msgstr "펌웨어 NCA 파일이 들어 있는 폴더를 선택하세요"
+
+#: pe/ui/browse.cpp
+msgid "Choose the folder with one folder per game ID"
+msgstr "게임 ID마다 폴더가 하나씩 있는 폴더를 선택하세요"
+
+#: pe/ui/browse.cpp
+msgid "Choose where exported saves are written"
+msgstr "내보낸 세이브 데이터를 저장할 위치를 선택하세요"
+
+#: pe/ui/locations.cpp
+msgid "Choose where your games, keys, firmware and saves are"
+msgstr "게임, keys, firmware, 세이브 데이터의 위치를 선택하세요"
+
+#. Label: the folder used the next time the app starts.
+#: pe/ui/locations.cpp, pe/ui/settings.cpp
+msgid "NEXT START"
+msgstr "다음 실행"
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "No updates folder"
+msgstr "updates 폴더 없음"
+
+#: pe/ui/browse.cpp
+msgid "Save export folder"
+msgstr "세이브 데이터 내보내기 폴더"
+
+#: pe/ui/browse.cpp
+msgid "Save import folder"
+msgstr "세이브 데이터 가져오기 폴더"
+
+#: pe/ui/browse.cpp
+msgid "Saved. Its games are in the Library now."
+msgstr "저장했습니다. 이 폴더의 게임이 이제 라이브러리에 표시됩니다."
+
+#: pe/ui/browse.cpp
+msgid "Saves to import go here, one folder per game ID. TRIANGLE uses the folder shown; SQUARE goes back to the default."
+msgstr "가져올 세이브 데이터는 여기에 넣습니다. 게임 ID마다 폴더 하나씩입니다. 세모는 표시된 폴더를 사용하고, 네모는 기본값으로 되돌립니다."
+
+#: pe/ui/locations.cpp
+msgid "Square again takes {0} off the list. Its games stay where they are."
+msgstr "네모를 한 번 더 누르면 {0}을(를) 목록에서 제거합니다. 게임은 그대로 남습니다."
+
+#: pe/ui/locations.cpp
+msgid "Taken off the list. Its games stay where they are."
+msgstr "목록에서 제거했습니다. 게임은 그대로 남습니다."
+
+#: pe/ui/browse.cpp
+msgid "The folder shown must hold prod.keys. TRIANGLE uses it; SQUARE goes back to the default."
+msgstr "표시된 폴더에 prod.keys가 있어야 합니다. 세모로 사용하고, 네모로 기본값으로 되돌립니다."
+
+#: pe/ui/browse.cpp
+msgid "The folder shown must hold the firmware NCA files. TRIANGLE uses it; SQUARE goes back to the default."
+msgstr "표시된 폴더에 펌웨어 NCA 파일이 있어야 합니다. 세모로 사용하고, 네모로 기본값으로 되돌립니다."
+
+#: pe/ui/browse.cpp
+msgid "The list is full. Remove a folder first."
+msgstr "목록이 가득 찼습니다. 먼저 폴더를 하나 제거하세요."
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "This folder cannot be read"
+msgstr "이 폴더를 읽을 수 없습니다"
+
+#: pe/ui/browse.cpp
+msgid "This folder has no firmware NCA files."
+msgstr "이 폴더에 펌웨어 NCA 파일이 없습니다."
+
+#: pe/ui/browse.cpp
+msgid "This folder is in the list already."
+msgstr "이 폴더는 이미 목록에 있습니다."
+
+#: pe/ui/browse.cpp
+msgid "This folder needs a roms folder."
+msgstr "이 폴더에는 roms 폴더가 필요합니다."
+
+#: pe/ui/browse.cpp
+msgid "This is the game files folder already."
+msgstr "이미 게임 파일 폴더입니다."
+
+#: pe/ui/browse.cpp
+msgid "prod.keys is not in this folder."
+msgstr "이 폴더에 prod.keys가 없습니다."
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "{0} file"
+msgstr "파일 {0}개"
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "{0} files"
+msgstr "파일 {0}개"
+
+#: pe/ui/locations.cpp
+msgid "{0} game folder"
+msgstr "게임 폴더 {0}개"
+
+#: pe/ui/locations.cpp
+msgid "{0} game folders"
+msgstr "게임 폴더 {0}개"
+
+#: pe/ui/library.cpp
+msgid "{0} is in more than one place. Choose which one starts."
+msgstr "{0}이(가) 여러 곳에 있습니다. 어느 쪽을 실행할지 선택하세요."
+
+#: pe/ui/settings.cpp
+msgid "The folder that holds your keys, firmware and games, and more places for games."
+msgstr "keys, firmware, 게임이 들어 있는 폴더와 게임을 둘 다른 위치입니다."
+
+msgid "Available in more than one place. Choose which one to start."
+msgstr "여러 위치에 있습니다. 시작할 위치를 고르세요."
+
+msgid "Add other game folders, with roms, updates and mods on an external HD or SSD over USB, or in the console's extended storage."
+msgstr "USB로 연결한 외장 HDD나 SSD, 또는 본체의 확장 저장공간에 롬, 업데이트, 모드가 있는 다른 게임 폴더를 추가하세요."
+
+msgid "Games, updates and mods are read from this folder. Press Square twice to take it off the list."
+msgstr "이 폴더에서 게임, 업데이트, 모드를 읽습니다. 목록에서 빼려면 사각형 버튼을 두 번 누르세요."
+
+msgid "Could not delete the ROM from this folder."
+msgstr "이 폴더에서 ROM을 삭제할 수 없습니다."
+
+msgid "Deleted from this folder."
+msgstr "이 폴더에서 삭제했습니다."
+
+msgid "PATH TIPS"
+msgstr "경로 팁"
+
+msgid "Delete {0}?"
+msgstr "{0}을(를) 삭제할까요?"
+
+msgid "Also delete the duplicated updates and DLC in this folder."
+msgstr "이 폴더의 중복 업데이트와 DLC도 삭제"
+
+msgid "Confirm"
+msgstr "확인"
+
+msgid "EXTENDED"
+msgstr "확장"
+
+msgid "EXTERNAL"
+msgstr "외부"
+
+msgid "Holds keys, firmware, roms, updates, mods and saves."
+msgstr "키, 펌웨어, 롬, 업데이트, 모드, 세이브 데이터가 들어 있습니다."

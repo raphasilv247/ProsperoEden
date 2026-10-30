@@ -3,12 +3,15 @@
 // the settings file, Eden's metadata reader.
 #pragma once
 
+#include "mods.h"
 #include "pe/ui/services.hpp"
 #include "remote/remote.h"
 
 #include <atomic>
 #include <chrono>
 #include <condition_variable>
+#include <cstdint>
+#include <map>
 #include <mutex>
 #include <optional>
 #include <string>
@@ -31,6 +34,8 @@ public:
     std::vector<pe::ui::Game> games() override;
     std::string game_path(const std::string& file) override;
     bool game_exists(const std::string& file) override;
+    std::vector<pe::ui::GamePlace> game_places(const std::string& file) override;
+    std::string game_path_in(const std::string& file, int place) override;
     bool take_update(pe::ui::UpdateOffer* offer) override;
     bool start_update() override;
     pe::ui::UpdateStatus update_status() override;
@@ -48,10 +53,17 @@ public:
     const std::vector<std::string>& resolution_keys() override;
     const std::vector<std::string>& filter_labels() override;
     const std::vector<std::string>& astc_labels() override;
+    const std::vector<std::string>& post_processing_labels() override;
+    int post_processing_shared() override;
     int frame_gen_state() override;
+    int mihawkgen_state() override;
     const std::vector<std::string>& language_labels() override;
     std::string language_region(int language) override;
     std::string setup_details() override;
+    std::string crash_reports_folder() override;
+
+    std::vector<std::string> wallpapers() override;
+    std::string wallpapers_folder() override;
 
     bool folders(const std::string& directory, std::vector<std::string>* names) override;
     pe::ui::FolderInfo folder_info(const std::string& directory) override;
@@ -60,8 +72,15 @@ public:
     std::string default_files_folder() override;
     bool set_files_folder(const std::string& directory) override;
     int filesystem_access() override;
+    std::vector<std::string> library_folders() override;
+    bool set_library_folders(const std::vector<std::string>& directories) override;
+    int library_folders_max() override;
+    std::string storage_folder(pe::ui::StorageRole role) override;
+    std::string saved_storage_folder(pe::ui::StorageRole role) override;
+    bool set_storage_folder(pe::ui::StorageRole role, const std::string& directory) override;
 
     std::vector<pe::ui::Profile> profiles() override;
+    std::string profile_key(int index) override;
     bool choose_profile(int index) override;
     int add_profile() override;
     bool rename_profile(int index, int step) override;
@@ -80,6 +99,10 @@ public:
     bool set_mods_enabled(std::uint64_t title_id, bool enabled) override;
     std::string mods_folder(std::uint64_t title_id) override;
     bool make_mods_folder(std::uint64_t title_id) override;
+    std::vector<pe::ui::GameCheat> cheats(std::uint64_t title_id) override;
+    bool cheats_enabled(std::uint64_t title_id) override;
+    bool set_cheats_enabled(std::uint64_t title_id, bool enabled) override;
+    std::string cheats_folder(std::uint64_t title_id) override;
 
     pe::ui::Sources sources() override;
     void refresh_sources() override;
@@ -87,6 +110,8 @@ public:
     bool cancel_download(const std::string& file) override;
     std::vector<pe::ui::Download> downloads() override;
     bool delete_game(const pe::ui::Game& game, std::string* message) override;
+    bool delete_place(const std::string &file, const std::string &folder, bool addons) override;
+    int place_addon_count(const std::string &file, const std::string &folder) override;
 
     bool save_sync_wanted(const std::string& file) override;
     void start_save_sync(const std::string& file, bool before) override;
@@ -116,11 +141,27 @@ public:
     std::optional<std::int64_t> ask_seed(std::int64_t, const std::atomic<bool>&) override;
     bool can_launch_game() override;
 private:
+    // Post-processing: the presets as the menu lists them, and a name's place among them.
+    // The presets for the general settings and the game whose settings were read last (title_id,
+    // kept for the next calls without one).
+    void ReadPostPresets(std::optional<std::uint64_t> title_id = std::nullopt);
+    std::uint64_t post_title_ = 0;
+    int post_shared_ = 1;
+    int PostPresetIndex(const std::string& name) const;
+    std::string PostPresetName(int index) const;
+    std::vector<std::string> post_presets_;
     Eden::Multiplayer::RoomClient& rooms_;
     int user_ = -1; // the PS5 user in front when the menu opened (negative: unknown)
     std::string launch_error_;
     std::string setup_; // what is missing from keys and firmware; empty when ready
     std::mutex bridge_; // Eden's metadata reader keeps state between calls: one caller at a time
+    // Each game's own folder in roms/ by its title ID, as the Library last found it (issue 168).
+    Eden::Mods::Places ModPlaces(std::uint64_t title_id);
+    std::mutex game_folders_lock_;
+    std::map<std::uint64_t, std::string> game_folders_;
+    // Every copy of each game in the list (by its first file): the duplicate question's rows.
+    std::mutex places_lock_;
+    std::map<std::string, std::vector<pe::ui::GamePlace>> places_;
     // The download sources' games as titles (Remote::Titles), read again when their lists changed:
     // the menu asks for its downloads four times a second.
     std::vector<Eden::Remote::Title> Titles();

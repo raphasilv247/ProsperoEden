@@ -43,6 +43,10 @@ msgstr "Δεν είναι δυνατή η ανάγνωση ενός NCA του f
 msgid "A pairing is running already."
 msgstr "Μια σύζευξη εκτελείται ήδη."
 
+#: pe/ui/browse.cpp
+msgid "ABOUT"
+msgstr "ΠΛΗΡΟΦΟΡΙΕΣ"
+
 #. The menu's last section: about this app (its credits, where its files go). One short word.
 #: pe/ui/shell.cpp
 msgid "About"
@@ -61,6 +65,10 @@ msgstr "Απομένουν περίπου {0} λ"
 #: pe/ui/remote.cpp, pe/ui/update.cpp
 msgid "About {0} s left"
 msgstr "Απομένουν περίπου {0} δ"
+
+#: pe/ui/settings.cpp
+msgid "Above 100%, a game locked to 30 FPS can reach 60, and a game that counts its frames plays faster too."
+msgstr "Πάνω από 100%, ένα παιχνίδι κλειδωμένο στα 30 FPS μπορεί να φτάσει τα 60, και ένα παιχνίδι που μετράει τα καρέ του παίζει επίσης πιο γρήγορα."
 
 #. Label: which folders the app can read.
 #: pe/ui/browse.cpp
@@ -84,6 +92,10 @@ msgstr "Προστέθηκε στις λήψεις. Η ουρά φαίνεται
 msgid "Added. Cross plays as this profile; left and right change its name."
 msgstr "Προστέθηκε. Σταυρός για παιχνίδι με αυτό το προφίλ· αριστερά και δεξιά αλλάζουν το όνομα."
 
+#: pe/ui/library.cpp
+msgid "All cheats"
+msgstr "Όλα τα cheats"
+
 #: pe/ui/browse.cpp
 msgid "All credit for the Eden emulator goes to its developers and contributors."
 msgstr "Όλα τα εύσημα για τον εξομοιωτή Eden ανήκουν στους προγραμματιστές και τους συνεισφέροντές του."
@@ -92,9 +104,21 @@ msgstr "Όλα τα εύσημα για τον εξομοιωτή Eden ανήκ�
 msgid "AMD FSR"
 msgstr "AMD FSR"
 
+#: pe/ui/settings.cpp
+msgid "An image of your own behind this menu."
+msgstr "Μια δική σας εικόνα πίσω από αυτό το μενού."
+
 #: eden_services.cpp
 msgid "Another language"
 msgstr "Άλλη γλώσσα"
+
+#: pe/ui/settings.cpp
+msgid "Appearance"
+msgstr "Εμφάνιση"
+
+#: pe/ui/settings.cpp
+msgid "Apply"
+msgstr "Εφαρμογή"
 
 #. The button mapping has not been changed.
 #: pe/ui/game_options.cpp, pe/ui/settings.cpp
@@ -211,9 +235,14 @@ msgid "Changed"
 msgstr "Αλλαγμένη"
 
 #. What a mod is made of: cheat codes.
-#: eden_services.cpp, host/fake_services.cpp
+#: eden_services.cpp, host/fake_services.cpp, pe/ui/library.cpp
 msgid "Cheats"
 msgstr "Cheats"
+
+#. Shown under a cheat that came from the game's cheats folder (not from a mod).
+#: pe/ui/library.cpp
+msgid "Cheats folder"
+msgstr "Φάκελος cheats"
 
 #: pe/ui/pairing.cpp
 msgid "Check that the code there is this one, and approve."
@@ -248,6 +277,14 @@ msgstr "Επιλογή"
 msgid "Choose a game from your library."
 msgstr "Επιλέξτε ένα παιχνίδι από τη βιβλιοθήκη σας."
 
+#: pe/ui/settings.cpp
+msgid "Choose a theme or change the launcher layout."
+msgstr "Επιλέξτε θέμα ή αλλάξτε τη διάταξη της εκκίνησης."
+
+#: pe/ui/settings.cpp
+msgid "Choose the colours and appearance of this menu."
+msgstr "Επιλέξτε τα χρώματα και την εμφάνιση αυτού του μενού."
+
 #: pe/ui/browse.cpp
 msgid "Choose the folder that holds your keys, firmware and games"
 msgstr "Επιλέξτε τον φάκελο με τα κλειδιά, το firmware και τα παιχνίδια σας"
@@ -264,6 +301,14 @@ msgstr "Κύκλος"
 #: pe/ui/remote.cpp, pe/ui/update.cpp
 msgid "Close"
 msgstr "Κλείσιμο"
+
+#: pe/ui/settings.cpp
+msgid "Colour"
+msgstr "Χρώμα"
+
+#: pe/ui/game_options.cpp, pe/ui/settings.cpp
+msgid "Compact memory"
+msgstr "Συμπαγής μνήμη"
 
 #. A switch: the program code a game used in earlier sessions is prepared (compiled) while the game starts. Keep it short.
 #: pe/ui/game_options.cpp, pe/ui/settings.cpp
@@ -394,6 +439,10 @@ msgstr "Συντελεστές και ρύθμιση"
 #: pe/ui/game_options.cpp
 msgid "Cross"
 msgstr "Σταυρός"
+
+#: pe/ui/settings.cpp
+msgid "Default"
+msgstr "Προεπιλογή"
 
 #. A per-game setting that follows the general setting; {0} is its value.
 #: pe/ui/game_options.cpp
@@ -689,6 +738,10 @@ msgstr "Πλήρης ποιότητα"
 msgid "Game audio; PS5 system-menu music is unchanged."
 msgstr "Ήχος παιχνιδιού. Η μουσική του μενού συστήματος του PS5 δεν αλλάζει."
 
+#: pe/ui/launcher.cpp
+msgid "Game cannot start now."
+msgstr "Το παιχνίδι δεν μπορεί να ξεκινήσει τώρα."
+
 #. {0} is the reason, a sentence in English; {1} is a file.
 #: eden_services.cpp, host/fake_services.cpp
 msgid "Game could not start: {0} Details: {1}"
@@ -738,6 +791,10 @@ msgstr "Γερμανικά"
 msgid "GETTING STARTED"
 msgstr "ΠΡΩΤΑ ΒΗΜΑΤΑ"
 
+#: pe/ui/settings.cpp
+msgid "Gives back memory a game left empty, 16 KiB at a time. More free memory; a game that writes there again can stutter for a moment."
+msgstr "Επιστρέφει μνήμη που ένα παιχνίδι άφησε κενή, 16 KiB τη φορά. Περισσότερη ελεύθερη μνήμη· ένα παιχνίδι που γράφει ξανά εκεί μπορεί να κολλήσει στιγμιαία."
+
 #: pe/ui/multiplayer.cpp
 msgid "Go offline"
 msgstr "Αποσύνδεση"
@@ -772,6 +829,10 @@ msgstr "Αρχική"
 #: pe/ui/library.cpp, pe/ui/settings.cpp
 msgid "How games are drawn and scaled to your TV."
 msgstr "Πώς σχεδιάζονται και κλιμακώνονται τα παιχνίδια στην τηλεόρασή σας."
+
+#: pe/ui/settings.cpp
+msgid "Images in this folder: {0}"
+msgstr "Εικόνες σε αυτόν τον φάκελο: {0}"
 
 #. Button hint: copy a save in.
 #: pe/ui/library.cpp
@@ -895,6 +956,10 @@ msgstr "Μεγαλύτερο κείμενο"
 msgid "Last game opened"
 msgstr "Τελευταίο παιχνίδι"
 
+#: pe/ui/settings.cpp
+msgid "Launcher"
+msgstr "Εκκίνηση"
+
 #: pe/ui/multiplayer.cpp
 msgid "Leave / cancel"
 msgstr "Αποχώρηση / ακύρωση"
@@ -931,6 +996,10 @@ msgstr "Λιγότερο ακριβείς πράξεις κινητής υποδ
 #: pe/ui/settings.cpp
 msgid "Less exact memory transfers to the GPU: faster, and a few games show wrong graphics."
 msgstr "Λιγότερο ακριβείς μεταφορές μνήμης προς την GPU: ταχύτερα, αλλά λίγα παιχνίδια δείχνουν λάθος γραφικά."
+
+#: pe/ui/library.cpp
+msgid "LIBRARY"
+msgstr "ΒΙΒΛΙΟΘΗΚΗ"
 
 #: pe/ui/library.cpp, pe/ui/shell.cpp
 msgid "Library"
@@ -1016,6 +1085,10 @@ msgstr "Πλησιέστερο"
 msgid "Needs attention"
 msgstr "Χρειάζεται προσοχή"
 
+#: pe/ui/theme.cpp
+msgid "Neutral glass, clean and still."
+msgstr "Ουδέτερο γυαλί, καθαρό και ήρεμο."
+
 #: pe/ui/profiles.cpp
 msgid "New profile"
 msgstr "Νέο προφίλ"
@@ -1032,6 +1105,15 @@ msgstr "Ψευδώνυμο"
 #: pe/ui/multiplayer.cpp
 msgid "Nickname: {0}"
 msgstr "Ψευδώνυμο: {0}"
+
+#: pe/ui/library.cpp
+msgid "No cheats"
+msgstr "Κανένα cheat"
+
+#. <build ID>.txt stays as it is: a cheat file is named after the game version's build ID. {0} is a folder such as roms/Game/cheats/.
+#: pe/ui/library.cpp
+msgid "No cheats for this game yet. Copy its cheat files (<build ID>.txt) to {0}."
+msgstr "Δεν υπάρχουν ακόμη cheats για αυτό το παιχνίδι. Αντιγράψτε τα αρχεία cheats του (<build ID>.txt) στο {0}."
 
 #: pe/ui/remote.cpp
 msgid "No download source is set up. Save a file named {0} that lists your sources, as this one does with a RomM server, then open this menu again. Downloads need an FTP server running on the console, on port {1}."
@@ -1058,10 +1140,9 @@ msgstr "Δεν υπάρχουν φάκελοι εδώ."
 msgid "No mods"
 msgstr "Κανένα mod"
 
-#. {0} is a folder; roms/ is a folder name (unchanged).
 #: pe/ui/library.cpp
-msgid "No mods for this game yet. Copy each mod's folder to {0}, next to roms/."
-msgstr "Δεν υπάρχουν ακόμη mods για αυτό το παιχνίδι. Αντιγράψτε τον φάκελο κάθε mod στο {0}, δίπλα στο roms/."
+msgid "No mods for this game yet. Copy each mod's folder to {0}."
+msgstr "Δεν υπάρχουν ακόμη mods για αυτό το παιχνίδι. Αντιγράψτε τον φάκελο κάθε mod στο {0}."
 
 #: pe/ui/multiplayer.cpp
 msgid "No public rooms are available."
@@ -1275,6 +1356,10 @@ msgstr "Πορτογαλικά"
 msgid "Portuguese (Brazil)"
 msgstr "Πορτογαλικά (Βραζιλία)"
 
+#: pe/ui/game_options.cpp, pe/ui/settings.cpp
+msgid "Post-processing"
+msgstr "Μεταεπεξεργασία"
+
 #. Eden is the emulator's name (unchanged).
 #: pe/ui/browse.cpp
 msgid "Powered by Eden"
@@ -1297,6 +1382,10 @@ msgstr "Πατήστε ξανά για να αντικατασταθεί η απ
 #: pe/ui/multiplayer.cpp
 msgid "Private room"
 msgstr "Ιδιωτικό δωμάτιο"
+
+#: pe/ui/multiplayer.cpp
+msgid "PRIVATE ROOM"
+msgstr "ΙΔΙΩΤΙΚΟ ΔΩΜΑΤΙΟ"
 
 #: pe/ui/game_options.cpp
 msgid "Pro Controller"
@@ -1363,6 +1452,14 @@ msgstr "ΕΚΔΟΣΗ PS5"
 #: pe/ui/multiplayer.cpp
 msgid "Public rooms"
 msgstr "Δημόσια δωμάτια"
+
+#: pe/ui/multiplayer.cpp
+msgid "PUBLIC ROOMS"
+msgstr "ΔΗΜΟΣΙΑ ΔΩΜΑΤΙΑ"
+
+#: pe/ui/settings.cpp
+msgid "Put images in the wallpapers folder to show them here."
+msgstr "Βάλτε εικόνες στον φάκελο wallpapers για να εμφανιστούν εδώ."
 
 #: pe/ui/remote.cpp
 msgid "Queued"
@@ -1546,6 +1643,10 @@ msgstr "Αποθηκεύτηκαν {0}. Αντικαθιστούν της κον
 msgid "Saved. A display that cannot show 120 Hz stays at 60 Hz."
 msgstr "Αποθηκεύτηκε. Μια οθόνη χωρίς 120 Hz παραμένει στα 60 Hz."
 
+#: pe/ui/settings.cpp
+msgid "Saved. Applies the next time ProsperoEden opens."
+msgstr "Αποθηκεύτηκε. Ισχύει την επόμενη φορά που θα ανοίξει το ProsperoEden."
+
 #: pe/ui/browse.cpp, pe/ui/launcher.cpp
 msgid "Saved. Applies when a game starts."
 msgstr "Αποθηκεύτηκε. Ισχύει όταν ξεκινά ένα παιχνίδι."
@@ -1555,9 +1656,18 @@ msgstr "Αποθηκεύτηκε. Ισχύει όταν ξεκινά ένα πα
 msgid "Saved. Full quality uses four times the graphics memory for these textures and can run out above 1x."
 msgstr "Αποθηκεύτηκε. Η πλήρης ποιότητα θέλει τετραπλάσια μνήμη γραφικών για αυτές τις υφές και πάνω από 1x μπορεί να εξαντληθεί."
 
+#: pe/ui/settings.cpp
+msgid "Saved. Post-processing needs the Vulkan renderer."
+msgstr "Αποθηκεύτηκε. Η μεταεπεξεργασία χρειάζεται τη μηχανή απόδοσης Vulkan."
+
 #: pe/ui/browse.cpp
 msgid "Saved. Reopen ProsperoEden to use this folder."
 msgstr "Αποθηκεύτηκε. Ανοίξτε ξανά το ProsperoEden για να χρησιμοποιηθεί αυτός ο φάκελος."
+
+#. About the Update notices switch; homebrew.page is a site's name and stays as it is; About is the menu's last section (use its translation).
+#: pe/ui/settings.cpp
+msgid "Says when homebrew.page has a newer version. Off, only About names it."
+msgstr "Ενημερώνει όταν το homebrew.page έχει νεότερη έκδοση. Όταν είναι ανενεργό, την αναφέρουν μόνο οι Πληροφορίες."
 
 #: pe/ui/pairing.cpp
 msgid "Scan the code with your phone, or open the address below."
@@ -1600,6 +1710,10 @@ msgstr "Διακομιστής πολύ παλιός για συγχρονισμ
 msgid "Settings"
 msgstr "Ρυθμίσεις"
 
+#: pe/ui/settings.cpp
+msgid "SETTINGS"
+msgstr "ΡΥΘΜΙΣΕΙΣ"
+
 #: eden_services.cpp, host/fake_services.cpp
 msgid "Setup required"
 msgstr "Απαιτείται ρύθμιση"
@@ -1623,6 +1737,10 @@ msgstr "Αρκετοί διακομιστές μπορούν να κρατούν
 #: pe/ui/remote.cpp
 msgid "Several sources have this game. Which one should it come from?"
 msgstr "Αρκετές πηγές έχουν αυτό το παιχνίδι. Από ποια να ληφθεί;"
+
+#: pe/ui/settings.cpp
+msgid "Show an image of your own behind the menu."
+msgstr "Δείξτε μια δική σας εικόνα πίσω από το μενού."
 
 #: pe/ui/settings.cpp
 msgid "Show or hide the FPS overlay"
@@ -1669,6 +1787,11 @@ msgstr "Ισπανικά (Λατινική Αμερική)"
 #: pe/ui/settings.cpp
 msgid "Speed"
 msgstr "Ταχύτητα"
+
+#. Settings > Performance: how fast a game may run, as a percentage of the console it was made for.
+#: pe/ui/game_options.cpp, pe/ui/settings.cpp
+msgid "Speed limit"
+msgstr "Όριο ταχύτητας"
 
 #. A DualSense button.
 #: pe/ui/game_options.cpp
@@ -1739,13 +1862,13 @@ msgstr "ΕΥΧΑΡΙΣΤΙΕΣ"
 msgid "Thanks to the whole PS5 homebrew community and to every developer whose drivers, tools and libraries make ProsperoEden possible."
 msgstr "Ευχαριστούμε όλη την κοινότητα homebrew του PS5 και κάθε προγραμματιστή του οποίου τα προγράμματα οδήγησης, τα εργαλεία και οι βιβλιοθήκες κάνουν εφικτό το ProsperoEden."
 
+#: pe/ui/settings.cpp
+msgid "The accent colour of the current theme."
+msgstr "Το χρώμα έμφασης του τρέχοντος θέματος."
+
 #: pe/ui/remote.cpp
 msgid "The download stopped"
 msgstr "Η λήψη σταμάτησε"
-
-#: pe/ui/settings.cpp
-msgid "The folder that holds your keys, firmware and games."
-msgstr "Ο φάκελος με τα κλειδιά, το firmware και τα παιχνίδια σας."
 
 #: pe/ui/save_sync.cpp
 msgid "The game does not start."
@@ -1831,6 +1954,10 @@ msgstr "Η ενημέρωση δεν ολοκληρώθηκε"
 msgid "Theme"
 msgstr "Θέμα"
 
+#: pe/ui/settings.cpp
+msgid "Theme and launcher settings."
+msgstr "Ρυθμίσεις θέματος και εκκίνησης."
+
 #: pe/ui/save_sync.cpp
 msgid "This console and the server both have save data the other does not know. Which one should stay? The other is kept as a backup."
 msgstr "Η κονσόλα και ο διακομιστής έχουν αποθηκευμένα δεδομένα που η άλλη πλευρά δεν γνωρίζει. Ποια να μείνουν; Τα άλλα φυλάσσονται ως αντίγραφο ασφαλείας."
@@ -1913,6 +2040,11 @@ msgstr "Μη διαθέσιμο"
 msgid "Understood"
 msgstr "Κατάλαβα"
 
+#. A Speed limit choice: no limit at all (as fast as the console can).
+#: pe/ui/game_options.cpp, pe/ui/settings.cpp
+msgid "Unlimited"
+msgstr "Χωρίς όριο"
+
 #: pe/ui/pairing.cpp
 msgid "Unlink"
 msgstr "Αποσύνδεση"
@@ -1935,6 +2067,11 @@ msgstr "ΠΑΝΩ"
 #: pe/ui/launcher.cpp, pe/ui/update.cpp
 msgid "Update available"
 msgstr "Διαθέσιμη ενημέρωση"
+
+#. Settings switch: whether the app says at its start that a newer release of this app is listed (not game updates).
+#: pe/ui/settings.cpp
+msgid "Update notices"
+msgstr "Ειδοποιήσεις ενημερώσεων"
 
 #. Button: download and install the newer release of this app now.
 #: pe/ui/update.cpp
@@ -1962,6 +2099,10 @@ msgstr "Φίλτρο κλιμάκωσης"
 msgid "USA"
 msgstr "ΗΠΑ"
 
+#: pe/ui/settings.cpp
+msgid "Use another home screen, library and menu layout."
+msgstr "Χρησιμοποιήστε άλλη διάταξη για αρχική οθόνη, βιβλιοθήκη και μενού."
+
 #: pe/ui/browse.cpp
 msgid "Use extracted firmware NCA files. Choose the folder in Settings, Game files; restart the app after changing it."
 msgstr "Χρησιμοποιήστε εξαγμένα αρχεία NCA του firmware. Επιλέξτε τον φάκελο στις Ρυθμίσεις, Αρχεία παιχνιδιών και επανεκκινήστε την εφαρμογή μετά την αλλαγή."
@@ -1976,7 +2117,7 @@ msgid "Version {0}"
 msgstr "Έκδοση {0}"
 
 #. {0}: the newer release's number, for example 1.000.050; homebrew.page is a site's name and stays as it is.
-#: pe/ui/launcher.cpp
+#: pe/ui/browse.cpp, pe/ui/launcher.cpp
 msgid "Version {0} is on homebrew.page"
 msgstr "Η έκδοση {0} βρίσκεται στο homebrew.page"
 
@@ -2029,6 +2170,10 @@ msgstr "Αναμονή για {0}"
 #: pe/ui/remote.cpp
 msgid "Waiting to download"
 msgstr "Αναμονή για λήψη"
+
+#: pe/ui/settings.cpp
+msgid "Wallpaper"
+msgstr "Ταπετσαρία"
 
 #: pe/ui/settings.cpp
 msgid "What the FPS overlay's line says, and how the chip is drawn."
@@ -2203,3 +2348,204 @@ msgstr "{0}/ (NSP ή XCI)"
 #: pe/ui/browse.cpp
 msgid "{0}/ (one folder per game ID)"
 msgstr "{0}/ (ένας φάκελος ανά αναγνωριστικό τίτλου)"
+
+#: pe/ui/settings.cpp
+msgid "Crash reports (FTP): {0}\nAttach crash-*.txt and its matching logs to your issue."
+msgstr "Αναφορές σφαλμάτων (FTP): {0}\nΕπισυνάψτε το crash-*.txt και τα αντίστοιχα αρχεία καταγραφής στην αναφορά σας."
+
+#: pe/ui/browse.cpp
+msgid "Change game folder"
+msgstr "Αλλαγή φακέλου παιχνιδιών"
+
+#: pe/ui/library.cpp
+msgid "Duplicate game"
+msgstr "Διπλότυπο παιχνίδι"
+
+#: pe/ui/browse.cpp
+msgid "Exported saves are written here. TRIANGLE uses the folder shown; SQUARE goes back to the default."
+msgstr "Οι εξαγόμενες αποθηκεύσεις γράφονται εδώ. Το ΤΡΙΓΩΝΟ χρησιμοποιεί τον φάκελο που εμφανίζεται· το ΤΕΤΡΑΓΩΝΟ επιστρέφει στην προεπιλογή."
+
+#: pe/ui/browse.cpp
+msgid "Firmware folder"
+msgstr "Φάκελος firmware"
+
+#: pe/ui/locations.cpp
+msgid "GAME FILES FOLDER"
+msgstr "ΦΑΚΕΛΟΣ ΑΡΧΕΙΩΝ ΠΑΙΧΝΙΔΙΩΝ"
+
+#: pe/ui/locations.cpp
+msgid "GAME FOLDER"
+msgstr "ΦΑΚΕΛΟΣ ΠΑΙΧΝΙΔΙΩΝ"
+
+#: pe/ui/locations.cpp, pe/ui/settings.cpp
+msgid "GAME FOLDERS"
+msgstr "ΦΑΚΕΛΟΙ ΠΑΙΧΝΙΔΙΩΝ"
+
+#: pe/ui/browse.cpp
+msgid "Games, updates and mods are read from here. TRIANGLE adds the folder shown."
+msgstr "Τα παιχνίδια, τα updates και τα mods διαβάζονται από εδώ. Το ΤΡΙΓΩΝΟ προσθέτει τον φάκελο που εμφανίζεται."
+
+#: pe/ui/browse.cpp
+msgid "Keys folder"
+msgstr "Φάκελος keys"
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "Add game folder"
+msgstr "Προσθήκη φακέλου παιχνιδιών"
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "Back to the default folder. Reopen ProsperoEden to use it."
+msgstr "Επιστροφή στον προεπιλεγμένο φάκελο. Ανοίξτε ξανά το ProsperoEden για να τον χρησιμοποιήσετε."
+
+#: pe/ui/browse.cpp
+msgid "Choose a folder with roms and updates inside"
+msgstr "Επιλέξτε έναν φάκελο με roms και updates"
+
+#: pe/ui/browse.cpp
+msgid "Choose the folder that holds prod.keys"
+msgstr "Επιλέξτε τον φάκελο που περιέχει το prod.keys"
+
+#: pe/ui/browse.cpp
+msgid "Choose the folder that holds the firmware NCA files"
+msgstr "Επιλέξτε τον φάκελο που περιέχει τα αρχεία NCA του firmware"
+
+#: pe/ui/browse.cpp
+msgid "Choose the folder with one folder per game ID"
+msgstr "Επιλέξτε τον φάκελο με έναν φάκελο ανά ID παιχνιδιού"
+
+#: pe/ui/browse.cpp
+msgid "Choose where exported saves are written"
+msgstr "Επιλέξτε πού γράφονται οι εξαγόμενες αποθηκεύσεις"
+
+#: pe/ui/locations.cpp
+msgid "Choose where your games, keys, firmware and saves are"
+msgstr "Επιλέξτε πού βρίσκονται τα παιχνίδια, τα keys, το firmware και οι αποθηκεύσεις σας"
+
+#. Label: the folder used the next time the app starts.
+#: pe/ui/locations.cpp, pe/ui/settings.cpp
+msgid "NEXT START"
+msgstr "ΕΠΟΜΕΝΗ ΕΚΚΙΝΗΣΗ"
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "No updates folder"
+msgstr "Χωρίς φάκελο updates"
+
+#: pe/ui/browse.cpp
+msgid "Save export folder"
+msgstr "Φάκελος εξαγωγής αποθηκεύσεων"
+
+#: pe/ui/browse.cpp
+msgid "Save import folder"
+msgstr "Φάκελος εισαγωγής αποθηκεύσεων"
+
+#: pe/ui/browse.cpp
+msgid "Saved. Its games are in the Library now."
+msgstr "Αποθηκεύτηκε. Τα παιχνίδια του είναι τώρα στη Βιβλιοθήκη."
+
+#: pe/ui/browse.cpp
+msgid "Saves to import go here, one folder per game ID. TRIANGLE uses the folder shown; SQUARE goes back to the default."
+msgstr "Οι αποθηκεύσεις προς εισαγωγή μπαίνουν εδώ, ένας φάκελος ανά ID παιχνιδιού. Το ΤΡΙΓΩΝΟ χρησιμοποιεί τον φάκελο που εμφανίζεται· το ΤΕΤΡΑΓΩΝΟ επιστρέφει στην προεπιλογή."
+
+#: pe/ui/locations.cpp
+msgid "Square again takes {0} off the list. Its games stay where they are."
+msgstr "Άλλο ένα Τετράγωνο αφαιρεί το {0} από τη λίστα. Τα παιχνίδια του μένουν εκεί που είναι."
+
+#: pe/ui/locations.cpp
+msgid "Taken off the list. Its games stay where they are."
+msgstr "Αφαιρέθηκε από τη λίστα. Τα παιχνίδια του μένουν εκεί που είναι."
+
+#: pe/ui/browse.cpp
+msgid "The folder shown must hold prod.keys. TRIANGLE uses it; SQUARE goes back to the default."
+msgstr "Ο φάκελος που εμφανίζεται πρέπει να περιέχει το prod.keys. Το ΤΡΙΓΩΝΟ τον χρησιμοποιεί· το ΤΕΤΡΑΓΩΝΟ επιστρέφει στην προεπιλογή."
+
+#: pe/ui/browse.cpp
+msgid "The folder shown must hold the firmware NCA files. TRIANGLE uses it; SQUARE goes back to the default."
+msgstr "Ο φάκελος που εμφανίζεται πρέπει να περιέχει τα αρχεία NCA του firmware. Το ΤΡΙΓΩΝΟ τον χρησιμοποιεί· το ΤΕΤΡΑΓΩΝΟ επιστρέφει στην προεπιλογή."
+
+#: pe/ui/browse.cpp
+msgid "The list is full. Remove a folder first."
+msgstr "Η λίστα είναι γεμάτη. Αφαιρέστε πρώτα έναν φάκελο."
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "This folder cannot be read"
+msgstr "Αυτός ο φάκελος δεν μπορεί να διαβαστεί"
+
+#: pe/ui/browse.cpp
+msgid "This folder has no firmware NCA files."
+msgstr "Αυτός ο φάκελος δεν έχει αρχεία NCA του firmware."
+
+#: pe/ui/browse.cpp
+msgid "This folder is in the list already."
+msgstr "Αυτός ο φάκελος είναι ήδη στη λίστα."
+
+#: pe/ui/browse.cpp
+msgid "This folder needs a roms folder."
+msgstr "Αυτός ο φάκελος χρειάζεται έναν φάκελο roms."
+
+#: pe/ui/browse.cpp
+msgid "This is the game files folder already."
+msgstr "Αυτός είναι ήδη ο φάκελος αρχείων παιχνιδιών."
+
+#: pe/ui/browse.cpp
+msgid "prod.keys is not in this folder."
+msgstr "Το prod.keys δεν είναι σε αυτόν τον φάκελο."
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "{0} file"
+msgstr "{0} αρχείο"
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "{0} files"
+msgstr "{0} αρχεία"
+
+#: pe/ui/locations.cpp
+msgid "{0} game folder"
+msgstr "{0} φάκελος παιχνιδιών"
+
+#: pe/ui/locations.cpp
+msgid "{0} game folders"
+msgstr "{0} φάκελοι παιχνιδιών"
+
+#: pe/ui/library.cpp
+msgid "{0} is in more than one place. Choose which one starts."
+msgstr "Το {0} βρίσκεται σε περισσότερα από ένα μέρη. Επιλέξτε ποιο θα ξεκινήσει."
+
+#: pe/ui/settings.cpp
+msgid "The folder that holds your keys, firmware and games, and more places for games."
+msgstr "Ο φάκελος με τα keys, το firmware και τα παιχνίδια σας, και περισσότερα μέρη για παιχνίδια."
+
+msgid "Available in more than one place. Choose which one to start."
+msgstr "Υπάρχει σε περισσότερα από ένα μέρη. Επιλέξτε ποιο να ξεκινήσει."
+
+msgid "Add other game folders, with roms, updates and mods on an external HD or SSD over USB, or in the console's extended storage."
+msgstr "Προσθέστε άλλους φακέλους παιχνιδιών, με roms, ενημερώσεις και mods, σε εξωτερικό HD ή SSD μέσω USB, ή στον εκτεταμένο αποθηκευτικό χώρο της κονσόλας."
+
+msgid "Games, updates and mods are read from this folder. Press Square twice to take it off the list."
+msgstr "Τα παιχνίδια, οι ενημερώσεις και τα mods διαβάζονται από αυτόν τον φάκελο. Πατήστε Τετράγωνο δύο φορές για να τον αφαιρέσετε από τη λίστα."
+
+msgid "Could not delete the ROM from this folder."
+msgstr "Δεν ήταν δυνατή η διαγραφή του ROM από αυτόν τον φάκελο."
+
+msgid "Deleted from this folder."
+msgstr "Διαγράφηκε από αυτόν τον φάκελο."
+
+msgid "PATH TIPS"
+msgstr "ΣΥΜΒΟΥΛΕΣ ΔΙΑΔΡΟΜΩΝ"
+
+msgid "Delete {0}?"
+msgstr "Διαγραφή του {0};"
+
+msgid "Also delete the duplicated updates and DLC in this folder."
+msgstr "Διαγραφή και των διπλότυπων ενημερώσεων και DLC σε αυτόν τον φάκελο."
+
+msgid "Confirm"
+msgstr "Επιβεβαίωση"
+
+msgid "EXTENDED"
+msgstr "ΕΚΤΕΤΑΜΕΝΟ"
+
+msgid "EXTERNAL"
+msgstr "ΕΞΩΤΕΡΙΚΟ"
+
+msgid "Holds keys, firmware, roms, updates, mods and saves."
+msgstr "Περιέχει κλειδιά, firmware, roms, ενημερώσεις, mods και αποθηκευμένα δεδομένα."

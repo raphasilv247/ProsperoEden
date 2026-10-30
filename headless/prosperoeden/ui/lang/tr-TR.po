@@ -43,6 +43,10 @@ msgstr "Bir firmware NCA dosyası okunamıyor. Firmware dökümünü yeniden yü
 msgid "A pairing is running already."
 msgstr "Zaten bir eşleştirme sürüyor."
 
+#: pe/ui/browse.cpp
+msgid "ABOUT"
+msgstr "HAKKINDA"
+
 #. The menu's last section: about this app (its credits, where its files go). One short word.
 #: pe/ui/shell.cpp
 msgid "About"
@@ -61,6 +65,10 @@ msgstr "Yaklaşık {0} dk kaldı"
 #: pe/ui/remote.cpp, pe/ui/update.cpp
 msgid "About {0} s left"
 msgstr "Yaklaşık {0} sn kaldı"
+
+#: pe/ui/settings.cpp
+msgid "Above 100%, a game locked to 30 FPS can reach 60, and a game that counts its frames plays faster too."
+msgstr "%100'ün üzerinde, 30 FPS'ye kilitli bir oyun 60'a ulaşabilir ve karelerini sayan bir oyun da daha hızlı oynanır."
 
 #. Label: which folders the app can read.
 #: pe/ui/browse.cpp
@@ -84,6 +92,10 @@ msgstr "İndirmelere eklendi. Ayarlar, İndirmeler sırayı gösterir."
 msgid "Added. Cross plays as this profile; left and right change its name."
 msgstr "Eklendi. Çarpı bu profille oynar; sol ve sağ adını değiştirir."
 
+#: pe/ui/library.cpp
+msgid "All cheats"
+msgstr "Tüm hileler"
+
 #: pe/ui/browse.cpp
 msgid "All credit for the Eden emulator goes to its developers and contributors."
 msgstr "Eden emülatöründeki tüm emek, geliştiricilerine ve katkıda bulunanlara aittir."
@@ -92,9 +104,21 @@ msgstr "Eden emülatöründeki tüm emek, geliştiricilerine ve katkıda bulunan
 msgid "AMD FSR"
 msgstr "AMD FSR"
 
+#: pe/ui/settings.cpp
+msgid "An image of your own behind this menu."
+msgstr "Bu menünün arkasında kendi resminiz."
+
 #: eden_services.cpp
 msgid "Another language"
 msgstr "Başka bir dil"
+
+#: pe/ui/settings.cpp
+msgid "Appearance"
+msgstr "Görünüm"
+
+#: pe/ui/settings.cpp
+msgid "Apply"
+msgstr "Uygula"
 
 #. The button mapping has not been changed.
 #: pe/ui/game_options.cpp, pe/ui/settings.cpp
@@ -211,9 +235,14 @@ msgid "Changed"
 msgstr "Değiştirildi"
 
 #. What a mod is made of: cheat codes.
-#: eden_services.cpp, host/fake_services.cpp
+#: eden_services.cpp, host/fake_services.cpp, pe/ui/library.cpp
 msgid "Cheats"
 msgstr "Hileler"
+
+#. Shown under a cheat that came from the game's cheats folder (not from a mod).
+#: pe/ui/library.cpp
+msgid "Cheats folder"
+msgstr "Hile klasörü"
 
 #: pe/ui/pairing.cpp
 msgid "Check that the code there is this one, and approve."
@@ -248,6 +277,14 @@ msgstr "Seç"
 msgid "Choose a game from your library."
 msgstr "Kütüphanenizden bir oyun seçin."
 
+#: pe/ui/settings.cpp
+msgid "Choose a theme or change the launcher layout."
+msgstr "Bir tema seçin veya başlatıcının düzenini değiştirin."
+
+#: pe/ui/settings.cpp
+msgid "Choose the colours and appearance of this menu."
+msgstr "Bu menünün renklerini ve görünümünü seçin."
+
 #: pe/ui/browse.cpp
 msgid "Choose the folder that holds your keys, firmware and games"
 msgstr "Anahtar, firmware ve oyunlarınızın bulunduğu klasörü seçin"
@@ -264,6 +301,14 @@ msgstr "Daire"
 #: pe/ui/remote.cpp, pe/ui/update.cpp
 msgid "Close"
 msgstr "Kapat"
+
+#: pe/ui/settings.cpp
+msgid "Colour"
+msgstr "Renk"
+
+#: pe/ui/game_options.cpp, pe/ui/settings.cpp
+msgid "Compact memory"
+msgstr "Sıkı bellek"
 
 #. A switch: the program code a game used in earlier sessions is prepared (compiled) while the game starts. Keep it short.
 #: pe/ui/game_options.cpp, pe/ui/settings.cpp
@@ -394,6 +439,10 @@ msgstr "Emeği geçenler ve kurulum"
 #: pe/ui/game_options.cpp
 msgid "Cross"
 msgstr "Çarpı"
+
+#: pe/ui/settings.cpp
+msgid "Default"
+msgstr "Varsayılan"
 
 #. A per-game setting that follows the general setting; {0} is its value.
 #: pe/ui/game_options.cpp
@@ -689,6 +738,10 @@ msgstr "Tam kalite"
 msgid "Game audio; PS5 system-menu music is unchanged."
 msgstr "Oyun sesi; PS5 sistem menüsü müziği değişmez."
 
+#: pe/ui/launcher.cpp
+msgid "Game cannot start now."
+msgstr "Oyun şu anda başlatılamıyor."
+
 #. {0} is the reason, a sentence in English; {1} is a file.
 #: eden_services.cpp, host/fake_services.cpp
 msgid "Game could not start: {0} Details: {1}"
@@ -738,6 +791,10 @@ msgstr "Almanca"
 msgid "GETTING STARTED"
 msgstr "BAŞLARKEN"
 
+#: pe/ui/settings.cpp
+msgid "Gives back memory a game left empty, 16 KiB at a time. More free memory; a game that writes there again can stutter for a moment."
+msgstr "Bir oyunun boş bıraktığı belleği 16 KiB'lık parçalarla geri verir. Daha fazla boş bellek; oraya yeniden yazan bir oyun bir an takılabilir."
+
 #: pe/ui/multiplayer.cpp
 msgid "Go offline"
 msgstr "Çevrimdışı ol"
@@ -772,6 +829,10 @@ msgstr "Ana sayfa"
 #: pe/ui/library.cpp, pe/ui/settings.cpp
 msgid "How games are drawn and scaled to your TV."
 msgstr "Oyunların nasıl çizildiği ve TV'nize nasıl ölçeklendiği."
+
+#: pe/ui/settings.cpp
+msgid "Images in this folder: {0}"
+msgstr "Bu klasördeki resimler: {0}"
 
 #. Button hint: copy a save in.
 #: pe/ui/library.cpp
@@ -895,6 +956,10 @@ msgstr "Büyük metin"
 msgid "Last game opened"
 msgstr "Son açılan oyun"
 
+#: pe/ui/settings.cpp
+msgid "Launcher"
+msgstr "Başlatıcı"
+
 #: pe/ui/multiplayer.cpp
 msgid "Leave / cancel"
 msgstr "Ayrıl / iptal"
@@ -931,6 +996,10 @@ msgstr "Daha az hassas kayan nokta hesabı: daha hızlıdır, ancak birkaç oyun
 #: pe/ui/settings.cpp
 msgid "Less exact memory transfers to the GPU: faster, and a few games show wrong graphics."
 msgstr "GPU'ya daha az hassas bellek aktarımı: daha hızlıdır, ancak birkaç oyunda grafikler hatalı görünür."
+
+#: pe/ui/library.cpp
+msgid "LIBRARY"
+msgstr "KÜTÜPHANE"
 
 #: pe/ui/library.cpp, pe/ui/shell.cpp
 msgid "Library"
@@ -1016,6 +1085,10 @@ msgstr "En yakın"
 msgid "Needs attention"
 msgstr "Dikkat gerekiyor"
 
+#: pe/ui/theme.cpp
+msgid "Neutral glass, clean and still."
+msgstr "Nötr cam, sade ve sakin."
+
 #: pe/ui/profiles.cpp
 msgid "New profile"
 msgstr "Yeni profil"
@@ -1032,6 +1105,15 @@ msgstr "Takma ad"
 #: pe/ui/multiplayer.cpp
 msgid "Nickname: {0}"
 msgstr "Takma ad: {0}"
+
+#: pe/ui/library.cpp
+msgid "No cheats"
+msgstr "Hile yok"
+
+#. <build ID>.txt stays as it is: a cheat file is named after the game version's build ID. {0} is a folder such as roms/Game/cheats/.
+#: pe/ui/library.cpp
+msgid "No cheats for this game yet. Copy its cheat files (<build ID>.txt) to {0}."
+msgstr "Bu oyun için henüz hile yok. Hile dosyalarını (<build ID>.txt) {0} konumuna kopyalayın."
 
 #: pe/ui/remote.cpp
 msgid "No download source is set up. Save a file named {0} that lists your sources, as this one does with a RomM server, then open this menu again. Downloads need an FTP server running on the console, on port {1}."
@@ -1058,10 +1140,9 @@ msgstr "Burada klasör yok."
 msgid "No mods"
 msgstr "Mod yok"
 
-#. {0} is a folder; roms/ is a folder name (unchanged).
 #: pe/ui/library.cpp
-msgid "No mods for this game yet. Copy each mod's folder to {0}, next to roms/."
-msgstr "Bu oyun için henüz mod yok. Her modun klasörünü roms/ klasörünün yanındaki {0} konumuna kopyalayın."
+msgid "No mods for this game yet. Copy each mod's folder to {0}."
+msgstr "Bu oyun için henüz mod yok. Her modun klasörünü {0} konumuna kopyalayın."
 
 #: pe/ui/multiplayer.cpp
 msgid "No public rooms are available."
@@ -1275,6 +1356,10 @@ msgstr "Portekizce"
 msgid "Portuguese (Brazil)"
 msgstr "Portekizce (Brezilya)"
 
+#: pe/ui/game_options.cpp, pe/ui/settings.cpp
+msgid "Post-processing"
+msgstr "Son işleme"
+
 #. Eden is the emulator's name (unchanged).
 #: pe/ui/browse.cpp
 msgid "Powered by Eden"
@@ -1297,6 +1382,10 @@ msgstr "Bu oyunun kaydının üzerine yazmak için tekrar basın. Mevcut kayıt 
 #: pe/ui/multiplayer.cpp
 msgid "Private room"
 msgstr "Özel oda"
+
+#: pe/ui/multiplayer.cpp
+msgid "PRIVATE ROOM"
+msgstr "ÖZEL ODA"
 
 #: pe/ui/game_options.cpp
 msgid "Pro Controller"
@@ -1363,6 +1452,14 @@ msgstr "PS5 SÜRÜMÜ"
 #: pe/ui/multiplayer.cpp
 msgid "Public rooms"
 msgstr "Herkese açık odalar"
+
+#: pe/ui/multiplayer.cpp
+msgid "PUBLIC ROOMS"
+msgstr "HERKESE AÇIK ODALAR"
+
+#: pe/ui/settings.cpp
+msgid "Put images in the wallpapers folder to show them here."
+msgstr "Burada göstermek için wallpapers klasörüne resim koyun."
 
 #: pe/ui/remote.cpp
 msgid "Queued"
@@ -1546,6 +1643,10 @@ msgstr "Kaydedildi: {0}. Bu konsoldakinin yerini alır."
 msgid "Saved. A display that cannot show 120 Hz stays at 60 Hz."
 msgstr "Kaydedildi. 120 Hz gösteremeyen ekran 60 Hz'te kalır."
 
+#: pe/ui/settings.cpp
+msgid "Saved. Applies the next time ProsperoEden opens."
+msgstr "Kaydedildi. ProsperoEden bir dahaki açılışında geçerli olur."
+
 #: pe/ui/browse.cpp, pe/ui/launcher.cpp
 msgid "Saved. Applies when a game starts."
 msgstr "Kaydedildi. Oyun başlatıldığında geçerli olur."
@@ -1555,9 +1656,18 @@ msgstr "Kaydedildi. Oyun başlatıldığında geçerli olur."
 msgid "Saved. Full quality uses four times the graphics memory for these textures and can run out above 1x."
 msgstr "Kaydedildi. Tam kalite bu dokular için dört kat grafik belleği kullanır ve 1x üzerinde bellek tükenebilir."
 
+#: pe/ui/settings.cpp
+msgid "Saved. Post-processing needs the Vulkan renderer."
+msgstr "Kaydedildi. Son işleme için Vulkan oluşturucu gerekir."
+
 #: pe/ui/browse.cpp
 msgid "Saved. Reopen ProsperoEden to use this folder."
 msgstr "Kaydedildi. Bu klasörü kullanmak için ProsperoEden'i yeniden açın."
+
+#. About the Update notices switch; homebrew.page is a site's name and stays as it is; About is the menu's last section (use its translation).
+#: pe/ui/settings.cpp
+msgid "Says when homebrew.page has a newer version. Off, only About names it."
+msgstr "homebrew.page'de daha yeni bir sürüm olduğunda haber verir. Kapalıyken yalnızca Hakkında gösterir."
 
 #: pe/ui/pairing.cpp
 msgid "Scan the code with your phone, or open the address below."
@@ -1600,6 +1710,10 @@ msgstr "Sunucu, kayıt eşitleme için çok eski"
 msgid "Settings"
 msgstr "Ayarlar"
 
+#: pe/ui/settings.cpp
+msgid "SETTINGS"
+msgstr "AYARLAR"
+
 #: eden_services.cpp, host/fake_services.cpp
 msgid "Setup required"
 msgstr "Kurulum gerekli"
@@ -1623,6 +1737,10 @@ msgstr "Kaydedilen verileri birden fazla sunucu tutabilir. Bu profil hangisini k
 #: pe/ui/remote.cpp
 msgid "Several sources have this game. Which one should it come from?"
 msgstr "Bu oyun birden fazla kaynakta var. Hangisinden gelsin?"
+
+#: pe/ui/settings.cpp
+msgid "Show an image of your own behind the menu."
+msgstr "Menünün arkasında kendi resminizi gösterin."
 
 #: pe/ui/settings.cpp
 msgid "Show or hide the FPS overlay"
@@ -1669,6 +1787,11 @@ msgstr "İspanyolca (Latin Amerika)"
 #: pe/ui/settings.cpp
 msgid "Speed"
 msgstr "Hız"
+
+#. Settings > Performance: how fast a game may run, as a percentage of the console it was made for.
+#: pe/ui/game_options.cpp, pe/ui/settings.cpp
+msgid "Speed limit"
+msgstr "Hız sınırı"
 
 #. A DualSense button.
 #: pe/ui/game_options.cpp
@@ -1739,13 +1862,13 @@ msgstr "TEŞEKKÜRLER"
 msgid "Thanks to the whole PS5 homebrew community and to every developer whose drivers, tools and libraries make ProsperoEden possible."
 msgstr "Tüm PS5 homebrew topluluğuna ve sürücüleri, araçları ve kütüphaneleriyle ProsperoEden'i mümkün kılan her geliştiriciye teşekkürler."
 
+#: pe/ui/settings.cpp
+msgid "The accent colour of the current theme."
+msgstr "Geçerli temanın vurgu rengi."
+
 #: pe/ui/remote.cpp
 msgid "The download stopped"
 msgstr "İndirme durdu"
-
-#: pe/ui/settings.cpp
-msgid "The folder that holds your keys, firmware and games."
-msgstr "Anahtar, firmware ve oyunlarınızın bulunduğu klasör."
 
 #: pe/ui/save_sync.cpp
 msgid "The game does not start."
@@ -1831,6 +1954,10 @@ msgstr "Güncelleme tamamlanamadı"
 msgid "Theme"
 msgstr "Tema"
 
+#: pe/ui/settings.cpp
+msgid "Theme and launcher settings."
+msgstr "Tema ve başlatıcı ayarları."
+
 #: pe/ui/save_sync.cpp
 msgid "This console and the server both have save data the other does not know. Which one should stay? The other is kept as a backup."
 msgstr "Bu konsolda da sunucuda da diğerinin bilmediği kaydedilen veriler var. Hangisi kalsın? Diğeri yedek olarak saklanır."
@@ -1913,6 +2040,11 @@ msgstr "Kullanılamıyor"
 msgid "Understood"
 msgstr "Anlaşıldı"
 
+#. A Speed limit choice: no limit at all (as fast as the console can).
+#: pe/ui/game_options.cpp, pe/ui/settings.cpp
+msgid "Unlimited"
+msgstr "Sınırsız"
+
 #: pe/ui/pairing.cpp
 msgid "Unlink"
 msgstr "Bağlantıyı kaldır"
@@ -1935,6 +2067,11 @@ msgstr "YUKARI"
 #: pe/ui/launcher.cpp, pe/ui/update.cpp
 msgid "Update available"
 msgstr "Güncelleme var"
+
+#. Settings switch: whether the app says at its start that a newer release of this app is listed (not game updates).
+#: pe/ui/settings.cpp
+msgid "Update notices"
+msgstr "Güncelleme bildirimleri"
 
 #. Button: download and install the newer release of this app now.
 #: pe/ui/update.cpp
@@ -1962,6 +2099,10 @@ msgstr "Ölçekleme filtresi"
 msgid "USA"
 msgstr "ABD"
 
+#: pe/ui/settings.cpp
+msgid "Use another home screen, library and menu layout."
+msgstr "Başka bir ana ekran, kitaplık ve menü düzeni kullanın."
+
 #: pe/ui/browse.cpp
 msgid "Use extracted firmware NCA files. Choose the folder in Settings, Game files; restart the app after changing it."
 msgstr "Çıkarılmış firmware NCA dosyalarını kullanın. Klasörü Ayarlar, Oyun dosyaları bölümünden seçin; değiştirdikten sonra uygulamayı yeniden başlatın."
@@ -1976,7 +2117,7 @@ msgid "Version {0}"
 msgstr "Sürüm {0}"
 
 #. {0}: the newer release's number, for example 1.000.050; homebrew.page is a site's name and stays as it is.
-#: pe/ui/launcher.cpp
+#: pe/ui/browse.cpp, pe/ui/launcher.cpp
 msgid "Version {0} is on homebrew.page"
 msgstr "{0} sürümü homebrew.page adresinde"
 
@@ -2029,6 +2170,10 @@ msgstr "{0} bekleniyor"
 #: pe/ui/remote.cpp
 msgid "Waiting to download"
 msgstr "İndirilmeyi bekliyor"
+
+#: pe/ui/settings.cpp
+msgid "Wallpaper"
+msgstr "Duvar kâğıdı"
 
 #: pe/ui/settings.cpp
 msgid "What the FPS overlay's line says, and how the chip is drawn."
@@ -2203,3 +2348,204 @@ msgstr "{0}/ (NSP veya XCI)"
 #: pe/ui/browse.cpp
 msgid "{0}/ (one folder per game ID)"
 msgstr "{0}/ (her oyun kimliği için bir klasör)"
+
+#: pe/ui/settings.cpp
+msgid "Crash reports (FTP): {0}\nAttach crash-*.txt and its matching logs to your issue."
+msgstr "Çökme raporları (FTP): {0}\nSorun bildiriminize crash-*.txt ve ilgili günlükleri ekleyin."
+
+#: pe/ui/browse.cpp
+msgid "Change game folder"
+msgstr "Oyun klasörünü değiştir"
+
+#: pe/ui/library.cpp
+msgid "Duplicate game"
+msgstr "Yinelenen oyun"
+
+#: pe/ui/browse.cpp
+msgid "Exported saves are written here. TRIANGLE uses the folder shown; SQUARE goes back to the default."
+msgstr "Dışa aktarılan kayıtlar buraya yazılır. ÜÇGEN gösterilen klasörü kullanır; KARE varsayılana döner."
+
+#: pe/ui/browse.cpp
+msgid "Firmware folder"
+msgstr "Firmware klasörü"
+
+#: pe/ui/locations.cpp
+msgid "GAME FILES FOLDER"
+msgstr "OYUN DOSYALARI KLASÖRÜ"
+
+#: pe/ui/locations.cpp
+msgid "GAME FOLDER"
+msgstr "OYUN KLASÖRÜ"
+
+#: pe/ui/locations.cpp, pe/ui/settings.cpp
+msgid "GAME FOLDERS"
+msgstr "OYUN KLASÖRLERİ"
+
+#: pe/ui/browse.cpp
+msgid "Games, updates and mods are read from here. TRIANGLE adds the folder shown."
+msgstr "Oyunlar, updates ve mods buradan okunur. ÜÇGEN gösterilen klasörü ekler."
+
+#: pe/ui/browse.cpp
+msgid "Keys folder"
+msgstr "Keys klasörü"
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "Add game folder"
+msgstr "Oyun klasörü ekle"
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "Back to the default folder. Reopen ProsperoEden to use it."
+msgstr "Varsayılan klasöre dönülür. Kullanmak için ProsperoEden'i yeniden açın."
+
+#: pe/ui/browse.cpp
+msgid "Choose a folder with roms and updates inside"
+msgstr "roms ve updates içeren bir klasör seçin"
+
+#: pe/ui/browse.cpp
+msgid "Choose the folder that holds prod.keys"
+msgstr "prod.keys dosyasını içeren klasörü seçin"
+
+#: pe/ui/browse.cpp
+msgid "Choose the folder that holds the firmware NCA files"
+msgstr "Firmware NCA dosyalarını içeren klasörü seçin"
+
+#: pe/ui/browse.cpp
+msgid "Choose the folder with one folder per game ID"
+msgstr "Her oyun kimliği için bir klasör içeren klasörü seçin"
+
+#: pe/ui/browse.cpp
+msgid "Choose where exported saves are written"
+msgstr "Dışa aktarılan kayıtların nereye yazılacağını seçin"
+
+#: pe/ui/locations.cpp
+msgid "Choose where your games, keys, firmware and saves are"
+msgstr "Oyunlarınızın, keys, firmware ve kayıtların nerede olduğunu seçin"
+
+#. Label: the folder used the next time the app starts.
+#: pe/ui/locations.cpp, pe/ui/settings.cpp
+msgid "NEXT START"
+msgstr "SONRAKİ AÇILIŞ"
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "No updates folder"
+msgstr "updates klasörü yok"
+
+#: pe/ui/browse.cpp
+msgid "Save export folder"
+msgstr "Kayıt dışa aktarma klasörü"
+
+#: pe/ui/browse.cpp
+msgid "Save import folder"
+msgstr "Kayıt içe aktarma klasörü"
+
+#: pe/ui/browse.cpp
+msgid "Saved. Its games are in the Library now."
+msgstr "Kaydedildi. Oyunları artık Kütüphane'de."
+
+#: pe/ui/browse.cpp
+msgid "Saves to import go here, one folder per game ID. TRIANGLE uses the folder shown; SQUARE goes back to the default."
+msgstr "İçe aktarılacak kayıtlar buraya konur, her oyun kimliği için bir klasör. ÜÇGEN gösterilen klasörü kullanır; KARE varsayılana döner."
+
+#: pe/ui/locations.cpp
+msgid "Square again takes {0} off the list. Its games stay where they are."
+msgstr "Kare'ye tekrar basmak {0} klasörünü listeden çıkarır. Oyunları yerinde kalır."
+
+#: pe/ui/locations.cpp
+msgid "Taken off the list. Its games stay where they are."
+msgstr "Listeden çıkarıldı. Oyunları yerinde kalır."
+
+#: pe/ui/browse.cpp
+msgid "The folder shown must hold prod.keys. TRIANGLE uses it; SQUARE goes back to the default."
+msgstr "Gösterilen klasör prod.keys içermelidir. ÜÇGEN onu kullanır; KARE varsayılana döner."
+
+#: pe/ui/browse.cpp
+msgid "The folder shown must hold the firmware NCA files. TRIANGLE uses it; SQUARE goes back to the default."
+msgstr "Gösterilen klasör firmware NCA dosyalarını içermelidir. ÜÇGEN onu kullanır; KARE varsayılana döner."
+
+#: pe/ui/browse.cpp
+msgid "The list is full. Remove a folder first."
+msgstr "Liste dolu. Önce bir klasörü çıkarın."
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "This folder cannot be read"
+msgstr "Bu klasör okunamıyor"
+
+#: pe/ui/browse.cpp
+msgid "This folder has no firmware NCA files."
+msgstr "Bu klasörde firmware NCA dosyası yok."
+
+#: pe/ui/browse.cpp
+msgid "This folder is in the list already."
+msgstr "Bu klasör zaten listede."
+
+#: pe/ui/browse.cpp
+msgid "This folder needs a roms folder."
+msgstr "Bu klasörün bir roms klasörüne ihtiyacı var."
+
+#: pe/ui/browse.cpp
+msgid "This is the game files folder already."
+msgstr "Bu zaten oyun dosyaları klasörü."
+
+#: pe/ui/browse.cpp
+msgid "prod.keys is not in this folder."
+msgstr "prod.keys bu klasörde değil."
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "{0} file"
+msgstr "{0} dosya"
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "{0} files"
+msgstr "{0} dosya"
+
+#: pe/ui/locations.cpp
+msgid "{0} game folder"
+msgstr "{0} oyun klasörü"
+
+#: pe/ui/locations.cpp
+msgid "{0} game folders"
+msgstr "{0} oyun klasörü"
+
+#: pe/ui/library.cpp
+msgid "{0} is in more than one place. Choose which one starts."
+msgstr "{0} birden fazla yerde. Hangisinin başlayacağını seçin."
+
+#: pe/ui/settings.cpp
+msgid "The folder that holds your keys, firmware and games, and more places for games."
+msgstr "Keys, firmware ve oyunlarınızın klasörü ve oyunlar için başka yerler."
+
+msgid "Available in more than one place. Choose which one to start."
+msgstr "Birden fazla yerde var. Hangisinin başlatılacağını seçin."
+
+msgid "Add other game folders, with roms, updates and mods on an external HD or SSD over USB, or in the console's extended storage."
+msgstr "USB üzerinden harici HDD veya SSD'de ya da konsolun genişletilmiş depolama alanında roms, güncelleme ve modların bulunduğu başka oyun klasörleri ekleyin."
+
+msgid "Games, updates and mods are read from this folder. Press Square twice to take it off the list."
+msgstr "Oyunlar, güncellemeler ve modlar bu klasörden okunur. Listeden çıkarmak için Kare'ye iki kez basın."
+
+msgid "Could not delete the ROM from this folder."
+msgstr "ROM bu klasörden silinemedi."
+
+msgid "Deleted from this folder."
+msgstr "Bu klasörden silindi."
+
+msgid "PATH TIPS"
+msgstr "YOL İPUÇLARI"
+
+msgid "Delete {0}?"
+msgstr "{0} silinsin mi?"
+
+msgid "Also delete the duplicated updates and DLC in this folder."
+msgstr "Bu klasördeki yinelenen güncellemeleri ve DLC'leri de sil."
+
+msgid "Confirm"
+msgstr "Onayla"
+
+msgid "EXTENDED"
+msgstr "GENİŞLETİLMİŞ"
+
+msgid "EXTERNAL"
+msgstr "HARİCİ"
+
+msgid "Holds keys, firmware, roms, updates, mods and saves."
+msgstr "Anahtarları, aygıt yazılımını, roms, güncellemeleri, modları ve kayıtları içerir."

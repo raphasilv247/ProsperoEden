@@ -43,6 +43,10 @@ msgstr "A firmware egyik NCA-fájlja nem olvasható. Telepítsd újra a firmware
 msgid "A pairing is running already."
 msgstr "Már folyamatban van egy párosítás."
 
+#: pe/ui/browse.cpp
+msgid "ABOUT"
+msgstr "NÉVJEGY"
+
 #. The menu's last section: about this app (its credits, where its files go). One short word.
 #: pe/ui/shell.cpp
 msgid "About"
@@ -61,6 +65,10 @@ msgstr "Kb. {0} perc van hátra"
 #: pe/ui/remote.cpp, pe/ui/update.cpp
 msgid "About {0} s left"
 msgstr "Kb. {0} mp van hátra"
+
+#: pe/ui/settings.cpp
+msgid "Above 100%, a game locked to 30 FPS can reach 60, and a game that counts its frames plays faster too."
+msgstr "100% felett egy 30 FPS-re korlátozott játék elérheti a 60-at, és a képkockáit számoló játék is gyorsabban fut."
 
 #. Label: which folders the app can read.
 #: pe/ui/browse.cpp
@@ -84,6 +92,10 @@ msgstr "Hozzáadva a letöltésekhez. A sor a Beállítások, Letöltések alatt
 msgid "Added. Cross plays as this profile; left and right change its name."
 msgstr "Hozzáadva. A Kereszt ezzel a profillal játszik; a bal és a jobb a nevét váltja."
 
+#: pe/ui/library.cpp
+msgid "All cheats"
+msgstr "Összes csalás"
+
 #: pe/ui/browse.cpp
 msgid "All credit for the Eden emulator goes to its developers and contributors."
 msgstr "Az Eden emulátorért minden elismerés a fejlesztőit és közreműködőit illeti."
@@ -92,9 +104,21 @@ msgstr "Az Eden emulátorért minden elismerés a fejlesztőit és közreműköd
 msgid "AMD FSR"
 msgstr "AMD FSR"
 
+#: pe/ui/settings.cpp
+msgid "An image of your own behind this menu."
+msgstr "Saját kép a menü mögött."
+
 #: eden_services.cpp
 msgid "Another language"
 msgstr "Másik nyelv"
+
+#: pe/ui/settings.cpp
+msgid "Appearance"
+msgstr "Megjelenés"
+
+#: pe/ui/settings.cpp
+msgid "Apply"
+msgstr "Alkalmaz"
 
 #. The button mapping has not been changed.
 #: pe/ui/game_options.cpp, pe/ui/settings.cpp
@@ -211,9 +235,14 @@ msgid "Changed"
 msgstr "Módosítva"
 
 #. What a mod is made of: cheat codes.
-#: eden_services.cpp, host/fake_services.cpp
+#: eden_services.cpp, host/fake_services.cpp, pe/ui/library.cpp
 msgid "Cheats"
 msgstr "Csalások"
+
+#. Shown under a cheat that came from the game's cheats folder (not from a mod).
+#: pe/ui/library.cpp
+msgid "Cheats folder"
+msgstr "Csalások mappája"
 
 #: pe/ui/pairing.cpp
 msgid "Check that the code there is this one, and approve."
@@ -248,6 +277,14 @@ msgstr "Kiválasztás"
 msgid "Choose a game from your library."
 msgstr "Válassz egy játékot a játéktárból."
 
+#: pe/ui/settings.cpp
+msgid "Choose a theme or change the launcher layout."
+msgstr "Válassz témát, vagy módosítsd az indító elrendezését."
+
+#: pe/ui/settings.cpp
+msgid "Choose the colours and appearance of this menu."
+msgstr "Válaszd ki a menü színeit és megjelenését."
+
 #: pe/ui/browse.cpp
 msgid "Choose the folder that holds your keys, firmware and games"
 msgstr "Válaszd ki a kulcsokat, a firmware-t és a játékokat tartalmazó mappát"
@@ -264,6 +301,14 @@ msgstr "Kör"
 #: pe/ui/remote.cpp, pe/ui/update.cpp
 msgid "Close"
 msgstr "Bezárás"
+
+#: pe/ui/settings.cpp
+msgid "Colour"
+msgstr "Szín"
+
+#: pe/ui/game_options.cpp, pe/ui/settings.cpp
+msgid "Compact memory"
+msgstr "Tömör memória"
 
 #. A switch: the program code a game used in earlier sessions is prepared (compiled) while the game starts. Keep it short.
 #: pe/ui/game_options.cpp, pe/ui/settings.cpp
@@ -394,6 +439,10 @@ msgstr "Készítők és előkészítés"
 #: pe/ui/game_options.cpp
 msgid "Cross"
 msgstr "Kereszt"
+
+#: pe/ui/settings.cpp
+msgid "Default"
+msgstr "Alapértelmezett"
 
 #. A per-game setting that follows the general setting; {0} is its value.
 #: pe/ui/game_options.cpp
@@ -689,6 +738,10 @@ msgstr "Teljes minőség"
 msgid "Game audio; PS5 system-menu music is unchanged."
 msgstr "A játékok hangja; a PS5 rendszermenüjének zenéje nem változik."
 
+#: pe/ui/launcher.cpp
+msgid "Game cannot start now."
+msgstr "A játék most nem indítható."
+
 #. {0} is the reason, a sentence in English; {1} is a file.
 #: eden_services.cpp, host/fake_services.cpp
 msgid "Game could not start: {0} Details: {1}"
@@ -738,6 +791,10 @@ msgstr "Német"
 msgid "GETTING STARTED"
 msgstr "ELSŐ LÉPÉSEK"
 
+#: pe/ui/settings.cpp
+msgid "Gives back memory a game left empty, 16 KiB at a time. More free memory; a game that writes there again can stutter for a moment."
+msgstr "Visszaadja a játék által üresen hagyott memóriát, 16 KiB-onként. Több szabad memória; ha a játék újra oda ír, egy pillanatra megakadhat."
+
 #: pe/ui/multiplayer.cpp
 msgid "Go offline"
 msgstr "Váltás offline módra"
@@ -772,6 +829,10 @@ msgstr "Kezdőlap"
 #: pe/ui/library.cpp, pe/ui/settings.cpp
 msgid "How games are drawn and scaled to your TV."
 msgstr "A játékok megjelenítése és skálázása a TV-re."
+
+#: pe/ui/settings.cpp
+msgid "Images in this folder: {0}"
+msgstr "Képek ebben a mappában: {0}"
 
 #. Button hint: copy a save in.
 #: pe/ui/library.cpp
@@ -895,6 +956,10 @@ msgstr "Nagyobb szöveg"
 msgid "Last game opened"
 msgstr "Legutóbb megnyitott játék"
 
+#: pe/ui/settings.cpp
+msgid "Launcher"
+msgstr "Indító"
+
 #: pe/ui/multiplayer.cpp
 msgid "Leave / cancel"
 msgstr "Kilépés / mégse"
@@ -931,6 +996,10 @@ msgstr "Kevésbé pontos lebegőpontos számítás: gyorsabb, de néhány játé
 #: pe/ui/settings.cpp
 msgid "Less exact memory transfers to the GPU: faster, and a few games show wrong graphics."
 msgstr "Kevésbé pontos memóriaátvitel a GPU-ra: gyorsabb, de néhány játék grafikája hibás lesz."
+
+#: pe/ui/library.cpp
+msgid "LIBRARY"
+msgstr "JÁTÉKTÁR"
 
 #: pe/ui/library.cpp, pe/ui/shell.cpp
 msgid "Library"
@@ -1016,6 +1085,10 @@ msgstr "Legközelebbi"
 msgid "Needs attention"
 msgstr "Figyelmet igényel"
 
+#: pe/ui/theme.cpp
+msgid "Neutral glass, clean and still."
+msgstr "Semleges üveg, tiszta és nyugodt."
+
 #: pe/ui/profiles.cpp
 msgid "New profile"
 msgstr "Új profil"
@@ -1032,6 +1105,15 @@ msgstr "Becenév"
 #: pe/ui/multiplayer.cpp
 msgid "Nickname: {0}"
 msgstr "Becenév: {0}"
+
+#: pe/ui/library.cpp
+msgid "No cheats"
+msgstr "Nincs csalás"
+
+#. <build ID>.txt stays as it is: a cheat file is named after the game version's build ID. {0} is a folder such as roms/Game/cheats/.
+#: pe/ui/library.cpp
+msgid "No cheats for this game yet. Copy its cheat files (<build ID>.txt) to {0}."
+msgstr "Ehhez a játékhoz még nincs csalás. Másold a csalásfájljait (<build ID>.txt) ide: {0}."
 
 #: pe/ui/remote.cpp
 msgid "No download source is set up. Save a file named {0} that lists your sources, as this one does with a RomM server, then open this menu again. Downloads need an FTP server running on the console, on port {1}."
@@ -1058,10 +1140,9 @@ msgstr "Itt nincsenek mappák."
 msgid "No mods"
 msgstr "Nincs mod"
 
-#. {0} is a folder; roms/ is a folder name (unchanged).
 #: pe/ui/library.cpp
-msgid "No mods for this game yet. Copy each mod's folder to {0}, next to roms/."
-msgstr "Ehhez a játékhoz még nincs mod. Másold az egyes modok mappáját ide: {0}, a roms/ mellé."
+msgid "No mods for this game yet. Copy each mod's folder to {0}."
+msgstr "Ehhez a játékhoz még nincs mod. Másold az egyes modok mappáját ide: {0}."
 
 #: pe/ui/multiplayer.cpp
 msgid "No public rooms are available."
@@ -1275,6 +1356,10 @@ msgstr "Portugál"
 msgid "Portuguese (Brazil)"
 msgstr "Portugál (Brazília)"
 
+#: pe/ui/game_options.cpp, pe/ui/settings.cpp
+msgid "Post-processing"
+msgstr "Utófeldolgozás"
+
 #. Eden is the emulator's name (unchanged).
 #: pe/ui/browse.cpp
 msgid "Powered by Eden"
@@ -1297,6 +1382,10 @@ msgstr "Nyomd meg újra a játék mentésének lecseréléséhez. A mostaniról 
 #: pe/ui/multiplayer.cpp
 msgid "Private room"
 msgstr "Privát szoba"
+
+#: pe/ui/multiplayer.cpp
+msgid "PRIVATE ROOM"
+msgstr "PRIVÁT SZOBA"
 
 #: pe/ui/game_options.cpp
 msgid "Pro Controller"
@@ -1363,6 +1452,14 @@ msgstr "PS5-KIADÁS"
 #: pe/ui/multiplayer.cpp
 msgid "Public rooms"
 msgstr "Nyilvános szobák"
+
+#: pe/ui/multiplayer.cpp
+msgid "PUBLIC ROOMS"
+msgstr "NYILVÁNOS SZOBÁK"
+
+#: pe/ui/settings.cpp
+msgid "Put images in the wallpapers folder to show them here."
+msgstr "Tegyél képeket a wallpapers mappába, hogy itt megjelenjenek."
 
 #: pe/ui/remote.cpp
 msgid "Queued"
@@ -1546,6 +1643,10 @@ msgstr "Mentve: {0}. Lecseréli a konzolét."
 msgid "Saved. A display that cannot show 120 Hz stays at 60 Hz."
 msgstr "Mentve. A 120 Hz-re nem képes kijelző 60 Hz-en marad."
 
+#: pe/ui/settings.cpp
+msgid "Saved. Applies the next time ProsperoEden opens."
+msgstr "Mentve. A ProsperoEden következő megnyitásakor lép életbe."
+
 #: pe/ui/browse.cpp, pe/ui/launcher.cpp
 msgid "Saved. Applies when a game starts."
 msgstr "Mentve. A következő játékindítástól érvényes."
@@ -1555,9 +1656,18 @@ msgstr "Mentve. A következő játékindítástól érvényes."
 msgid "Saved. Full quality uses four times the graphics memory for these textures and can run out above 1x."
 msgstr "Mentve. A teljes minőség négyszer annyi grafikus memóriát használ ezekhez a textúrákhoz, és 1x felett elfogyhat."
 
+#: pe/ui/settings.cpp
+msgid "Saved. Post-processing needs the Vulkan renderer."
+msgstr "Mentve. Az utófeldolgozáshoz a Vulkan megjelenítő kell."
+
 #: pe/ui/browse.cpp
 msgid "Saved. Reopen ProsperoEden to use this folder."
 msgstr "Mentve. A ProsperoEden újraindítása után lép életbe."
+
+#. About the Update notices switch; homebrew.page is a site's name and stays as it is; About is the menu's last section (use its translation).
+#: pe/ui/settings.cpp
+msgid "Says when homebrew.page has a newer version. Off, only About names it."
+msgstr "Szól, ha a homebrew.page oldalon újabb verzió van. Kikapcsolva csak a Névjegy említi."
 
 #: pe/ui/pairing.cpp
 msgid "Scan the code with your phone, or open the address below."
@@ -1600,6 +1710,10 @@ msgstr "A szerver túl régi a szinkronizáláshoz"
 msgid "Settings"
 msgstr "Beállítások"
 
+#: pe/ui/settings.cpp
+msgid "SETTINGS"
+msgstr "BEÁLLÍTÁSOK"
+
 #: eden_services.cpp, host/fake_services.cpp
 msgid "Setup required"
 msgstr "Előkészítés szükséges"
@@ -1623,6 +1737,10 @@ msgstr "Több szerver is tárolhatja a mentéseket. Melyiket használja ez a pro
 #: pe/ui/remote.cpp
 msgid "Several sources have this game. Which one should it come from?"
 msgstr "Több forrásban is megvan ez a játék. Melyikből töltsük le?"
+
+#: pe/ui/settings.cpp
+msgid "Show an image of your own behind the menu."
+msgstr "Saját kép megjelenítése a menü mögött."
 
 #: pe/ui/settings.cpp
 msgid "Show or hide the FPS overlay"
@@ -1669,6 +1787,11 @@ msgstr "Spanyol (Latin-Amerika)"
 #: pe/ui/settings.cpp
 msgid "Speed"
 msgstr "Sebesség"
+
+#. Settings > Performance: how fast a game may run, as a percentage of the console it was made for.
+#: pe/ui/game_options.cpp, pe/ui/settings.cpp
+msgid "Speed limit"
+msgstr "Sebességkorlát"
 
 #. A DualSense button.
 #: pe/ui/game_options.cpp
@@ -1739,13 +1862,13 @@ msgstr "KÖSZÖNET"
 msgid "Thanks to the whole PS5 homebrew community and to every developer whose drivers, tools and libraries make ProsperoEden possible."
 msgstr "Köszönet a teljes PS5 homebrew közösségnek és minden fejlesztőnek, akinek az illesztőprogramjai, eszközei és könyvtárai nélkül nem létezne a ProsperoEden."
 
+#: pe/ui/settings.cpp
+msgid "The accent colour of the current theme."
+msgstr "Az aktuális téma kiemelőszíne."
+
 #: pe/ui/remote.cpp
 msgid "The download stopped"
 msgstr "A letöltés leállt"
-
-#: pe/ui/settings.cpp
-msgid "The folder that holds your keys, firmware and games."
-msgstr "A kulcsokat, a firmware-t és a játékokat tartalmazó mappa."
 
 #: pe/ui/save_sync.cpp
 msgid "The game does not start."
@@ -1831,6 +1954,10 @@ msgstr "A frissítést nem sikerült befejezni"
 msgid "Theme"
 msgstr "Téma"
 
+#: pe/ui/settings.cpp
+msgid "Theme and launcher settings."
+msgstr "Téma- és indítóbeállítások."
+
 #: pe/ui/save_sync.cpp
 msgid "This console and the server both have save data the other does not know. Which one should stay? The other is kept as a backup."
 msgstr "A konzolon és a szerveren is van olyan mentés, amelyről a másik nem tud. Melyik maradjon? A másik biztonsági másolatként megmarad."
@@ -1913,6 +2040,11 @@ msgstr "Nem érhető el"
 msgid "Understood"
 msgstr "Értem"
 
+#. A Speed limit choice: no limit at all (as fast as the console can).
+#: pe/ui/game_options.cpp, pe/ui/settings.cpp
+msgid "Unlimited"
+msgstr "Korlátlan"
+
 #: pe/ui/pairing.cpp
 msgid "Unlink"
 msgstr "Leválasztás"
@@ -1935,6 +2067,11 @@ msgstr "FEL"
 #: pe/ui/launcher.cpp, pe/ui/update.cpp
 msgid "Update available"
 msgstr "Frissítés érhető el"
+
+#. Settings switch: whether the app says at its start that a newer release of this app is listed (not game updates).
+#: pe/ui/settings.cpp
+msgid "Update notices"
+msgstr "Frissítési értesítések"
 
 #. Button: download and install the newer release of this app now.
 #: pe/ui/update.cpp
@@ -1962,6 +2099,10 @@ msgstr "Felskálázó szűrő"
 msgid "USA"
 msgstr "USA"
 
+#: pe/ui/settings.cpp
+msgid "Use another home screen, library and menu layout."
+msgstr "Másik kezdőképernyő-, könyvtár- és menüelrendezés használata."
+
 #: pe/ui/browse.cpp
 msgid "Use extracted firmware NCA files. Choose the folder in Settings, Game files; restart the app after changing it."
 msgstr "Kicsomagolt firmware NCA-fájlokat használj. A mappát a Beállítások, Játékfájlok menüben választhatod ki; módosítás után indítsd újra az alkalmazást."
@@ -1976,7 +2117,7 @@ msgid "Version {0}"
 msgstr "{0} verzió"
 
 #. {0}: the newer release's number, for example 1.000.050; homebrew.page is a site's name and stays as it is.
-#: pe/ui/launcher.cpp
+#: pe/ui/browse.cpp, pe/ui/launcher.cpp
 msgid "Version {0} is on homebrew.page"
 msgstr "A(z) {0} verzió elérhető: homebrew.page"
 
@@ -2029,6 +2170,10 @@ msgstr "Várakozás: {0}"
 #: pe/ui/remote.cpp
 msgid "Waiting to download"
 msgstr "Letöltésre vár"
+
+#: pe/ui/settings.cpp
+msgid "Wallpaper"
+msgstr "Háttérkép"
 
 #: pe/ui/settings.cpp
 msgid "What the FPS overlay's line says, and how the chip is drawn."
@@ -2203,3 +2348,204 @@ msgstr "{0}/ (NSP vagy XCI)"
 #: pe/ui/browse.cpp
 msgid "{0}/ (one folder per game ID)"
 msgstr "{0}/ (játékazonosítónként egy mappa)"
+
+#: pe/ui/settings.cpp
+msgid "Crash reports (FTP): {0}\nAttach crash-*.txt and its matching logs to your issue."
+msgstr "Összeomlási jelentések (FTP): {0}\nCsatold a crash-*.txt fájlt és a hozzá tartozó naplókat a hibajelentéshez."
+
+#: pe/ui/browse.cpp
+msgid "Change game folder"
+msgstr "Játékmappa módosítása"
+
+#: pe/ui/library.cpp
+msgid "Duplicate game"
+msgstr "Kétszer meglévő játék"
+
+#: pe/ui/browse.cpp
+msgid "Exported saves are written here. TRIANGLE uses the folder shown; SQUARE goes back to the default."
+msgstr "Az exportált mentések ide kerülnek. A HÁROMSZÖG a mutatott mappát használja; a NÉGYZET visszaáll az alapértelmezettre."
+
+#: pe/ui/browse.cpp
+msgid "Firmware folder"
+msgstr "Firmware mappa"
+
+#: pe/ui/locations.cpp
+msgid "GAME FILES FOLDER"
+msgstr "JÁTÉKFÁJLOK MAPPÁJA"
+
+#: pe/ui/locations.cpp
+msgid "GAME FOLDER"
+msgstr "JÁTÉKMAPPA"
+
+#: pe/ui/locations.cpp, pe/ui/settings.cpp
+msgid "GAME FOLDERS"
+msgstr "JÁTÉKMAPPÁK"
+
+#: pe/ui/browse.cpp
+msgid "Games, updates and mods are read from here. TRIANGLE adds the folder shown."
+msgstr "A játékok, updates és mods innen olvashatók. A HÁROMSZÖG hozzáadja a mutatott mappát."
+
+#: pe/ui/browse.cpp
+msgid "Keys folder"
+msgstr "Keys mappa"
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "Add game folder"
+msgstr "Játékmappa hozzáadása"
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "Back to the default folder. Reopen ProsperoEden to use it."
+msgstr "Vissza az alapértelmezett mappához. A használatához nyisd meg újra a ProsperoEden-t."
+
+#: pe/ui/browse.cpp
+msgid "Choose a folder with roms and updates inside"
+msgstr "Válassz egy mappát, amelyben roms és updates van"
+
+#: pe/ui/browse.cpp
+msgid "Choose the folder that holds prod.keys"
+msgstr "Válaszd ki a prod.keys-t tartalmazó mappát"
+
+#: pe/ui/browse.cpp
+msgid "Choose the folder that holds the firmware NCA files"
+msgstr "Válaszd ki a firmware NCA-fájljait tartalmazó mappát"
+
+#: pe/ui/browse.cpp
+msgid "Choose the folder with one folder per game ID"
+msgstr "Válaszd ki a mappát, amelyben játékazonosítónként egy mappa van"
+
+#: pe/ui/browse.cpp
+msgid "Choose where exported saves are written"
+msgstr "Válaszd ki, hová kerüljenek az exportált mentések"
+
+#: pe/ui/locations.cpp
+msgid "Choose where your games, keys, firmware and saves are"
+msgstr "Válaszd ki, hol vannak a játékaid, a keys, a firmware és a mentések"
+
+#. Label: the folder used the next time the app starts.
+#: pe/ui/locations.cpp, pe/ui/settings.cpp
+msgid "NEXT START"
+msgstr "KÖVETKEZŐ INDÍTÁS"
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "No updates folder"
+msgstr "Nincs updates mappa"
+
+#: pe/ui/browse.cpp
+msgid "Save export folder"
+msgstr "Mentések exportálási mappája"
+
+#: pe/ui/browse.cpp
+msgid "Save import folder"
+msgstr "Mentések importálási mappája"
+
+#: pe/ui/browse.cpp
+msgid "Saved. Its games are in the Library now."
+msgstr "Mentve. A játékai most a Játéktárban vannak."
+
+#: pe/ui/browse.cpp
+msgid "Saves to import go here, one folder per game ID. TRIANGLE uses the folder shown; SQUARE goes back to the default."
+msgstr "Az importálandó mentések ide kerülnek, játékazonosítónként egy mappában. A HÁROMSZÖG a mutatott mappát használja; a NÉGYZET visszaáll az alapértelmezettre."
+
+#: pe/ui/locations.cpp
+msgid "Square again takes {0} off the list. Its games stay where they are."
+msgstr "A Négyzet ismételt megnyomása eltávolítja a(z) {0} mappát a listáról. A játékai a helyükön maradnak."
+
+#: pe/ui/locations.cpp
+msgid "Taken off the list. Its games stay where they are."
+msgstr "Eltávolítva a listáról. A játékai a helyükön maradnak."
+
+#: pe/ui/browse.cpp
+msgid "The folder shown must hold prod.keys. TRIANGLE uses it; SQUARE goes back to the default."
+msgstr "A mutatott mappának tartalmaznia kell a prod.keys-t. A HÁROMSZÖG használja; a NÉGYZET visszaáll az alapértelmezettre."
+
+#: pe/ui/browse.cpp
+msgid "The folder shown must hold the firmware NCA files. TRIANGLE uses it; SQUARE goes back to the default."
+msgstr "A mutatott mappának tartalmaznia kell a firmware NCA-fájljait. A HÁROMSZÖG használja; a NÉGYZET visszaáll az alapértelmezettre."
+
+#: pe/ui/browse.cpp
+msgid "The list is full. Remove a folder first."
+msgstr "A lista megtelt. Előbb távolíts el egy mappát."
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "This folder cannot be read"
+msgstr "Ez a mappa nem olvasható"
+
+#: pe/ui/browse.cpp
+msgid "This folder has no firmware NCA files."
+msgstr "Ebben a mappában nincsenek firmware NCA-fájlok."
+
+#: pe/ui/browse.cpp
+msgid "This folder is in the list already."
+msgstr "Ez a mappa már szerepel a listán."
+
+#: pe/ui/browse.cpp
+msgid "This folder needs a roms folder."
+msgstr "Ennek a mappának kell egy roms mappa."
+
+#: pe/ui/browse.cpp
+msgid "This is the game files folder already."
+msgstr "Ez már a játékfájlok mappája."
+
+#: pe/ui/browse.cpp
+msgid "prod.keys is not in this folder."
+msgstr "A prod.keys nincs ebben a mappában."
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "{0} file"
+msgstr "{0} fájl"
+
+#: pe/ui/browse.cpp, pe/ui/locations.cpp
+msgid "{0} files"
+msgstr "{0} fájl"
+
+#: pe/ui/locations.cpp
+msgid "{0} game folder"
+msgstr "{0} játékmappa"
+
+#: pe/ui/locations.cpp
+msgid "{0} game folders"
+msgstr "{0} játékmappa"
+
+#: pe/ui/library.cpp
+msgid "{0} is in more than one place. Choose which one starts."
+msgstr "A(z) {0} több helyen is megvan. Válaszd ki, melyik induljon."
+
+#: pe/ui/settings.cpp
+msgid "The folder that holds your keys, firmware and games, and more places for games."
+msgstr "A keys, a firmware és a játékok mappája, valamint további helyek a játékoknak."
+
+msgid "Available in more than one place. Choose which one to start."
+msgstr "Több helyen is megtalálható. Válaszd ki, melyiket indítsd."
+
+msgid "Add other game folders, with roms, updates and mods on an external HD or SSD over USB, or in the console's extended storage."
+msgstr "Adj hozzá más játékmappákat roms, frissítések és modok tartalommal külső HDD-n vagy SSD-n USB-n keresztül, vagy a konzol bővített tárhelyén."
+
+msgid "Games, updates and mods are read from this folder. Press Square twice to take it off the list."
+msgstr "A játékok, frissítések és modok ebből a mappából töltődnek be. Két alkalommal nyomd meg a Négyzetet a listából való eltávolításhoz."
+
+msgid "Could not delete the ROM from this folder."
+msgstr "A ROM-ot nem sikerült törölni ebből a mappából."
+
+msgid "Deleted from this folder."
+msgstr "Törölve ebből a mappából."
+
+msgid "PATH TIPS"
+msgstr "ÚTVONAL-TIPPEK"
+
+msgid "Delete {0}?"
+msgstr "Törlöd ezt: {0}?"
+
+msgid "Also delete the duplicated updates and DLC in this folder."
+msgstr "A duplikált frissítések és DLC-k törlése is ebben a mappában."
+
+msgid "Confirm"
+msgstr "Megerősítés"
+
+msgid "EXTENDED"
+msgstr "BŐVÍTETT"
+
+msgid "EXTERNAL"
+msgstr "KÜLSŐ"
+
+msgid "Holds keys, firmware, roms, updates, mods and saves."
+msgstr "Itt vannak a kulcsok, a firmware, a romok, a frissítések, a modok és a mentések."

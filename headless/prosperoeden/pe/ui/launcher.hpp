@@ -12,6 +12,7 @@
 #include <future>
 #include <string>
 #include <vector>
+#include <utility>
 
 namespace pe::ui
 {
@@ -28,6 +29,10 @@ class Launcher
     Launcher(const Launcher &) = delete;
     Launcher &operator=(const Launcher &) = delete;
 
+    // An offer a launcher pack took before this launcher replaced it; with Update notices off it
+    // is only named in About.
+    void accept_update_offer(const UpdateOffer& offer) { update_=offer; update_version_=offer.version; notes_laid_out_=false; update_waiting_=offer.installable && prefs_.update_notices; }
+    bool take_launcher_picker() { return std::exchange(launcher_picker_, false); }
     void press(Key key);
     void update(float dt);
     void draw(gfx::DrawList &list);
@@ -60,15 +65,40 @@ class Launcher
     }
 
   private:
+    bool launcher_picker_ = false;
     enum class Screen : std::uint8_t
     {
         home,
         library,
         multiplayer, // rooms: the public directory, a private room, the room joined
         settings,
-        files,
+        files,     // the folder browser (browse.cpp)
+        locations, // Settings > Game files: the game folders and where keys, firmware and saves are
         language,
         about,
+    };
+    // What the folder browser is choosing a folder for.
+    enum class Pick : std::uint8_t
+    {
+        main,          // the game files folder
+        add_folder,    // another game folder (roms/ and updates/ only)
+        change_folder, // one of those, replaced
+        keys,
+        firmware,
+        save_import,
+        save_export,
+    };
+    // One row of the Game files screen.
+    struct LocationRow
+    {
+        enum class Kind : std::uint8_t
+        {
+            main,     // the game files folder
+            folder,   // an extra game folder (index into library_folders_)
+            add,      // "Add game folder"
+        };
+        Kind kind = Kind::main;
+        int index = 0;
     };
     enum class Modal : std::uint8_t
     {
@@ -93,7 +123,13 @@ class Launcher
         save_sync,    // a game's save data synced before it starts, or a conflict after (save_sync.cpp)
         sync_setup,   // Settings > Save sync: the profiles and their servers (pairing.cpp)
         pairing,      // a profile paired with a server by a QR code (pairing.cpp)
-        theme,        // Settings > Theme: the launcher's look
+        appearance,   // Settings > Appearance: theme and launcher settings
+        theme,        // Settings > Appearance > Theme: the launcher's look
+        wallpaper,    // Settings > Appearance > Wallpaper: the image behind the screens
+        accent,       // Settings > Colour: the accent preset
+        cheats,       // a game's cheats, opened from its settings
+        place,        // a game found in more than one place: which one starts (library.cpp)
+        place_delete, // the confirmation for deleting one copy of such a game
     };
     // The update dialog's steps: the offer, installing, stopping it, closing for the helper to
     // finish, and a failure.
@@ -160,10 +196,13 @@ class Launcher
     // The notification of a newer release the app cannot install itself, at the top right for ten
     // seconds.
     void draw_update_notice(Canvas &c);
+    // A result the player must see over whatever the screen shows ("Could not save settings"): a
+    // card at the middle that any button closes.
+    void draw_message_popup(Canvas &c);
     // quiet: a change that shows at once needs no "Saved" line.
     bool save_preferences(bool quiet = false);
     // The switches of a dialog as the preferences have them, in the order of its rows.
-    std::array<bool, 7> switch_states(Modal modal) const;
+    std::array<bool, 8> switch_states(Modal modal) const;
     // Shows the launcher as the preferences' accessibility switches say.
     void apply_look();
 
@@ -171,6 +210,7 @@ class Launcher
     void press_home(Key key);
     void update_controllers(float dt);
     void draw_home(Canvas &c);
+    void draw_home_status(Canvas &c);
     void draw_controllers(Canvas &c);
     // A game's settings from the home screen (the game to continue, or a recent one): its page
     // opens over the Library at that game, and closing it comes back to the home screen.
@@ -186,11 +226,14 @@ class Launcher
     void read_home();
     // A game's mods as its list has them: how many, and how many are switched on.
     void count_mods(Game &game, const std::vector<Mod> &mods);
+    // A game's mods for the Mods list and its counts: those of cheats alone are in the Cheats list.
+    std::vector<Mod> game_mods(std::uint64_t title_id);
     // Games whose file left the game files folder leave the home screen and the Library.
     void check_games_present();
     bool drop_missing_games();
-    // Reads a game's mods for its dialogs, with the rows of the Mods list.
+    // Reads a game's mods for its dialogs, and its cheats with the game's Cheats switch.
     void read_mods(Game &game);
+    void read_cheats(const Game &game);
     // What a game comes with, on one line: "Update 1.2.0, 2 DLC, 2 mods"; "None" without any.
     // brief: for Game::addons_short, where the line would not fit ("v1.2.0, 2 DLC, 1/2 mods").
     static std::string addons_line(const std::string &addons, int mods, int mods_on,
@@ -207,6 +250,7 @@ class Launcher
     void draw_game_page(Canvas &c, float open);
     void draw_mode_pane(Canvas &c, const Rect &pane);
     void draw_mods_pane(Canvas &c, const Rect &pane, bool active);
+    void draw_cheats_pane(Canvas &c, const Rect &pane, bool active);
     void draw_save_pane(Canvas &c, const Rect &pane, bool removing);
     void draw_explain_pane(Canvas &c, const Rect &pane, int kind);
     // How many settings the game has of its own, over every kind.
@@ -214,7 +258,21 @@ class Launcher
     // What a row of the game settings dialog is (GameRow in library.cpp): Save data is there in
     // builds that move saves, and the deleting of a game a download source has (it comes back from there).
     int game_row(int row) const;
+    // The pitch of those rows: closer when all of them are there, so that they fit.
+    float game_kind_pitch() const;
     void press_mods(Key key);
+    void press_cheats(Key key);
+    // Asks which place starts a game found in more than one (library.cpp).
+    void open_place(const std::string &file, const std::string &title, const std::string &cover,
+                    std::vector<GamePlace> places);
+    void press_place(Key key);
+    void draw_place(Canvas &c, float open);
+    // Deleting one copy from the duplicate question: asks first, Cancel is the cursor's start.
+    void open_place_delete(int row);
+    void press_place_delete(Key key);
+    void draw_place_delete(Canvas &c, float open);
+    // The game's format as the list shows it: "NSP | EXT0"; "NSP | EXT0 & SSD" for a duplicate.
+    static std::string format_text(const Game &game);
 
     // ---- a game's own settings by category, and the button mapping (game_options.cpp) ----
     // Categories, in the order of the game settings' rows: video, performance, audio, controls,
@@ -249,6 +307,16 @@ class Launcher
     void open_menu_mapping();
     void press_menu_mapping(Key key);
     void draw_menu_mapping(Canvas &c, float open);
+
+    // ---- Game files screen (locations.cpp) ----
+    void read_library_folders();
+    void enter_locations(int select = 0);
+    void build_locations();
+    void refresh_location();
+    void press_locations(Key key);
+    void draw_locations(Canvas &c);
+    // The game folders changed: the Library and the home screen read them again.
+    void library_folders_changed();
 
     // ---- settings and its dialogs (settings.cpp) ----
     void press_settings(Key key);
@@ -348,9 +416,17 @@ class Launcher
     void draw_pairing(Canvas &c, float open);
 
     // ---- game files, language, about (browse.cpp) ----
-    void enter_files();
+    void enter_files(Pick pick, int index = 0);
     bool browse_to(const std::string &directory);
     void press_files(Key key);
+    // TRIANGLE in the browser: use the folder shown.
+    void use_browsed_folder();
+    // SQUARE in the browser: back to the default folder.
+    void reset_browsed_storage();
+    // Back to the Game files screen, on the row the browser was opened from.
+    void leave_browser(int select);
+    static StorageRole storage_role(Pick pick);
+    static Pick storage_pick(StorageRole role);
     void draw_files(Canvas &c);
     void enter_language();
     void press_language(Key key);
@@ -423,6 +499,8 @@ class Launcher
     std::string message_; // the last result ("Saved..."), shown where the screen has room
     bool message_warning_ = false;
     float message_age_ = 0.0f;
+    // A warning's result ("Could not save settings"), a card at the middle any button closes.
+    std::string popup_;
 
     // launching a game
     std::string selected_game_;
@@ -440,7 +518,8 @@ class Launcher
     std::array<tween::Spring, 4> controller_lit_{};
     std::array<float, 4> controller_pop_{}; // 1 when a controller appears, then decays
     int home_focus_ = 0;
-    std::array<tween::Spring, 10> home_springs_{};
+    bool home_on_grid_ = false;
+    std::array<tween::Spring, 12> home_springs_{};
     float intro_ = 0.0f;
     bool first_start_ = true;
     // The opening, when the app has just been started and the launch picture is there: that
@@ -484,15 +563,19 @@ class Launcher
     // settings and dialogs
     Preferences prefs_;
     ListView settings_;
-    std::array<tween::Spring, 12> settings_springs_{}; // the highlight on each tile
+    std::array<tween::Spring, 13> settings_springs_{}; // the highlight on each tile
     tween::Spring section_;
     int option_ = 0;
     tween::Spring option_cursor_; // highlight position in pixels
-    std::array<tween::Spring, 7> switches_{};
+    std::array<tween::Spring, 8> switches_{};
     ListView video_rows_; // the Video dialog's rows (more than it shows)
     ListView hud_rows_;   // the overlay's options (Modal::hud, more than it shows)
     ListView performance_rows_; // the Performance dialog's rows (more than it shows)
     ListView controls_rows_;    // the Controls dialog's rows (more than it shows)
+    ListView accent_rows_;      // the Colour dialog's rows (more than it shows)
+    ListView wallpaper_rows_;   // the Wallpaper dialog's rows (more than it shows)
+    // The images in the wallpapers folder, as the Wallpaper dialog lists them (settings.cpp).
+    std::vector<std::string> wallpaper_files_;
     GameSettings game_settings_;
     bool game_docked_ = true;
     SaveSource import_source_ = SaveSource::none; // what Save data could import for the game
@@ -500,14 +583,26 @@ class Launcher
     bool delete_armed_ = false;                   // the same before a game is deleted
     ListView game_rows_;                          // the game dialog's rows (more than it shows)
     std::vector<Mod> mods_;                       // the game's mods, read when its dialog opens
+    // The duplicate-game question: the file and the places that have it.
+    std::string place_file_;
+    std::string place_title_;
+    std::string place_cover_;
+    std::vector<GamePlace> place_choices_;
+    ListView place_rows_;
+    // The place picked for the game being started: its full path, empty while none is picked.
+    std::string place_path_;
+    // The copy the confirmation is about, and its options (cursor: 0 Cancel, 1 Confirm, 2 the box).
+    std::string delete_file_, delete_title_, delete_folder_, delete_label_, delete_size_;
+    bool delete_addons_shown_ = false, delete_addons_checked_ = false;
+    int delete_cursor_ = 0;
     // The Mods list's rows: each mod, then its cheats when it lists several.
-    struct ModRow
-    {
-        int mod = 0;
-        int cheat = -1; // -1: the mod itself
-    };
-    std::vector<ModRow> mod_list_;
+
     ListView mod_rows_;
+    // The game's cheats and its Cheats switch, read with its mods. The Cheats list's first row is
+    // that switch, then a row per cheat.
+    std::vector<GameCheat> cheats_;
+    bool cheats_enabled_ = true;
+    ListView cheat_rows_;
     int game_options_ = 0;          // the category a game's own settings dialog shows
     ListView option_rows_;          // its rows
     std::atomic<bool> seed_edit_stop_{false};
@@ -515,6 +610,7 @@ class Launcher
     bool mapping_for_game_ = false; // the mapping dialog edits the game's own mapping
     ListView mapping_rows_;
     ListView menu_mapping_rows_; // the menu keybinds dialog's rows
+    ListView room_rows_;         // Multiplayer > Public rooms: the rooms (room_row_ - 1 is the one chosen)
     std::vector<Profile> profiles_; // the people who play on this console
     std::string playing_;           // the one games start as
     ListView profile_rows_;
@@ -525,6 +621,21 @@ class Launcher
     std::vector<std::string> browse_entries_; // ".." first unless at "/", then subfolders
     ListView files_;
     FolderInfo folder_info_;
+    Pick browse_pick_ = Pick::main;
+    int browse_index_ = 0;  // the extra game folder being changed
+    int browse_from_ = 0;   // the Game files row the browser was opened from
+
+    // Game files screen
+    std::vector<std::string> library_folders_; // the extra game folders, as saved
+    std::vector<LocationRow> location_list_;
+    ListView location_rows_;
+    bool advanced_open_ = false;
+    int location_remove_ = -1;                // the row Square was pressed on once (asked twice)
+    FolderInfo location_info_;                // what the focused row's folder holds
+    std::string main_used_;                    // the game files folder in use by this process
+    std::string main_saved_;                   // the one chosen for the next start; empty: none
+    std::array<std::string, kStorageRoles> storage_used_;  // in use by this process
+    std::array<std::string, kStorageRoles> storage_saved_; // chosen; empty: the default
 
     // language
     ListView language_;
